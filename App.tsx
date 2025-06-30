@@ -36,12 +36,12 @@ function App() {
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {
-                color: modeAuto == 'dark' ? 'white' : 'black',
+                color: modeAuto === 'dark' ? 'white' : 'black',
               },
               headerStyle: {
-                backgroundColor: modeAuto == 'dark' ? '#0E2747' : '#FFFFF',
+                backgroundColor: modeAuto === 'dark' ? '#0E2747' : '#FFFFF',
               },
-              headerTintColor: modeAuto == 'dark' ? 'white' : 'black',
+              headerTintColor: modeAuto === 'dark' ? 'white' : 'black',
             }}
           />
 

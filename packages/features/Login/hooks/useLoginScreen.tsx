@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { Alert } from 'react-native';
-
 import { SCREENS } from '../../../constants/screens';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../redux/actions/auth';
-import { RootState } from '../../redux/store';
+import { useDispatch } from 'react-redux';
 import { RoutesTypes } from '../../types';
-import { switchTheme } from '../../redux/actions/theme';
 import { loginUser } from '../../redux/actions/auth';
 
 function useLoginScreen() {
@@ -22,18 +17,29 @@ function useLoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [attempt, setAttempt] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   const dispatch = useDispatch();
 
   //Support Functions For Auth
+
   const handleLogin = async () => {
-    const user = dispatch(await loginUser(email, password));
-    console.log(user);
-    if (!user.payload) {
-      setAttempt(true);
-    } else {
-      navigation.navigate(SCREENS.Dashboard);
+    validateEmail(email);
+
+    if (isValid) {
+      const user = dispatch(await loginUser(email, password));
+      console.log(user);
+      if (!user.payload) {
+        setAttempt(true);
+      } else {
+        navigation.navigate(SCREENS.Dashboard);
+      }
     }
+  };
+
+  const validateEmail = (text: string) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsValid(regex.test(text));
   };
 
   function handleForgotPassword() {
@@ -48,6 +54,7 @@ function useLoginScreen() {
     setPassword,
     handleLogin,
     handleForgotPassword,
+    isValid,
 
     attempt,
   };

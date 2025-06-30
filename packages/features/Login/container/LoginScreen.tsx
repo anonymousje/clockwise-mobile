@@ -21,6 +21,7 @@ export default function Login() {
     setPassword,
     handleLogin,
     handleForgotPassword,
+    isValid,
     attempt,
   } = useLoginScreen();
   //UI
@@ -57,6 +58,7 @@ export default function Login() {
             onChangeText={setEmail}
             autoCapitalize="none"
           />
+          {!isValid && <Text style={styles.errorMsg}>Email is invalid</Text>}
           {/* Password field */}
           <TextInput
             style={styles.input}

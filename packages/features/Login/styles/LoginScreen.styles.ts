@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:
-      mode == 'dark'
+      mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 24,
     fontWeight: '300',
-    color: mode == 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   content: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '300',
-    color: mode == 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 40,
     lineHeight: 34,
   },
@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderBottomWidth: 1,
     borderBottomColor:
-      mode == 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     paddingVertical: 16,
     fontSize: 16,
-    color: mode == 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
   },
   loginButton: {
