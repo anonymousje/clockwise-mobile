@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
   },
+  icon: {},
   input: {
     backgroundColor: 'transparent',
     borderBottomWidth: 1,
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
+
   loginButtonText: {
     color: 'white',
     fontSize: 16,

@@ -18,6 +18,7 @@ function useLoginScreen() {
   const [password, setPassword] = useState('');
   const [attempt, setAttempt] = useState(false);
   const [isValid, setIsValid] = useState(true);
+  const [isPassword, setIsPassword] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -42,6 +43,9 @@ function useLoginScreen() {
     setIsValid(regex.test(text));
   };
 
+  const changePwdType = () => {
+    setIsPassword(prevState => !prevState);
+  };
   function handleForgotPassword() {
     //TODO: ADD NAVIGATION
     navigation.navigate(SCREENS.ForgotPassword);
@@ -55,7 +59,8 @@ function useLoginScreen() {
     handleLogin,
     handleForgotPassword,
     isValid,
-
+    changePwdType,
+    isPassword,
     attempt,
   };
 }

@@ -1,5 +1,5 @@
 import { User } from '../../types';
-import apiClient from '../../apiClients/authClient';
+import apiClient from '../../authClient';
 
 export const setUser = (userData: User) => {
   return {
@@ -11,8 +11,8 @@ export const setUser = (userData: User) => {
 export const loginUser = async (email: string, password: string) => {
   try {
     const response = await apiClient.post('/Auth/login', {
-      email: 'admin@example.com',
-      password: 'Admin@123',
+      email,
+      password,
     });
 
     const { accessToken, refreshToken } = response.data;

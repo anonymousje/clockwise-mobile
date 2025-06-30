@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Appearance,
   SafeAreaView,
+  Button,
 } from 'react-native';
 
 import styles from '../styles/LoginScreen.styles';
@@ -22,6 +23,8 @@ export default function Login() {
     handleLogin,
     handleForgotPassword,
     isValid,
+    changePwdType,
+    isPassword,
     attempt,
   } = useLoginScreen();
   //UI
@@ -60,14 +63,17 @@ export default function Login() {
           />
           {!isValid && <Text style={styles.errorMsg}>Email is invalid</Text>}
           {/* Password field */}
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor={modeAuto === 'light' ? 'black' : 'white'}
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
+          <View>
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              placeholderTextColor={modeAuto === 'light' ? 'black' : 'white'}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={isPassword}
+            />
+            <Button title="+" onPress={changePwdType} />
+          </View>
           {/* Login Button field */}
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.loginButtonText}>LOG IN</Text>
