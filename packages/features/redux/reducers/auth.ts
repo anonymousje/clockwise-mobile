@@ -13,6 +13,7 @@ export const useSession = (state = initialState, action: Action) => {
   switch (action.type) {
     case 'LOGIN_USER':
       setAccessToken(action.payload.accessToken);
+
       return {
         ...state,
         email: action.payload.email,

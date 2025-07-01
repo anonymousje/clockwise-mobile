@@ -27,22 +27,17 @@ apiClient.interceptors.request.use(
 
   function (error) {
     console.log('request error;', JSON.stringify(error));
-    // Do something with request error
     return Promise.reject(error);
   },
 );
 
 apiClient.interceptors.response.use(
   function (response) {
-    // Any status code that lies within the range of 2xx will trigger this function
-    // Do something with response data
     console.log('response;', JSON.stringify(response));
     return response;
   },
 
   function (error) {
-    // Any status code that falls outside the range of 2xx will trigger this function
-    // Do something with response error
     console.log('response error;', JSON.stringify(error));
     return Promise.reject(error);
   },
