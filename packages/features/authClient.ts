@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+let accessToken: string | null = null;
+
+export const setAccessToken = (token: string) => {
+  accessToken = token;
+};
+
 //TODO FIX
 const apiClient = axios.create({
   baseURL: 'http://10.0.2.2:5135/api',
@@ -11,8 +17,11 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   function (config) {
+    if (accessToken) {
+      config.headers.Authorization = accessToken;
+    }
     console.log('config;', JSON.stringify(config));
-    // Do something before the request is sent
+
     return config;
   },
 

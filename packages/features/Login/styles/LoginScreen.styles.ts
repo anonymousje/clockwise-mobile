@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingBottom: 20,
   },
+  loader: {
+    marginTop: 20,
+  },
+
   errorMsg: {
     color: 'red',
   },

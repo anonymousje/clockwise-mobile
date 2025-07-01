@@ -19,16 +19,20 @@ function useLoginScreen() {
   const [attempt, setAttempt] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [isPassword, setIsPassword] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   //Support Functions For Auth
 
   const handleLogin = async () => {
-    validateEmail(email);
-
-    if (isValid) {
+    setLoading(true);
+    const valid = validateEmail(email);
+    setIsValid(valid);
+    if (valid) {
       const user = dispatch(await loginUser(email, password));
+      setLoading(false);
+
       console.log(user);
       if (!user.payload) {
         setAttempt(true);
@@ -36,11 +40,12 @@ function useLoginScreen() {
         navigation.navigate(SCREENS.Dashboard);
       }
     }
+    setLoading(false);
   };
 
   const validateEmail = (text: string) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsValid(regex.test(text));
+    return regex.test(text);
   };
 
   const changePwdType = () => {
@@ -62,6 +67,7 @@ function useLoginScreen() {
     changePwdType,
     isPassword,
     attempt,
+    loading,
   };
 }
 

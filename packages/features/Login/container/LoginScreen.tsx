@@ -7,6 +7,7 @@ import {
   Appearance,
   SafeAreaView,
   Button,
+  ActivityIndicator,
 } from 'react-native';
 
 import styles from '../styles/LoginScreen.styles';
@@ -26,6 +27,7 @@ export default function Login() {
     changePwdType,
     isPassword,
     attempt,
+    loading,
   } = useLoginScreen();
   //UI
 
@@ -75,9 +77,17 @@ export default function Login() {
             <Button title="+" onPress={changePwdType} />
           </View>
           {/* Login Button field */}
-          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-            <Text style={styles.loginButtonText}>LOG IN</Text>
-          </TouchableOpacity>
+          {loading ? (
+            <ActivityIndicator
+              size="large"
+              color="#007AFF"
+              style={styles.loader}
+            />
+          ) : (
+            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+              <Text style={styles.loginButtonText}>LOG IN</Text>
+            </TouchableOpacity>
+          )}
           {/* ForgotPassword field */}
           <TouchableOpacity
             style={styles.forgotPasswordButton}

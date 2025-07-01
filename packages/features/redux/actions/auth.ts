@@ -15,15 +15,15 @@ export const loginUser = async (email: string, password: string) => {
       password,
     });
 
-    const { accessToken, refreshToken } = response.data;
+    const { accessToken, refreshToken, role } = response.data;
 
     return {
       type: 'LOGIN_USER',
       payload: {
-        email: 'admin@example.com',
-        password,
+        email,
         accessToken,
         refreshToken,
+        role,
       },
     };
   } catch (error) {
