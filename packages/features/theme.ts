@@ -5,3 +5,8 @@ export const colors = {
   TEXT_DARK_MODE: 'white',
   TEXT_LIGHT_MODE: 'black',
 };
+
+export const fonts = {
+  CLOCKWISE_REGULAR: 'Lato-Regular',
+  CLOCKWISE_BOLD: 'Lato-Bold',
+};

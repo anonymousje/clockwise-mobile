@@ -1,12 +1,12 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors } from '../../theme';
+import { colors, fonts } from '../../theme';
 
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor:
-      mode == 'dark'
+      mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
     flex: 1,
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.CLOCKWISE_PRIMARY,
     paddingVertical: 16,
     borderRadius: 8,
+    fontFamily: fonts.CLOCKWISE_BOLD,
     alignItems: 'center',
     marginTop: 20,
   },
@@ -32,10 +33,11 @@ const styles = StyleSheet.create({
 
   header: {
     width: '100%',
-    fontSize: 28,
+    fontSize: 30,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: '300',
     color:
-      mode == 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
     marginBottom: 40,
     lineHeight: 34,
     paddingBottom: 20,
@@ -46,11 +48,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderBottomWidth: 1,
     borderBottomColor:
-      mode == 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
-    fontSize: 16,
+      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+    fontSize: 17,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
     color:
-      mode == 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
     marginBottom: 20,
+    paddingBottom: 16,
   },
 });
 

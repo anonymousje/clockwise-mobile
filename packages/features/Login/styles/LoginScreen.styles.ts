@@ -1,5 +1,5 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors } from '../../theme';
+import { colors, fonts } from '../../theme';
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
@@ -49,9 +49,10 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   title: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: '300',
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 40,
     lineHeight: 34,
   },
@@ -65,7 +66,9 @@ const styles = StyleSheet.create({
     borderBottomColor:
       mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     paddingVertical: 16,
-    fontSize: 16,
+    fontSize: 17,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
   },
@@ -79,6 +82,8 @@ const styles = StyleSheet.create({
 
   loginButtonText: {
     color: 'white',
+    fontFamily: fonts.CLOCKWISE_BOLD,
+
     fontSize: 16,
     fontWeight: '600',
   },
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     color: colors.CLOCKWISE_PRIMARY,
-    fontSize: 14,
+    fontSize: 16,
     textDecorationLine: 'underline',
   },
 });
