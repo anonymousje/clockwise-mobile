@@ -11,9 +11,30 @@ const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHT_MODE,
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'flex-end',
     paddingHorizontal: 24,
     paddingTop: 40,
+  },
+  form: {
+    flex: 1,
+  },
+  inputPassword: {
+    fontSize: 17,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+    paddingVertical: 16,
+  },
+  passwordRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    borderBottomWidth: 1,
+    borderBottomColor:
+      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+  },
+
+  buttonContainer: {
+    width: '100%',
   },
 
   button: {
@@ -22,7 +43,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     fontFamily: fonts.CLOCKWISE_BOLD,
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 40,
   },
 
   buttonText: {
@@ -43,6 +64,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
+  showPassButton: {
+    color: colors.CLOCKWISE_PRIMARY,
+  },
   input: {
     width: '100%',
     backgroundColor: 'transparent',

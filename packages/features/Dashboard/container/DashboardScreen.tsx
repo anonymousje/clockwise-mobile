@@ -9,7 +9,6 @@ export default function Dashboard() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}> Dashboard Under Construction </Text>
-      <Text style={styles.subtitle}>Here, have a cookie! 🍪</Text>
 
       <View style={styles.infoBox}>
         <Text style={styles.label}> Email:</Text>

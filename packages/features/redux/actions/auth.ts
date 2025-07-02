@@ -26,7 +26,8 @@ export const loginUser = async (email: string, password: string) => {
         role,
       },
     };
-  } catch (error) {
+  }
+ catch (error) {
     return { type: 'LOGIN_FAIL', payload: '' };
   }
 };

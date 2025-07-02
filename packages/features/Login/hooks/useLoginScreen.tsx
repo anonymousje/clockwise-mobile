@@ -32,7 +32,8 @@ function useLoginScreen() {
 
       if (!user.payload) {
         setAttempt(true);
-      } else {
+      }
+ else {
         navigation.navigate(SCREENS.Dashboard);
       }
     }

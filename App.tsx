@@ -11,6 +11,7 @@ import ForgotPassword from './packages/features/ForgotPassword/container/ForgotP
 import Dashboard from './packages/features/Dashboard/container/DashboardScreen';
 import store from './packages/features/redux/store';
 import { RoutesTypes } from './packages/features/types';
+import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 
 //Main Function
 function App() {
@@ -33,6 +34,20 @@ function App() {
           <Stack.Screen
             name={SCREENS.ForgotPassword}
             component={ForgotPassword}
+            options={{
+              title: 'Forgot Password',
+              headerTitleStyle: {
+                color: modeAuto === 'dark' ? 'white' : 'black',
+              },
+              headerStyle: {
+                backgroundColor: modeAuto === 'dark' ? '#0E2747' : '#FFFFF',
+              },
+              headerTintColor: modeAuto === 'dark' ? 'white' : 'black',
+            }}
+          />
+          <Stack.Screen
+            name={SCREENS.NewPassword}
+            component={NewPassword}
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {

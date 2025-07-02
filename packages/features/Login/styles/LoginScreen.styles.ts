@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
   },
-  icon: {},
   input: {
     backgroundColor: 'transparent',
     borderBottomWidth: 1,
@@ -76,18 +75,34 @@ const styles = StyleSheet.create({
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
   },
+  inputPassword: {
+    fontSize: 17,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+    paddingVertical: 16,
+  },
+  passwordRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    borderBottomWidth: 1,
+    borderBottomColor:
+      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+  },
   loginButton: {
     backgroundColor: colors.CLOCKWISE_PRIMARY,
     paddingVertical: 16,
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 40,
   },
-
+  showPasswordButton: {
+    color: colors.CLOCKWISE_PRIMARY,
+  },
   loginButtonText: {
     color: 'white',
     fontFamily: fonts.CLOCKWISE_BOLD,
-
     fontSize: 16,
     fontWeight: '600',
   },

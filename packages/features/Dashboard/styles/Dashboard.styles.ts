@@ -13,11 +13,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
   },
-  subtitle: {
-    fontSize: 16,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
+
   infoBox: {
     backgroundColor: '#fff',
     padding: 15,

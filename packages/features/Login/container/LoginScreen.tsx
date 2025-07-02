@@ -1,4 +1,3 @@
-//Imports
 import {
   View,
   Text,
@@ -6,16 +5,14 @@ import {
   TouchableOpacity,
   Appearance,
   SafeAreaView,
-  Button,
   ActivityIndicator,
 } from 'react-native';
 
 import styles from '../styles/LoginScreen.styles';
 import useLoginScreen from '../hooks/useLoginScreen';
+import { colors } from '../../theme';
 
-//Main Function
 export default function Login() {
-  //Hook
   const {
     email,
     setEmail,
@@ -29,7 +26,6 @@ export default function Login() {
     attempt,
     loading,
   } = useLoginScreen();
-  //UI
 
   const modeAuto = Appearance.getColorScheme();
 
@@ -64,23 +60,26 @@ export default function Login() {
 
           {!isValid && <Text style={styles.errorMsg}>Email is invalid</Text>}
 
-          <View>
+          <View style={styles.passwordRow}>
             <TextInput
-              style={styles.input}
+              style={styles.inputPassword}
               placeholder='Password'
               placeholderTextColor={modeAuto === 'light' ? 'black' : 'white'}
               value={password}
               onChangeText={setPassword}
               secureTextEntry={isPassword}
             />
-
-            <Button title='+' onPress={changePwdType} />
+            <TouchableOpacity onPress={changePwdType}>
+              <Text style={styles.showPasswordButton}>
+                {isPassword ? 'Show' : 'Hide'}
+              </Text>
+            </TouchableOpacity>
           </View>
 
           {loading ? (
             <ActivityIndicator
               size='large'
-              color='#007AFF'
+              color={colors.CLOCKWISE_PRIMARY}
               style={styles.loader}
             />
           ) : (
