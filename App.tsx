@@ -13,6 +13,24 @@ import store from './packages/features/redux/store';
 import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 
+const config = {
+  screens: {
+    [SCREENS.Login]: 'login',
+    [SCREENS.ForgotPassword]: 'forgotpassword',
+    [SCREENS.NewPassword]: {
+      path: 'reset-password',
+      parse: {
+        email: (email: string) => decodeURIComponent(email),
+        token: (token: string) => decodeURIComponent(token),
+      },
+    },
+    [SCREENS.Dashboard]: 'dashboard',
+  },
+};
+const linking = {
+  prefixes: ['clockwise://', 'https://clockwise.com'],
+  config,
+};
 //Main Function
 function App() {
   //Stack Declaration
@@ -21,7 +39,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer linking={linking}>
         <Stack.Navigator>
           {/*Login Screen */}
           <Stack.Screen

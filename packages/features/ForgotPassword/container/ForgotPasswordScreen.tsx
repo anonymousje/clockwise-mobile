@@ -10,7 +10,8 @@ import styles from '../styles/ForgotPasswordScreen.styles';
 import useForgotPasswordScreen from '../hooks/useForgotPasswordScreen';
 
 export default function ForgotPassword() {
-  const { email, setEmail, handleSubmit } = useForgotPasswordScreen();
+  const { email, setEmail, isValidEmail, handleSubmit } =
+    useForgotPasswordScreen();
 
   const mode = Appearance.getColorScheme();
   return (
@@ -24,6 +25,10 @@ export default function ForgotPassword() {
         value={email}
         onChangeText={setEmail}
       />
+
+      {!isValidEmail && (
+        <Text style={styles.errorMsg}>Please enter a valid email address.</Text>
+      )}
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={handleSubmit}>

@@ -4,7 +4,7 @@ export type RoutesTypes = {
   [SCREENS.Login]: undefined;
   [SCREENS.ForgotPassword]: undefined;
   [SCREENS.Dashboard]: undefined;
-  [SCREENS.NewPassword]: undefined;
+  [SCREENS.NewPassword]: { email?: string; token?: string };
 };
 
 export interface User {

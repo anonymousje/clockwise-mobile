@@ -1,34 +1,84 @@
 import { useState } from 'react';
-import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp, useRoute } from '@react-navigation/native';
+
+import { RoutesTypes } from '../../types';
+import { SCREENS } from '../../../constants/screens';
+import apiClient from '../../authClient';
 
 function useNewPasswordScreen() {
-  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [match, setMatch] = useState(true);
   const [isPassword, setIsPassword] = useState(true);
+  const [isConfirmPassword, setIsConfirmPassword] = useState(true);
+  const [success, setSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
 
+  type NewPasswordRouteProp = RouteProp<
+    RoutesTypes,
+    typeof SCREENS.NewPassword
+  >;
+
+  const route = useRoute<NewPasswordRouteProp>();
+
+  const { email, token } = route.params || {};
+
+  type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
+
+  const navigation = useNavigation<NavigationProp>();
+
+  function handleBack() {
+    navigation.navigate(SCREENS.Login);
+  }
   function handleSubmit() {
-    if (password !== confirmPassword) {
-      Alert.alert('Passwords do not match');
+    if (newPassword !== confirmPassword) {
+      setMatch(false);
       return;
     }
-
-    Alert.alert(
-      'Password reset successful',
-      `Your new password is: ${password}`,
-    );
+    if (token) {
+      const encodedToken = encodeURIComponent(token);
+      apiClient
+        .post('/Auth/reset-password', {
+          email,
+          token: encodedToken,
+          newPassword,
+        })
+        .then(() => {
+          setSuccess(true);
+        })
+        .catch((error) => {
+          console.error('Error resetting password:', error);
+          setErrorMsg(true);
+          return;
+        });
+    }
+    return;
   }
   const changePwdType = () => {
     setIsPassword((prevState) => !prevState);
   };
+  const changeConfirmPwdType = () => {
+    setIsConfirmPassword((prevState) => !prevState);
+  };
 
   return {
-    password,
-    setPassword,
+    newPassword,
+    setNewPassword,
     confirmPassword,
     setConfirmPassword,
     isPassword,
+    isConfirmPassword,
+    changeConfirmPwdType,
+    setIsConfirmPassword,
     changePwdType,
     handleSubmit,
+    match,
+    success,
+    errorMsg,
+    handleBack,
+    setErrorMsg,
   };
 }
 
