@@ -1,4 +1,5 @@
 import { SCREENS } from '../constants/screens';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type RoutesTypes = {
   [SCREENS.Login]: undefined;
@@ -13,3 +14,9 @@ export interface User {
   refreshToken: string;
   role: string;
 }
+export type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
+
+export type NewPasswordRouteProp = RouteProp<
+  RoutesTypes,
+  typeof SCREENS.NewPassword
+>;

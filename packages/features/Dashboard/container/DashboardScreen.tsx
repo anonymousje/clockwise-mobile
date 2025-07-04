@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import styles from '../styles/Dashboard.styles';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import useDashboardScreen from '../hooks/useDashboardScreen';
 
 export default function Dashboard() {
   const user = useSelector((state: RootState) => state.user);
-
+  const { handleBack } = useDashboardScreen();
   return (
     <View style={styles.container}>
       <Text style={styles.title}> Dashboard Under Construction </Text>
@@ -23,6 +24,7 @@ export default function Dashboard() {
         <Text style={styles.label}> Role:</Text>
         <Text style={styles.value}>{user.role}</Text>
       </View>
+      <Button title='logout' onPress={handleBack} />
     </View>
   );
 }

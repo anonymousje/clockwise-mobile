@@ -1,6 +1,5 @@
 module.exports = {
   arrowParens: 'always',
-  bracketSpacing: true,
   htmlWhitespaceSensitivity: 'css',
   insertPragma: false,
   jsxBracketSameLine: false,

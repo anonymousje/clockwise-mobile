@@ -64,11 +64,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    backgroundColor: 'transparent',
-    borderBottomWidth: 1,
-    borderBottomColor:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    paddingVertical: 16,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 8,
+
+    paddingVertical: 14,
+    paddingHorizontal: 12,
     fontSize: 17,
     fontFamily: fonts.CLOCKWISE_REGULAR,
 
@@ -79,16 +82,18 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-    paddingVertical: 16,
+    paddingVertical: 14,
+    paddingHorizontal: 12,
   },
   passwordRow: {
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-
-    borderBottomWidth: 1,
-    borderBottomColor:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
   loginButton: {
     backgroundColor: colors.CLOCKWISE_PRIMARY,
@@ -98,7 +103,11 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   showPasswordButton: {
-    color: colors.CLOCKWISE_PRIMARY,
+    color:
+      mode === 'dark'
+        ? colors.CLOCKWISE_PRIMARY
+        : colors.CLOCKWISE_PRIMARY_DARK,
+    paddingHorizontal: 12,
   },
   loginButtonText: {
     color: 'white',

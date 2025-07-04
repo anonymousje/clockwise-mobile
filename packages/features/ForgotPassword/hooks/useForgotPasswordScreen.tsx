@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { SCREENS } from '../../../constants/screens';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RoutesTypes } from '../../types';
 import apiClient from '../../authClient';
-import { Alert } from 'react-native';
+import { NavigationProp } from '../../types';
 
 function useForgotPasswordScreen() {
   const [email, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
-  type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation<NavigationProp>();
 
@@ -17,31 +16,35 @@ function useForgotPasswordScreen() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(text);
   };
+
   function handleBack() {
     navigation.navigate(SCREENS.Login);
   }
+
   function handleSubmit() {
+    setLoading(true);
+
     if (!validatedEmail(email)) {
       setIsValidEmail(false);
+      setLoading(false);
       return;
     }
+
     apiClient.post('/Auth/forgot-password', { email });
     setIsValidEmail(true);
-    Alert.alert(
-      `If the email ${email} is registered, you will receive a password reset link.`,
-      '',
-      [
-        {
-          text: 'Back to Login',
-
-          onPress: handleBack,
-        },
-      ],
-      { cancelable: false },
-    );
+    setSuccess(true);
+    setLoading(false);
   }
 
-  return { email, setEmail, isValidEmail, handleSubmit };
+  return {
+    email,
+    setEmail,
+    isValidEmail,
+    handleSubmit,
+    handleBack,
+    success,
+    loading,
+  };
 }
 
 export default useForgotPasswordScreen;

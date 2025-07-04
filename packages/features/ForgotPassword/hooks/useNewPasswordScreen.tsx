@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RouteProp, useRoute } from '@react-navigation/native';
-
-import { RoutesTypes } from '../../types';
+import { useRoute } from '@react-navigation/native';
+import { NewPasswordRouteProp } from '../../types';
+import { NavigationProp } from '../../types';
 import { SCREENS } from '../../../constants/screens';
 import apiClient from '../../authClient';
 
@@ -15,28 +14,43 @@ function useNewPasswordScreen() {
   const [isConfirmPassword, setIsConfirmPassword] = useState(true);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isUppercase, setIsUppercase] = useState(false);
+  const [isSpecialChar, setIsSpecialChar] = useState(false);
+  const [isNumber, setIsNumber] = useState(false);
+  const [isLength, setIsLength] = useState(false);
 
-  type NewPasswordRouteProp = RouteProp<
-    RoutesTypes,
-    typeof SCREENS.NewPassword
-  >;
+  function validatePassword(text: string) {
+    const uppercaseRegex = /[A-Z]/;
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    const numberRegex = /\d/;
+    const lengthRegex = /.{7,}/;
+
+    setIsUppercase(uppercaseRegex.test(text));
+    setIsSpecialChar(specialCharRegex.test(text));
+    setIsNumber(numberRegex.test(text));
+    setIsLength(lengthRegex.test(text));
+  }
 
   const route = useRoute<NewPasswordRouteProp>();
-
   const { email, token } = route.params || {};
-
-  type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
-
   const navigation = useNavigation<NavigationProp>();
 
   function handleBack() {
     navigation.navigate(SCREENS.Login);
   }
+
   function handleSubmit() {
+    validatePassword(newPassword);
+    setMatch(true);
+    setLoading(true);
+
     if (newPassword !== confirmPassword) {
       setMatch(false);
+      setLoading(false);
       return;
     }
+
     if (token) {
       const encodedToken = encodeURIComponent(token);
       apiClient
@@ -47,21 +61,25 @@ function useNewPasswordScreen() {
         })
         .then(() => {
           setSuccess(true);
+          setLoading(false);
         })
         .catch((error) => {
           console.error('Error resetting password:', error);
           setErrorMsg(true);
+          setLoading(false);
           return;
         });
     }
+
     return;
   }
-  const changePwdType = () => {
+  function changePwdType() {
     setIsPassword((prevState) => !prevState);
-  };
-  const changeConfirmPwdType = () => {
+  }
+
+  function changeConfirmPwdType() {
     setIsConfirmPassword((prevState) => !prevState);
-  };
+  }
 
   return {
     newPassword,
@@ -79,6 +97,11 @@ function useNewPasswordScreen() {
     errorMsg,
     handleBack,
     setErrorMsg,
+    loading,
+    isUppercase,
+    isSpecialChar,
+    isNumber,
+    isLength,
   };
 }
 

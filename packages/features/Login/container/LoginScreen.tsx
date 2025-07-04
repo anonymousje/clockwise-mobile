@@ -48,7 +48,7 @@ export default function Login() {
               Incorrect Email or Password. Please Try again.
             </Text>
           )}
-
+          {!isValid && <Text style={styles.errorMsg}>Email is invalid</Text>}
           <TextInput
             style={styles.input}
             placeholder='Email or username'
@@ -57,8 +57,6 @@ export default function Login() {
             onChangeText={setEmail}
             autoCapitalize='none'
           />
-
-          {!isValid && <Text style={styles.errorMsg}>Email is invalid</Text>}
 
           <View style={styles.passwordRow}>
             <TextInput

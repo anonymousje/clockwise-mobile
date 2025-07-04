@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
   inputPassword: {
     fontSize: 17,
+
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 16,
@@ -47,19 +48,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-
-    borderBottomWidth: 1,
-    borderBottomColor:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 8,
+    paddingHorizontal: 14,
   },
   ConfirmPasswordRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-
-    borderBottomWidth: 1,
-    borderBottomColor:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 8,
+    paddingHorizontal: 14,
     marginVertical: 20,
   },
 
@@ -67,13 +72,16 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 
+  loader: {
+    marginTop: 20,
+  },
   button: {
     backgroundColor: colors.CLOCKWISE_PRIMARY,
     paddingVertical: 16,
     borderRadius: 8,
     fontFamily: fonts.CLOCKWISE_BOLD,
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 10,
   },
 
   buttonText: {
@@ -101,14 +109,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   showPassButton: {
-    color: colors.CLOCKWISE_PRIMARY,
+    color:
+      mode === 'dark'
+        ? colors.CLOCKWISE_PRIMARY
+        : colors.CLOCKWISE_PRIMARY_DARK,
   },
+
   input: {
     width: '100%',
-    backgroundColor: 'transparent',
-    borderBottomWidth: 1,
-    borderBottomColor:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+    height: 50,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 8,
+    paddingHorizontal: 14,
     fontSize: 17,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     color:
@@ -117,22 +132,22 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   popupBox: {
-    width: '70%',
+    width: '80%',
     height: '20%',
     justifyContent: 'center',
-    gap: 20,
+    gap: 5,
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARKER_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
-    borderRadius: 5,
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 4,
     padding: 24,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 2,
   },
   popupButton: {
     marginTop: 20,
@@ -143,8 +158,20 @@ const styles = StyleSheet.create({
   },
   popupButtonText: {
     color: 'white',
+    fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  rulesContainer: {
+    marginBottom: 10,
+  },
+  rulesText: {
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontSize: 14,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+    marginBottom: 5,
+    lineHeight: 20,
+    paddingLeft: 10,
   },
 });
 

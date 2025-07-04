@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { SCREENS } from '../../../constants/screens';
 import { useDispatch } from 'react-redux';
-import { RoutesTypes } from '../../types';
 import { loginUser } from '../../redux/actions/auth';
+import { NavigationProp } from '../../types';
 
 function useLoginScreen() {
-  type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
-
   const navigation = useNavigation<NavigationProp>();
 
   const [email, setEmail] = useState('');
@@ -22,6 +19,7 @@ function useLoginScreen() {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
+    setAttempt(false);
     setLoading(true);
     const valid = validateEmail(email);
     setIsValid(valid);
@@ -32,9 +30,8 @@ function useLoginScreen() {
 
       if (!user.payload) {
         setAttempt(true);
-      }
- else {
-        navigation.navigate(SCREENS.Dashboard);
+      } else {
+        navigation.replace(SCREENS.Dashboard);
       }
     }
 
@@ -47,9 +44,9 @@ function useLoginScreen() {
     return regex.test(text);
   };
 
-  const changePwdType = () => {
+  function changePwdType() {
     setIsPassword((prevState) => !prevState);
-  };
+  }
 
   function handleForgotPassword() {
     navigation.navigate(SCREENS.ForgotPassword);
