@@ -1,12 +1,10 @@
 import { View, Text, Button } from 'react-native';
 import styles from '../styles/Dashboard.styles';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+
 import useDashboardScreen from '../hooks/useDashboardScreen';
 
 export default function Dashboard() {
-  const user = useSelector((state: RootState) => state.user);
-  const { handleBack } = useDashboardScreen();
+  const { handleBack, user } = useDashboardScreen();
   return (
     <View style={styles.container}>
       <Text style={styles.title}> Dashboard Under Construction </Text>
