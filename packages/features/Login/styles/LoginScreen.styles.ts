@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 
   errorMsg: {
     color: 'red',
+    marginBottom: 10,
   },
   logoContainer: {
     flexDirection: 'row',

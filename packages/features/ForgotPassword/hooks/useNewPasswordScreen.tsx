@@ -19,6 +19,7 @@ function useNewPasswordScreen() {
   const [isSpecialChar, setIsSpecialChar] = useState(false);
   const [isNumber, setIsNumber] = useState(false);
   const [isLength, setIsLength] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   function validatePassword(text: string) {
     const uppercaseRegex = /[A-Z]/;
@@ -30,6 +31,8 @@ function useNewPasswordScreen() {
     setIsSpecialChar(specialCharRegex.test(text));
     setIsNumber(numberRegex.test(text));
     setIsLength(lengthRegex.test(text));
+
+    return isUppercase && isSpecialChar && isLength && isNumber;
   }
 
   const route = useRoute<NewPasswordRouteProp>();
@@ -41,7 +44,7 @@ function useNewPasswordScreen() {
   }
 
   function handleSubmit() {
-    validatePassword(newPassword);
+    setIsValid(validatePassword(newPassword));
     setMatch(true);
     setLoading(true);
 
@@ -51,7 +54,7 @@ function useNewPasswordScreen() {
       return;
     }
 
-    if (token) {
+    if (token && validatePassword(newPassword)) {
       const encodedToken = encodeURIComponent(token);
       apiClient
         .post('/Auth/reset-password', {
@@ -69,6 +72,8 @@ function useNewPasswordScreen() {
           setLoading(false);
           return;
         });
+    } else {
+      setLoading(false);
     }
 
     return;
@@ -102,6 +107,7 @@ function useNewPasswordScreen() {
     isSpecialChar,
     isNumber,
     isLength,
+    isValid,
   };
 }
 

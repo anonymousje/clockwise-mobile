@@ -27,7 +27,9 @@ export default function ForgotPassword() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Enter Your Email</Text>
-
+      {!isValidEmail && (
+        <Text style={styles.errorMsg}>Please enter a valid email address.</Text>
+      )}
       <TextInput
         style={styles.input}
         placeholder='Email'
@@ -36,9 +38,6 @@ export default function ForgotPassword() {
         onChangeText={setEmail}
       />
 
-      {!isValidEmail && (
-        <Text style={styles.errorMsg}>Please enter a valid email address.</Text>
-      )}
       <Modal visible={success} transparent={true} animationType='fade'>
         <View style={styles.modalContainer}>
           <View style={styles.popupBox}>

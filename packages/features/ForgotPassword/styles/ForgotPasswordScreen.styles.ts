@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   },
   errorMsg: {
     color: 'red',
+    marginBottom: 10,
   },
   inputPassword: {
     fontSize: 17,

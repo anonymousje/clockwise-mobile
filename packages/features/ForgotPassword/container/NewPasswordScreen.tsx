@@ -43,6 +43,8 @@ export default function NewPassword() {
       <Text style={styles.header}>Enter New Password</Text>
 
       <View style={styles.form}>
+        {!match && <Text style={styles.errorMsg}>Passwords do not match</Text>}
+
         <View style={styles.NewPasswordRow}>
           <TextInput
             style={styles.inputPassword}
@@ -77,8 +79,6 @@ export default function NewPassword() {
             </Text>
           </TouchableOpacity>
         </View>
-
-        {!match && <Text style={styles.errorMsg}>Passwords do not match</Text>}
 
         <View style={styles.rulesContainer}>
           <Text style={styles.rulesText}>Password must contain:</Text>

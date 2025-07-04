@@ -7,7 +7,7 @@ export default function useDashboardScreen() {
   const navigation = useNavigation<NavigationProp>();
 
   function handleBack() {
-    navigation.navigate(SCREENS.Login);
+    navigation.replace(SCREENS.Login);
   }
 
   return { handleBack };
