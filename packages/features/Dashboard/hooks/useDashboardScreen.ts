@@ -13,5 +13,9 @@ export default function useDashboardScreen() {
     navigation.replace(SCREENS.Login);
   }
 
-  return { handleBack, user };
+  function handleNav() {
+    navigation.navigate(SCREENS.Staff);
+  }
+
+  return { handleBack, handleNav, user };
 }

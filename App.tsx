@@ -12,6 +12,7 @@ import Dashboard from './packages/features/Dashboard/container/DashboardScreen';
 import store from './packages/features/redux/store';
 import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
+import Staff from './packages/features/Staff/container/StaffScreen';
 
 const config = {
   screens: {
@@ -27,13 +28,13 @@ const config = {
     [SCREENS.Dashboard]: 'dashboard',
   },
 };
+
 const linking = {
   prefixes: ['clockwise://', 'https://clockwise.com'],
   config,
 };
-//Main Function
+
 function App() {
-  //Stack Declaration
   const Stack = createStackNavigator<RoutesTypes>();
   const modeAuto = Appearance.getColorScheme();
 
@@ -41,14 +42,12 @@ function App() {
     <Provider store={store}>
       <NavigationContainer linking={linking}>
         <Stack.Navigator>
-          {/*Login Screen */}
           <Stack.Screen
             name={SCREENS.Login}
             component={Login}
             options={{ headerShown: false }}
           />
 
-          {/*Forgot Password Screen */}
           <Stack.Screen
             name={SCREENS.ForgotPassword}
             component={ForgotPassword}
@@ -63,6 +62,7 @@ function App() {
               headerTintColor: modeAuto === 'dark' ? 'white' : 'black',
             }}
           />
+
           <Stack.Screen
             name={SCREENS.NewPassword}
             component={NewPassword}
@@ -78,10 +78,15 @@ function App() {
             }}
           />
 
-          {/*Dashboard Screen */}
           <Stack.Screen
             name={SCREENS.Dashboard}
             component={Dashboard}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name={SCREENS.Staff}
+            component={Staff}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
