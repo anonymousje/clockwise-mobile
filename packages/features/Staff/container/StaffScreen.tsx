@@ -14,10 +14,7 @@ const staffSchema = z.object({
   userName: z.string().min(1, 'Username is required'),
   nickName: z.string().optional(),
   address: z.string().optional(),
-  employeeId: z
-    .number()
-    .int()
-    .positive('Employee ID must be a positive integer'),
+  employeeId: z.string().min(1, 'Employee ID is required'),
   permissionLevel: z.string().min(1, 'Permission Level is required'),
   status: z.enum(['Activated', 'Deactivated']).optional(),
 });
@@ -32,7 +29,7 @@ export default function Staff() {
       userName: '',
       nickName: '',
       address: '',
-      employeeId: 0,
+      employeeId: '',
       permissionLevel: '',
       status: undefined,
     },
@@ -50,129 +47,158 @@ export default function Staff() {
         <Controller
           control={control}
           name={'fullName'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Full Name'
-              style={styles.inputText}
-              value={value}
-              onChangeText={onChange}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Full Name'
+                style={styles.inputText}
+                value={value}
+                onChangeText={onChange}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'cellPhone'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Cell Phone'
-              style={styles.inputText}
-              value={value}
-              onChangeText={onChange}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Cell Phone'
+                style={styles.inputText}
+                value={value}
+                onChangeText={onChange}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'homePhone'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Home Phone'
-              style={styles.inputText}
-              value={value}
-              onChangeText={onChange}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Home Phone'
+                style={styles.inputText}
+                value={value}
+                onChangeText={onChange}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'emailAddress'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Email Address'
-              style={styles.inputText}
-              value={value}
-              onChangeText={onChange}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Email Address'
+                style={styles.inputText}
+                value={value}
+                onChangeText={onChange}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'userName'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Username'
-              style={styles.inputText}
-              value={value}
-              onChangeText={onChange}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Username'
+                style={styles.inputText}
+                value={value}
+                onChangeText={onChange}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'nickName'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Nick Name'
-              style={styles.inputText}
-              value={value}
-              onChangeText={onChange}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Nick Name'
+                style={styles.inputText}
+                value={value}
+                onChangeText={onChange}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'address'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Address'
-              style={styles.inputText}
-              value={value}
-              onChangeText={onChange}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Address'
+                style={styles.inputText}
+                value={value}
+                onChangeText={onChange}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'employeeId'}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Employee ID'
-              style={styles.inputText}
-              keyboardType='numeric'
-              value={value?.toString()}
-              onChangeText={(text) => onChange(Number(text))}
-            />
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                placeholder='Employee ID'
+                style={styles.inputText}
+                value={value}
+                onChangeText={(text) => onChange(text)}
+              />
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
         <Controller
           control={control}
           name={'permissionLevel'}
-          render={({ field: { value, onChange } }) => (
-            <Picker
-              selectedValue={value}
-              style={styles.inputText}
-              onValueChange={onChange}
-            >
-              <Picker.Item label='Select Permission Level' value='' />
-              <Picker.Item label='Manager' value='Manager' />
-              <Picker.Item label='Employee' value='Employee' />
-            </Picker>
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <Picker
+                selectedValue={value}
+                style={styles.inputText}
+                onValueChange={onChange}
+              >
+                <Picker.Item label='Select Permission Level' value='' />
+                <Picker.Item label='Manager' value='Manager' />
+                <Picker.Item label='Employee' value='Employee' />
+              </Picker>
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
 
         <Controller
           control={control}
           name={'status'}
-          render={({ field: { value, onChange } }) => (
-            <Picker
-              selectedValue={value}
-              style={styles.inputText}
-              onValueChange={onChange}
-            >
-              <Picker.Item label='Select Status' value='' />
-              <Picker.Item label='Activated' value='Activated' />
-              <Picker.Item label='Deactivated' value='Deactivated' />
-            </Picker>
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <>
+              <Picker
+                selectedValue={value}
+                style={styles.inputText}
+                onValueChange={onChange}
+              >
+                <Picker.Item label='Select Status' value='' />
+                <Picker.Item label='Activated' value='Activated' />
+                <Picker.Item label='Deactivated' value='Deactivated' />
+              </Picker>
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
+            </>
           )}
         />
 

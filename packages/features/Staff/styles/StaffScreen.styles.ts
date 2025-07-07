@@ -20,4 +20,7 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: 'light',
   },
+  errorMsg: {
+    color: 'red',
+  },
 });
