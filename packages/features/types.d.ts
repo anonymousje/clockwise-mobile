@@ -9,15 +9,28 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
 };
 
-export interface User {
+export type User = {
   email: string;
   accessToken: string;
   refreshToken: string;
   role: string;
-}
+};
 export type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
 
 export type NewPasswordRouteProp = RouteProp<
   RoutesTypes,
   typeof SCREENS.NewPassword
 >;
+
+export type StaffFormData = {
+  fullName: string;
+  cellPhone: string;
+  homePhone?: string;
+  emailAddress: string;
+  userName: string;
+  nickName?: string;
+  address?: string;
+  employeeId: string;
+  permissionLevel: string;
+  status?: 'Activated' | 'Deactivated';
+};
