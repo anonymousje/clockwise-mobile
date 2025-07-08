@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
 
   closeButtonText: {
     fontSize: 22,
-    color: '#333',
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontWeight: 'bold',
   },
 
@@ -49,14 +49,14 @@ export const styles = StyleSheet.create({
   },
 
   closeButton: {
-    position: 'absolute',
-    right: 16,
-    top: 16,
-    zIndex: 1,
-    backgroundColor: '#eee',
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 16,
     width: 32,
     height: 32,
+    paddingBottom: 10,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 2,
@@ -128,6 +128,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: 'white',
   },
+
   addButton: {
     width: 60,
     height: 60,

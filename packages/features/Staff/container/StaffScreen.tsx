@@ -84,13 +84,15 @@ export default function Staff() {
       >
         <View>
           <View style={styles.modalContent}>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={closeForm}
-              accessibilityLabel='Close'
-            >
-              <Text style={styles.closeButtonText}>×</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={closeForm}
+                accessibilityLabel='Close'
+              >
+                <Text style={styles.closeButtonText}>×</Text>
+              </TouchableOpacity>
+            </View>
 
             <Text style={styles.modalHeader}>Add Employee</Text>
 
