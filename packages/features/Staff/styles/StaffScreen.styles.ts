@@ -20,10 +20,6 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
 
-  scrollViewContent: {
-    paddingBottom: 24,
-  },
-
   closeButtonText: {
     fontSize: 22,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
@@ -144,6 +140,16 @@ export const styles = StyleSheet.create({
     elevation: 10,
   },
 
+  infoContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
+  },
+
   staffSectionHeader: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -175,13 +181,32 @@ export const styles = StyleSheet.create({
   },
 
   staffDetails: {
-    fontSize: 15,
-    color: mode === 'dark' ? '#ccc' : '#444',
-    marginBottom: 2,
+    fontSize: 17,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    opacity: 0.6,
+    paddingLeft: 30,
+  },
+
+  infoContainerDetails: {
+    fontSize: 18,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    paddingLeft: 30,
+  },
+
+  info: {
+    width: '100%',
+    backgroundColor: colors.BACKGROUND_DARKER_MODE,
+    gap: 6,
+    paddingVertical: 15,
+    borderBottomWidth: 2,
+    borderBottomColor:
+      mode === 'dark'
+        ? colors.TEXT_DARK_LIGHTER_MODE
+        : colors.TEXT_LIGHT_LIGHTER_MODE,
   },
 
   statusBadge: {
-    alignSelf: 'flex-start',
+    alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 8,

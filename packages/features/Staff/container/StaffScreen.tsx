@@ -1,28 +1,9 @@
-import {
-  Text,
-  View,
-  TextInput,
-  Modal,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { Controller } from 'react-hook-form';
+import { Text, View, Modal, TouchableOpacity } from 'react-native';
 import { styles } from '../../Staff/styles/StaffScreen.styles';
 import useStaffScreen from '../hooks/useStaffScreen';
 
 export default function Staff() {
-  const {
-    control,
-    handleSubmit,
-    onSubmit,
-    showModal,
-    setShowModal,
-    getStaff,
-    expandedId,
-    setExpandedId,
-    closeForm,
-  } = useStaffScreen();
+  const { openForm, getStaff, expandedId, setExpandedId } = useStaffScreen();
 
   return (
     <View style={styles.container}>
@@ -38,10 +19,12 @@ export default function Staff() {
             activeOpacity={0.7}
           >
             <Text style={styles.staffName}>
-              {staff.name} <Text>({staff.empId})</Text>
+              {staff.fullName} <Text>({staff.employeeId})</Text>
             </Text>
 
-            <Text style={styles.staffDetails}>Position: {staff.position}</Text>
+            <Text style={styles.staffDetails}>
+              Position: {staff.permissionLevel}
+            </Text>
 
             {expandedId === staff.id && (
               <>
@@ -49,17 +32,52 @@ export default function Staff() {
                   animationType='slide'
                   onRequestClose={() => setExpandedId(null)}
                 >
-                  <Text style={styles.staffDetails}>Email: {staff.email}</Text>
+                  <View style={styles.infoContainer}>
+                    <View style={styles.info}>
+                      <Text style={styles.staffDetails}>Email</Text>
 
-                  <View
-                    style={[
-                      styles.statusBadge,
-                      staff.status === 'Activated'
-                        ? styles.statusActivated
-                        : styles.statusDeactivated,
-                    ]}
-                  >
-                    <Text>{staff.status}</Text>
+                      <Text style={styles.infoContainerDetails}>
+                        {staff.emailAddress}
+                      </Text>
+                    </View>
+                    <View style={styles.info}>
+                      <Text style={styles.staffDetails}>CellPhone</Text>
+
+                      <Text style={styles.infoContainerDetails}>
+                        {staff.cellPhone}
+                      </Text>
+                    </View>
+                    <View style={styles.info}>
+                      <Text style={styles.staffDetails}>Username</Text>
+
+                      <Text style={styles.infoContainerDetails}>
+                        {staff.userName}
+                      </Text>
+                    </View>
+                    <View style={styles.info}>
+                      <Text style={styles.staffDetails}>Address</Text>
+
+                      <Text style={styles.infoContainerDetails}>
+                        {staff.address}
+                      </Text>
+                    </View>
+                    <View style={styles.info}>
+                      <Text style={styles.staffDetails}>Permission Level</Text>
+                      <Text style={styles.infoContainerDetails}>
+                        {staff.permissionLevel}
+                      </Text>
+                    </View>
+
+                    <View
+                      style={[
+                        styles.statusBadge,
+                        staff.status === 'Activated'
+                          ? styles.statusActivated
+                          : styles.statusDeactivated,
+                      ]}
+                    >
+                      <Text>{staff.status}</Text>
+                    </View>
                   </View>
                 </Modal>
               </>
@@ -70,293 +88,12 @@ export default function Staff() {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => setShowModal(true)}
+          onPress={openForm}
           style={styles.addButton}
         >
           <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
       </View>
-
-      <Modal
-        animationType='slide'
-        visible={showModal}
-        onRequestClose={closeForm}
-      >
-        <View>
-          <View style={styles.modalContent}>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.closeButton}
-                onPress={closeForm}
-                accessibilityLabel='Close'
-              >
-                <Text style={styles.closeButtonText}>×</Text>
-              </TouchableOpacity>
-            </View>
-
-            <Text style={styles.modalHeader}>Add Employee</Text>
-
-            <ScrollView
-              contentContainerStyle={styles.scrollViewContent}
-              showsVerticalScrollIndicator={false}
-            >
-              <Controller
-                control={control}
-                name={'fullName'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Full Name'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'cellPhone'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Cell Phone'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                      keyboardType='phone-pad'
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'homePhone'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Home Phone'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                      keyboardType='phone-pad'
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'emailAddress'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Email Address'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                      keyboardType='email-address'
-                      autoCapitalize='none'
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'userName'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Username'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                      autoCapitalize='none'
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'nickName'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Nick Name'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'address'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Address'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'employeeId'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <TextInput
-                      placeholder='Employee ID'
-                      placeholderTextColor='#aaa'
-                      style={styles.inputText}
-                      value={value}
-                      onChangeText={onChange}
-                    />
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'permissionLevel'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <Picker
-                      selectedValue={value}
-                      style={styles.picker}
-                      onValueChange={onChange}
-                    >
-                      <Picker.Item
-                        label='Select Permission Level'
-                        value=''
-                      />
-                      <Picker.Item
-                        label='Manager'
-                        value='Manager'
-                      />
-                      <Picker.Item
-                        label='Employee'
-                        value='Employee'
-                      />
-                    </Picker>
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <Controller
-                control={control}
-                name={'status'}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <>
-                    <Picker
-                      selectedValue={value}
-                      style={styles.picker}
-                      onValueChange={onChange}
-                    >
-                      <Picker.Item
-                        label='Select Status'
-                        value=''
-                      />
-                      <Picker.Item
-                        label='Activated'
-                        value='Activated'
-                      />
-                      <Picker.Item
-                        label='Deactivated'
-                        value='Deactivated'
-                      />
-                    </Picker>
-                    {error && (
-                      <Text style={styles.errorMsg}>{error.message}</Text>
-                    )}
-                  </>
-                )}
-              />
-
-              <TouchableOpacity
-                style={styles.button}
-                onPress={handleSubmit(onSubmit)}
-              >
-                <Text style={styles.buttonText}>Save</Text>
-              </TouchableOpacity>
-            </ScrollView>
-          </View>
-        </View>
-      </Modal>
     </View>
   );
 }

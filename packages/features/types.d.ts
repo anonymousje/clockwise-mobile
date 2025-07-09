@@ -7,6 +7,7 @@ export type RoutesTypes = {
   [SCREENS.Dashboard]: undefined;
   [SCREENS.NewPassword]: { email?: string; token?: string };
   [SCREENS.Staff]: undefined;
+  [SCREENS.AddEmployee]: undefined;
 };
 
 export type User = {
@@ -23,7 +24,9 @@ export type NewPasswordRouteProp = RouteProp<
 >;
 
 export type StaffFormData = {
-  fullName: string;
+  firstName: string;
+  lastName: string;
+  password: string;
   cellPhone: string;
   homePhone?: string;
   emailAddress: string;

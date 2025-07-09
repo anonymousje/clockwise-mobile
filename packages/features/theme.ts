@@ -8,6 +8,8 @@ export const colors = {
 
   TEXT_DARK_MODE: 'white',
   TEXT_LIGHT_MODE: 'black',
+  TEXT_DARK_LIGHTER_MODE: '#656565',
+  TEXT_LIGHT_LIGHTER_MODE: '#656565',
 };
 
 export const fonts = {

@@ -13,6 +13,7 @@ import store from './packages/features/redux/store';
 import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 import Staff from './packages/features/Staff/container/StaffScreen';
+import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
 
 const config = {
   screens: {
@@ -87,6 +88,12 @@ function App() {
           <Stack.Screen
             name={SCREENS.Staff}
             component={Staff}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name={SCREENS.AddEmployee}
+            component={AddEmployee}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
