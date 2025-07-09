@@ -9,6 +9,7 @@ export default function Staff() {
     <View style={styles.container}>
       <View>
         <Text style={styles.staffSectionHeader}>Staff List</Text>
+
         {getStaff().map((staff) => (
           <TouchableOpacity
             key={staff.id}
@@ -22,9 +23,7 @@ export default function Staff() {
               {staff.fullName} <Text>({staff.employeeId})</Text>
             </Text>
 
-            <Text style={styles.staffDetails}>
-              Position: {staff.permissionLevel}
-            </Text>
+            <Text style={styles.position}>{staff.permissionLevel}</Text>
 
             {expandedId === staff.id && (
               <>
@@ -40,6 +39,7 @@ export default function Staff() {
                         {staff.emailAddress}
                       </Text>
                     </View>
+
                     <View style={styles.info}>
                       <Text style={styles.staffDetails}>CellPhone</Text>
 
@@ -47,6 +47,7 @@ export default function Staff() {
                         {staff.cellPhone}
                       </Text>
                     </View>
+
                     <View style={styles.info}>
                       <Text style={styles.staffDetails}>Username</Text>
 
@@ -54,6 +55,7 @@ export default function Staff() {
                         {staff.userName}
                       </Text>
                     </View>
+
                     <View style={styles.info}>
                       <Text style={styles.staffDetails}>Address</Text>
 
@@ -61,22 +63,21 @@ export default function Staff() {
                         {staff.address}
                       </Text>
                     </View>
+
                     <View style={styles.info}>
                       <Text style={styles.staffDetails}>Permission Level</Text>
+
                       <Text style={styles.infoContainerDetails}>
                         {staff.permissionLevel}
                       </Text>
                     </View>
 
-                    <View
-                      style={[
-                        styles.statusBadge,
-                        staff.status === 'Activated'
-                          ? styles.statusActivated
-                          : styles.statusDeactivated,
-                      ]}
-                    >
-                      <Text>{staff.status}</Text>
+                    <View style={styles.info}>
+                      <Text style={styles.staffDetails}>Status</Text>
+
+                      <Text style={styles.infoContainerDetails}>
+                        {staff.status}
+                      </Text>
                     </View>
                   </View>
                 </Modal>

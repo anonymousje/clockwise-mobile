@@ -144,10 +144,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-start',
+    marginVertical: '38%',
     backgroundColor:
       mode === 'dark'
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
   },
 
   staffSectionHeader: {
@@ -160,17 +161,23 @@ export const styles = StyleSheet.create({
   },
 
   staffItem: {
-    backgroundColor: mode === 'dark' ? '#222' : '#fff',
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
     borderRadius: 12,
     padding: 16,
     marginBottom: 14,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.07,
     shadowRadius: 4,
     elevation: 2,
     borderWidth: 1,
-    borderColor: mode === 'dark' ? '#333' : '#eee',
+    borderColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
   },
 
   staffName: {
@@ -178,6 +185,12 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.CLOCKWISE_PRIMARY,
     marginBottom: 2,
+  },
+
+  position: {
+    fontSize: 17,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    opacity: 0.6,
   },
 
   staffDetails: {
@@ -195,7 +208,10 @@ export const styles = StyleSheet.create({
 
   info: {
     width: '100%',
-    backgroundColor: colors.BACKGROUND_DARKER_MODE,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
     gap: 6,
     paddingVertical: 15,
     borderBottomWidth: 2,
