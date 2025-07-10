@@ -44,4 +44,5 @@ export interface InputFieldProps extends TextInputProps {
   value: string;
   error?: string;
   onChangeText: (text: string) => void;
+  secureTextEntry?: boolean;
 }

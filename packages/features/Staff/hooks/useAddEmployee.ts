@@ -24,6 +24,7 @@ const staffSchema = z.object({
 
 export default function useAddEmployee() {
   const [errorMsg, setErrorMsg] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
 
   const navigation = useNavigation<NavigationProp>();
 
@@ -74,10 +75,22 @@ export default function useAddEmployee() {
     }
   };
 
+  function changePwdType() {
+    setIsPassword((prevState) => !prevState);
+  }
+
   function closeForm() {
     reset();
     navigation.goBack();
   }
 
-  return { control, handleSubmit, onSubmit, closeForm, errorMsg };
+  return {
+    control,
+    handleSubmit,
+    onSubmit,
+    closeForm,
+    errorMsg,
+    changePwdType,
+    isPassword,
+  };
 }

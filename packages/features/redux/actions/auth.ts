@@ -15,7 +15,7 @@ export const loginUser = async (email: string, password: string) => {
       password,
     });
 
-    const { accessToken, refreshToken, role } = response.data;
+    const { accessToken, refreshToken, role } = response.data.data;
 
     return {
       type: 'LOGIN_USER',
@@ -26,8 +26,7 @@ export const loginUser = async (email: string, password: string) => {
         role,
       },
     };
-  }
- catch (error) {
+  } catch (error) {
     return { type: 'LOGIN_FAIL', payload: '' };
   }
 };

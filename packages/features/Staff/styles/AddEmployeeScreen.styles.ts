@@ -9,6 +9,19 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
 
+  NewPasswordRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderRadius: 8,
+  },
+
+  showPassButton: {
+    color:
+      mode === 'dark'
+        ? colors.CLOCKWISE_PRIMARY
+        : colors.CLOCKWISE_PRIMARY_DARK,
+  },
   closeButtonText: {
     fontSize: 22,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,

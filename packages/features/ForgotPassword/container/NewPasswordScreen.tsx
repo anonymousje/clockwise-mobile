@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Appearance,
   Modal,
   ActivityIndicator,
 } from 'react-native';
@@ -12,6 +11,7 @@ import {
 import styles from '../styles/ForgotPasswordScreen.styles';
 import useNewPasswordScreen from '../hooks/useNewPasswordScreen';
 import { colors } from '../../theme';
+import { modeColor } from '../styles/ForgotPasswordScreen.styles';
 
 export default function NewPassword() {
   const {
@@ -36,8 +36,6 @@ export default function NewPassword() {
     isLength,
   } = useNewPasswordScreen();
 
-  const modeAuto = Appearance.getColorScheme();
-
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Enter New Password</Text>
@@ -49,7 +47,7 @@ export default function NewPassword() {
           <TextInput
             style={styles.inputPassword}
             placeholder='New Password'
-            placeholderTextColor={modeAuto === 'light' ? 'black' : 'white'}
+            placeholderTextColor={modeColor}
             value={newPassword}
             onChangeText={setNewPassword}
             secureTextEntry={isPassword}
@@ -67,7 +65,7 @@ export default function NewPassword() {
           <TextInput
             style={styles.inputPassword}
             placeholder='Confirm New Password'
-            placeholderTextColor={modeAuto === 'light' ? 'black' : 'white'}
+            placeholderTextColor={modeColor}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             secureTextEntry={isConfirmPassword}
@@ -96,7 +94,11 @@ export default function NewPassword() {
           )}
         </View>
 
-        <Modal visible={!!errorMsg} transparent={true} animationType='fade'>
+        <Modal
+          visible={!!errorMsg}
+          transparent={true}
+          animationType='fade'
+        >
           <View style={styles.modalContainer}>
             <View style={styles.popupBox}>
               <Text style={styles.popUpBoxText}>Error resetting password</Text>
@@ -110,14 +112,21 @@ export default function NewPassword() {
             </View>
           </View>
         </Modal>
-        <Modal visible={success} transparent={true} animationType='fade'>
+        <Modal
+          visible={success}
+          transparent={true}
+          animationType='fade'
+        >
           <View style={styles.modalContainer}>
             <View style={styles.popupBox}>
               <Text style={styles.popUpBoxText}>
                 Password reset successfully!
               </Text>
 
-              <TouchableOpacity style={styles.popupButton} onPress={handleBack}>
+              <TouchableOpacity
+                style={styles.popupButton}
+                onPress={handleBack}
+              >
                 <Text style={styles.popupButtonText}>Go to Login</Text>
               </TouchableOpacity>
             </View>
@@ -130,7 +139,10 @@ export default function NewPassword() {
             style={styles.loader}
           />
         ) : (
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSubmit}
+          >
             <Text style={styles.buttonText}>RESET</Text>
           </TouchableOpacity>
         )}
