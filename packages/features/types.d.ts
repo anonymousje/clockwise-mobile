@@ -1,5 +1,6 @@
 import { SCREENS } from '../constants/screens';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { TextInputProps } from 'react-native-gesture-handler';
 
 export type RoutesTypes = {
   [SCREENS.Login]: undefined;
@@ -37,3 +38,10 @@ export type StaffFormData = {
   permissionLevel: string;
   status?: 'Activated' | 'Deactivated';
 };
+
+export interface InputFieldProps extends TextInputProps {
+  label: string;
+  value: string;
+  error?: string;
+  onChangeText: (text: string) => void;
+}

@@ -66,6 +66,8 @@ export default function useAddEmployee() {
 
       console.log('Succeeded: ', succeeded);
       reset();
+
+      navigation.goBack();
     } catch (errors) {
       console.log('Errors: ', errors);
       setErrorMsg(true);

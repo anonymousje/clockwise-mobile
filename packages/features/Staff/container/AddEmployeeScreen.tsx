@@ -1,14 +1,15 @@
 import {
   Text,
   View,
-  TextInput,
   TouchableOpacity,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Controller } from 'react-hook-form';
-import { styles } from '../styles/StaffScreen.styles';
+import { styles } from '../styles/AddEmployeeScreen.styles';
 import useAddEmployee from '../hooks/useAddEmployee';
+import InputField from '../../components/InputField/container/InputField';
 
 export default function AddEmployee() {
   const { control, handleSubmit, onSubmit, closeForm, errorMsg } =
@@ -34,14 +35,14 @@ export default function AddEmployee() {
           name={'firstName'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='First Name'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-              />
+              <Pressable>
+                <InputField
+                  label='First Name'
+                  value={value}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -51,14 +52,14 @@ export default function AddEmployee() {
           name={'lastName'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Last Name'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-              />
+              <Pressable>
+                <InputField
+                  label='Last Name'
+                  value={value}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -68,15 +69,14 @@ export default function AddEmployee() {
           name={'password'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Password'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-                secureTextEntry={true}
-              />
+              <Pressable>
+                <InputField
+                  label='Password'
+                  value={value}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -86,15 +86,14 @@ export default function AddEmployee() {
           name={'cellPhone'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Cell Phone'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-                keyboardType='phone-pad'
-              />
+              <Pressable>
+                <InputField
+                  label='Cell Phone'
+                  value={value}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -104,15 +103,14 @@ export default function AddEmployee() {
           name={'homePhone'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Home Phone'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-                keyboardType='phone-pad'
-              />
+              <Pressable>
+                <InputField
+                  label='Home Phone'
+                  value={value || ''}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -122,19 +120,17 @@ export default function AddEmployee() {
           name={'emailAddress'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
               {errorMsg && (
                 <Text style={styles.errorMsg}>Email already in use</Text>
               )}
-              <TextInput
-                placeholder='Email Address'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-                keyboardType='email-address'
-                autoCapitalize='none'
-              />
+              <Pressable>
+                <InputField
+                  label='Email Address'
+                  value={value}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -144,15 +140,14 @@ export default function AddEmployee() {
           name={'userName'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Username'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-                autoCapitalize='none'
-              />
+              <Pressable>
+                <InputField
+                  label='Username'
+                  value={value || ''}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -162,14 +157,14 @@ export default function AddEmployee() {
           name={'nickName'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Nick Name'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-              />
+              <Pressable>
+                <InputField
+                  label='Nickname'
+                  value={value || ''}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -179,14 +174,14 @@ export default function AddEmployee() {
           name={'address'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Address'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-              />
+              <Pressable>
+                <InputField
+                  label='Address'
+                  value={value || ''}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -196,14 +191,14 @@ export default function AddEmployee() {
           name={'employeeId'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
-              <TextInput
-                placeholder='Employee ID'
-                placeholderTextColor='#aaa'
-                style={styles.inputText}
-                value={value}
-                onChangeText={onChange}
-              />
+              <Pressable>
+                <InputField
+                  label='Employee ID'
+                  value={value || ''}
+                  error={error?.message}
+                  onChangeText={onChange}
+                />
+              </Pressable>
             </>
           )}
         />
@@ -213,7 +208,6 @@ export default function AddEmployee() {
           name={'permissionLevel'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
               <Picker
                 selectedValue={value}
                 style={styles.picker}
@@ -232,6 +226,7 @@ export default function AddEmployee() {
                   value='Employee'
                 />
               </Picker>
+              {error && <Text style={styles.errorMsg}>{error.message}</Text>}
             </>
           )}
         />

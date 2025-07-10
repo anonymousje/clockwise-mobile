@@ -81,7 +81,10 @@ export default function Login() {
               style={styles.loader}
             />
           ) : (
-            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={handleLogin}
+            >
               <Text style={styles.loginButtonText}>LOG IN</Text>
             </TouchableOpacity>
           )}
