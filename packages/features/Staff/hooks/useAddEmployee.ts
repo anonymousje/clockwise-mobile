@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { z } from 'zod';
+import { useDispatch } from 'react-redux';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import apiClient from '../../authClient';
 import { StaffFormData } from '../../types';
 import { NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
+import { fetchUpdated } from '../../redux/actions/fetchUsers';
 
 const staffSchema = z.object({
   firstName: z.string().min(1, 'First Name is required'),
@@ -25,6 +27,8 @@ const staffSchema = z.object({
 export default function useAddEmployee() {
   const [errorMsg, setErrorMsg] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
+
+  const dispatch = useDispatch();
 
   const navigation = useNavigation<NavigationProp>();
 
@@ -67,6 +71,8 @@ export default function useAddEmployee() {
 
       console.log('Succeeded: ', succeeded);
       reset();
+
+      dispatch(fetchUpdated(true));
 
       navigation.goBack();
     } catch (errors) {

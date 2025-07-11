@@ -13,24 +13,11 @@ import useAddEmployee from '../hooks/useAddEmployee';
 import InputField from '../../components/InputField/container/InputField';
 
 export default function AddEmployee() {
-  const { control, handleSubmit, onSubmit, closeForm, errorMsg } =
-    useAddEmployee();
+  const { control, handleSubmit, onSubmit, errorMsg } = useAddEmployee();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.modalContent}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.closeButton}
-            onPress={closeForm}
-            accessibilityLabel='Close'
-          >
-            <Text style={styles.closeButtonText}>×</Text>
-          </TouchableOpacity>
-        </View>
-
-        <Text style={styles.modalHeader}>Add Employee</Text>
-
         <Controller
           control={control}
           name={'firstName'}

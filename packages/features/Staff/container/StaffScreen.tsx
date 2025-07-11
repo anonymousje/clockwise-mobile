@@ -1,36 +1,30 @@
-import { Text, View, Modal, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from '../../Staff/styles/StaffScreen.styles';
 import useStaffScreen from '../hooks/useStaffScreen';
 import { staffType } from '../../types';
 
-import { useEffect, useState } from 'react';
-
 export default function Staff() {
-  const { openForm, getStaff, expandedId, setExpandedId } = useStaffScreen();
-  const [staffList, setStaffList] = useState<staffType[]>([]);
-
-  useEffect(() => {
-    getStaff().then((data: staffType[]) => setStaffList(data));
-  }, [getStaff]);
+  const { openForm, staffList } = useStaffScreen(); // add this when Modal: expandedId, setExpandedId
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.staffSectionHeader}>Staff List</Text>
+      <ScrollView style={styles.scrollContainer}>
+        <View>
+          <Text style={styles.staffSectionHeader}>Staff List</Text>
 
-        {staffList.map((staff: staffType) => (
-          <TouchableOpacity
-            key={staff.firstName}
-            style={styles.staffItem}
-            // onPress={() =>
-            //   setExpandedId(expandedId === staff.id ? null : staff.id)
-            // }
-            // activeOpacity={0.7}
-          >
-            <Text style={styles.staffName}>
-              {staff.firstName} <Text>{staff.lastName} </Text>
-            </Text>
-            {/* <Text style={styles.position}>{staff.permissionLevel}</Text>
+          {staffList.map((staff: staffType) => (
+            <TouchableOpacity
+              key={staff.firstName}
+              style={styles.staffItem}
+              // onPress={() =>
+              //   setExpandedId(expandedId === staff.id ? null : staff.id)
+              // }
+              // activeOpacity={0.7}
+            >
+              <Text style={styles.staffName}>
+                {staff.firstName} <Text>{staff.lastName} </Text>
+              </Text>
+              {/* <Text style={styles.position}>{staff.permissionLevel}</Text>
             {expandedId === staff.id && (
               <>
                 <Modal
@@ -89,9 +83,10 @@ export default function Staff() {
                 </Modal>
               </>
             )} */}
-          </TouchableOpacity>
-        ))}
-      </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity

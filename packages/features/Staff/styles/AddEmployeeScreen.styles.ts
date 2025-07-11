@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
+    paddingTop: 80,
     padding: 24,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -93,6 +94,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
+
   buttonText: {
     color: 'white',
     fontFamily: fonts.CLOCKWISE_BOLD,

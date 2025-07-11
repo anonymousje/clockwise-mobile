@@ -6,7 +6,10 @@ const mode = Appearance.getColorScheme();
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
+  },
+
+  scrollContainer: {
+    flex: 1,
 
     backgroundColor:
       mode === 'dark'
@@ -26,18 +29,21 @@ export const styles = StyleSheet.create({
   },
 
   addButton: {
-    width: 60,
-    height: 60,
-    paddingBottom: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
     backgroundColor: colors.CLOCKWISE_PRIMARY,
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 2 },
-    shadowOpacity: 100,
-    shadowRadius: 100,
-    elevation: 10,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 24,
+    right: 24,
+    shadowColor: colors.CLOCKWISE_PRIMARY,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 2,
+    paddingBottom: 10,
   },
 
   infoContainer: {
@@ -65,13 +71,14 @@ export const styles = StyleSheet.create({
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
-    borderRadius: 12,
     padding: 16,
-    marginBottom: 14,
+    marginBottom: 30,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 0 },
+    shadowOffset: { width: 0, height: 10 },
     shadowRadius: 4,
     elevation: 1,
+    borderWidth: 1,
+    borderColor: colors.CLOCKWISE_PRIMARY,
   },
 
   staffName: {

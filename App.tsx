@@ -94,7 +94,10 @@ function App() {
           <Stack.Screen
             name={SCREENS.AddEmployee}
             component={AddEmployee}
-            options={{ headerShown: false }}
+            options={{
+              headerShown: true,
+              title: 'Add Employee',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
