@@ -1,30 +1,36 @@
 import { Text, View, Modal, TouchableOpacity } from 'react-native';
 import { styles } from '../../Staff/styles/StaffScreen.styles';
 import useStaffScreen from '../hooks/useStaffScreen';
+import { staffType } from '../../types';
+
+import { useEffect, useState } from 'react';
 
 export default function Staff() {
   const { openForm, getStaff, expandedId, setExpandedId } = useStaffScreen();
+  const [staffList, setStaffList] = useState<staffType[]>([]);
+
+  useEffect(() => {
+    getStaff().then((data: staffType[]) => setStaffList(data));
+  }, [getStaff]);
 
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.staffSectionHeader}>Staff List</Text>
 
-        {getStaff().map((staff) => (
+        {staffList.map((staff: staffType) => (
           <TouchableOpacity
-            key={staff.id}
+            key={staff.firstName}
             style={styles.staffItem}
-            onPress={() =>
-              setExpandedId(expandedId === staff.id ? null : staff.id)
-            }
-            activeOpacity={0.7}
+            // onPress={() =>
+            //   setExpandedId(expandedId === staff.id ? null : staff.id)
+            // }
+            // activeOpacity={0.7}
           >
             <Text style={styles.staffName}>
-              {staff.fullName} <Text>({staff.employeeId})</Text>
+              {staff.firstName} <Text>{staff.lastName} </Text>
             </Text>
-
-            <Text style={styles.position}>{staff.permissionLevel}</Text>
-
+            {/* <Text style={styles.position}>{staff.permissionLevel}</Text>
             {expandedId === staff.id && (
               <>
                 <Modal
@@ -82,7 +88,7 @@ export default function Staff() {
                   </View>
                 </Modal>
               </>
-            )}
+            )} */}
           </TouchableOpacity>
         ))}
       </View>

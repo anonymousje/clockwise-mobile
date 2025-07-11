@@ -46,3 +46,9 @@ export interface InputFieldProps extends TextInputProps {
   onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
 }
+
+export type staffType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+};

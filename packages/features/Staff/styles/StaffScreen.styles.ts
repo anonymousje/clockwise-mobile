@@ -69,15 +69,9 @@ export const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 14,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.07,
+    shadowOffset: { width: 0, height: 0 },
     shadowRadius: 4,
-    elevation: 2,
-    borderWidth: 1,
-    borderColor:
-      mode === 'dark'
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+    elevation: 1,
   },
 
   staffName: {

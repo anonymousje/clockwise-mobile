@@ -5,28 +5,16 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
-import { useEffect, useState } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import { Controller } from 'react-hook-form';
 import { styles } from '../styles/AddEmployeeScreen.styles';
 import useAddEmployee from '../hooks/useAddEmployee';
-import { FloatingLabelInput } from 'react-native-floating-label-input';
 
 import InputField from '../../components/InputField/container/InputField';
 
 export default function AddEmployee() {
-  const { control, handleSubmit, onSubmit, closeForm, errorMsg, isPassword } =
+  const { control, handleSubmit, onSubmit, closeForm, errorMsg } =
     useAddEmployee();
-
-  const [cont, setCont] = useState('');
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShow(!show);
-    }, 5000);
-    return () => clearTimeout(timeout);
-  }, [show]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -82,17 +70,15 @@ export default function AddEmployee() {
           name={'password'}
           render={({ field: { value, onChange }, fieldState: { error } }) => (
             <>
-              <View>
-                <FloatingLabelInput
-                  label={'Password'}
-                  isPassword
+              <Pressable>
+                <InputField
+                  label='Password'
                   value={value}
-                  togglePassword={true}
+                  error={error?.message}
                   onChangeText={onChange}
-                  customShowPasswordComponent={<Text>Show</Text>}
-                  customHidePasswordComponent={<Text>Hide</Text>}
+                  secureTextEntry={true}
                 />
-              </View>
+              </Pressable>
             </>
           )}
         />

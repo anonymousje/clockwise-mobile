@@ -6,7 +6,7 @@ const mode = Appearance.getColorScheme();
 
 export const styles = StyleSheet.create({
   inputField: {
-    marginBottom: 20,
+    marginBottom: 50,
   },
 
   input: {
@@ -23,6 +23,22 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
   },
+  passwordRow: {
+    backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
+
+    borderRadius: 10,
+    padding: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 50,
+  },
 
   showPassButton: {
     backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
@@ -30,8 +46,11 @@ export const styles = StyleSheet.create({
 
   inputPassword: {
     flex: 1,
+    fontSize: 16,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingLeft: 10,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
   },
 
   inputFocused: {
@@ -57,5 +76,13 @@ export const styles = StyleSheet.create({
     color: 'red',
     fontSize: 12,
     paddingTop: 10,
+  },
+
+  showPasswordButton: {
+    color:
+      mode === 'dark'
+        ? colors.CLOCKWISE_PRIMARY
+        : colors.CLOCKWISE_PRIMARY_DARK,
+    paddingHorizontal: 12,
   },
 });

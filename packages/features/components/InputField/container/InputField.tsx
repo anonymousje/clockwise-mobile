@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, TextInput, Animated, Text, Pressable } from 'react-native';
+import {
+  View,
+  TextInput,
+  Animated,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import { InputFieldProps } from '../../../types';
 import { styles } from '../styles/InputField.styles';
 import useInputField from '../hooks/useInputField';
@@ -19,17 +25,11 @@ export default function InputField({
     changePwdType,
   } = useInputField(value);
 
-  return (
-    <View style={styles.inputField}>
-      <View>
-        <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
-        <View
-          style={[
-            props.secureTextEntry && styles.inputPassword,
-            { position: 'relative' },
-          ]}
-          pointerEvents='box-none' // <-- Add this line
-        >
+  if (!props.secureTextEntry) {
+    return (
+      <View style={styles.inputField}>
+        <View>
+          <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
           <TextInput
             {...props}
             value={value}
@@ -38,29 +38,32 @@ export default function InputField({
               styles.input,
               error && styles.inputError,
               isInputFocused && styles.inputFocused,
-              styles.inputPassword,
             ]}
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setIsInputFocused(false)}
+          />
+        </View>
+        {error ? <Text style={styles.errorMsg}>{error}</Text> : null}
+      </View>
+    );
+  } else {
+    return (
+      <View>
+        <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
+        <View style={styles.passwordRow}>
+          <TextInput
+            style={styles.inputPassword}
+            value={value}
+            onChangeText={onChangeText}
             secureTextEntry={isPassword}
           />
-
-          {props.secureTextEntry && (
-            <Pressable
-              onPressIn={changePwdType}
-              focusable={false}
-              style={styles.button}
-              android_disableSound={true}
-              pointerEvents='box-none'
-            >
-              <Text style={styles.showPassButton}>
-                {isPassword ? 'Show' : 'Hide'}
-              </Text>
-            </Pressable>
-          )}
+          <TouchableOpacity onPress={changePwdType}>
+            <Text style={styles.showPasswordButton}>
+              {isPassword ? 'Show' : 'Hide'}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
-      {error ? <Text style={styles.errorMsg}>{error}</Text> : null}
-    </View>
-  );
+    );
+  }
 }
