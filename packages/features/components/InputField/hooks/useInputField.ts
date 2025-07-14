@@ -2,10 +2,10 @@ import { useRef, useEffect, useState } from 'react';
 import { Animated, Appearance } from 'react-native';
 import { colors } from '../../../theme';
 
-export default function useInputField(value: string, secureEntry?: boolean) {
+export default function useInputField(value: string) {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const isFocused = isInputFocused || !!value;
-  const [isPassword, setIsPassword] = useState(secureEntry);
+  const [isPassword, setIsPassword] = useState(true);
 
   const mode = Appearance.getColorScheme();
 

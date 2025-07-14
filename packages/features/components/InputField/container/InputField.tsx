@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   View,
   TextInput,
@@ -25,13 +25,17 @@ export default function InputField({
     changePwdType,
   } = useInputField(value);
 
+  const inputRef = useRef<TextInput>(null);
+
   if (!props.secureTextEntry) {
     return (
       <View style={styles.inputField}>
         <View>
           <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
+
           <TextInput
             {...props}
+            ref={inputRef}
             value={value}
             onChangeText={onChangeText}
             style={[
@@ -43,6 +47,7 @@ export default function InputField({
             onBlur={() => setIsInputFocused(false)}
           />
         </View>
+
         {error ? <Text style={styles.errorMsg}>{error}</Text> : null}
       </View>
     );
@@ -50,6 +55,7 @@ export default function InputField({
     return (
       <View style={styles.inputField}>
         <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
+
         <View
           style={[
             styles.passwordRow,
@@ -58,6 +64,7 @@ export default function InputField({
           ]}
         >
           <TextInput
+            ref={inputRef}
             style={styles.inputPassword}
             value={value}
             onChangeText={onChangeText}
@@ -65,12 +72,14 @@ export default function InputField({
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setIsInputFocused(false)}
           />
+
           <TouchableOpacity onPress={changePwdType}>
             <Text style={styles.showPasswordButton}>
               {isPassword ? 'Show' : 'Hide'}
             </Text>
           </TouchableOpacity>
         </View>
+
         {error ? <Text style={styles.errorMsg}>{error}</Text> : null}
       </View>
     );

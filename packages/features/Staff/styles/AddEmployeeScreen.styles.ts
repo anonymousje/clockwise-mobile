@@ -7,6 +7,7 @@ const mode = Appearance.getColorScheme();
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
   },
 
   scrollViewContent: {
@@ -37,9 +38,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   modalContent: {
-    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
+    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_FORMS : 'white',
     paddingTop: 80,
-    width: '90%',
+    width: '100%',
     padding: 24,
   },
   modalHeader: {

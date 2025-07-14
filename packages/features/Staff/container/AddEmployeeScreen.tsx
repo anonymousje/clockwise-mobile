@@ -100,7 +100,7 @@ export default function AddEmployee() {
           style={styles.button}
           onPress={handleSubmit(onSubmit)}
         >
-          <Text style={styles.buttonText}>Save</Text>
+          <Text style={styles.buttonText}>SAVE</Text>
         </TouchableOpacity>
       </View>
     </View>

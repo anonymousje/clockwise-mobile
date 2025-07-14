@@ -1,12 +1,8 @@
-//Imports
 import { Appearance, Image } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { Provider } from 'react-redux';
-
 import Login from './packages/features/Login/container/LoginScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
@@ -47,6 +43,7 @@ const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
     resizeMode='contain'
   />
 );
+
 const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
   <Image
     source={require('./packages/assets/icons/staff.png')}
@@ -56,8 +53,19 @@ const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
 );
 
 function MainTabs() {
+  const mode = Appearance.getColorScheme();
+
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor:
+            mode === 'dark'
+              ? colors.BACKGROUND_DARK_MODE
+              : colors.BACKGROUND_LIGHT_MODE,
+        },
+      }}
+    >
       <Tab.Screen
         name={SCREENS.Dashboard}
         component={Dashboard}
@@ -142,6 +150,16 @@ function App() {
             options={{
               headerShown: true,
               title: 'Add Employee',
+              headerTitleStyle: {
+                color: mode === 'dark' ? 'white' : 'black',
+              },
+              headerStyle: {
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
+              },
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
             }}
           />
         </Stack.Navigator>

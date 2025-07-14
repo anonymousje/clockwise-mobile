@@ -2,14 +2,21 @@ import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from '../../Staff/styles/StaffScreen.styles';
 import useStaffScreen from '../hooks/useStaffScreen';
 import { staffType } from '../../types';
+import { TextInput } from 'react-native-gesture-handler';
 
 export default function Staff() {
-  const { openForm, staffList } = useStaffScreen(); // TODO: add this when Modal: expandedId, setExpandedId
+  const { openForm, staffList, search, filterSearch } = useStaffScreen(); // TODO: add this when Modal: expandedId, setExpandedId
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <View>
+          <TextInput
+            placeholder='Search Staff'
+            style={styles.searchInput}
+            value={search}
+            onChangeText={(text) => filterSearch(text)}
+          />
           <Text style={styles.staffSectionHeader}>Staff List</Text>
 
           {staffList.map((staff: staffType) => (

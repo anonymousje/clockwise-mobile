@@ -8,6 +8,17 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
+  searchInput: {
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 10,
+    padding: 12,
+    marginTop: 40,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+  },
+
   scrollContainer: {
     flex: 1,
 

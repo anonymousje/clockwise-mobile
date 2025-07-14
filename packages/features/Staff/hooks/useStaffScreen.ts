@@ -12,6 +12,7 @@ function useStaffScreen() {
   const [showModal, setShowModal] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [staffList, setStaffList] = useState<staffType[]>([]);
+  const [cacheStaffList, setCacheStaffList] = useState<staffType[]>([]);
 
   const navigation = useNavigation<NavigationProp>();
 
@@ -24,7 +25,11 @@ function useStaffScreen() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getStaff().then((data: staffType[]) => setStaffList(data));
+    getStaff().then((data: staffType[]) => {
+      setStaffList(data);
+      setCacheStaffList(data);
+    });
+
     if (updated.flag) {
       getStaff();
       dispatch(fetchUpdated(false));
@@ -35,6 +40,21 @@ function useStaffScreen() {
     navigation.navigate(SCREENS.AddEmployee);
   }
 
+  const [search, setSearch] = useState('');
+
+  const filterSearch = (text: string) => {
+    setSearch(text);
+
+    if (text) {
+      const filteredData = staffList.filter((item: staffType) =>
+        item.firstName.toLowerCase().includes(text.toLowerCase()),
+      );
+      setStaffList(filteredData);
+    } else {
+      setStaffList(cacheStaffList);
+    }
+  };
+
   return {
     showModal,
     setShowModal,
@@ -43,6 +63,8 @@ function useStaffScreen() {
     setExpandedId,
     openForm,
     staffList,
+    search,
+    filterSearch,
   };
 }
 
