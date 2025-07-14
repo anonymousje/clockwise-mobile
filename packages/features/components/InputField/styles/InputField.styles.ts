@@ -6,7 +6,7 @@ const mode = Appearance.getColorScheme();
 
 export const styles = StyleSheet.create({
   inputField: {
-    marginBottom: 50,
+    marginBottom: 60,
   },
 
   input: {

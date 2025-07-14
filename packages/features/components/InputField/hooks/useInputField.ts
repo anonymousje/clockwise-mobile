@@ -24,6 +24,7 @@ export default function useInputField(value: string) {
   const labelStyle = {
     position: 'absolute',
     left: 8,
+
     top: animatedIsFocused.interpolate({
       inputRange: [0, 1],
       outputRange: [10, -20],

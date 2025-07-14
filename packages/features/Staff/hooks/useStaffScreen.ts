@@ -10,7 +10,7 @@ import { fetchUpdated } from '../../redux/actions/fetchUsers';
 
 function useStaffScreen() {
   const [showModal, setShowModal] = useState(false);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
   const [staffList, setStaffList] = useState<staffType[]>([]);
   const [cacheStaffList, setCacheStaffList] = useState<staffType[]>([]);
 
@@ -40,15 +40,17 @@ function useStaffScreen() {
     navigation.navigate(SCREENS.AddEmployee);
   }
 
-  const [search, setSearch] = useState('');
-
   const filterSearch = (text: string) => {
+    console.log('Search text:', text);
     setSearch(text);
 
     if (text) {
-      const filteredData = staffList.filter((item: staffType) =>
-        item.firstName.toLowerCase().includes(text.toLowerCase()),
+      const filteredData = cacheStaffList.filter(
+        (item: staffType) =>
+          item.firstName.toLowerCase().includes(text.toLowerCase()) ||
+          item.lastName?.toLowerCase().includes(text.toLowerCase()),
       );
+
       setStaffList(filteredData);
     } else {
       setStaffList(cacheStaffList);
@@ -59,8 +61,6 @@ function useStaffScreen() {
     showModal,
     setShowModal,
     getStaff,
-    expandedId,
-    setExpandedId,
     openForm,
     staffList,
     search,
