@@ -1,8 +1,10 @@
 //Imports
-import { Appearance } from 'react-native';
+import { Appearance, Image } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import { Provider } from 'react-redux';
 
 import Login from './packages/features/Login/container/LoginScreen';
@@ -14,6 +16,7 @@ import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 import Staff from './packages/features/Staff/container/StaffScreen';
 import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
+import { colors } from './packages/features/theme';
 
 const config = {
   screens: {
@@ -35,9 +38,53 @@ const linking = {
   config,
 };
 
+const Tab = createBottomTabNavigator();
+
+const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
+  <Image
+    source={require('./packages/assets/icons/dashboard.webp')}
+    style={{ width: size, height: size, tintColor: color }}
+    resizeMode='contain'
+  />
+);
+const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
+  <Image
+    source={require('./packages/assets/icons/staff.png')}
+    style={{ width: size, height: size, tintColor: color }}
+    resizeMode='contain'
+  />
+);
+
+function MainTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name={SCREENS.Dashboard}
+        component={Dashboard}
+        options={{
+          title: 'Dashboard',
+          headerShown: false,
+          tabBarIcon: DashboardTabIcon,
+        }}
+      />
+
+      <Tab.Screen
+        name={SCREENS.Staff}
+        component={Staff}
+        options={{
+          title: 'Staff',
+          headerShown: false,
+          tabBarIcon: StaffTabIcon,
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
 function App() {
   const Stack = createStackNavigator<RoutesTypes>();
-  const modeAuto = Appearance.getColorScheme();
+
+  const mode = Appearance.getColorScheme();
 
   return (
     <Provider store={store}>
@@ -48,46 +95,44 @@ function App() {
             component={Login}
             options={{ headerShown: false }}
           />
-
           <Stack.Screen
             name={SCREENS.ForgotPassword}
             component={ForgotPassword}
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {
-                color: modeAuto === 'dark' ? 'white' : 'black',
+                color: mode === 'dark' ? 'white' : 'black',
               },
               headerStyle: {
-                backgroundColor: modeAuto === 'dark' ? '#0E2747' : '#FFFFF',
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: modeAuto === 'dark' ? 'white' : 'black',
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
             }}
           />
-
           <Stack.Screen
             name={SCREENS.NewPassword}
             component={NewPassword}
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {
-                color: modeAuto === 'dark' ? 'white' : 'black',
+                color: mode === 'dark' ? 'white' : 'black',
               },
               headerStyle: {
-                backgroundColor: modeAuto === 'dark' ? '#0E2747' : '#FFFFF',
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: modeAuto === 'dark' ? 'white' : 'black',
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
             }}
           />
 
           <Stack.Screen
-            name={SCREENS.Dashboard}
-            component={Dashboard}
-            options={{ headerShown: false }}
-          />
-
-          <Stack.Screen
-            name={SCREENS.Staff}
-            component={Staff}
+            name={SCREENS.MainTabs}
+            component={MainTabs}
             options={{ headerShown: false }}
           />
 

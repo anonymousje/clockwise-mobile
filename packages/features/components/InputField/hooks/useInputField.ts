@@ -1,10 +1,13 @@
 import { useRef, useEffect, useState } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Appearance } from 'react-native';
+import { colors } from '../../../theme';
 
 export default function useInputField(value: string, secureEntry?: boolean) {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const isFocused = isInputFocused || !!value;
   const [isPassword, setIsPassword] = useState(secureEntry);
+
+  const mode = Appearance.getColorScheme();
 
   const animatedIsFocused = useRef(
     new Animated.Value(isFocused ? 1 : 0),
@@ -31,7 +34,8 @@ export default function useInputField(value: string, secureEntry?: boolean) {
       outputRange: [16, 14],
     }),
 
-    color: '#aaa',
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+
     backgroundColor: 'transparent',
     paddingHorizontal: 2,
     zIndex: 1,

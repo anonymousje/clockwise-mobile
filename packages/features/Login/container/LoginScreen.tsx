@@ -27,7 +27,7 @@ export default function Login() {
     loading,
   } = useLoginScreen();
 
-  const modeAuto = Appearance.getColorScheme();
+  const mode = Appearance.getColorScheme();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -52,7 +52,7 @@ export default function Login() {
           <TextInput
             style={styles.input}
             placeholder='Email or username'
-            placeholderTextColor={modeAuto === 'light' ? 'black' : 'white'}
+            placeholderTextColor={mode === 'light' ? 'black' : 'white'}
             value={email}
             onChangeText={setEmail}
             autoCapitalize='none'
@@ -62,7 +62,7 @@ export default function Login() {
             <TextInput
               style={styles.inputPassword}
               placeholder='Password'
-              placeholderTextColor={modeAuto === 'light' ? 'black' : 'white'}
+              placeholderTextColor={mode === 'light' ? 'black' : 'white'}
               value={password}
               onChangeText={setPassword}
               secureTextEntry={isPassword}

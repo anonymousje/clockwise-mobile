@@ -31,7 +31,7 @@ function useLoginScreen() {
       if (!user.payload) {
         setAttempt(true);
       } else {
-        navigation.replace(SCREENS.Dashboard);
+        navigation.replace(SCREENS.MainTabs);
       }
     }
 

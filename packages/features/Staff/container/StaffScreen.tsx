@@ -4,7 +4,7 @@ import useStaffScreen from '../hooks/useStaffScreen';
 import { staffType } from '../../types';
 
 export default function Staff() {
-  const { openForm, staffList } = useStaffScreen(); // add this when Modal: expandedId, setExpandedId
+  const { openForm, staffList } = useStaffScreen(); // TODO: add this when Modal: expandedId, setExpandedId
 
   return (
     <View style={styles.container}>

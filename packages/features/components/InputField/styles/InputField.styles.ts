@@ -10,10 +10,13 @@ export const styles = StyleSheet.create({
   },
 
   input: {
-    color: mode === 'dark' ? 'white' : '#222',
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontSize: 16,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-    backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 10,
     borderWidth: 0,
     padding: 12,
@@ -24,9 +27,13 @@ export const styles = StyleSheet.create({
     elevation: 1,
   },
   passwordRow: {
-    backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
 
     borderRadius: 10,
+    borderWidth: 0,
     padding: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -37,11 +44,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 50,
   },
 
   showPassButton: {
-    backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
+    backgroundColor: colors.CLOCKWISE_PRIMARY,
   },
 
   inputPassword: {
@@ -68,14 +74,14 @@ export const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     justifyContent: 'center',
-    backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
+    backgroundColor: colors.CLOCKWISE_PRIMARY,
     paddingHorizontal: 8,
     borderRadius: 4,
   },
   errorMsg: {
     color: 'red',
     fontSize: 12,
-    paddingTop: 10,
+    paddingTop: 2,
   },
 
   showPasswordButton: {

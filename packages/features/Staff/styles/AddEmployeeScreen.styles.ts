@@ -5,8 +5,17 @@ import { fonts } from '../../theme';
 const mode = Appearance.getColorScheme();
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   buttonContainer: {
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
 
   NewPasswordRow: {
@@ -30,12 +39,8 @@ export const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
     paddingTop: 80,
+    width: '90%',
     padding: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 10,
   },
   modalHeader: {
     fontSize: 22,
@@ -83,11 +88,12 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: colors.CLOCKWISE_PRIMARY,
+    width: '90%',
     paddingVertical: 16,
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 24,
-    marginBottom: 8,
+    marginBottom: 30,
     shadowColor: colors.CLOCKWISE_PRIMARY,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,

@@ -9,6 +9,7 @@ export type RoutesTypes = {
   [SCREENS.NewPassword]: { email?: string; token?: string };
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
+  [SCREENS.MainTabs]: undefined;
 };
 
 export type User = {
@@ -28,14 +29,14 @@ export type StaffFormData = {
   firstName: string;
   lastName: string;
   password: string;
-  cellPhone: string;
+  cellPhone?: string;
   homePhone?: string;
   emailAddress: string;
-  userName: string;
+  userName?: string;
   nickName?: string;
   address?: string;
-  employeeId: string;
-  permissionLevel: string;
+  employeeId?: string;
+  permissionLevel?: string;
   status?: 'Activated' | 'Deactivated';
 };
 

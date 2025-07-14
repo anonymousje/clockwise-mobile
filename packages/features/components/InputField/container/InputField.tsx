@@ -48,14 +48,22 @@ export default function InputField({
     );
   } else {
     return (
-      <View>
+      <View style={styles.inputField}>
         <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
-        <View style={styles.passwordRow}>
+        <View
+          style={[
+            styles.passwordRow,
+            error && styles.inputError,
+            isInputFocused && styles.inputFocused,
+          ]}
+        >
           <TextInput
             style={styles.inputPassword}
             value={value}
             onChangeText={onChangeText}
             secureTextEntry={isPassword}
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setIsInputFocused(false)}
           />
           <TouchableOpacity onPress={changePwdType}>
             <Text style={styles.showPasswordButton}>
@@ -63,6 +71,7 @@ export default function InputField({
             </Text>
           </TouchableOpacity>
         </View>
+        {error ? <Text style={styles.errorMsg}>{error}</Text> : null}
       </View>
     );
   }
