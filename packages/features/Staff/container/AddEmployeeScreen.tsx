@@ -11,7 +11,8 @@ import useAddEmployee from '../hooks/useAddEmployee';
 import InputField from '../../components/InputField/container/InputField';
 
 export default function AddEmployee() {
-  const { control, handleSubmit, onSubmit, errorMsg } = useAddEmployee();
+  const { control, handleSubmit, onSubmit, errorMsg, firstName, setFirstName } =
+    useAddEmployee();
 
   return (
     <View style={styles.container}>
@@ -19,6 +20,12 @@ export default function AddEmployee() {
         contentContainerStyle={styles.scrollViewContent}
         showsVerticalScrollIndicator={false}
       >
+        <View style={styles.header}>
+          <View style={styles.avatar}>
+            <Text style={styles.staffAvatarText}>{firstName[0]}</Text>
+          </View>
+        </View>
+
         <View style={styles.modalContent}>
           <Controller
             control={control}
@@ -30,7 +37,10 @@ export default function AddEmployee() {
                     label='First Name'
                     value={value}
                     error={error?.message}
-                    onChangeText={onChange}
+                    onChangeText={(text) => {
+                      onChange(text);
+                      setFirstName(text);
+                    }}
                   />
                 </Pressable>
               </>
@@ -59,10 +69,6 @@ export default function AddEmployee() {
             name={'emailAddress'}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
-                {errorMsg && (
-                  <Text style={styles.errorMsg}>Email already in use</Text>
-                )}
-
                 <Pressable>
                   <InputField
                     label='Email Address'
@@ -70,6 +76,9 @@ export default function AddEmployee() {
                     error={error?.message}
                     onChangeText={onChange}
                   />
+                  {errorMsg && (
+                    <Text style={styles.errorMsg}>Email already in use</Text>
+                  )}
                 </Pressable>
               </>
             )}

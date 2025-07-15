@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,22 +18,8 @@ function useStaffScreen() {
   const [staffList, setStaffList] = useState<staffType[]>([]);
   const [cacheStaffList, setCacheStaffList] = useState<staffType[]>([]);
 
-  const navigation = useNavigation<NavigationProp>();
-
-  const getStaff = useCallback(
-    async (loc?: string, dep?: string, rol?: string) => {
-      const params: Record<string, string> = {};
-      if (loc) params.location = loc;
-      if (dep) params.department = dep;
-      if (rol) params.role = rol;
-
-      const response = await apiClient.get('/user/all-users', { params });
-      return response.data;
-    },
-    [],
-  );
-
   const updated = useSelector((state: RootState) => state.updated);
+  const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,7 +32,17 @@ function useStaffScreen() {
       getStaff();
       dispatch(fetchUpdated(false));
     }
-  }, [getStaff, updated.flag, dispatch]);
+  }, [updated.flag, dispatch]);
+
+  const getStaff = async (loc?: string, dep?: string, rol?: string) => {
+    const params: Record<string, string> = {};
+    if (loc) params.location = loc;
+    if (dep) params.department = dep;
+    if (rol) params.role = rol;
+
+    const response = await apiClient.get('/user/all-users', { params });
+    return response.data;
+  };
 
   function openForm() {
     navigation.navigate(SCREENS.AddEmployee);
@@ -75,12 +71,13 @@ function useStaffScreen() {
       setStaffList(filteredData);
     } else if (loc || dep || rol) {
       const filteredData = await getStaff(loc, dep, rol);
+
       setStaffList(filteredData);
-      //setCacheStaffList(filteredData);
     } else {
       setStaffList(cacheStaffList);
-      setModal(false);
     }
+
+    setModal(false);
   };
 
   return {

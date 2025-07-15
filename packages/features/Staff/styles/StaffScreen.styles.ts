@@ -141,7 +141,28 @@ export const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
 
+  staffAvatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_ICONS_DARK_MODE
+        : colors.BACKGROUND_ICONS_LIGHT_MODE,
+  },
+
+  staffAvatarText: {
+    fontSize: 25,
+    fontFamily: fonts.CLOCKWISE_BOLD,
+    color: colors.TEXT_DARK_MODE,
+  },
+
   staffItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
@@ -211,3 +232,8 @@ export const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHT_FORMS,
   },
 });
+
+export const placeholderColor =
+  mode === 'dark'
+    ? colors.TEXT_DARK_LIGHTER_MODE
+    : colors.TEXT_LIGHT_LIGHTER_MODE;

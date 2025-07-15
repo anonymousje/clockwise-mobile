@@ -8,22 +8,23 @@ import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { fetchUpdated } from '../../redux/actions/fetchUsers';
 
-const staffSchema = z.object({
-  firstName: z.string().min(1, 'First Name is required'),
-  lastName: z.string().min(1, 'Last Name is required'),
-  password: z
-    .string()
-    .min(7, 'Minimum 7 characters required')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(
-      /[^A-Za-z0-9]/,
-      'Password must contain at least one special character',
-    ),
-  emailAddress: z.string().email('Invalid email address'),
-});
-
 export default function useAddEmployee() {
+  const staffSchema = z.object({
+    firstName: z.string().min(1, 'First Name is required'),
+    lastName: z.string().min(1, 'Last Name is required'),
+    password: z
+      .string()
+      .min(7, 'Minimum 7 characters required')
+      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+      .regex(
+        /[^A-Za-z0-9]/,
+        'Password must contain at least one special character',
+      ),
+    emailAddress: z.string().email('Invalid email address'),
+  });
+
   const [errorMsg, setErrorMsg] = useState(false);
+  const [firstName, setFirstName] = useState('');
 
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp>();
@@ -74,5 +75,7 @@ export default function useAddEmployee() {
     onSubmit,
     closeForm,
     errorMsg,
+    firstName,
+    setFirstName,
   };
 }

@@ -1,10 +1,10 @@
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from '../styles/Dashboard.styles';
 
 import useDashboardScreen from '../hooks/useDashboardScreen';
 
 export default function Dashboard() {
-  const { handleBack, handleNav, user } = useDashboardScreen();
+  const { user } = useDashboardScreen();
   return (
     <View style={styles.container}>
       <Text style={styles.title}> Dashboard Under Construction </Text>
@@ -22,10 +22,6 @@ export default function Dashboard() {
         <Text style={styles.label}> Role:</Text>
         <Text style={styles.value}>{user.role}</Text>
       </View>
-
-      <Button title='staff' onPress={handleNav} />
-
-      <Button title='logout' onPress={handleBack} />
     </View>
   );
 }

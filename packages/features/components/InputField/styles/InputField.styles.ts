@@ -6,7 +6,7 @@ const mode = Appearance.getColorScheme();
 
 export const styles = StyleSheet.create({
   inputField: {
-    marginBottom: 60,
+    marginTop: 60,
   },
 
   input: {
@@ -80,8 +80,9 @@ export const styles = StyleSheet.create({
   },
   errorMsg: {
     color: 'red',
-    fontSize: 12,
-    paddingTop: 2,
+    fontSize: 13,
+    marginBottom: 2,
+    marginLeft: 4,
   },
 
   showPasswordButton: {

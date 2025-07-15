@@ -1,5 +1,8 @@
 import { Text, View, TouchableOpacity, ScrollView, Modal } from 'react-native';
-import { styles } from '../../Staff/styles/StaffScreen.styles';
+import {
+  styles,
+  placeholderColor,
+} from '../../Staff/styles/StaffScreen.styles';
 import useStaffScreen from '../hooks/useStaffScreen';
 import { staffType } from '../../types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -19,7 +22,7 @@ export default function Staff() {
     setRole,
     modal,
     setModal,
-  } = useStaffScreen(); // TODO: add this when Modal: expandedId, setExpandedId
+  } = useStaffScreen();
 
   return (
     <View style={styles.container}>
@@ -32,8 +35,10 @@ export default function Staff() {
                 size={30}
                 style={styles.searchIcon}
               />
+
               <TextInput
                 placeholder='Search Staff'
+                placeholderTextColor={placeholderColor}
                 style={styles.inputSearch}
                 value={search}
                 onChangeText={(text) => filterSearch(text)}
@@ -55,73 +60,20 @@ export default function Staff() {
             <TouchableOpacity
               key={staff.email}
               style={styles.staffItem}
-              // onPress={() =>
-              //   setExpandedId(expandedId === staff.id ? null : staff.id)
-              // }
-              // activeOpacity={0.7}
             >
-              <Text style={styles.staffName}>
-                {staff.firstName} <Text>{staff.lastName} </Text>
-              </Text>
-              {/* <Text style={styles.position}>{staff.permissionLevel}</Text>
-            {expandedId === staff.id && (
-              <>
-                <Modal
-                  animationType='slide'
-                  onRequestClose={() => setExpandedId(null)}
-                >
-                  <View style={styles.infoContainer}>
-                    <View style={styles.info}>
-                      <Text style={styles.staffDetails}>Email</Text>
+              <View style={styles.staffAvatar}>
+                <Text style={styles.staffAvatarText}>
+                  {staff.firstName[0].toUpperCase()}
+                </Text>
+              </View>
 
-                      <Text style={styles.infoContainerDetails}>
-                        {staff.emailAddress}
-                      </Text>
-                    </View>
+              <View>
+                <Text style={styles.staffName}>
+                  {staff.firstName} <Text>{staff.lastName} </Text>
+                </Text>
 
-                    <View style={styles.info}>
-                      <Text style={styles.staffDetails}>CellPhone</Text>
-
-                      <Text style={styles.infoContainerDetails}>
-                        {staff.cellPhone}
-                      </Text>
-                    </View>
-
-                    <View style={styles.info}>
-                      <Text style={styles.staffDetails}>Username</Text>
-
-                      <Text style={styles.infoContainerDetails}>
-                        {staff.userName}
-                      </Text>
-                    </View>
-
-                    <View style={styles.info}>
-                      <Text style={styles.staffDetails}>Address</Text>
-
-                      <Text style={styles.infoContainerDetails}>
-                        {staff.address}
-                      </Text>
-                    </View>
-
-                    <View style={styles.info}>
-                      <Text style={styles.staffDetails}>Permission Level</Text>
-
-                      <Text style={styles.infoContainerDetails}>
-                        {staff.permissionLevel}
-                      </Text>
-                    </View>
-
-                    <View style={styles.info}>
-                      <Text style={styles.staffDetails}>Status</Text>
-
-                      <Text style={styles.infoContainerDetails}>
-                        {staff.status}
-                      </Text>
-                    </View>
-                  </View>
-                </Modal>
-              </>
-            )} */}
+                <Text style={styles.position}>Software Engineer</Text>
+              </View>
             </TouchableOpacity>
           ))}
         </View>
@@ -147,18 +99,21 @@ export default function Staff() {
         <View style={styles.modalContainer}>
           <View>
             <Text>Filter Options</Text>
+
             <TextInput
               placeholder='Location'
               style={styles.searchInput}
               value={location}
               onChangeText={(text) => setLocation(text)}
             />
+
             <TextInput
               placeholder='Department'
               style={styles.searchInput}
               value={department}
               onChangeText={(text) => setDepartment(text)}
             />
+
             <TextInput
               placeholder='Role'
               style={styles.searchInput}
