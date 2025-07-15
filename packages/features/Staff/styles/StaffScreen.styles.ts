@@ -1,11 +1,21 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors } from '../../theme';
+import { colors, fonts } from '../../theme';
 
 const mode = Appearance.getColorScheme();
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  filterIcon: {
+    color:
+      mode === 'dark'
+        ? colors.CLOCKWISE_PRIMARY
+        : colors.CLOCKWISE_PRIMARY_DARK,
+    paddingLeft: 20,
+    paddingVertical: 10,
+    paddingRight: 20,
   },
 
   searchInput: {
@@ -15,10 +25,64 @@ export const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 10,
     padding: 12,
+    paddingLeft: 15,
     marginTop: 40,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
+  filterButton: {
+    backgroundColor: colors.CLOCKWISE_PRIMARY,
+    alignItems: 'center',
+    borderRadius: 10,
+    padding: 12,
+    marginTop: 50,
+  },
+
+  filterText: {
+    fontSize: 20,
+    color: 'white',
+    fontFamily: fonts.CLOCKWISE_BOLD,
+  },
+  searchIcon: {
+    color:
+      mode === 'dark'
+        ? colors.CLOCKWISE_PRIMARY
+        : colors.CLOCKWISE_PRIMARY_DARK,
+    paddingLeft: 10,
+    paddingVertical: 10,
+  },
+
+  searchRow: {
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    borderRadius: 20,
+    marginTop: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  showFilterButton: {
+    color:
+      mode === 'dark'
+        ? colors.CLOCKWISE_PRIMARY
+        : colors.CLOCKWISE_PRIMARY_DARK,
+    paddingHorizontal: 12,
+  },
+
+  inputSearchContainer: {
+    flexDirection: 'row',
+  },
+
+  inputSearch: {
+    fontSize: 17,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+    paddingVertical: 14,
+    paddingLeft: 10,
+  },
   scrollContainer: {
     flex: 1,
 
@@ -41,20 +105,20 @@ export const styles = StyleSheet.create({
 
   addButton: {
     backgroundColor: colors.CLOCKWISE_PRIMARY,
-    width: 56,
-    height: 56,
+    width: 60,
+    height: 60,
     borderRadius: 28,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 24,
+    bottom: 15,
     right: 24,
     shadowColor: colors.CLOCKWISE_PRIMARY,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 2,
-    paddingBottom: 10,
+    paddingBottom: 3,
   },
 
   infoContainer: {
@@ -131,5 +195,19 @@ export const styles = StyleSheet.create({
       mode === 'dark'
         ? colors.TEXT_DARK_LIGHTER_MODE
         : colors.TEXT_LIGHT_LIGHTER_MODE,
+  },
+
+  modalContainer: {
+    flex: 1,
+    marginVertical: 200,
+    marginHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_FORMS
+        : colors.BACKGROUND_LIGHT_FORMS,
   },
 });

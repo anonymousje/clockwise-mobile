@@ -1,27 +1,59 @@
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { styles } from '../../Staff/styles/StaffScreen.styles';
 import useStaffScreen from '../hooks/useStaffScreen';
 import { staffType } from '../../types';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function Staff() {
-  const { openForm, staffList, search, filterSearch } = useStaffScreen(); // TODO: add this when Modal: expandedId, setExpandedId
+  const {
+    openForm,
+    staffList,
+    search,
+    filterSearch,
+    location,
+    setLocation,
+    department,
+    setDepartment,
+    role,
+    setRole,
+    modal,
+    setModal,
+  } = useStaffScreen(); // TODO: add this when Modal: expandedId, setExpandedId
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <View>
-          <TextInput
-            placeholder='Search Staff'
-            style={styles.searchInput}
-            value={search}
-            onChangeText={(text) => filterSearch(text)}
-          />
+          <View style={styles.searchRow}>
+            <View style={styles.inputSearchContainer}>
+              <Ionicons
+                name='search-outline'
+                size={30}
+                style={styles.searchIcon}
+              />
+              <TextInput
+                placeholder='Search Staff'
+                style={styles.inputSearch}
+                value={search}
+                onChangeText={(text) => filterSearch(text)}
+              />
+            </View>
+
+            <TouchableOpacity onPress={() => setModal(true)}>
+              <Ionicons
+                name='filter-outline'
+                size={30}
+                style={styles.filterIcon}
+              />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.staffSectionHeader}>Staff List</Text>
 
           {staffList.map((staff: staffType) => (
             <TouchableOpacity
-              key={staff.firstName}
+              key={staff.email}
               style={styles.staffItem}
               // onPress={() =>
               //   setExpandedId(expandedId === staff.id ? null : staff.id)
@@ -103,6 +135,46 @@ export default function Staff() {
           <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal
+        animationType='slide'
+        transparent={true}
+        visible={modal}
+        onRequestClose={() => {
+          setModal(false);
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <View>
+            <Text>Filter Options</Text>
+            <TextInput
+              placeholder='Location'
+              style={styles.searchInput}
+              value={location}
+              onChangeText={(text) => setLocation(text)}
+            />
+            <TextInput
+              placeholder='Department'
+              style={styles.searchInput}
+              value={department}
+              onChangeText={(text) => setDepartment(text)}
+            />
+            <TextInput
+              placeholder='Role'
+              style={styles.searchInput}
+              value={role}
+              onChangeText={(text) => setRole(text)}
+            />
+          </View>
+
+          <TouchableOpacity
+            onPress={() => filterSearch('', location, department, role)}
+            style={styles.filterButton}
+          >
+            <Text style={styles.filterText}>APPLY</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 }

@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
     padding: 24,
     height: '80%',
   },
+
   modalHeader: {
     fontSize: 22,
     fontFamily: fonts.CLOCKWISE_BOLD,
@@ -54,6 +55,7 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: 'center',
   },
+
   closeButton: {
     backgroundColor:
       mode === 'dark'

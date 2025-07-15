@@ -11,15 +11,27 @@ import { fetchUpdated } from '../../redux/actions/fetchUsers';
 function useStaffScreen() {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState('');
+  const [location, setLocation] = useState('');
+  const [department, setDepartment] = useState('');
+  const [role, setRole] = useState('');
+  const [modal, setModal] = useState(false);
   const [staffList, setStaffList] = useState<staffType[]>([]);
   const [cacheStaffList, setCacheStaffList] = useState<staffType[]>([]);
 
   const navigation = useNavigation<NavigationProp>();
 
-  const getStaff = useCallback(async () => {
-    const response = await apiClient.get('/user/all-users');
-    return response.data;
-  }, []);
+  const getStaff = useCallback(
+    async (loc?: string, dep?: string, rol?: string) => {
+      const params: Record<string, string> = {};
+      if (loc) params.location = loc;
+      if (dep) params.department = dep;
+      if (rol) params.role = rol;
+
+      const response = await apiClient.get('/user/all-users', { params });
+      return response.data;
+    },
+    [],
+  );
 
   const updated = useSelector((state: RootState) => state.updated);
   const dispatch = useDispatch();
@@ -40,8 +52,17 @@ function useStaffScreen() {
     navigation.navigate(SCREENS.AddEmployee);
   }
 
-  const filterSearch = (text: string) => {
+  const filterSearch = async (
+    text: string,
+    loc?: string,
+    dep?: string,
+    rol?: string,
+  ) => {
     console.log('Search text:', text);
+    console.log('Location:', loc);
+    console.log('Department:', dep);
+    console.log('Role:', rol);
+
     setSearch(text);
 
     if (text) {
@@ -52,8 +73,13 @@ function useStaffScreen() {
       );
 
       setStaffList(filteredData);
+    } else if (loc || dep || rol) {
+      const filteredData = await getStaff(loc, dep, rol);
+      setStaffList(filteredData);
+      //setCacheStaffList(filteredData);
     } else {
       setStaffList(cacheStaffList);
+      setModal(false);
     }
   };
 
@@ -65,6 +91,14 @@ function useStaffScreen() {
     staffList,
     search,
     filterSearch,
+    location,
+    setLocation,
+    department,
+    setDepartment,
+    role,
+    setRole,
+    modal,
+    setModal,
   };
 }
 

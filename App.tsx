@@ -1,4 +1,6 @@
-import { Appearance, Image } from 'react-native';
+import { Appearance } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -37,18 +39,20 @@ const linking = {
 const Tab = createBottomTabNavigator();
 
 const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
-  <Image
-    source={require('./packages/assets/icons/dashboard.webp')}
-    style={{ width: size, height: size, tintColor: color }}
-    resizeMode='contain'
+  <Ionicons
+    name='home-outline'
+    size={size}
+    color={color}
+    style={{ width: size, height: size }}
   />
 );
 
 const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
-  <Image
-    source={require('./packages/assets/icons/staff.png')}
-    style={{ width: size, height: size, tintColor: color }}
-    resizeMode='contain'
+  <Ionicons
+    name='people-outline'
+    size={size}
+    color={color}
+    style={{ width: size, height: size }}
   />
 );
 
@@ -60,9 +64,8 @@ function MainTabs() {
       screenOptions={{
         tabBarStyle: {
           backgroundColor:
-            mode === 'dark'
-              ? colors.BACKGROUND_DARK_MODE
-              : colors.BACKGROUND_LIGHT_MODE,
+            mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
+          height: 65,
         },
       }}
     >
@@ -103,6 +106,7 @@ function App() {
             component={Login}
             options={{ headerShown: false }}
           />
+
           <Stack.Screen
             name={SCREENS.ForgotPassword}
             component={ForgotPassword}
@@ -120,6 +124,7 @@ function App() {
               headerTintColor: mode === 'dark' ? 'white' : 'black',
             }}
           />
+
           <Stack.Screen
             name={SCREENS.NewPassword}
             component={NewPassword}
