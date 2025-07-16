@@ -80,6 +80,13 @@ function useStaffScreen() {
     setModal(false);
   };
 
+  function staffDetails(data: staffType) {
+    console.log('Selected staff details:', data);
+    navigation.navigate(SCREENS.StaffDetail, {
+      data,
+    });
+  }
+
   return {
     showModal,
     setShowModal,
@@ -96,6 +103,7 @@ function useStaffScreen() {
     setRole,
     modal,
     setModal,
+    staffDetails,
   };
 }
 

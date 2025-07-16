@@ -22,6 +22,7 @@ export default function Staff() {
     setRole,
     modal,
     setModal,
+    staffDetails,
   } = useStaffScreen();
 
   return (
@@ -60,6 +61,7 @@ export default function Staff() {
             <TouchableOpacity
               key={staff.email}
               style={styles.staffItem}
+              onPress={() => staffDetails(staff)}
             >
               <View style={styles.staffAvatar}>
                 <Text style={styles.staffAvatarText}>

@@ -36,6 +36,7 @@ function useNewPasswordScreen() {
   }
 
   const route = useRoute<NewPasswordRouteProp>();
+
   const { email, token } = route.params || {};
   const navigation = useNavigation<NavigationProp>();
 

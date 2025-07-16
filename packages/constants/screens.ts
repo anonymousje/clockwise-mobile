@@ -6,4 +6,5 @@ export enum SCREENS {
   Staff = 'StaffScreen',
   AddEmployee = 'AddEmployeeScreen',
   MainTabs = 'MainTabs',
+  StaffDetail = 'StaffDetailScreen',
 }

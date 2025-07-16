@@ -10,6 +10,7 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
+  [SCREENS.StaffDetail]: { data: staffType };
 };
 
 export type User = {
@@ -19,6 +20,11 @@ export type User = {
   role: string;
 };
 export type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
+
+export type StaffDetailNavigationProp = RouteProp<
+  RoutesTypes,
+  typeof SCREENS.StaffDetail
+>;
 
 export type NewPasswordRouteProp = RouteProp<
   RoutesTypes,
@@ -52,4 +58,12 @@ export type staffType = {
   firstName: string;
   lastName: string;
   email: string;
+  cellPhone?: string;
+  homePhone?: string;
+  userName?: string;
+  nickName?: string;
+  address?: string;
+  employeeId?: string;
+  permissionLevel?: string;
+  status?: 'Activated' | 'Deactivated';
 };

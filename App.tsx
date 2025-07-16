@@ -15,6 +15,7 @@ import NewPassword from './packages/features/ForgotPassword/container/NewPasswor
 import Staff from './packages/features/Staff/container/StaffScreen';
 import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
 import { colors } from './packages/features/theme';
+import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 
 const config = {
   screens: {
@@ -155,6 +156,25 @@ function App() {
             options={{
               headerShown: true,
               title: 'Add Employee',
+              headerTitleStyle: {
+                color: mode === 'dark' ? 'white' : 'black',
+              },
+              headerStyle: {
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
+              },
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
+            }}
+          />
+
+          <Stack.Screen
+            name={SCREENS.StaffDetail}
+            component={StaffDetail}
+            options={{
+              headerShown: true,
+              title: 'Employee Details',
               headerTitleStyle: {
                 color: mode === 'dark' ? 'white' : 'black',
               },
