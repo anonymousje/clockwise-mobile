@@ -82,6 +82,7 @@ function useStaffScreen() {
 
   function staffDetails(data: staffType) {
     console.log('Selected staff details:', data);
+
     navigation.navigate(SCREENS.StaffDetail, {
       data,
     });

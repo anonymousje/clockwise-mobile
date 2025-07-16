@@ -1,13 +1,10 @@
 import { Text, View } from 'react-native';
-import { staffType } from '../../types';
+import { StaffDetailNavigationProp } from '../../types';
+import { useRoute } from '@react-navigation/native';
 
-export default function StaffDetail({
-  route: {
-    params: { data },
-  },
-}: {
-  route: { params: { data: staffType } };
-}) {
+export default function StaffDetail() {
+  const route = useRoute<StaffDetailNavigationProp>();
+  const { data } = route.params;
   console.log('Staff Detail Data:', data);
 
   return (
