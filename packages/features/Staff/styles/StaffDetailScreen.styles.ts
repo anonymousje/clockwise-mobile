@@ -70,7 +70,11 @@ export const styles = StyleSheet.create({
   textContainer: {
     marginBottom: 20,
     padding: 10,
+    borderBottomWidth: 1,
+    borderColor:
+      mode === 'dark' ? 'transparent' : colors.TEXT_LIGHT_LIGHTER_MODE,
   },
+
   editButtonContainer: {
     alignItems: 'flex-end',
     padding: 16,
