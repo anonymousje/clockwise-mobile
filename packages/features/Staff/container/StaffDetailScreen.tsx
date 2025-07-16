@@ -1,26 +1,178 @@
-import { Text, View } from 'react-native';
-import { StaffDetailNavigationProp } from '../../types';
-import { useRoute } from '@react-navigation/native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { styles } from '../styles/StaffDetailScreen.styles';
+import InputField from '../../components/InputField/container/InputField';
+import useStaffDetail from '../hooks/useStaffDetail';
+import { Picker } from '@react-native-picker/picker';
 
 export default function StaffDetail() {
-  const route = useRoute<StaffDetailNavigationProp>();
-  const { data } = route.params;
-  console.log('Staff Detail Data:', data);
+  const { editMode, setEditMode, staffData, setStaffData } = useStaffDetail();
 
   return (
-    <View>
-      <Text>Edit Staff Screen</Text>
-      <Text>First Name: {data.firstName}</Text>
-      <Text>Last Name: {data.lastName}</Text>
-      <Text>Email: {data.email}</Text>
-      <Text>Cell Phone: {data.cellPhone}</Text>
-      <Text>Home Phone: {data.homePhone}</Text>
-      <Text>User Name: {data.userName}</Text>
-      <Text>Nick Name: {data.nickName}</Text>
-      <Text>Address: {data.address}</Text>
-      <Text>Employee ID: {data.employeeId}</Text>
-      <Text>Permission Level: {data.permissionLevel}</Text>
-      <Text>Status: {data.status}</Text>
+    <View style={styles.container}>
+      <View style={styles.editButtonContainer}>
+        <TouchableOpacity onPress={() => setEditMode(!editMode)}>
+          <Text style={styles.editButton}> {editMode ? 'Save' : 'Edit'}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView style={styles.scrollContainer}>
+        {!editMode && (
+          <View style={styles.staffDetails}>
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>First Name</Text>
+              <Text style={styles.text}>{staffData.firstName}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Email</Text>
+              <Text style={styles.text}>{staffData.email}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Cell Phone</Text>
+              <Text style={styles.text}>{staffData.cellPhone}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Home Phone</Text>
+              <Text style={styles.text}>{staffData.homePhone}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>User Name</Text>
+              <Text style={styles.text}>{staffData.userName}</Text>
+            </View>
+
+            <View>
+              <Text style={styles.text}>Nick Name</Text>
+              <Text style={styles.text}>{staffData.nickName}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Address</Text>
+              <Text style={styles.text}>{staffData.address}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Employee ID</Text>
+              <Text style={styles.text}>{staffData.employeeId}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Permission Level</Text>
+              <Text style={styles.text}>{staffData.permissionLevel}</Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Status </Text>
+              <Text style={styles.text}>{staffData.status}</Text>
+            </View>
+          </View>
+        )}
+
+        {editMode && (
+          <View style={styles.staffDetails}>
+            <InputField
+              label='First Name'
+              value={staffData.firstName}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, firstName: text })
+              }
+            />
+            <InputField
+              label='Email'
+              value={staffData.email}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, email: text })
+              }
+            />
+            <InputField
+              label='Cell Phone'
+              value={staffData.cellPhone}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, cellPhone: text })
+              }
+            />
+            <InputField
+              label='Home Phone'
+              value={staffData.homePhone}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, homePhone: text })
+              }
+            />
+            <InputField
+              label='User Name'
+              value={staffData.userName}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, userName: text })
+              }
+            />
+            <InputField
+              label='Nick Name'
+              value={staffData.nickName}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, nickName: text })
+              }
+            />
+            <InputField
+              label='Address'
+              value={staffData.address}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, address: text })
+              }
+            />
+            <InputField
+              label='Employee ID'
+              value={staffData.employeeId}
+              onChangeText={(text) =>
+                setStaffData({ ...staffData, employeeId: text })
+              }
+            />
+
+            <Picker
+              selectedValue={staffData.permissionLevel}
+              onValueChange={(itemValue) =>
+                setStaffData({ ...staffData, permissionLevel: itemValue })
+              }
+            >
+              <Picker.Item
+                label='Select Permission Level'
+                value=''
+              />
+              <Picker.Item
+                label='Manager'
+                value='Manager'
+              />
+              <Picker.Item
+                label='Employee'
+                value='Employee'
+              />
+            </Picker>
+
+            <Picker
+              selectedValue={staffData.status}
+              onValueChange={(itemValue) =>
+                setStaffData({ ...staffData, status: itemValue })
+              }
+            >
+              <Picker.Item
+                label='Select Status'
+                value=''
+              />
+
+              <Picker.Item
+                label='Activated'
+                value='Activated'
+              />
+
+              <Picker.Item
+                label='Deactiaved'
+                value='Deactiaved'
+              />
+            </Picker>
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 }
