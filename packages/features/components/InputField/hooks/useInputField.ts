@@ -3,7 +3,6 @@ import { Animated, Appearance, TextInput } from 'react-native';
 import { colors } from '../../../theme';
 
 export default function useInputField(value: string) {
-  //TODO: Research
   const [isInputFocused, setIsInputFocused] = useState(false);
   const isFocused = isInputFocused || !!value;
   const [isPassword, setIsPassword] = useState(true);

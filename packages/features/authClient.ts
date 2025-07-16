@@ -6,7 +6,6 @@ export const setAccessToken = (token: string) => {
   accessToken = token;
 };
 
-//TODO FIX
 const apiClient = axios.create({
   baseURL: 'http://10.0.2.2:5135/api',
   headers: {

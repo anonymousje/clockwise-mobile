@@ -1,4 +1,3 @@
-//Imports
 import {
   View,
   Text,
@@ -80,15 +79,19 @@ export default function NewPassword() {
 
         <View style={styles.rulesContainer}>
           <Text style={styles.rulesText}>Password must contain:</Text>
+
           {!isLength && (
             <Text style={styles.rulesText}>• At least 7 characters</Text>
           )}
+
           {!isSpecialChar && (
             <Text style={styles.rulesText}>• At least 1 special character</Text>
           )}
+
           {!isUppercase && (
             <Text style={styles.rulesText}>• At least 1 uppercase letter</Text>
           )}
+
           {!isNumber && (
             <Text style={styles.rulesText}>• At least 1 number</Text>
           )}
@@ -132,6 +135,7 @@ export default function NewPassword() {
             </View>
           </View>
         </Modal>
+
         {loading ? (
           <ActivityIndicator
             size='large'

@@ -1,4 +1,3 @@
-//Imports
 import {
   View,
   Text,
@@ -27,9 +26,11 @@ export default function ForgotPassword() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Enter Your Email</Text>
+
       {!isValidEmail && (
         <Text style={styles.errorMsg}>Please enter a valid email address.</Text>
       )}
+
       <TextInput
         style={styles.input}
         placeholder='Email'
@@ -38,19 +39,27 @@ export default function ForgotPassword() {
         onChangeText={setEmail}
       />
 
-      <Modal visible={success} transparent={true} animationType='fade'>
+      <Modal
+        visible={success}
+        transparent={true}
+        animationType='fade'
+      >
         <View style={styles.modalContainer}>
           <View style={styles.popupBox}>
             <Text style={styles.popUpBoxText}>
               {`If ${email} is registered, you will receive a password reset link.`}
             </Text>
 
-            <TouchableOpacity style={styles.popupButton} onPress={handleBack}>
+            <TouchableOpacity
+              style={styles.popupButton}
+              onPress={handleBack}
+            >
               <Text style={styles.popupButtonText}>Go to Login</Text>
             </TouchableOpacity>
           </View>
         </View>
       </Modal>
+
       {loading ? (
         <ActivityIndicator
           size='large'
