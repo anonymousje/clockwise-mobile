@@ -1,8 +1,9 @@
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { styles } from '../styles/StaffDetailScreen.styles';
+import { editIconColor, styles } from '../styles/StaffDetailScreen.styles';
 import InputField from '../../components/InputField/container/InputField';
 import useStaffDetail from '../hooks/useStaffDetail';
 import { Picker } from '@react-native-picker/picker';
+import Icons from 'react-native-vector-icons/Ionicons';
 
 export default function StaffDetail() {
   const { editMode, setEditMode, staffData, setStaffData } = useStaffDetail();
@@ -11,7 +12,7 @@ export default function StaffDetail() {
     <View style={styles.container}>
       <View style={styles.editButtonContainer}>
         <TouchableOpacity onPress={() => setEditMode(!editMode)}>
-          <Text style={styles.editButton}> {editMode ? 'Save' : 'Edit'}</Text>
+          <Text style={styles.editButton}>{editMode ? 'Save' : 'Edit'} </Text>
         </TouchableOpacity>
       </View>
 
@@ -38,12 +39,16 @@ export default function StaffDetail() {
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>Cell Phone</Text>
-              <Text style={styles.text}>{staffData.cellPhone}</Text>
+              <Text style={styles.text}>
+                {staffData.cellPhone === undefined ? ' -' : staffData.cellPhone}
+              </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>Home Phone</Text>
-              <Text style={styles.text}>{staffData.homePhone}</Text>
+              <Text style={styles.text}>
+                {staffData.homePhone === undefined ? ' -' : staffData.homePhone}
+              </Text>
             </View>
 
             <View style={styles.textContainer}>
@@ -79,7 +84,7 @@ export default function StaffDetail() {
         )}
 
         {editMode && (
-          <View style={styles.staffDetails}>
+          <View style={styles.editDetails}>
             <InputField
               label='First Name'
               value={staffData.firstName}

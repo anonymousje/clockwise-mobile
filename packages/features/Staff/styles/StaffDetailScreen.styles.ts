@@ -45,10 +45,17 @@ export const styles = StyleSheet.create({
   staffDetails: {
     justifyContent: 'center',
     paddingBottom: 50,
+    marginTop: 60,
+  },
+
+  editDetails: {
+    justifyContent: 'center',
+    paddingBottom: 50,
   },
 
   textContainer: {
     marginBottom: 20,
+    padding: 10,
   },
   editButtonContainer: {
     alignItems: 'flex-end',
@@ -63,6 +70,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     color: 'white',
+    alignItems: 'center',
   },
 
   text: {
@@ -78,3 +86,4 @@ export const styles = StyleSheet.create({
     marginVertical: 30,
   },
 });
+export const editIconColor = 'white';
