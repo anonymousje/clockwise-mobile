@@ -11,8 +11,18 @@ export default function StaffDetail() {
   return (
     <View style={styles.container}>
       <View style={styles.editButtonContainer}>
-        <TouchableOpacity onPress={() => setEditMode(!editMode)}>
-          <Text style={styles.editButton}>{editMode ? 'Save' : 'Edit'} </Text>
+        <TouchableOpacity
+          onPress={() => setEditMode(!editMode)}
+          style={styles.editButton}
+        >
+          <Icons
+            name={editMode ? 'save-outline' : 'create-outline'}
+            size={24}
+            color={editIconColor}
+          />
+          <Text style={styles.editButtonText}>
+            {editMode ? 'Save' : 'Edit'}{' '}
+          </Text>
         </TouchableOpacity>
       </View>
 

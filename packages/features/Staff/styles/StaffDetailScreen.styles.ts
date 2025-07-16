@@ -6,6 +6,10 @@ const mode = Appearance.getColorScheme();
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
   },
 
   headerContainer: {
@@ -14,6 +18,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
     marginBottom: 20,
+    paddingBottom: 40,
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
@@ -32,25 +37,33 @@ export const styles = StyleSheet.create({
   avatarText: {
     color: 'white',
     fontSize: 50,
+    paddingBottom: 10,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
   scrollContainer: {
-    padding: 16,
+    gap: 10,
+  },
+
+  staffDetails: {
+    justifyContent: 'center',
+    paddingBottom: 50,
+    paddingTop: 60,
+    paddingHorizontal: 16,
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
 
-  staffDetails: {
-    justifyContent: 'center',
-    paddingBottom: 50,
-    marginTop: 60,
-  },
-
   editDetails: {
     justifyContent: 'center',
     paddingBottom: 50,
+    paddingHorizontal: 16,
+
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
   },
 
   textContainer: {
@@ -66,11 +79,16 @@ export const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHT_MODE,
   },
   editButton: {
-    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
-    padding: 10,
-    borderRadius: 5,
-    color: 'white',
+    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+  },
+
+  editButtonText: {
+    color: 'white',
+    padding: 10,
   },
 
   text: {
