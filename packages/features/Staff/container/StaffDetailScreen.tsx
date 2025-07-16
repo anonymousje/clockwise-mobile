@@ -63,32 +63,48 @@ export default function StaffDetail() {
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>User Name</Text>
-              <Text style={styles.text}>{staffData.userName}</Text>
+              <Text style={styles.text}>
+                {staffData.userName === undefined ? ' -' : staffData.userName}
+              </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>Nick Name</Text>
-              <Text style={styles.text}>{staffData.nickName}</Text>
+              <Text style={styles.text}>
+                {staffData.nickName === undefined ? ' -' : staffData.nickName}
+              </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>Address</Text>
-              <Text style={styles.text}>{staffData.address}</Text>
+              <Text style={styles.text}>
+                {staffData.address === undefined ? ' -' : staffData.address}
+              </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>Employee ID</Text>
-              <Text style={styles.text}>{staffData.employeeId}</Text>
+              <Text style={styles.text}>
+                {staffData.employeeId === undefined
+                  ? ' -'
+                  : staffData.employeeId}
+              </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>Permission Level</Text>
-              <Text style={styles.text}>{staffData.permissionLevel}</Text>
+              <Text style={styles.text}>
+                {staffData.permissionLevel === undefined
+                  ? ' -'
+                  : staffData.permissionLevel}
+              </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.text}>Status </Text>
-              <Text style={styles.text}>{staffData.status}</Text>
+              <Text style={styles.text}>
+                {staffData.status === undefined ? ' -' : staffData.status}
+              </Text>
             </View>
           </View>
         )}
