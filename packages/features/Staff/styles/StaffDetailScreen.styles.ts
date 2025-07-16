@@ -8,6 +8,32 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    marginBottom: 20,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
+  },
+
+  avatarContainer: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  avatarText: {
+    color: 'white',
+    fontSize: 50,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+  },
   scrollContainer: {
     padding: 16,
     backgroundColor:
@@ -18,6 +44,7 @@ export const styles = StyleSheet.create({
 
   staffDetails: {
     justifyContent: 'center',
+    paddingBottom: 50,
   },
 
   textContainer: {
@@ -43,5 +70,11 @@ export const styles = StyleSheet.create({
     marginVertical: 4,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
+  },
+
+  picker: {
+    height: 50,
+    width: '100%',
+    marginVertical: 30,
   },
 });

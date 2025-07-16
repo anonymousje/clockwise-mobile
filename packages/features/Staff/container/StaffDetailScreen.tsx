@@ -16,6 +16,14 @@ export default function StaffDetail() {
       </View>
 
       <ScrollView style={styles.scrollContainer}>
+        <View style={styles.headerContainer}>
+          <View style={styles.avatarContainer}>
+            <Text style={styles.avatarText}>
+              {staffData.firstName.charAt(0).toUpperCase()}
+            </Text>
+          </View>
+        </View>
+
         {!editMode && (
           <View style={styles.staffDetails}>
             <View style={styles.textContainer}>
@@ -43,7 +51,7 @@ export default function StaffDetail() {
               <Text style={styles.text}>{staffData.userName}</Text>
             </View>
 
-            <View>
+            <View style={styles.textContainer}>
               <Text style={styles.text}>Nick Name</Text>
               <Text style={styles.text}>{staffData.nickName}</Text>
             </View>
@@ -134,6 +142,7 @@ export default function StaffDetail() {
               onValueChange={(itemValue) =>
                 setStaffData({ ...staffData, permissionLevel: itemValue })
               }
+              style={styles.picker}
             >
               <Picker.Item
                 label='Select Permission Level'
