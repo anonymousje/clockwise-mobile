@@ -8,8 +8,9 @@ import { staffType } from '../../types';
 import { RootState } from '../../redux/store';
 import { fetchUpdated } from '../../redux/actions/fetchUsers';
 
+import type { staffSearchQueryType } from '../../types';
+
 function useStaffScreen() {
-  const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState('');
   const [location, setLocation] = useState('');
   const [department, setDepartment] = useState('');
@@ -35,10 +36,18 @@ function useStaffScreen() {
   }, [updated.flag, dispatch]);
 
   const getStaff = async (loc?: string, dep?: string, rol?: string) => {
-    const params: Record<string, string> = {};
-    if (loc) params.location = loc;
-    if (dep) params.department = dep;
-    if (rol) params.role = rol;
+    const params: staffSearchQueryType = {};
+    if (loc) {
+      params.location = loc;
+    }
+
+    if (dep) {
+      params.department = dep;
+    }
+
+    if (rol) {
+      params.role = rol;
+    }
 
     const response = await apiClient.get('/user/all-users', { params });
     return response.data;
@@ -54,16 +63,11 @@ function useStaffScreen() {
     dep?: string,
     rol?: string,
   ) => {
-    console.log('Search text:', text);
-    console.log('Location:', loc);
-    console.log('Department:', dep);
-    console.log('Role:', rol);
-
     setSearch(text);
 
     if (text) {
       const filteredData = cacheStaffList.filter(
-        (item: staffType) =>
+        (item) =>
           item.firstName.toLowerCase().includes(text.toLowerCase()) ||
           item.lastName?.toLowerCase().includes(text.toLowerCase()),
       );
@@ -81,17 +85,12 @@ function useStaffScreen() {
   };
 
   function staffDetails(data: staffType) {
-    console.log('Selected staff details:', data);
-
     navigation.navigate(SCREENS.StaffDetail, {
       data,
     });
   }
 
   return {
-    showModal,
-    setShowModal,
-    getStaff,
     openForm,
     staffList,
     search,

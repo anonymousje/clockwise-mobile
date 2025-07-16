@@ -19,6 +19,7 @@ export type User = {
   refreshToken: string;
   role: string;
 };
+
 export type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
 
 export type StaffDetailNavigationProp = RouteProp<
@@ -53,6 +54,12 @@ export interface InputFieldProps extends TextInputProps {
   onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
 }
+
+export type staffSearchQueryType = {
+  location?: string;
+  department?: string;
+  role?: string;
+};
 
 export type staffType = {
   firstName: string;
