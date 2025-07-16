@@ -28,7 +28,7 @@ export default function InputField({
 
   if (!props.secureTextEntry) {
     return (
-      <View style={styles.inputField}>
+      <View style={styles.inputContainer}>
         <View>
           <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
 
@@ -52,7 +52,7 @@ export default function InputField({
     );
   } else {
     return (
-      <View style={styles.inputField}>
+      <View style={styles.inputContainer}>
         <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
 
         <View

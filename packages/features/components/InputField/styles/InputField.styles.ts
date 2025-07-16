@@ -5,7 +5,7 @@ import { fonts } from '../../../theme';
 const mode = Appearance.getColorScheme();
 
 export const styles = StyleSheet.create({
-  inputField: {
+  inputContainer: {
     marginTop: 60,
   },
 
