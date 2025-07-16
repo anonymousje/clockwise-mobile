@@ -26,7 +26,7 @@ export default function AddEmployee() {
           </View>
         </View>
 
-        <View style={styles.modalContent}>
+        <View style={styles.formContainer}>
           <Controller
             control={control}
             name={'firstName'}

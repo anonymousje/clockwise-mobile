@@ -8,13 +8,18 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:
-      mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'transparent',
+      mode === 'dark' ? colors.BACKGROUND_DARKER_MODE : 'transparent',
   },
 
   header: {
     flexShrink: 1,
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: 30,
+    marginBottom: 20,
+    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
   },
 
   scrollViewContent: {
@@ -30,10 +35,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    backgroundColor:
-      mode === 'dark'
-        ? colors.BACKGROUND_ICONS_DARK_MODE
-        : colors.BACKGROUND_ICONS_LIGHT_MODE,
+    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
+
     marginVertical: 20,
   },
 
@@ -67,8 +70,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  modalContent: {
-    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_FORMS : 'white',
+  formContainer: {
+    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
     justifyContent: 'center',
     width: '100%',
     paddingHorizontal: 24,

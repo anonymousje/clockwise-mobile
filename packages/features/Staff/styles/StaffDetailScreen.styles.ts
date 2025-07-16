@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 10,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
+
   scrollContainer: {
     gap: 10,
   },
