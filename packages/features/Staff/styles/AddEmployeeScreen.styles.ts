@@ -22,12 +22,6 @@ export const styles = StyleSheet.create({
     backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
   },
 
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   avatar: {
     width: 120,
     height: 120,
@@ -40,34 +34,17 @@ export const styles = StyleSheet.create({
     marginVertical: 20,
   },
 
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   staffAvatarText: {
     fontSize: 50,
     paddingBottom: 8,
     fontFamily: fonts.CLOCKWISE_BOLD,
     color: colors.TEXT_DARK_MODE,
-  },
-
-  buttonContainer: {
-    alignItems: 'center',
-  },
-
-  NewPasswordRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderRadius: 8,
-  },
-
-  showPassButton: {
-    color:
-      mode === 'dark'
-        ? colors.CLOCKWISE_PRIMARY
-        : colors.CLOCKWISE_PRIMARY_DARK,
-  },
-  closeButtonText: {
-    fontSize: 22,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontWeight: 'bold',
   },
 
   formContainer: {
@@ -84,44 +61,15 @@ export const styles = StyleSheet.create({
     elevation: 1,
   },
 
-  closeButton: {
-    backgroundColor:
-      mode === 'dark'
-        ? colors.BACKGROUND_DARKER_MODE
-        : colors.BACKGROUND_LIGHTER_MODE,
-    borderRadius: 16,
-    width: 32,
-    height: 32,
-    paddingBottom: 10,
+  errorMsg: {
+    color: 'red',
+    fontSize: 13,
+    marginBottom: 8,
+    marginLeft: 4,
+  },
+
+  buttonContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 2,
-  },
-
-  inputText: {
-    color: mode === 'dark' ? 'white' : '#222',
-    fontSize: 16,
-    fontFamily: fonts.CLOCKWISE_REGULAR,
-    backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
-    borderRadius: 10,
-    borderWidth: 0,
-    padding: 12,
-    marginBottom: 25,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
-  },
-
-  picker: {
-    backgroundColor: mode === 'dark' ? '#222' : '#f5f5f5',
-    borderRadius: 10,
-    marginTop: 16,
-
-    color: mode === 'dark' ? 'white' : '#222',
-    fontSize: 16,
-    fontFamily: fonts.CLOCKWISE_REGULAR,
   },
 
   button: {
@@ -145,11 +93,5 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     letterSpacing: 1,
-  },
-  errorMsg: {
-    color: 'red',
-    fontSize: 13,
-    marginBottom: 8,
-    marginLeft: 4,
   },
 });

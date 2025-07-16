@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { Animated, Appearance } from 'react-native';
+import { Animated, Appearance, TextInput } from 'react-native';
 import { colors } from '../../../theme';
 
 export default function useInputField(value: string) {
@@ -8,6 +8,7 @@ export default function useInputField(value: string) {
   const [isPassword, setIsPassword] = useState(true);
 
   const mode = Appearance.getColorScheme();
+  const inputRef = useRef<TextInput>(null);
 
   const animatedIsFocused = useRef(
     new Animated.Value(isFocused ? 1 : 0),
@@ -41,6 +42,7 @@ export default function useInputField(value: string) {
     paddingHorizontal: 2,
     zIndex: 1,
   };
+
   function changePwdType() {
     setIsPassword((prevState) => !prevState);
   }
@@ -51,5 +53,6 @@ export default function useInputField(value: string) {
     setIsInputFocused,
     isPassword,
     changePwdType,
+    inputRef,
   };
 }

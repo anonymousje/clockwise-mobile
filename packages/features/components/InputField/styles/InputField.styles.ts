@@ -26,7 +26,24 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
   },
-  passwordRow: {
+
+  inputError: {
+    borderColor: 'red',
+  },
+
+  inputFocused: {
+    borderColor: colors.CLOCKWISE_PRIMARY,
+    borderWidth: 2,
+  },
+
+  errorMsg: {
+    color: 'red',
+    fontSize: 13,
+    marginBottom: 2,
+    marginLeft: 4,
+  },
+
+  passwordContainer: {
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARKER_MODE
@@ -46,10 +63,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  showPassButton: {
-    backgroundColor: colors.CLOCKWISE_PRIMARY,
-  },
-
   inputPassword: {
     flex: 1,
     fontSize: 16,
@@ -57,32 +70,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-  },
-
-  inputFocused: {
-    borderColor: colors.CLOCKWISE_PRIMARY,
-    borderWidth: 2,
-  },
-
-  inputError: {
-    borderColor: 'red',
-  },
-
-  button: {
-    position: 'absolute',
-    right: 10,
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    backgroundColor: colors.CLOCKWISE_PRIMARY,
-    paddingHorizontal: 8,
-    borderRadius: 4,
-  },
-  errorMsg: {
-    color: 'red',
-    fontSize: 13,
-    marginBottom: 2,
-    marginLeft: 4,
   },
 
   showPasswordButton: {

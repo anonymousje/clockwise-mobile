@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   View,
   TextInput,
@@ -23,9 +23,8 @@ export default function InputField({
     setIsInputFocused,
     isPassword,
     changePwdType,
+    inputRef,
   } = useInputField(value);
-
-  const inputRef = useRef<TextInput>(null);
 
   if (!props.secureTextEntry) {
     return (
@@ -58,7 +57,7 @@ export default function InputField({
 
         <View
           style={[
-            styles.passwordRow,
+            styles.passwordContainer,
             error && styles.inputError,
             isInputFocused && styles.inputFocused,
           ]}

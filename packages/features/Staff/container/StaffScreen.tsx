@@ -29,8 +29,8 @@ export default function Staff() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <View>
-          <View style={styles.searchRow}>
-            <View style={styles.inputSearchContainer}>
+          <View style={styles.searchContainer}>
+            <View style={styles.searchInputContainer}>
               <Ionicons
                 name='search-outline'
                 size={30}
@@ -40,7 +40,7 @@ export default function Staff() {
               <TextInput
                 placeholder='Search Staff'
                 placeholderTextColor={placeholderColor}
-                style={styles.inputSearch}
+                style={styles.searchInput}
                 value={search}
                 onChangeText={(text) => filterSearch(text)}
               />
@@ -104,21 +104,21 @@ export default function Staff() {
 
             <TextInput
               placeholder='Location'
-              style={styles.searchInput}
+              style={styles.filterInput}
               value={location}
               onChangeText={(text) => setLocation(text)}
             />
 
             <TextInput
               placeholder='Department'
-              style={styles.searchInput}
+              style={styles.filterInput}
               value={department}
               onChangeText={(text) => setDepartment(text)}
             />
 
             <TextInput
               placeholder='Role'
-              style={styles.searchInput}
+              style={styles.filterInput}
               value={role}
               onChangeText={(text) => setRole(text)}
             />

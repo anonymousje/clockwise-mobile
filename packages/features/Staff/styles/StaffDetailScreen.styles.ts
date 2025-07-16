@@ -12,6 +12,32 @@ export const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHTER_MODE,
   },
 
+  editButtonContainer: {
+    alignItems: 'flex-end',
+    padding: 16,
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
+  },
+
+  editButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+  },
+
+  editButtonText: {
+    color: 'white',
+    padding: 10,
+  },
+
+  scrollContainer: {
+    gap: 10,
+  },
+
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -41,26 +67,11 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
 
-  scrollContainer: {
-    gap: 10,
-  },
-
   staffDetails: {
     justifyContent: 'center',
     paddingBottom: 50,
     paddingTop: 60,
     paddingHorizontal: 16,
-    backgroundColor:
-      mode === 'dark'
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
-  },
-
-  editDetails: {
-    justifyContent: 'center',
-    paddingBottom: 50,
-    paddingHorizontal: 16,
-
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
@@ -75,33 +86,22 @@ export const styles = StyleSheet.create({
       mode === 'dark' ? 'transparent' : colors.TEXT_LIGHT_LIGHTER_MODE,
   },
 
-  editButtonContainer: {
-    alignItems: 'flex-end',
-    padding: 16,
-    backgroundColor:
-      mode === 'dark'
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
-  },
-
-  editButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
-    borderRadius: 10,
-    paddingHorizontal: 16,
-  },
-
-  editButtonText: {
-    color: 'white',
-    padding: 10,
-  },
-
   text: {
     fontSize: 16,
     marginVertical: 4,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
+  },
+
+  editDetails: {
+    justifyContent: 'center',
+    paddingBottom: 50,
+    paddingHorizontal: 16,
+
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
   },
 
   picker: {
