@@ -6,13 +6,13 @@ import { Picker } from '@react-native-picker/picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 
 export default function StaffDetail() {
-  const { editMode, setEditMode, staffData, setStaffData } = useStaffDetail();
+  const { editMode, staffData, setStaffData, editStaffData } = useStaffDetail();
 
   return (
     <View style={styles.container}>
       <View style={styles.editButtonContainer}>
         <TouchableOpacity
-          onPress={() => setEditMode(!editMode)}
+          onPress={() => editStaffData()}
           style={styles.editButton}
         >
           <Icons

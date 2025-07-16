@@ -8,7 +8,14 @@ export default function useStaffDetail() {
 
   const [staffData, setStaffData] = useState(data);
 
+  function editStaffData() {
+    if (editMode) {
+      console.log('Staff data updated:', staffData);
+    }
+    setEditMode(!editMode);
+  }
+
   console.log('Staff Detail Data:', data);
   const [editMode, setEditMode] = useState(false);
-  return { data, editMode, setEditMode, staffData, setStaffData };
+  return { data, editMode, editStaffData, staffData, setStaffData };
 }

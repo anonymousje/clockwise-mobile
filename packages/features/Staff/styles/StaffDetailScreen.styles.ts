@@ -83,6 +83,7 @@ export const styles = StyleSheet.create({
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
+
   editButton: {
     flexDirection: 'row',
     alignItems: 'center',
