@@ -6,16 +6,18 @@ export default function useStaffDetail() {
   const route = useRoute<StaffDetailNavigationProp>();
   const { data } = route.params;
 
+  console.log('Staff Detail Data:', data);
+
   const [staffData, setStaffData] = useState(data);
+  const [editMode, setEditMode] = useState(false);
 
   function editStaffData() {
     if (editMode) {
       console.log('Staff data updated:', staffData);
+      //TODO: API call here
     }
     setEditMode(!editMode);
   }
 
-  console.log('Staff Detail Data:', data);
-  const [editMode, setEditMode] = useState(false);
-  return { data, editMode, editStaffData, staffData, setStaffData };
+  return { editMode, staffData, setStaffData, editStaffData };
 }

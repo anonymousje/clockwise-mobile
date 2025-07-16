@@ -20,6 +20,7 @@ export default function StaffDetail() {
             size={24}
             color={editIconColor}
           />
+
           <Text style={styles.editButtonText}>
             {editMode ? 'Save' : 'Edit'}{' '}
           </Text>
