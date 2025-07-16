@@ -38,7 +38,7 @@ export type StaffFormData = {
   password: string;
   cellPhone?: string;
   homePhone?: string;
-  emailAddress: string;
+  email: string;
   userName?: string;
   nickName?: string;
   address?: string;

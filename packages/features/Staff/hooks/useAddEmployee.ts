@@ -9,9 +9,14 @@ import { useNavigation } from '@react-navigation/native';
 import { fetchUpdated } from '../../redux/actions/fetchUsers';
 
 export default function useAddEmployee() {
+  const [errorMsg, setErrorMsg] = useState(false);
+  const [firstName, setFirstName] = useState('');
+
   const staffSchema = z.object({
     firstName: z.string().min(1, 'First Name is required'),
     lastName: z.string().min(1, 'Last Name is required'),
+    email: z.string().email('Invalid email address'),
+
     password: z
       .string()
       .min(7, 'Minimum 7 characters required')
@@ -20,11 +25,7 @@ export default function useAddEmployee() {
         /[^A-Za-z0-9]/,
         'Password must contain at least one special character',
       ),
-    emailAddress: z.string().email('Invalid email address'),
   });
-
-  const [errorMsg, setErrorMsg] = useState(false);
-  const [firstName, setFirstName] = useState('');
 
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp>();
@@ -34,29 +35,26 @@ export default function useAddEmployee() {
       firstName: '',
       lastName: '',
       password: '',
-      emailAddress: '',
+      email: '',
     },
 
     resolver: zodResolver(staffSchema),
   });
 
   const onSubmit = async (data: StaffFormData) => {
-    console.log('Successful', JSON.stringify(data));
-
     try {
       const response = await apiClient.post('/user/create-user', {
         firstName: data.firstName,
         lastName: data.lastName,
-        email: data.emailAddress,
+        email: data.email,
         password: data.password,
       });
 
       const { succeeded } = response.data;
-
       console.log('Succeeded: ', succeeded);
+
       reset();
       dispatch(fetchUpdated(true));
-
       navigation.goBack();
     } catch (errors) {
       console.log('Errors: ', errors);
@@ -64,16 +62,10 @@ export default function useAddEmployee() {
     }
   };
 
-  function closeForm() {
-    reset();
-    navigation.goBack();
-  }
-
   return {
     control,
     handleSubmit,
     onSubmit,
-    closeForm,
     errorMsg,
     firstName,
     setFirstName,

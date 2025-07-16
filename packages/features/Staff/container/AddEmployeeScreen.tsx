@@ -66,7 +66,7 @@ export default function AddEmployee() {
 
           <Controller
             control={control}
-            name={'emailAddress'}
+            name={'email'}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
