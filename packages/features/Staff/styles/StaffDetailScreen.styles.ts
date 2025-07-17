@@ -80,15 +80,23 @@ export const styles = StyleSheet.create({
 
   textContainer: {
     marginBottom: 20,
-    padding: 10,
+    paddingBottom: 10,
+    paddingLeft: 5,
     borderBottomWidth: 1,
     borderColor:
       mode === 'dark' ? 'transparent' : colors.TEXT_LIGHT_LIGHTER_MODE,
   },
 
-  text: {
+  textHeader: {
     fontSize: 16,
     marginVertical: 4,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontFamily: fonts.CLOCKWISE_BOLD,
+  },
+
+  text: {
+    fontSize: 17,
+    marginTop: 4,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
@@ -105,7 +113,6 @@ export const styles = StyleSheet.create({
   },
 
   picker: {
-    height: 50,
     width: '100%',
     marginVertical: 30,
   },

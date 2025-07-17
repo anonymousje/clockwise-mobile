@@ -39,52 +39,52 @@ export default function StaffDetail() {
         {!editMode && (
           <View style={styles.staffDetails}>
             <View style={styles.textContainer}>
-              <Text style={styles.text}>First Name</Text>
+              <Text style={styles.textHeader}>First Name</Text>
               <Text style={styles.text}>{staffData.firstName}</Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Email</Text>
+              <Text style={styles.textHeader}>Email</Text>
               <Text style={styles.text}>{staffData.email}</Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Cell Phone</Text>
+              <Text style={styles.textHeader}>Cell Phone</Text>
               <Text style={styles.text}>
                 {staffData.cellPhone === undefined ? ' -' : staffData.cellPhone}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Home Phone</Text>
+              <Text style={styles.textHeader}>Home Phone</Text>
               <Text style={styles.text}>
                 {staffData.homePhone === undefined ? ' -' : staffData.homePhone}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>User Name</Text>
+              <Text style={styles.textHeader}>User Name</Text>
               <Text style={styles.text}>
                 {staffData.userName === undefined ? ' -' : staffData.userName}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Nick Name</Text>
+              <Text style={styles.textHeader}>Nick Name</Text>
               <Text style={styles.text}>
                 {staffData.nickName === undefined ? ' -' : staffData.nickName}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Address</Text>
+              <Text style={styles.textHeader}>Address</Text>
               <Text style={styles.text}>
                 {staffData.address === undefined ? ' -' : staffData.address}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Employee ID</Text>
+              <Text style={styles.textHeader}>Employee ID</Text>
               <Text style={styles.text}>
                 {staffData.employeeId === undefined
                   ? ' -'
@@ -93,7 +93,7 @@ export default function StaffDetail() {
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Permission Level</Text>
+              <Text style={styles.textHeader}>Permission Level</Text>
               <Text style={styles.text}>
                 {staffData.permissionLevel === undefined
                   ? ' -'
@@ -102,7 +102,7 @@ export default function StaffDetail() {
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Status </Text>
+              <Text style={styles.textHeader}>Status </Text>
               <Text style={styles.text}>
                 {staffData.status === undefined ? ' -' : staffData.status}
               </Text>
@@ -207,8 +207,8 @@ export default function StaffDetail() {
               />
 
               <Picker.Item
-                label='Deactiaved'
-                value='Deactiaved'
+                label='Deactivated'
+                value='Deactivated'
               />
             </Picker>
           </View>
