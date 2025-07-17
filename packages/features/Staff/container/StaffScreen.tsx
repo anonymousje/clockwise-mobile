@@ -100,7 +100,7 @@ export default function Staff() {
       >
         <View style={styles.modalContainer}>
           <View>
-            <Text>Filter Options</Text>
+            <Text style={styles.modalTitle}>Filter Options</Text>
 
             <TextInput
               placeholder='Location'

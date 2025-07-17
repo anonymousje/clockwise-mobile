@@ -161,6 +161,13 @@ export const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHT_FORMS,
   },
 
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.CLOCKWISE_PRIMARY,
+    textAlign: 'center',
+  },
+
   filterInput: {
     backgroundColor:
       mode === 'dark'

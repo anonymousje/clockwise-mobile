@@ -22,7 +22,9 @@ export default function AddEmployee() {
       >
         <View style={styles.header}>
           <View style={styles.avatar}>
-            <Text style={styles.staffAvatarText}>{firstName[0]}</Text>
+            <Text style={styles.staffAvatarText}>
+              {firstName.charAt(0).toUpperCase()}
+            </Text>
           </View>
         </View>
 
