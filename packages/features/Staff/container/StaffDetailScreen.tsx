@@ -51,28 +51,23 @@ export default function StaffDetail() {
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Cell Phone</Text>
               <Text style={styles.text}>
-                {staffData.cellPhone === undefined ? ' -' : staffData.cellPhone}
-              </Text>
-            </View>
-
-            <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Home Phone</Text>
-              <Text style={styles.text}>
-                {staffData.homePhone === undefined ? ' -' : staffData.homePhone}
+                {staffData.phoneNumber === undefined
+                  ? ' -'
+                  : staffData.phoneNumber}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>User Name</Text>
               <Text style={styles.text}>
-                {staffData.userName === undefined ? ' -' : staffData.userName}
+                {staffData.username === undefined ? ' -' : staffData.username}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Nick Name</Text>
               <Text style={styles.text}>
-                {staffData.nickName === undefined ? ' -' : staffData.nickName}
+                {staffData.nickname === undefined ? ' -' : staffData.nickname}
               </Text>
             </View>
 
@@ -86,18 +81,14 @@ export default function StaffDetail() {
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Employee ID</Text>
               <Text style={styles.text}>
-                {staffData.employeeId === undefined
-                  ? ' -'
-                  : staffData.employeeId}
+                {staffData.userCode === undefined ? ' -' : staffData.userCode}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Permission Level</Text>
               <Text style={styles.text}>
-                {staffData.permissionLevel === undefined
-                  ? ' -'
-                  : staffData.permissionLevel}
+                {staffData.role === undefined ? ' -' : staffData.role}
               </Text>
             </View>
 
@@ -128,51 +119,45 @@ export default function StaffDetail() {
             />
             <InputField
               label='Cell Phone'
-              value={staffData.cellPhone}
+              value={staffData.phoneNumber ?? ''}
               onChangeText={(text) =>
-                setStaffData({ ...staffData, cellPhone: text })
+                setStaffData({ ...staffData, phoneNumber: text })
               }
             />
-            <InputField
-              label='Home Phone'
-              value={staffData.homePhone}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, homePhone: text })
-              }
-            />
+
             <InputField
               label='User Name'
-              value={staffData.userName}
+              value={staffData.username ?? ''}
               onChangeText={(text) =>
-                setStaffData({ ...staffData, userName: text })
+                setStaffData({ ...staffData, username: text })
               }
             />
             <InputField
               label='Nick Name'
-              value={staffData.nickName}
+              value={staffData.nickname ?? ''}
               onChangeText={(text) =>
-                setStaffData({ ...staffData, nickName: text })
+                setStaffData({ ...staffData, nickname: text })
               }
             />
             <InputField
               label='Address'
-              value={staffData.address}
+              value={staffData.address ?? ''}
               onChangeText={(text) =>
                 setStaffData({ ...staffData, address: text })
               }
             />
             <InputField
-              label='Employee ID'
-              value={staffData.employeeId}
+              label='User Code'
+              value={staffData.userCode ?? ''}
               onChangeText={(text) =>
-                setStaffData({ ...staffData, employeeId: text })
+                setStaffData({ ...staffData, userCode: text })
               }
             />
 
             <Picker
-              selectedValue={staffData.permissionLevel}
+              selectedValue={staffData.role}
               onValueChange={(itemValue) =>
-                setStaffData({ ...staffData, permissionLevel: itemValue })
+                setStaffData({ ...staffData, role: itemValue })
               }
               style={styles.picker}
             >
@@ -182,11 +167,11 @@ export default function StaffDetail() {
               />
               <Picker.Item
                 label='Manager'
-                value='Manager'
+                value='Admin'
               />
               <Picker.Item
                 label='Employee'
-                value='Employee'
+                value='User'
               />
             </Picker>
 
