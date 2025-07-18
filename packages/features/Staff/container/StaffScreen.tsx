@@ -76,7 +76,9 @@ export default function Staff() {
                   {staff.firstName} <Text>{staff.lastName} </Text>
                 </Text>
 
-                <Text style={styles.position}>Software Engineer</Text>
+                <Text style={styles.position}>
+                  {staff.role === 'Admin' ? 'Manager' : 'Employee'}
+                </Text>
               </View>
             </TouchableOpacity>
           ))}
