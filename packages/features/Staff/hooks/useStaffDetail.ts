@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { staffType } from '../../types';
 import { useRoute } from '@react-navigation/native';
-import { StaffDetailNavigationProp } from '../../types';
+import { departmentType, StaffDetailNavigationProp } from '../../types';
 import apiClient from '../../authClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../redux/actions/fetchUsers';
@@ -16,12 +16,23 @@ export default function useStaffDetail() {
   const [editMode, setEditMode] = useState(false);
 
   const [staffData, setStaffData] = useState<staffType | null>(null);
+  const [departmentList, setDepartmentList] = useState<departmentType[]>([]);
 
   useEffect(() => {
     if (!recordId) {
       console.error('No recordId provided in params');
       return;
     }
+
+    const fetchDepartment = async () => {
+      return await apiClient
+        .get('/department/get-all-departments')
+        .then((response) => response.data.data)
+        .catch((error) => {
+          console.error('Error fetching department:', error);
+          throw error;
+        });
+    };
 
     const fetchUser = async (): Promise<staffType | null> => {
       return await apiClient
@@ -37,6 +48,10 @@ export default function useStaffDetail() {
       const data = await fetchUser();
       setStaffData(data);
       console.log('Fetched Staff Data:', data);
+
+      const departmentData = await fetchDepartment();
+      setDepartmentList(departmentData);
+      console.log('Fetched Department Data:', departmentData);
     };
 
     fetchData();
@@ -64,5 +79,5 @@ export default function useStaffDetail() {
     setEditMode(!editMode);
   };
 
-  return { editMode, staffData, setStaffData, editStaffData };
+  return { editMode, staffData, setStaffData, editStaffData, departmentList };
 }

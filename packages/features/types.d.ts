@@ -74,9 +74,16 @@ export type staffType = {
   nickname?: string | null;
   address?: string | null;
   departmentName?: string | null;
+  locationName?: string | null;
+  jobRoleName?: string | null;
   userCode?: string | null;
   departmentRecordId?: string | null;
   locationRecordId?: string | null;
   jobRoleRecordId?: string | null;
   isDeleted?: boolean;
+};
+
+export type departmentType = {
+  recordId: string;
+  name: string;
 };

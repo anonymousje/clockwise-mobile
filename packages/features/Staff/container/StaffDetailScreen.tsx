@@ -6,7 +6,8 @@ import { Picker } from '@react-native-picker/picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 
 export default function StaffDetail() {
-  const { editMode, staffData, setStaffData, editStaffData } = useStaffDetail();
+  const { editMode, staffData, setStaffData, editStaffData, departmentList } =
+    useStaffDetail();
 
   return (
     <View style={styles.container}>
@@ -194,6 +195,27 @@ export default function StaffDetail() {
                 }
               }}
             />
+
+            <Picker
+              selectedValue={staffData?.departmentName || ''}
+              onValueChange={(itemValue) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, departmentName: itemValue });
+                }
+              }}
+            >
+              <Picker.Item
+                label='Select Department'
+                value=''
+              />
+              {departmentList.map((department) => (
+                <Picker.Item
+                  key={department.recordId}
+                  label={department.name}
+                  value={department.name}
+                />
+              ))}
+            </Picker>
 
             <Picker
               selectedValue={staffData?.role || ''}
