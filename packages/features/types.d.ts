@@ -73,6 +73,7 @@ export type staffType = {
   username?: string;
   nickname?: string | null;
   address?: string | null;
+  departmentName?: string | null;
   userCode?: string | null;
   departmentRecordId?: string | null;
   locationRecordId?: string | null;

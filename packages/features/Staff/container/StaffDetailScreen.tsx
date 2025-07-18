@@ -98,6 +98,33 @@ export default function StaffDetail() {
                 {staffData?.status === undefined ? ' -' : staffData?.status}
               </Text>
             </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.textHeader}>Department</Text>
+              <Text style={styles.text}>
+                {staffData?.departmentName === undefined
+                  ? ' -'
+                  : staffData?.departmentName}
+              </Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.textHeader}>Location</Text>
+              <Text style={styles.text}>
+                {staffData?.locationName === undefined
+                  ? ' -'
+                  : staffData?.locationName}
+              </Text>
+            </View>
+
+            <View style={styles.textContainer}>
+              <Text style={styles.textHeader}>Job Role</Text>
+              <Text style={styles.text}>
+                {staffData?.jobRoleName === undefined
+                  ? ' -'
+                  : staffData?.jobRoleName}
+              </Text>
+            </View>
           </View>
         )}
 
