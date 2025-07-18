@@ -31,7 +31,7 @@ export default function StaffDetail() {
         <View style={styles.headerContainer}>
           <View style={styles.avatarContainer}>
             <Text style={styles.avatarText}>
-              {staffData.firstName.charAt(0).toUpperCase()}
+              {staffData?.firstName.charAt(0).toUpperCase()}
             </Text>
           </View>
         </View>
@@ -40,62 +40,62 @@ export default function StaffDetail() {
           <View style={styles.staffDetails}>
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>First Name</Text>
-              <Text style={styles.text}>{staffData.firstName}</Text>
+              <Text style={styles.text}>{staffData?.firstName}</Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Email</Text>
-              <Text style={styles.text}>{staffData.email}</Text>
+              <Text style={styles.text}>{staffData?.email}</Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Cell Phone</Text>
               <Text style={styles.text}>
-                {staffData.phoneNumber === undefined
+                {staffData?.phoneNumber === undefined
                   ? ' -'
-                  : staffData.phoneNumber}
+                  : staffData?.phoneNumber}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>User Name</Text>
               <Text style={styles.text}>
-                {staffData.username === undefined ? ' -' : staffData.username}
+                {staffData?.username === undefined ? ' -' : staffData?.username}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Nick Name</Text>
               <Text style={styles.text}>
-                {staffData.nickname === undefined ? ' -' : staffData.nickname}
+                {staffData?.nickname === undefined ? ' -' : staffData?.nickname}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Address</Text>
               <Text style={styles.text}>
-                {staffData.address === undefined ? ' -' : staffData.address}
+                {staffData?.address === undefined ? ' -' : staffData?.address}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Employee ID</Text>
               <Text style={styles.text}>
-                {staffData.userCode === undefined ? ' -' : staffData.userCode}
+                {staffData?.userCode === undefined ? ' -' : staffData?.userCode}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Permission Level</Text>
               <Text style={styles.text}>
-                {staffData.role === undefined ? ' -' : staffData.role}
+                {staffData?.role === undefined ? ' -' : staffData?.role}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Status </Text>
               <Text style={styles.text}>
-                {staffData.status === undefined ? ' -' : staffData.status}
+                {staffData?.status === undefined ? ' -' : staffData?.status}
               </Text>
             </View>
           </View>
@@ -105,60 +105,76 @@ export default function StaffDetail() {
           <View style={styles.editDetails}>
             <InputField
               label='First Name'
-              value={staffData.firstName}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, firstName: text })
-              }
+              value={staffData?.firstName || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, firstName: text });
+                }
+              }}
             />
             <InputField
               label='Email'
-              value={staffData.email}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, email: text })
-              }
+              value={staffData?.email || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, email: text });
+                }
+              }}
             />
             <InputField
               label='Cell Phone'
-              value={staffData.phoneNumber ?? ''}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, phoneNumber: text })
-              }
+              value={staffData?.phoneNumber || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, phoneNumber: text });
+                }
+              }}
             />
 
             <InputField
               label='User Name'
-              value={staffData.username ?? ''}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, username: text })
-              }
+              value={staffData?.username || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, username: text });
+                }
+              }}
             />
             <InputField
               label='Nick Name'
-              value={staffData.nickname ?? ''}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, nickname: text })
-              }
+              value={staffData?.nickname || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, nickname: text });
+                }
+              }}
             />
             <InputField
               label='Address'
-              value={staffData.address ?? ''}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, address: text })
-              }
+              value={staffData?.address || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, address: text });
+                }
+              }}
             />
             <InputField
               label='User Code'
-              value={staffData.userCode ?? ''}
-              onChangeText={(text) =>
-                setStaffData({ ...staffData, userCode: text })
-              }
+              value={staffData?.userCode || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, userCode: text });
+                }
+              }}
             />
 
             <Picker
-              selectedValue={staffData.role}
-              onValueChange={(itemValue) =>
-                setStaffData({ ...staffData, role: itemValue })
-              }
+              selectedValue={staffData?.role || ''}
+              onValueChange={(itemValue) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, role: itemValue });
+                }
+              }}
               style={styles.picker}
             >
               <Picker.Item
@@ -176,24 +192,26 @@ export default function StaffDetail() {
             </Picker>
 
             <Picker
-              selectedValue={staffData.status}
-              onValueChange={(itemValue) =>
-                setStaffData({ ...staffData, status: itemValue })
-              }
+              selectedValue={staffData?.status || ''}
+              onValueChange={(itemValue) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, status: itemValue });
+                }
+              }}
             >
               <Picker.Item
                 label='Select Status'
-                value=''
+                value={undefined}
               />
 
               <Picker.Item
-                label='Activated'
-                value='Activated'
+                label='Active'
+                value='"Active"'
               />
 
               <Picker.Item
-                label='Deactivated'
-                value='Deactivated'
+                label='Active'
+                value='"Active"'
               />
             </Picker>
           </View>

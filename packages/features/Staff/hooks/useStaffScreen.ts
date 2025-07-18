@@ -87,7 +87,7 @@ function useStaffScreen() {
 
   function staffDetails(data: staffType) {
     navigation.navigate(SCREENS.StaffDetail, {
-      data,
+      recordId: data.recordId,
     });
   }
 

@@ -10,7 +10,7 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
-  [SCREENS.StaffDetail]: { data: staffType };
+  [SCREENS.StaffDetail]: { recordId: string };
 };
 
 export type User = {
@@ -44,7 +44,7 @@ export type StaffFormData = {
   address?: string;
   employeeId?: string;
   permissionLevel?: string;
-  status?: 'Activated' | 'Deactivated';
+  status?: string;
 };
 
 export interface InputFieldProps extends TextInputProps {
@@ -69,7 +69,7 @@ export type staffType = {
   role?: string;
   phoneNumber?: string | null;
   lastLoginDate?: string | null;
-  status?: 'Deactivated' | 'Active';
+  status?: string;
   username?: string;
   nickname?: string | null;
   address?: string | null;
