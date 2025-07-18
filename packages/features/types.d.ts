@@ -62,15 +62,20 @@ export type staffSearchQueryType = {
 };
 
 export type staffType = {
+  recordId: string;
   firstName: string;
   lastName: string;
   email: string;
-  cellPhone?: string;
-  homePhone?: string;
-  userName?: string;
-  nickName?: string;
-  address?: string;
-  employeeId?: string;
-  permissionLevel?: string;
-  status?: 'Activated' | 'Deactivated';
+  role?: string;
+  phoneNumber?: string | null;
+  lastLoginDate?: string | null;
+  status?: 'Deactivated' | 'Active';
+  username?: string;
+  nickname?: string | null;
+  address?: string | null;
+  userCode?: string | null;
+  departmentRecordId?: string | null;
+  locationRecordId?: string | null;
+  jobRoleRecordId?: string | null;
+  isDeleted?: boolean;
 };

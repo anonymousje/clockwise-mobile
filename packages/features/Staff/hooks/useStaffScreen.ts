@@ -49,8 +49,9 @@ function useStaffScreen() {
       params.role = rol;
     }
 
-    const response = await apiClient.get('/user/all-users', { params });
-    return response.data;
+    const response = await apiClient.get('/user/get-all-users', { params });
+    console.log('Staff Data:', response.data.data);
+    return response.data.data;
   };
 
   function openForm() {

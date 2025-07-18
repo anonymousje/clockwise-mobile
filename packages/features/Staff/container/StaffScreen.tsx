@@ -25,6 +25,8 @@ export default function Staff() {
     staffDetails,
   } = useStaffScreen();
 
+  console.log('Staff List:', staffList);
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>

@@ -80,12 +80,7 @@ export const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHT_MODE,
     padding: 16,
     marginBottom: 30,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 4,
-    elevation: 1,
-    borderWidth: 1,
-    borderColor: colors.CLOCKWISE_PRIMARY,
+    borderBottomWidth: 1,
   },
 
   staffAvatar: {
