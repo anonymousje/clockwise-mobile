@@ -13,6 +13,7 @@ export default function StaffDetail() {
     editStaffData,
     departmentList,
     locationList,
+    jobRolelist,
   } = useStaffDetail();
 
   return (
@@ -206,7 +207,13 @@ export default function StaffDetail() {
               selectedValue={staffData?.departmentName || ''}
               onValueChange={(itemValue) => {
                 if (staffData) {
-                  setStaffData({ ...staffData, departmentName: itemValue });
+                  setStaffData({
+                    ...staffData,
+                    departmentName: itemValue,
+                    departmentRecordId: departmentList.find(
+                      (department) => department.name === itemValue,
+                    )?.recordId,
+                  });
                 }
               }}
             >
@@ -227,7 +234,13 @@ export default function StaffDetail() {
               selectedValue={staffData?.locationName || ''}
               onValueChange={(itemValue) => {
                 if (staffData) {
-                  setStaffData({ ...staffData, locationName: itemValue });
+                  setStaffData({
+                    ...staffData,
+                    locationName: itemValue,
+                    locationRecordId: locationList.find(
+                      (location) => location.name === itemValue,
+                    )?.recordId,
+                  });
                 }
               }}
             >
@@ -240,6 +253,33 @@ export default function StaffDetail() {
                   key={location.recordId}
                   label={location.name}
                   value={location.name}
+                />
+              ))}
+            </Picker>
+
+            <Picker
+              selectedValue={staffData?.jobRoleName || ''}
+              onValueChange={(itemValue) => {
+                if (staffData) {
+                  setStaffData({
+                    ...staffData,
+                    jobRoleName: itemValue,
+                    jobRoleRecordId: jobRolelist.find(
+                      (jobRole) => jobRole.name === itemValue,
+                    )?.recordId,
+                  });
+                }
+              }}
+            >
+              <Picker.Item
+                label='Select Job Role'
+                value=''
+              />
+              {jobRolelist.map((jobRole) => (
+                <Picker.Item
+                  key={jobRole.recordId}
+                  label={jobRole.name}
+                  value={jobRole.name}
                 />
               ))}
             </Picker>

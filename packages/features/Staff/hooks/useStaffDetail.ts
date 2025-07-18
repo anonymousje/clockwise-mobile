@@ -18,6 +18,8 @@ export default function useStaffDetail() {
   const [staffData, setStaffData] = useState<staffType | null>(null);
   const [departmentList, setDepartmentList] = useState<filterItemsType[]>([]);
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
+  const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
+
   useEffect(() => {
     if (!recordId) {
       console.error('No recordId provided in params');
@@ -44,6 +46,16 @@ export default function useStaffDetail() {
         });
     };
 
+    const fetchJobRole = async () => {
+      return await apiClient
+        .get('/jobrole/get-all-jobroles')
+        .then((response) => response.data.data)
+        .catch((error) => {
+          console.error('Error fetching job role:', error);
+          throw error;
+        });
+    };
+
     const fetchUser = async (): Promise<staffType | null> => {
       return await apiClient
         .get(`/user/get-user/${recordId}`)
@@ -57,15 +69,15 @@ export default function useStaffDetail() {
     const fetchData = async () => {
       const data = await fetchUser();
       setStaffData(data);
-      console.log('Fetched Staff Data:', data);
 
       const departmentData = await fetchDepartment();
       setDepartmentList(departmentData);
-      console.log('Fetched Department Data:', departmentData);
 
       const locationData = await fetchLocation();
       setLocationList(locationData);
-      console.log('Fetched Location Data:', locationData);
+
+      const jobRoleData = await fetchJobRole();
+      setJobRoleList(jobRoleData);
     };
 
     fetchData();
@@ -86,6 +98,12 @@ export default function useStaffDetail() {
         userCode: staffData?.userCode,
         status: staffData?.status,
         role: staffData?.role,
+        departmentRecordId: staffData?.departmentRecordId,
+        locationRecordId: staffData?.locationRecordId,
+        jobRoleRecordId: staffData?.jobRoleRecordId,
+        departmentName: staffData?.departmentName,
+        locationName: staffData?.locationName,
+        jobRoleName: staffData?.jobRoleName,
       });
       dispatch(fetchUpdated(true));
     }
@@ -100,5 +118,6 @@ export default function useStaffDetail() {
     editStaffData,
     departmentList,
     locationList,
+    jobRolelist,
   };
 }
