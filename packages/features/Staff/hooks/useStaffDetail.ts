@@ -36,16 +36,27 @@ export default function useStaffDetail() {
     const fetchData = async () => {
       const data = await fetchUser();
       setStaffData(data);
+      console.log('Fetched Staff Data:', data);
     };
 
     fetchData();
   }, [recordId]);
 
   const editStaffData = async () => {
+    console.log('Staff data updated:', staffData);
+
     if (editMode) {
-      console.log('Staff data updated:', staffData);
       await apiClient.put(`/user/edit-user/${staffData?.recordId}`, {
-        staffData,
+        firstName: staffData?.firstName,
+        lastName: staffData?.lastName,
+        email: staffData?.email,
+        phoneNumber: staffData?.phoneNumber,
+        username: staffData?.username,
+        address: staffData?.address,
+        nickname: staffData?.nickname,
+        userCode: staffData?.userCode,
+        status: staffData?.status,
+        role: staffData?.role,
       });
       dispatch(fetchUpdated(true));
     }
