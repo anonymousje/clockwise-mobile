@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import type { staffType } from '../../types';
+import type { filterItemsType, staffType } from '../../types';
 import { useRoute } from '@react-navigation/native';
-import { departmentType, StaffDetailNavigationProp } from '../../types';
+import { StaffDetailNavigationProp } from '../../types';
 import apiClient from '../../authClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../redux/actions/fetchUsers';
@@ -16,8 +16,8 @@ export default function useStaffDetail() {
   const [editMode, setEditMode] = useState(false);
 
   const [staffData, setStaffData] = useState<staffType | null>(null);
-  const [departmentList, setDepartmentList] = useState<departmentType[]>([]);
-
+  const [departmentList, setDepartmentList] = useState<filterItemsType[]>([]);
+  const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   useEffect(() => {
     if (!recordId) {
       console.error('No recordId provided in params');
@@ -30,6 +30,16 @@ export default function useStaffDetail() {
         .then((response) => response.data.data)
         .catch((error) => {
           console.error('Error fetching department:', error);
+          throw error;
+        });
+    };
+
+    const fetchLocation = async () => {
+      return await apiClient
+        .get('/location/get-all-locations')
+        .then((response) => response.data.data)
+        .catch((error) => {
+          console.error('Error fetching location:', error);
           throw error;
         });
     };
@@ -52,6 +62,10 @@ export default function useStaffDetail() {
       const departmentData = await fetchDepartment();
       setDepartmentList(departmentData);
       console.log('Fetched Department Data:', departmentData);
+
+      const locationData = await fetchLocation();
+      setLocationList(locationData);
+      console.log('Fetched Location Data:', locationData);
     };
 
     fetchData();
@@ -79,5 +93,12 @@ export default function useStaffDetail() {
     setEditMode(!editMode);
   };
 
-  return { editMode, staffData, setStaffData, editStaffData, departmentList };
+  return {
+    editMode,
+    staffData,
+    setStaffData,
+    editStaffData,
+    departmentList,
+    locationList,
+  };
 }
