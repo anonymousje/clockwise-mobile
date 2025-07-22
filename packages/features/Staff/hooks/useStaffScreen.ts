@@ -106,7 +106,6 @@ function useStaffScreen() {
 
   const applyFilters = async (loc?: string, dep?: string, rol?: string) => {
     const filteredData = await getStaff(loc, dep, rol);
-    console.log('Filtered Staff Data:', filteredData);
     setCacheStaffList(filteredData);
     setStaffList(filteredData);
     setModal(false);
@@ -114,7 +113,6 @@ function useStaffScreen() {
 
   const filterSearch = async (text: string) => {
     setSearch(text);
-    console.log('Staff List State: ', staffList);
 
     if (text) {
       const filteredData = staffList.filter(

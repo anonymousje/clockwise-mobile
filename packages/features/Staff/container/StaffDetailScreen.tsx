@@ -238,6 +238,7 @@ export default function StaffDetail() {
                   });
                 }
               }}
+              style={styles.picker}
             >
               <Picker.Item
                 label='Select Department'
@@ -266,6 +267,7 @@ export default function StaffDetail() {
                   });
                 }
               }}
+              style={styles.picker}
             >
               <Picker.Item
                 label='Select Location'
@@ -294,6 +296,7 @@ export default function StaffDetail() {
                   });
                 }
               }}
+              style={styles.picker}
             >
               <Picker.Item
                 label='Select Job Role'
@@ -341,6 +344,7 @@ export default function StaffDetail() {
                   setStaffData({ ...staffData, status: itemValue });
                 }
               }}
+              style={styles.picker}
             >
               <Picker.Item
                 label='Select Status'

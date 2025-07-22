@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
 
   picker: {
     width: '100%',
-    marginVertical: 30,
+    marginVertical: 15,
   },
 });
 export const editIconColor = 'white';
