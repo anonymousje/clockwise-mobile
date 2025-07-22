@@ -1,5 +1,6 @@
 import { SCREENS } from '../constants/screens';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { TouchableOpacityProps } from 'react-native';
 import { TextInputProps } from 'react-native-gesture-handler';
 
 export type RoutesTypes = {
@@ -53,6 +54,12 @@ export interface InputFieldProps extends TextInputProps {
   error?: string;
   onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
+}
+
+export interface ButtonProps extends TouchableOpacityProps {
+  onPress: () => void;
+  label: string;
+  color?: string;
 }
 
 export type staffSearchQueryType = {
