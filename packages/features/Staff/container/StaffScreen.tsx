@@ -27,6 +27,7 @@ export default function Staff() {
     departmentList,
     locationList,
     jobRolelist,
+    clearFilters,
   } = useStaffScreen();
 
   console.log('Staff List:', staffList);
@@ -108,17 +109,25 @@ export default function Staff() {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalHeader}>
-            <Text
+            <TouchableOpacity
               style={styles.modalCloseButton}
               onPress={() => setModal(false)}
             >
               <Ionicons
-                name='close'
+                name='arrow-back-outline'
                 size={25}
                 color='black'
               />
-            </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.modalCloseButton}
+              onPress={() => clearFilters()}
+            >
+              <Text style={styles.modalCloseButtonText}>CLEAR</Text>
+            </TouchableOpacity>
           </View>
+
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Filter Options</Text>
 

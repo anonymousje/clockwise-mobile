@@ -137,6 +137,14 @@ function useStaffScreen() {
     });
   }
 
+  function clearFilters() {
+    setSearch('');
+    setLocation('');
+    setDepartment('');
+    setRole('');
+    setStaffList(cacheStaffList);
+  }
+
   return {
     openForm,
     staffList,
@@ -154,6 +162,7 @@ function useStaffScreen() {
     departmentList,
     locationList,
     jobRolelist,
+    clearFilters,
   };
 }
 

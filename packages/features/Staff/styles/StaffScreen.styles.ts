@@ -157,7 +157,7 @@ export const styles = StyleSheet.create({
 
   modalHeader: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     padding: 5,
   },
 
@@ -165,6 +165,12 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     padding: 10,
+  },
+
+  modalCloseButtonText: {
+    fontSize: 16,
+    color: colors.CLOCKWISE_PRIMARY,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
   },
 
   modalContent: {
