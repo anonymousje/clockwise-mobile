@@ -144,16 +144,32 @@ export const styles = StyleSheet.create({
 
   modalContainer: {
     flex: 1,
+    justifyContent: 'flex-start',
     marginVertical: 200,
     marginHorizontal: 20,
     borderRadius: 10,
     borderWidth: 1,
-    justifyContent: 'center',
-    padding: 20,
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARK_FORMS
         : colors.BACKGROUND_LIGHT_FORMS,
+  },
+
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: 5,
+  },
+
+  modalCloseButton: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
+  },
+
+  modalContent: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
 
   modalTitle: {
@@ -169,9 +185,8 @@ export const styles = StyleSheet.create({
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 10,
-    padding: 12,
     paddingLeft: 15,
-    marginTop: 40,
+    marginTop: 20,
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
@@ -181,6 +196,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 12,
     marginTop: 50,
+    marginHorizontal: 20,
   },
 
   filterText: {

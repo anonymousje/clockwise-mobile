@@ -107,7 +107,19 @@ export default function Staff() {
         }}
       >
         <View style={styles.modalContainer}>
-          <View>
+          <View style={styles.modalHeader}>
+            <Text
+              style={styles.modalCloseButton}
+              onPress={() => setModal(false)}
+            >
+              <Ionicons
+                name='close'
+                size={25}
+                color='black'
+              />
+            </Text>
+          </View>
+          <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Filter Options</Text>
 
             <Picker
