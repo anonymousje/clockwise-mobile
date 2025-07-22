@@ -84,15 +84,15 @@ function useStaffScreen() {
   const getStaff = async (loc?: string, dep?: string, rol?: string) => {
     const params: staffSearchQueryType = {};
     if (loc) {
-      params.location = loc;
+      params.locations = loc;
     }
 
     if (dep) {
-      params.department = dep;
+      params.departments = dep;
     }
 
     if (rol) {
-      params.role = rol;
+      params.roles = rol;
     }
 
     const response = await apiClient.get('/user/get-all-users', { params });

@@ -56,9 +56,9 @@ export interface InputFieldProps extends TextInputProps {
 }
 
 export type staffSearchQueryType = {
-  location?: string;
-  department?: string;
-  role?: string;
+  locations?: string;
+  departments?: string;
+  roles?: string;
 };
 
 export type staffType = {

@@ -119,6 +119,7 @@ export default function Staff() {
                 label='Select Location'
                 value=''
               />
+
               {locationList.map((item) => (
                 <Picker.Item
                   key={item.recordId}
@@ -137,6 +138,7 @@ export default function Staff() {
                 label='Select Department'
                 value=''
               />
+
               {departmentList.map((item) => (
                 <Picker.Item
                   key={item.recordId}
@@ -155,6 +157,7 @@ export default function Staff() {
                 label='Select Role'
                 value=''
               />
+
               {jobRolelist.map((item) => (
                 <Picker.Item
                   key={item.recordId}
