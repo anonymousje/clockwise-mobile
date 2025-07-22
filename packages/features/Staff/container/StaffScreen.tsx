@@ -28,6 +28,7 @@ export default function Staff() {
     locationList,
     jobRolelist,
     clearFilters,
+    applyFilters,
   } = useStaffScreen();
 
   console.log('Staff List:', staffList);
@@ -190,7 +191,7 @@ export default function Staff() {
           </View>
 
           <TouchableOpacity
-            onPress={() => filterSearch('', location, department, role)}
+            onPress={() => applyFilters(location, department, role)}
             style={styles.filterButton}
           >
             <Text style={styles.filterText}>APPLY</Text>

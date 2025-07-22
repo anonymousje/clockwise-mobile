@@ -104,31 +104,29 @@ function useStaffScreen() {
     navigation.navigate(SCREENS.AddEmployee);
   }
 
-  const filterSearch = async (
-    text: string,
-    loc?: string,
-    dep?: string,
-    rol?: string,
-  ) => {
+  const applyFilters = async (loc?: string, dep?: string, rol?: string) => {
+    const filteredData = await getStaff(loc, dep, rol);
+    console.log('Filtered Staff Data:', filteredData);
+    setCacheStaffList(filteredData);
+    setStaffList(filteredData);
+    setModal(false);
+  };
+
+  const filterSearch = async (text: string) => {
     setSearch(text);
+    console.log('Staff List State: ', staffList);
 
     if (text) {
-      const filteredData = cacheStaffList.filter(
+      const filteredData = staffList.filter(
         (item) =>
           item.firstName.toLowerCase().includes(text.toLowerCase()) ||
           item.lastName?.toLowerCase().includes(text.toLowerCase()),
       );
 
       setStaffList(filteredData);
-    } else if (loc || dep || rol) {
-      const filteredData = await getStaff(loc, dep, rol);
-
-      setStaffList(filteredData);
     } else {
       setStaffList(cacheStaffList);
     }
-
-    setModal(false);
   };
 
   function staffDetails(data: staffType) {
@@ -137,13 +135,13 @@ function useStaffScreen() {
     });
   }
 
-  function clearFilters() {
+  const clearFilters = async () => {
     setSearch('');
     setLocation('');
     setDepartment('');
     setRole('');
-    setStaffList(cacheStaffList);
-  }
+    setStaffList(await getStaff());
+  };
 
   return {
     openForm,
@@ -163,6 +161,7 @@ function useStaffScreen() {
     locationList,
     jobRolelist,
     clearFilters,
+    applyFilters,
   };
 }
 
