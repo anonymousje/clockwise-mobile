@@ -101,6 +101,14 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
 
+  deleteButton: {
+    backgroundColor: colors.CLOCKWISE_PRIMARY,
+  },
+
+  deleteButtonText: {
+    color: 'white',
+  },
+
   editDetails: {
     justifyContent: 'center',
     paddingBottom: 50,

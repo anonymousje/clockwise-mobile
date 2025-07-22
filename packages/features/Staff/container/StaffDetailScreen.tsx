@@ -4,6 +4,7 @@ import InputField from '../../components/InputField/container/InputField';
 import useStaffDetail from '../hooks/useStaffDetail';
 import { Picker } from '@react-native-picker/picker';
 import Icons from 'react-native-vector-icons/Ionicons';
+import Button from '../../components/Button/container/Button';
 
 export default function StaffDetail() {
   const {
@@ -15,6 +16,7 @@ export default function StaffDetail() {
     locationList,
     jobRolelist,
     validationErrors,
+    deleteUser,
   } = useStaffDetail();
 
   return (
@@ -141,6 +143,12 @@ export default function StaffDetail() {
                   : staffData?.jobRoleName}
               </Text>
             </View>
+
+            <Button
+              label='Delete User'
+              onPress={() => deleteUser()}
+              color='red'
+            />
           </View>
         )}
 

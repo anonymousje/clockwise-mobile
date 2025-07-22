@@ -6,10 +6,13 @@ import apiClient from '../../authClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../redux/actions/fetchUsers';
 import { z } from 'zod';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProp } from '../../types';
 
 export default function useStaffDetail() {
   const route = useRoute<StaffDetailNavigationProp>();
   const { recordId } = route.params;
+  const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   console.log('Staff Detail Data:', recordId);
@@ -135,6 +138,11 @@ export default function useStaffDetail() {
     setEditMode(!editMode);
   };
 
+  function deleteUser() {
+    apiClient.post(`/user/delete-user`, { id: staffData?.recordId });
+    dispatch(fetchUpdated(true));
+    navigation.goBack();
+  }
   return {
     editMode,
     staffData,
@@ -144,5 +152,6 @@ export default function useStaffDetail() {
     locationList,
     jobRolelist,
     validationErrors,
+    deleteUser,
   };
 }
