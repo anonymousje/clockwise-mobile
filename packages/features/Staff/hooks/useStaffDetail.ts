@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import type { filterItemsType, staffType } from '../../types';
 import { useRoute } from '@react-navigation/native';
-import { StaffDetailNavigationProp } from '../../types';
+import { StaffDetailNavigationProp, errorType } from '../../types';
 import apiClient from '../../authClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../redux/actions/fetchUsers';
+import { z } from 'zod';
 
 export default function useStaffDetail() {
   const route = useRoute<StaffDetailNavigationProp>();
@@ -19,6 +20,16 @@ export default function useStaffDetail() {
   const [departmentList, setDepartmentList] = useState<filterItemsType[]>([]);
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string>
+  >({});
+
+  // Define Zod schema for staff data
+  const staffSchema = z.object({
+    firstName: z.string().min(1, 'First name is required'),
+    lastName: z.string().min(1, 'Last name is required'),
+    email: z.string().email('Invalid email'),
+  });
 
   useEffect(() => {
     if (!recordId) {
@@ -87,6 +98,19 @@ export default function useStaffDetail() {
     console.log('Staff data updated:', staffData);
 
     if (editMode) {
+      const validation = staffSchema.safeParse(staffData);
+      console.log('Validation result:', validation);
+      if (!validation.success) {
+        const errors: errorType = {};
+        validation.error.errors.forEach((err) => {
+          if (err.path.length > 0) {
+            errors[err.path[0]] = err.message;
+          }
+        });
+        setValidationErrors(errors);
+        return;
+      }
+      setValidationErrors({});
       await apiClient.put(`/user/edit-user/${staffData?.recordId}`, {
         firstName: staffData?.firstName,
         lastName: staffData?.lastName,
@@ -119,5 +143,6 @@ export default function useStaffDetail() {
     departmentList,
     locationList,
     jobRolelist,
+    validationErrors,
   };
 }

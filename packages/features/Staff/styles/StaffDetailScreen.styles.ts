@@ -112,6 +112,11 @@ export const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHT_MODE,
   },
 
+  error: {
+    color: 'red',
+    marginLeft: 8,
+  },
+
   picker: {
     width: '100%',
     marginVertical: 15,

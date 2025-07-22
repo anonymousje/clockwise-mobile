@@ -14,6 +14,7 @@ export default function StaffDetail() {
     departmentList,
     locationList,
     jobRolelist,
+    validationErrors,
   } = useStaffDetail();
 
   return (
@@ -154,6 +155,9 @@ export default function StaffDetail() {
                 }
               }}
             />
+            {validationErrors?.firstName && (
+              <Text style={styles.error}>{validationErrors.firstName}</Text>
+            )}
 
             <InputField
               label='Last Name'
@@ -164,6 +168,9 @@ export default function StaffDetail() {
                 }
               }}
             />
+            {validationErrors?.lastName && (
+              <Text style={styles.error}>{validationErrors.lastName}</Text>
+            )}
 
             <InputField
               label='Email'
@@ -174,6 +181,9 @@ export default function StaffDetail() {
                 }
               }}
             />
+            {validationErrors?.email && (
+              <Text style={styles.error}>{validationErrors.email}</Text>
+            )}
 
             <InputField
               label='Cell Phone'

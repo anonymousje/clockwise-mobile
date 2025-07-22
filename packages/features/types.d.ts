@@ -87,3 +87,7 @@ export type filterItemsType = {
   recordId: string;
   name: string;
 };
+
+export type errorType = {
+  [key: string]: string;
+};
