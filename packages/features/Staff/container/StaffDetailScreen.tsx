@@ -52,6 +52,13 @@ export default function StaffDetail() {
             </View>
 
             <View style={styles.textContainer}>
+              <Text style={styles.textHeader}>Last Name</Text>
+              <Text style={styles.text}>
+                {staffData?.lastName === undefined ? ' -' : staffData?.lastName}
+              </Text>
+            </View>
+
+            <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Email</Text>
               <Text style={styles.text}>{staffData?.email}</Text>
             </View>
@@ -147,6 +154,17 @@ export default function StaffDetail() {
                 }
               }}
             />
+
+            <InputField
+              label='Last Name'
+              value={staffData?.lastName || ''}
+              onChangeText={(text) => {
+                if (staffData) {
+                  setStaffData({ ...staffData, lastName: text });
+                }
+              }}
+            />
+
             <InputField
               label='Email'
               value={staffData?.email || ''}
@@ -156,6 +174,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             <InputField
               label='Cell Phone'
               value={staffData?.phoneNumber || ''}
@@ -175,6 +194,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             <InputField
               label='Nick Name'
               value={staffData?.nickname || ''}
@@ -184,6 +204,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             <InputField
               label='Address'
               value={staffData?.address || ''}
@@ -193,6 +214,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             <InputField
               label='User Code'
               value={staffData?.userCode || ''}
@@ -221,6 +243,7 @@ export default function StaffDetail() {
                 label='Select Department'
                 value=''
               />
+
               {departmentList.map((department) => (
                 <Picker.Item
                   key={department.recordId}
@@ -248,6 +271,7 @@ export default function StaffDetail() {
                 label='Select Location'
                 value=''
               />
+
               {locationList.map((location) => (
                 <Picker.Item
                   key={location.recordId}
@@ -275,6 +299,7 @@ export default function StaffDetail() {
                 label='Select Job Role'
                 value=''
               />
+
               {jobRolelist.map((jobRole) => (
                 <Picker.Item
                   key={jobRole.recordId}
@@ -297,10 +322,12 @@ export default function StaffDetail() {
                 label='Select Permission Level'
                 value=''
               />
+
               <Picker.Item
                 label='Manager'
                 value='Admin'
               />
+
               <Picker.Item
                 label='Employee'
                 value='User'
