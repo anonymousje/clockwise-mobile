@@ -83,7 +83,7 @@ export type staffType = {
   isDeleted?: boolean;
 };
 
-export type departmentType = {
+export type filterItemsType = {
   recordId: string;
   name: string;
 };

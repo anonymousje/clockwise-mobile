@@ -7,6 +7,7 @@ import useStaffScreen from '../hooks/useStaffScreen';
 import { staffType } from '../../types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
+import { Picker } from '@react-native-picker/picker';
 
 export default function Staff() {
   const {
@@ -23,6 +24,9 @@ export default function Staff() {
     modal,
     setModal,
     staffDetails,
+    departmentList,
+    locationList,
+    jobRolelist,
   } = useStaffScreen();
 
   console.log('Staff List:', staffList);
@@ -106,26 +110,59 @@ export default function Staff() {
           <View>
             <Text style={styles.modalTitle}>Filter Options</Text>
 
-            <TextInput
-              placeholder='Location'
+            <Picker
+              selectedValue={location}
+              onValueChange={(itemValue) => setLocation(itemValue)}
               style={styles.filterInput}
-              value={location}
-              onChangeText={(text) => setLocation(text)}
-            />
+            >
+              <Picker.Item
+                label='Select Location'
+                value=''
+              />
+              {locationList.map((item) => (
+                <Picker.Item
+                  key={item.recordId}
+                  label={item.name}
+                  value={item.recordId}
+                />
+              ))}
+            </Picker>
 
-            <TextInput
-              placeholder='Department'
+            <Picker
+              selectedValue={department}
+              onValueChange={(itemValue) => setDepartment(itemValue)}
               style={styles.filterInput}
-              value={department}
-              onChangeText={(text) => setDepartment(text)}
-            />
+            >
+              <Picker.Item
+                label='Select Department'
+                value=''
+              />
+              {departmentList.map((item) => (
+                <Picker.Item
+                  key={item.recordId}
+                  label={item.name}
+                  value={item.recordId}
+                />
+              ))}
+            </Picker>
 
-            <TextInput
-              placeholder='Role'
+            <Picker
+              selectedValue={role}
+              onValueChange={(itemValue) => setRole(itemValue)}
               style={styles.filterInput}
-              value={role}
-              onChangeText={(text) => setRole(text)}
-            />
+            >
+              <Picker.Item
+                label='Select Role'
+                value=''
+              />
+              {jobRolelist.map((item) => (
+                <Picker.Item
+                  key={item.recordId}
+                  label={item.name}
+                  value={item.recordId}
+                />
+              ))}
+            </Picker>
           </View>
 
           <TouchableOpacity
