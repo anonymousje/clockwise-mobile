@@ -235,142 +235,151 @@ export default function StaffDetail() {
               }}
             />
 
-            <Picker
-              selectedValue={staffData?.departmentName || ''}
-              onValueChange={(itemValue) => {
-                if (staffData) {
-                  setStaffData({
-                    ...staffData,
-                    departmentName: itemValue,
-                    departmentRecordId: departmentList.find(
-                      (department) => department.name === itemValue,
-                    )?.recordId,
-                  });
-                }
-              }}
-              style={styles.picker}
-            >
-              <Picker.Item
-                label='Select Department'
-                value=''
-              />
+            <View style={styles.pickersContainer}>
+              <View style={styles.picker}>
+                <Picker
+                  selectedValue={staffData?.departmentName || ''}
+                  onValueChange={(itemValue) => {
+                    if (staffData) {
+                      setStaffData({
+                        ...staffData,
+                        departmentName: itemValue,
+                        departmentRecordId: departmentList.find(
+                          (department) => department.name === itemValue,
+                        )?.recordId,
+                      });
+                    }
+                  }}
+                  style={styles.pickerItem}
+                >
+                  <Picker.Item
+                    label='Select Department'
+                    value=''
+                  />
 
-              {departmentList.map((department) => (
-                <Picker.Item
-                  key={department.recordId}
-                  label={department.name}
-                  value={department.name}
-                />
-              ))}
-            </Picker>
+                  {departmentList.map((department) => (
+                    <Picker.Item
+                      key={department.recordId}
+                      label={department.name}
+                      value={department.name}
+                    />
+                  ))}
+                </Picker>
+              </View>
+              <View style={styles.picker}>
+                <Picker
+                  selectedValue={staffData?.locationName || ''}
+                  onValueChange={(itemValue) => {
+                    if (staffData) {
+                      setStaffData({
+                        ...staffData,
+                        locationName: itemValue,
+                        locationRecordId: locationList.find(
+                          (location) => location.name === itemValue,
+                        )?.recordId,
+                      });
+                    }
+                  }}
+                  style={styles.pickerItem}
+                >
+                  <Picker.Item
+                    label='Select Location'
+                    value=''
+                  />
 
-            <Picker
-              selectedValue={staffData?.locationName || ''}
-              onValueChange={(itemValue) => {
-                if (staffData) {
-                  setStaffData({
-                    ...staffData,
-                    locationName: itemValue,
-                    locationRecordId: locationList.find(
-                      (location) => location.name === itemValue,
-                    )?.recordId,
-                  });
-                }
-              }}
-              style={styles.picker}
-            >
-              <Picker.Item
-                label='Select Location'
-                value=''
-              />
+                  {locationList.map((location) => (
+                    <Picker.Item
+                      key={location.recordId}
+                      label={location.name}
+                      value={location.name}
+                    />
+                  ))}
+                </Picker>
+              </View>
 
-              {locationList.map((location) => (
-                <Picker.Item
-                  key={location.recordId}
-                  label={location.name}
-                  value={location.name}
-                />
-              ))}
-            </Picker>
+              <View style={styles.picker}>
+                <Picker
+                  selectedValue={staffData?.jobRoleName || ''}
+                  onValueChange={(itemValue) => {
+                    if (staffData) {
+                      setStaffData({
+                        ...staffData,
+                        jobRoleName: itemValue,
+                        jobRoleRecordId: jobRolelist.find(
+                          (jobRole) => jobRole.name === itemValue,
+                        )?.recordId,
+                      });
+                    }
+                  }}
+                  style={styles.pickerItem}
+                >
+                  <Picker.Item
+                    label='Select Job Role'
+                    value=''
+                  />
 
-            <Picker
-              selectedValue={staffData?.jobRoleName || ''}
-              onValueChange={(itemValue) => {
-                if (staffData) {
-                  setStaffData({
-                    ...staffData,
-                    jobRoleName: itemValue,
-                    jobRoleRecordId: jobRolelist.find(
-                      (jobRole) => jobRole.name === itemValue,
-                    )?.recordId,
-                  });
-                }
-              }}
-              style={styles.picker}
-            >
-              <Picker.Item
-                label='Select Job Role'
-                value=''
-              />
+                  {jobRolelist.map((jobRole) => (
+                    <Picker.Item
+                      key={jobRole.recordId}
+                      label={jobRole.name}
+                      value={jobRole.name}
+                    />
+                  ))}
+                </Picker>
+              </View>
+              <View style={styles.picker}>
+                <Picker
+                  selectedValue={staffData?.role || ''}
+                  onValueChange={(itemValue) => {
+                    if (staffData) {
+                      setStaffData({ ...staffData, role: itemValue });
+                    }
+                  }}
+                  style={styles.pickerItem}
+                >
+                  <Picker.Item
+                    label='Select Permission Level'
+                    value=''
+                  />
 
-              {jobRolelist.map((jobRole) => (
-                <Picker.Item
-                  key={jobRole.recordId}
-                  label={jobRole.name}
-                  value={jobRole.name}
-                />
-              ))}
-            </Picker>
+                  <Picker.Item
+                    label='Manager'
+                    value='Admin'
+                  />
 
-            <Picker
-              selectedValue={staffData?.role || ''}
-              onValueChange={(itemValue) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, role: itemValue });
-                }
-              }}
-              style={styles.picker}
-            >
-              <Picker.Item
-                label='Select Permission Level'
-                value=''
-              />
+                  <Picker.Item
+                    label='Employee'
+                    value='User'
+                  />
+                </Picker>
+              </View>
+              <View style={styles.picker}>
+                <Picker
+                  selectedValue={staffData?.status || ''}
+                  onValueChange={(itemValue) => {
+                    if (staffData) {
+                      setStaffData({ ...staffData, status: itemValue });
+                    }
+                  }}
+                  style={styles.pickerItem}
+                >
+                  <Picker.Item
+                    label='Select Status'
+                    value={undefined}
+                  />
 
-              <Picker.Item
-                label='Manager'
-                value='Admin'
-              />
+                  <Picker.Item
+                    label='Active'
+                    value='"Active"'
+                  />
 
-              <Picker.Item
-                label='Employee'
-                value='User'
-              />
-            </Picker>
-
-            <Picker
-              selectedValue={staffData?.status || ''}
-              onValueChange={(itemValue) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, status: itemValue });
-                }
-              }}
-              style={styles.picker}
-            >
-              <Picker.Item
-                label='Select Status'
-                value={undefined}
-              />
-
-              <Picker.Item
-                label='Active'
-                value='"Active"'
-              />
-
-              <Picker.Item
-                label='Active'
-                value='"Active"'
-              />
-            </Picker>
+                  <Picker.Item
+                    label='Inactive'
+                    value='"Inactive"'
+                  />
+                </Picker>
+              </View>
+            </View>
           </View>
         )}
       </ScrollView>

@@ -117,9 +117,27 @@ export const styles = StyleSheet.create({
     marginLeft: 8,
   },
 
-  picker: {
+  pickersContainer: {
+    marginTop: 20,
+  },
+
+  pickerItem: {
     width: '100%',
-    marginVertical: 15,
+  },
+
+  picker: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor:
+      mode === 'dark'
+        ? colors.BACKGROUND_DARKER_MODE
+        : colors.BACKGROUND_LIGHTER_MODE,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    borderRadius: 20,
+    width: '100%',
+    marginVertical: 30,
+    paddingLeft: 5,
   },
 });
 export const editIconColor = 'white';
