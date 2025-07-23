@@ -212,6 +212,9 @@ export default function StaffDetail() {
                 }
               }}
             />
+            {validationErrors?.username && (
+              <Text style={styles.error}>{validationErrors.username}</Text>
+            )}
 
             <InputField
               label='Nick Name'
@@ -242,6 +245,9 @@ export default function StaffDetail() {
                 }
               }}
             />
+            {validationErrors?.userCode && (
+              <Text style={styles.error}>{validationErrors.userCode}</Text>
+            )}
 
             <View style={styles.pickersContainer}>
               <View style={styles.picker}>
