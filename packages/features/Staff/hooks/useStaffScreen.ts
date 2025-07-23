@@ -83,20 +83,13 @@ function useStaffScreen() {
 
   const getStaff = async (loc?: string, dep?: string, rol?: string) => {
     const params: staffSearchQueryType = {};
-    if (loc) {
-      params.locations = loc;
-    }
 
-    if (dep) {
-      params.departments = dep;
-    }
-
-    if (rol) {
-      params.roles = rol;
-    }
+    if (loc) params.location = loc;
+    if (dep) params.department = dep;
+    if (rol) params.role = rol;
 
     const response = await apiClient.get('/user/get-all-users', { params });
-    console.log('Staff Data:', response.data.data);
+    console.log('Staff Data fetched:', response.data.data);
     return response.data.data;
   };
 
@@ -115,7 +108,7 @@ function useStaffScreen() {
     setSearch(text);
 
     if (text) {
-      const filteredData = staffList.filter(
+      const filteredData = cacheStaffList.filter(
         (item) =>
           item.firstName.toLowerCase().includes(text.toLowerCase()) ||
           item.lastName?.toLowerCase().includes(text.toLowerCase()),

@@ -111,6 +111,7 @@ export default function useStaffDetail() {
         setValidationErrors(errors);
         return;
       }
+
       setValidationErrors({});
       try {
         await apiClient.put(`/user/edit-user/${staffData?.recordId}`, {
@@ -131,29 +132,27 @@ export default function useStaffDetail() {
           locationName: staffData?.locationName,
           jobRoleName: staffData?.jobRoleName,
         });
+
         dispatch(fetchUpdated(true));
       } catch (e: any) {
         console.log('Error updating staff data:', e.response?.data);
+
         const errors: errorType = {};
+
         if (e.response && e.response.data) {
           const msg = e.response.data.errors[0];
-          if (typeof msg === 'string') {
-            if (msg.toLowerCase().includes('email')) {
-              errors.email = msg;
-              console.error('Email error:', msg);
-            } else if (msg.toLowerCase().includes('username')) {
-              errors.username = msg;
-              console.error('Username error:', msg);
-            } else if (msg.toLowerCase().includes('usercode')) {
-              errors.userCode = msg;
-              console.error('UserCode error:', msg);
-            } else {
-              errors.general = msg;
-            }
+
+          if (msg.toLowerCase().includes('email')) {
+            errors.email = msg;
+          } else if (msg.toLowerCase().includes('username')) {
+            errors.username = msg;
+          } else if (msg.toLowerCase().includes('usercode')) {
+            errors.userCode = msg;
+          } else {
+            errors.general = 'Failed to update staff data';
           }
-        } else {
-          errors.general = 'Failed to update staff data';
         }
+
         setValidationErrors(errors);
         return;
       }

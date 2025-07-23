@@ -63,9 +63,9 @@ export interface ButtonProps extends TouchableOpacityProps {
 }
 
 export type staffSearchQueryType = {
-  locations?: string;
-  departments?: string;
-  roles?: string;
+  location?: string;
+  department?: string;
+  role?: string;
 };
 
 export type staffType = {
