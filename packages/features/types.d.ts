@@ -76,7 +76,7 @@ export type staffType = {
   role?: string;
   phoneNumber?: string | null;
   lastLoginDate?: string | null;
-  status?: string;
+  userStatus?: number;
   username?: string;
   nickname?: string | null;
   address?: string | null;

@@ -113,7 +113,11 @@ export default function StaffDetail() {
             <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Status </Text>
               <Text style={styles.text}>
-                {staffData?.status === undefined ? ' -' : staffData?.status}
+                {staffData?.userStatus === undefined
+                  ? ' -'
+                  : String(staffData?.userStatus) === '1'
+                  ? 'Active'
+                  : 'Inactive'}
               </Text>
             </View>
 
@@ -341,6 +345,7 @@ export default function StaffDetail() {
                   ))}
                 </Picker>
               </View>
+
               <View style={styles.picker}>
                 <Picker
                   selectedValue={staffData?.role || ''}
@@ -369,10 +374,10 @@ export default function StaffDetail() {
               </View>
               <View style={styles.picker}>
                 <Picker
-                  selectedValue={staffData?.status || ''}
+                  selectedValue={staffData?.userStatus || undefined}
                   onValueChange={(itemValue) => {
                     if (staffData) {
-                      setStaffData({ ...staffData, status: itemValue });
+                      setStaffData({ ...staffData, userStatus: itemValue });
                     }
                   }}
                   style={styles.pickerItem}
@@ -384,12 +389,12 @@ export default function StaffDetail() {
 
                   <Picker.Item
                     label='Active'
-                    value='"Active"'
+                    value={1}
                   />
 
                   <Picker.Item
                     label='Inactive'
-                    value='"Inactive"'
+                    value={0}
                   />
                 </Picker>
               </View>

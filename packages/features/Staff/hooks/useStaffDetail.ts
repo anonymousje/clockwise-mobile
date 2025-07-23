@@ -25,7 +25,6 @@ export default function useStaffDetail() {
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
   const [validationErrors, setValidationErrors] = useState<errorType>({});
 
-  // Define Zod schema for staff data
   const staffSchema = z.object({
     firstName: z.string().min(1, 'First name is required'),
     lastName: z.string().min(1, 'Last name is required'),
@@ -96,24 +95,25 @@ export default function useStaffDetail() {
   }, [recordId]);
 
   const editStaffData = async () => {
-    console.log('Staff data updated:', staffData);
-
     if (editMode) {
       const validation = staffSchema.safeParse(staffData);
-      console.log('Validation result:', validation);
+
       if (!validation.success) {
         const errors: errorType = {};
+
         validation.error.errors.forEach((err) => {
           if (err.path.length > 0) {
             errors[err.path[0]] = err.message;
           }
         });
+
         setValidationErrors(errors);
         return;
       }
 
       setValidationErrors({});
       try {
+        console.log('Staff data updated:', staffData);
         await apiClient.put(`/user/edit-user/${staffData?.recordId}`, {
           firstName: staffData?.firstName,
           lastName: staffData?.lastName,
@@ -123,7 +123,7 @@ export default function useStaffDetail() {
           address: staffData?.address,
           nickname: staffData?.nickname,
           userCode: staffData?.userCode,
-          status: staffData?.status,
+          userStatus: staffData?.userStatus,
           role: staffData?.role,
           departmentRecordId: staffData?.departmentRecordId,
           locationRecordId: staffData?.locationRecordId,

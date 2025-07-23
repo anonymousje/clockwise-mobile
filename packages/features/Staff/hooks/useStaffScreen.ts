@@ -82,23 +82,19 @@ function useStaffScreen() {
   }, [updated.flag, dispatch]);
 
   const getStaff = async (loc?: string, dep?: string, rol?: string) => {
-    const params: staffSearchQueryType = {};
-
-    if (loc) params.location = loc;
-    if (dep) params.department = dep;
-    if (rol) params.role = rol;
+    const params: staffSearchQueryType = {
+      location: loc,
+      department: dep,
+      role: rol,
+    };
 
     const response = await apiClient.get('/user/get-all-users', { params });
-    console.log('Staff Data fetched:', response.data.data);
     return response.data.data;
   };
 
-  function openForm() {
-    navigation.navigate(SCREENS.AddEmployee);
-  }
-
   const applyFilters = async (loc?: string, dep?: string, rol?: string) => {
     const filteredData = await getStaff(loc, dep, rol);
+
     setCacheStaffList(filteredData);
     setStaffList(filteredData);
     setModal(false);
@@ -133,6 +129,10 @@ function useStaffScreen() {
     setRole('');
     setStaffList(await getStaff());
   };
+
+  function openForm() {
+    navigation.navigate(SCREENS.AddEmployee);
+  }
 
   return {
     openForm,
