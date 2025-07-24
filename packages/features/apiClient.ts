@@ -46,14 +46,9 @@ apiClient.interceptors.response.use(
 
   async function (error) {
     console.log('response error;', JSON.stringify(error));
-    const originalRequest = error.config;
-    if (
-      error.response &&
-      error.response.status === 401 &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true;
 
+    const originalRequest = error.config;
+    if (error.response && error.response.status === 401) {
       try {
         const response = await axios.post(
           'http://10.0.2.2:5135/api/auth/refresh-token',
@@ -72,14 +67,13 @@ apiClient.interceptors.response.use(
 
         return await apiClient(originalRequest);
       } catch (refreshError) {
+        store.dispatch(setTokens('', ''));
+
+        const navigation = useNavigation<NavigationProp>();
+
+        navigation.replace(SCREENS.Login);
         return Promise.reject(refreshError);
       }
-    } else {
-      store.dispatch(setTokens('', ''));
-
-      const navigation = useNavigation<NavigationProp>();
-
-      navigation.replace(SCREENS.Login);
     }
 
     return Promise.reject(error);

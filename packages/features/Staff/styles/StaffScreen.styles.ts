@@ -61,6 +61,12 @@ export const styles = StyleSheet.create({
     paddingRight: 20,
   },
 
+  headerContainer: {
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: colors.CLOCKWISE_PRIMARY,
+  },
+
   staffSectionHeader: {
     fontSize: 19,
     fontFamily: fonts.CLOCKWISE_BOLD,

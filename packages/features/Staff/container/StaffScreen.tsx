@@ -64,13 +64,7 @@ export default function Staff() {
             </TouchableOpacity>
           </View>
 
-          <View
-            style={{
-              alignItems: 'center',
-              borderBottomWidth: 2,
-              borderBottomColor: colors.CLOCKWISE_PRIMARY,
-            }}
-          >
+          <View style={styles.headerContainer}>
             <Text style={styles.staffSectionHeader}>STAFF</Text>
           </View>
 
@@ -106,9 +100,9 @@ export default function Staff() {
                   {staff.firstName} <Text>{staff.lastName} </Text>
                 </Text>
 
-                <Text style={styles.position}>
-                  {staff.role === 'Admin' ? 'Manager' : 'Employee'}
-                </Text>
+                {staff.jobRoleName && (
+                  <Text style={styles.position}>{staff.jobRoleName}</Text>
+                )}
               </View>
             </TouchableOpacity>
           ))}

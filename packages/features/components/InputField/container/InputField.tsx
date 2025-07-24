@@ -19,6 +19,7 @@ export default function InputField({
 }: InputFieldProps) {
   const {
     labelStyle,
+    labelStyleFocused,
     isInputFocused,
     setIsInputFocused,
     isPassword,
@@ -30,7 +31,11 @@ export default function InputField({
     return (
       <View style={styles.inputContainer}>
         <View>
-          <Animated.Text style={labelStyle as any}>{label}</Animated.Text>
+          <Animated.Text
+            style={[labelStyle as any, isInputFocused && labelStyleFocused]}
+          >
+            {label}
+          </Animated.Text>
 
           <TextInput
             {...props}

@@ -11,40 +11,40 @@ export const styles = StyleSheet.create({
       mode === 'dark' ? colors.BACKGROUND_DARKER_MODE : 'transparent',
   },
 
-  header: {
-    flexShrink: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 30,
-    marginBottom: 20,
-    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
-  },
-
-  avatar: {
-    width: 120,
-    height: 120,
-    borderRadius: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
-
-    marginVertical: 20,
-  },
-
   scrollViewContent: {
     flexGrow: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    paddingVertical: 20,
     alignItems: 'center',
   },
 
-  staffAvatarText: {
-    fontSize: 50,
-    paddingBottom: 8,
-    fontFamily: fonts.CLOCKWISE_BOLD,
-    color: colors.TEXT_DARK_MODE,
+  editButtonContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 16,
+    backgroundColor: 'transparent',
+  },
+
+  title: {
+    fontSize: 23,
+    borderBottomWidth: 1,
+    paddingBottom: 7,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+  },
+
+  editButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+  },
+
+  editButtonText: {
+    color: 'white',
+    padding: 10,
   },
 
   formContainer: {
@@ -66,6 +66,21 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     marginBottom: 8,
     marginLeft: 4,
+  },
+
+  linkContainer: {
+    alignSelf: 'flex-start',
+    marginTop: 30,
+    paddingHorizontal: 15,
+  },
+
+  linkText: {
+    fontSize: 17,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+  },
+
+  linkButton: {
+    color: colors.CLOCKWISE_PRIMARY,
   },
 
   buttonContainer: {

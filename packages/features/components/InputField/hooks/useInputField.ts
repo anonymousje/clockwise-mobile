@@ -24,23 +24,28 @@ export default function useInputField(value: string) {
 
   const labelStyle = {
     position: 'absolute',
-    left: 8,
+    left: 2,
+    opacity: 0.5,
 
     top: animatedIsFocused.interpolate({
       inputRange: [0, 1],
-      outputRange: [10, -20],
+      outputRange: [10, -15],
     }),
 
     fontSize: animatedIsFocused.interpolate({
       inputRange: [0, 1],
-      outputRange: [16, 14],
+      outputRange: [17, 15],
     }),
 
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
 
     backgroundColor: 'transparent',
-    paddingHorizontal: 2,
     zIndex: 1,
+  };
+
+  const labelStyleFocused = {
+    color: colors.CLOCKWISE_PRIMARY,
+    opacity: 1,
   };
 
   function changePwdType() {
@@ -54,5 +59,6 @@ export default function useInputField(value: string) {
     isPassword,
     changePwdType,
     inputRef,
+    labelStyleFocused,
   };
 }

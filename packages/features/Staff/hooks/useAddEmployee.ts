@@ -62,6 +62,12 @@ export default function useAddEmployee() {
     }
   };
 
+  function clearForm() {
+    reset();
+    setFirstName('');
+    setErrorMsg(false);
+  }
+
   return {
     control,
     handleSubmit,
@@ -69,5 +75,6 @@ export default function useAddEmployee() {
     errorMsg,
     firstName,
     setFirstName,
+    clearForm,
   };
 }

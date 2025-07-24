@@ -11,20 +11,17 @@ export const styles = StyleSheet.create({
 
   input: {
     color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     backgroundColor:
       mode === 'dark'
-        ? colors.BACKGROUND_DARKER_MODE
-        : colors.BACKGROUND_LIGHTER_MODE,
-    borderRadius: 10,
-    borderWidth: 0,
-    padding: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
+    borderBottomWidth: 1,
+    borderColor:
+      mode === 'dark'
+        ? colors.BORDER_COLOR_DARK_MODE
+        : colors.BORDER_COLOR_LIGHT_MODE,
   },
 
   inputError: {
@@ -32,8 +29,8 @@ export const styles = StyleSheet.create({
   },
 
   inputFocused: {
-    borderColor: colors.CLOCKWISE_PRIMARY,
-    borderWidth: 2,
+    borderBottomColor: colors.CLOCKWISE_PRIMARY,
+    borderBottomWidth: 2,
   },
 
   errorMsg: {
@@ -46,18 +43,15 @@ export const styles = StyleSheet.create({
   passwordContainer: {
     backgroundColor:
       mode === 'dark'
-        ? colors.BACKGROUND_DARKER_MODE
-        : colors.BACKGROUND_LIGHTER_MODE,
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
 
-    borderRadius: 10,
-    borderWidth: 0,
-    padding: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    borderBottomWidth: 1,
 
+    borderBottomColor:
+      mode === 'dark'
+        ? colors.BORDER_COLOR_DARK_MODE
+        : colors.BORDER_COLOR_LIGHT_MODE,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -65,10 +59,9 @@ export const styles = StyleSheet.create({
 
   inputPassword: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: 10,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
 

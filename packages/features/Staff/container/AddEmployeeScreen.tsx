@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Pressable,
+  Linking,
 } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { styles } from '../styles/AddEmployeeScreen.styles';
@@ -11,7 +12,7 @@ import useAddEmployee from '../hooks/useAddEmployee';
 import InputField from '../../components/InputField/container/InputField';
 
 export default function AddEmployee() {
-  const { control, handleSubmit, onSubmit, errorMsg, firstName, setFirstName } =
+  const { control, handleSubmit, onSubmit, errorMsg, setFirstName, clearForm } =
     useAddEmployee();
 
   return (
@@ -20,12 +21,14 @@ export default function AddEmployee() {
         contentContainerStyle={styles.scrollViewContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.header}>
-          <View style={styles.avatar}>
-            <Text style={styles.staffAvatarText}>
-              {firstName.charAt(0).toUpperCase()}
-            </Text>
-          </View>
+        <View style={styles.editButtonContainer}>
+          <Text style={styles.title}>Employee Detail</Text>
+          <TouchableOpacity
+            onPress={() => clearForm()}
+            style={styles.editButton}
+          >
+            <Text style={styles.editButtonText}>CLEAR</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.formContainer}>
@@ -103,6 +106,19 @@ export default function AddEmployee() {
               </>
             )}
           />
+        </View>
+        <View style={styles.linkContainer}>
+          <Text style={styles.linkText}>
+            Read Our{' '}
+            <Text
+              style={styles.linkButton}
+              onPress={() =>
+                Linking.openURL('https://tcpsoftware.com/privacy-policy/')
+              }
+            >
+              Privacy Policy
+            </Text>
+          </Text>
         </View>
       </ScrollView>
 
