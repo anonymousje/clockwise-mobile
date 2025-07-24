@@ -1,5 +1,7 @@
 import axios from 'axios';
-import useContainer from './container/useContainer';
+import store from './redux/store';
+import { setTokens } from './redux/actions/auth';
+//import useContainer from './container/useContainer';
 
 let accessToken: string | null = null;
 let refreshToken: string | null = null;
@@ -59,13 +61,21 @@ apiClient.interceptors.response.use(
         setAccessToken(response.data.data.accessToken);
         setRefreshToken(response.data.data.refreshToken);
 
-        const { tokenSetter } = useContainer();
+        //const { tokenSetter } = useContainer();
 
-        tokenSetter(
-          response.data.data.accessToken,
-          response.data.data.refreshToken,
+        //tokenSetter(
+        //  response.data.data.accessToken,
+        //  response.data.data.refreshToken,
+        //);
+
+        store.dispatch(
+          setTokens(
+            response.data.data.accessToken,
+            response.data.data.refreshToken,
+          ),
         );
 
+        console.log('Using store.dispatch to set tokens');
         console.log('New access token:', accessToken);
         console.log('New refresh token:', refreshToken);
 
