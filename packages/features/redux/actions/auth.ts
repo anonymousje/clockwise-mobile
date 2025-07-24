@@ -8,6 +8,13 @@ export const setUser = (userData: User) => {
   };
 };
 
+export const setTokens = (accessToken: string, refreshToken: string) => {
+  return {
+    type: 'SET_TOKEN',
+    payload: { accessToken, refreshToken },
+  };
+};
+
 export const loginUser = async (email: string, password: string) => {
   try {
     const response = await apiClient.post('/Auth/login', {
