@@ -8,7 +8,6 @@ import { staffType } from '../../types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
-import { colors } from '../../theme';
 
 export default function Staff() {
   const {
@@ -80,12 +79,7 @@ export default function Staff() {
                 style={[
                   styles.staffAvatar,
                   {
-                    backgroundColor:
-                      colors.RANDOM_COLOR_ARRAY[
-                        Math.floor(
-                          Math.random() * colors.RANDOM_COLOR_ARRAY.length,
-                        )
-                      ],
+                    backgroundColor: staff.iconColor,
                   },
                 ]}
               >

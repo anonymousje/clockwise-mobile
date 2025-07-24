@@ -69,6 +69,7 @@ export type staffSearchQueryType = {
 };
 
 export type staffType = {
+  iconColor?: string;
   recordId: string;
   firstName: string;
   lastName: string;

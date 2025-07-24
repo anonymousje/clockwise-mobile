@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { colors } from '../../theme';
 import { NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +29,12 @@ function useStaffScreen() {
 
   useEffect(() => {
     getStaff().then((data: staffType[]) => {
+      data.forEach((item) => {
+        item.iconColor =
+          colors.RANDOM_COLOR_ARRAY[
+            Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
+          ];
+      });
       setStaffList(data);
       setCacheStaffList(data);
     });
