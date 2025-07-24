@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
-    padding: 16,
   },
 
   searchContainer: {
@@ -28,6 +27,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginHorizontal: 20,
   },
 
   searchInputContainer: {
@@ -62,49 +62,64 @@ export const styles = StyleSheet.create({
   },
 
   staffSectionHeader: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 19,
+    fontFamily: fonts.CLOCKWISE_BOLD,
     marginTop: 24,
     marginBottom: 12,
     color: colors.CLOCKWISE_PRIMARY,
     letterSpacing: 0.5,
+    marginLeft: 20,
+  },
+
+  shadowSeparator: {
+    height: 0.5,
+    marginBottom: 12,
+    borderColor: colors.CLOCKWISE_PRIMARY,
+    borderWidth: 0.5,
+    borderRadius: 6,
+    backgroundColor: '#fff',
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.35,
+    shadowRadius: 10,
+    elevation: 6,
   },
 
   staffItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 20,
+    gap: 30,
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
-    padding: 16,
-    marginBottom: 30,
+    paddingVertical: 16,
     borderBottomWidth: 1,
+    borderBottomColor:
+      mode === 'dark'
+        ? colors.BORDER_COLOR_DARK_MODE
+        : colors.BORDER_COLOR_LIGHT_MODE,
+    paddingLeft: 20,
   },
 
   staffAvatar: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:
-      mode === 'dark'
-        ? colors.BACKGROUND_ICONS_DARK_MODE
-        : colors.BACKGROUND_ICONS_LIGHT_MODE,
   },
 
   staffAvatarText: {
-    fontSize: 25,
-    fontFamily: fonts.CLOCKWISE_BOLD,
+    fontSize: 20,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
     color: colors.TEXT_DARK_MODE,
   },
 
   staffName: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    color: colors.CLOCKWISE_PRIMARY,
+    fontSize: 19,
+    fontFamily: fonts.CLOCKWISE_BOLD,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 2,
   },
 
@@ -119,7 +134,7 @@ export const styles = StyleSheet.create({
   },
 
   addButton: {
-    backgroundColor: colors.CLOCKWISE_PRIMARY,
+    backgroundColor: '#5DC036',
     width: 60,
     height: 60,
     borderRadius: 28,
@@ -128,11 +143,11 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 15,
     right: 24,
-    shadowColor: colors.CLOCKWISE_PRIMARY,
+    shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 7,
     paddingBottom: 3,
   },
 

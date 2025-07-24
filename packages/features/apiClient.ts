@@ -1,7 +1,9 @@
 import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
-//import useContainer from './container/useContainer';
+import { SCREENS } from '../constants/screens';
+import { NavigationProp } from '../features/types';
+import { useNavigation } from '@react-navigation/native';
 
 let accessToken: string | null = null;
 let refreshToken: string | null = null;
@@ -41,6 +43,7 @@ apiClient.interceptors.response.use(
     console.log('response;', JSON.stringify(response));
     return response;
   },
+
   async function (error) {
     console.log('response error;', JSON.stringify(error));
     const originalRequest = error.config;
@@ -50,6 +53,7 @@ apiClient.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
+
       try {
         const response = await axios.post(
           'http://10.0.2.2:5135/api/auth/refresh-token',
@@ -58,15 +62,6 @@ apiClient.interceptors.response.use(
             refreshToken: refreshToken,
           },
         );
-        setAccessToken(response.data.data.accessToken);
-        setRefreshToken(response.data.data.refreshToken);
-
-        //const { tokenSetter } = useContainer();
-
-        //tokenSetter(
-        //  response.data.data.accessToken,
-        //  response.data.data.refreshToken,
-        //);
 
         store.dispatch(
           setTokens(
@@ -75,24 +70,18 @@ apiClient.interceptors.response.use(
           ),
         );
 
-        console.log('Using store.dispatch to set tokens');
-        console.log('New access token:', accessToken);
-        console.log('New refresh token:', refreshToken);
-
-        console.log(
-          'Retrying original request with new token:',
-          originalRequest,
-        );
-        const response2 = await apiClient(originalRequest);
-        console.log('Retried original request with new token:', response2);
-        return response2;
+        return await apiClient(originalRequest);
       } catch (refreshError) {
-        console.error('Error refreshing token:', refreshError);
         return Promise.reject(refreshError);
       }
     } else {
-      console.error('API error:', error);
+      store.dispatch(setTokens('', ''));
+
+      const navigation = useNavigation<NavigationProp>();
+
+      navigation.replace(SCREENS.Login);
     }
+
     return Promise.reject(error);
   },
 );

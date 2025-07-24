@@ -8,6 +8,7 @@ import { staffType } from '../../types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
+import { colors } from '../../theme';
 
 export default function Staff() {
   const {
@@ -63,7 +64,17 @@ export default function Staff() {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.staffSectionHeader}>Staff List</Text>
+          <View
+            style={{
+              alignItems: 'center',
+              borderBottomWidth: 2,
+              borderBottomColor: colors.CLOCKWISE_PRIMARY,
+            }}
+          >
+            <Text style={styles.staffSectionHeader}>STAFF</Text>
+          </View>
+
+          <View style={styles.shadowSeparator} />
 
           {staffList.map((staff: staffType) => (
             <TouchableOpacity
@@ -71,9 +82,22 @@ export default function Staff() {
               style={styles.staffItem}
               onPress={() => staffDetails(staff)}
             >
-              <View style={styles.staffAvatar}>
+              <View
+                style={[
+                  styles.staffAvatar,
+                  {
+                    backgroundColor:
+                      colors.RANDOM_COLOR_ARRAY[
+                        Math.floor(
+                          Math.random() * colors.RANDOM_COLOR_ARRAY.length,
+                        )
+                      ],
+                  },
+                ]}
+              >
                 <Text style={styles.staffAvatarText}>
                   {staff.firstName[0].toUpperCase()}
+                  {staff.lastName ? staff.lastName[0].toUpperCase() : ''}
                 </Text>
               </View>
 
