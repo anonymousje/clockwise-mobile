@@ -9,7 +9,7 @@ import Login from './packages/features/Login/container/LoginScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
 import Dashboard from './packages/features/Dashboard/container/DashboardScreen';
-import store from './packages/features/redux/store';
+import store from './packages/store';
 import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 import Staff from './packages/features/Staff/container/StaffScreen';

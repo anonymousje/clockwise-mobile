@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SCREENS } from '../../../constants/screens';
 import { useNavigation } from '@react-navigation/native';
-import apiClient from '../../authClient';
+import apiClient from '../../apiClient';
 import { NavigationProp } from '../../types';
 
 function useForgotPasswordScreen() {

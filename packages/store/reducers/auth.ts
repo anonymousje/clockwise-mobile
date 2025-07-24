@@ -1,4 +1,4 @@
-import { setAccessToken, setRefreshToken } from '../../authClient';
+import { setAccessToken, setRefreshToken } from '../../features/apiClient';
 import { Action } from '../actions/auth';
 
 const initialState = {

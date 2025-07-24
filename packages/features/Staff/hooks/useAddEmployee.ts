@@ -3,10 +3,10 @@ import { z } from 'zod';
 import { useDispatch } from 'react-redux';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import apiClient from '../../authClient';
+import apiClient from '../../apiClient';
 import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
-import { fetchUpdated } from '../../redux/actions/fetchUsers';
+import { fetchUpdated } from '../../../store/actions/fetchUsers';
 
 export default function useAddEmployee() {
   const [errorMsg, setErrorMsg] = useState(false);

@@ -1,5 +1,5 @@
-import { User } from '../../types';
-import apiClient from '../../authClient';
+import { User } from '../../features/types';
+import apiClient from '../../features/apiClient';
 
 export const setUser = (userData: User) => {
   return {

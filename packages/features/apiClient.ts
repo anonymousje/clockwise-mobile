@@ -1,6 +1,6 @@
 import axios from 'axios';
-import store from './redux/store';
-import { setTokens } from './redux/actions/auth';
+import store from '../store';
+import { setTokens } from '../store/actions/auth';
 //import useContainer from './container/useContainer';
 
 let accessToken: string | null = null;

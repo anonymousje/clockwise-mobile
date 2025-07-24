@@ -4,7 +4,7 @@ import { useRoute } from '@react-navigation/native';
 import { NewPasswordRouteProp } from '../../types';
 import { NavigationProp } from '../../types';
 import { SCREENS } from '../../../constants/screens';
-import apiClient from '../../authClient';
+import apiClient from '../../apiClient';
 
 function useNewPasswordScreen() {
   const [newPassword, setNewPassword] = useState('');

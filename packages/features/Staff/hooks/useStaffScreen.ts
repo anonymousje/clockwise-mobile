@@ -3,10 +3,10 @@ import { NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { SCREENS } from '../../../constants/screens';
-import apiClient from '../../authClient';
+import apiClient from '../../apiClient';
 import { staffType, filterItemsType } from '../../types';
-import { RootState } from '../../redux/store';
-import { fetchUpdated } from '../../redux/actions/fetchUsers';
+import { RootState } from '../../../store';
+import { fetchUpdated } from '../../../store/actions/fetchUsers';
 
 import type { staffSearchQueryType } from '../../types';
 

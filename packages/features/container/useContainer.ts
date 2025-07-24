@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setTokens } from '../redux/actions/auth';
+import { setTokens } from '../../store/actions/auth';
 
 export default function useContainer() {
   const dispatch = useDispatch();

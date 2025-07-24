@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { SCREENS } from '../../../constants/screens';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../redux/actions/auth';
+import { loginUser } from '../../../store/actions/auth';
 import { NavigationProp } from '../../types';
 
 function useLoginScreen() {
