@@ -16,7 +16,8 @@ export default function StaffDetail() {
     locationList,
     jobRolelist,
     validationErrors,
-    deleteUser,
+    changeStatus,
+    formatDateTime,
   } = useStaffDetail();
 
   return (
@@ -77,30 +78,11 @@ export default function StaffDetail() {
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>User Name</Text>
+              <Text style={styles.textHeader}>Last Login</Text>
               <Text style={styles.text}>
-                {staffData?.username === undefined ? ' -' : staffData?.username}
-              </Text>
-            </View>
-
-            <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Nick Name</Text>
-              <Text style={styles.text}>
-                {staffData?.nickname === undefined ? ' -' : staffData?.nickname}
-              </Text>
-            </View>
-
-            <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Address</Text>
-              <Text style={styles.text}>
-                {staffData?.address === undefined ? ' -' : staffData?.address}
-              </Text>
-            </View>
-
-            <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Employee ID</Text>
-              <Text style={styles.text}>
-                {staffData?.userCode === undefined ? ' -' : staffData?.userCode}
+                {staffData?.lastLoginDate === undefined
+                  ? ' -'
+                  : formatDateTime(staffData?.lastLoginDate || '')}
               </Text>
             </View>
 
@@ -123,15 +105,6 @@ export default function StaffDetail() {
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Department</Text>
-              <Text style={styles.text}>
-                {staffData?.departmentName === undefined
-                  ? ' -'
-                  : staffData?.departmentName}
-              </Text>
-            </View>
-
-            <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Location</Text>
               <Text style={styles.text}>
                 {staffData?.locationName === undefined
@@ -150,9 +123,9 @@ export default function StaffDetail() {
             </View>
 
             <Button
-              label='Delete User'
-              onPress={() => deleteUser()}
-              color='red'
+              label={staffData?.userStatus === 1 ? 'Deactivate' : 'Activate'}
+              onPress={() => changeStatus()}
+              color={staffData?.userStatus === 1 ? 'red' : 'green'}
             />
           </View>
         )}

@@ -6,13 +6,11 @@ import apiClient from '../../apiClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 import { z } from 'zod';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationProp } from '../../types';
 
 export default function useStaffDetail() {
   const route = useRoute<StaffDetailNavigationProp>();
   const { recordId } = route.params;
-  const navigation = useNavigation<NavigationProp>();
+  //const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   console.log('Staff Detail Data:', recordId);
@@ -161,13 +159,40 @@ export default function useStaffDetail() {
     setEditMode(!editMode);
   };
 
-  const deleteUser = async () => {
-    console.log('Deleting staff data:', staffData);
-    await apiClient.post(`/user/delete-user`, { id: staffData?.recordId });
-    console.log('Staff data deleted successfully');
-    dispatch(fetchUpdated(true));
-    navigation.goBack();
+  function formatDateTime(dateString?: string): string {
+    if (!dateString) return ' -';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    return date.toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+    });
+  }
+
+  const changeStatus = async () => {
+    if (staffData?.userStatus === 3) {
+      await apiClient.post(`/user/restore-user/${staffData?.recordId}`);
+      dispatch(fetchUpdated(true));
+    } else {
+      await apiClient.post(`/user/delete-user`, { id: staffData?.recordId });
+      dispatch(fetchUpdated(true));
+    }
+
+    try {
+      const updatedUser = await apiClient
+        .get(`/user/get-user/${staffData?.recordId}`)
+        .then((response) => response.data.data);
+      setStaffData(updatedUser);
+    } catch (error) {
+      console.error('Error re-fetching user after status change:', error);
+    }
   };
+
   return {
     editMode,
     staffData,
@@ -177,6 +202,7 @@ export default function useStaffDetail() {
     locationList,
     jobRolelist,
     validationErrors,
-    deleteUser,
+    changeStatus,
+    formatDateTime,
   };
 }

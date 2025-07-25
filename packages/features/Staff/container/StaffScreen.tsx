@@ -69,39 +69,37 @@ export default function Staff() {
 
           <View style={styles.shadowSeparator} />
 
-          {staffList
-            .filter((staff: staffType) => staff.userStatus === 1)
-            .map((staff: staffType) => (
-              <TouchableOpacity
-                key={staff.email}
-                style={styles.staffItem}
-                onPress={() => staffDetails(staff)}
+          {staffList.map((staff: staffType) => (
+            <TouchableOpacity
+              key={staff.email}
+              style={styles.staffItem}
+              onPress={() => staffDetails(staff)}
+            >
+              <View
+                style={[
+                  styles.staffAvatar,
+                  {
+                    backgroundColor: staff.iconColor,
+                  },
+                ]}
               >
-                <View
-                  style={[
-                    styles.staffAvatar,
-                    {
-                      backgroundColor: staff.iconColor,
-                    },
-                  ]}
-                >
-                  <Text style={styles.staffAvatarText}>
-                    {staff.firstName[0].toUpperCase()}
-                    {staff.lastName ? staff.lastName[0].toUpperCase() : ''}
-                  </Text>
-                </View>
+                <Text style={styles.staffAvatarText}>
+                  {staff.firstName[0].toUpperCase()}
+                  {staff.lastName ? staff.lastName[0].toUpperCase() : ''}
+                </Text>
+              </View>
 
-                <View>
-                  <Text style={styles.staffName}>
-                    {staff.firstName} <Text>{staff.lastName} </Text>
-                  </Text>
+              <View>
+                <Text style={styles.staffName}>
+                  {staff.firstName} <Text>{staff.lastName} </Text>
+                </Text>
 
-                  {staff.jobRoleName && (
-                    <Text style={styles.position}>{staff.jobRoleName}</Text>
-                  )}
-                </View>
-              </TouchableOpacity>
-            ))}
+                {staff.jobRoleName && (
+                  <Text style={styles.position}>{staff.jobRoleName}</Text>
+                )}
+              </View>
+            </TouchableOpacity>
+          ))}
         </View>
       </ScrollView>
 
