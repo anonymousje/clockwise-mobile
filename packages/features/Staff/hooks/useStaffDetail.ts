@@ -156,17 +156,18 @@ export default function useStaffDetail() {
         setValidationErrors(errors);
         return;
       }
-      navigation.goBack();
     }
 
     setEditMode(!editMode);
   };
 
-  function deleteUser() {
-    apiClient.post(`/user/delete-user`, { id: staffData?.recordId });
+  const deleteUser = async () => {
+    console.log('Deleting staff data:', staffData);
+    await apiClient.post(`/user/delete-user`, { id: staffData?.recordId });
+    console.log('Staff data deleted successfully');
     dispatch(fetchUpdated(true));
     navigation.goBack();
-  }
+  };
   return {
     editMode,
     staffData,

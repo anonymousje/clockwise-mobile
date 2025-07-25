@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
     borderBottomWidth: 1,
-    borderColor:
+    borderBottomColor:
       mode === 'dark'
         ? colors.BORDER_COLOR_DARK_MODE
         : colors.BORDER_COLOR_LIGHT_MODE,
@@ -63,6 +63,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     fontFamily: fonts.CLOCKWISE_REGULAR,
+    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   showPasswordButton: {

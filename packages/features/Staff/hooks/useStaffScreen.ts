@@ -29,12 +29,6 @@ function useStaffScreen() {
 
   useEffect(() => {
     getStaff().then((data: staffType[]) => {
-      data.forEach((item) => {
-        item.iconColor =
-          colors.RANDOM_COLOR_ARRAY[
-            Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
-          ];
-      });
       setStaffList(data);
       setCacheStaffList(data);
     });
@@ -96,7 +90,14 @@ function useStaffScreen() {
     };
 
     const response = await apiClient.get('/user/get-all-users', { params });
-    return response.data.data;
+    const customizedResponse = response.data.data.map((item: staffType) => ({
+      ...item,
+      iconColor:
+        colors.RANDOM_COLOR_ARRAY[
+          Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
+        ],
+    }));
+    return customizedResponse;
   };
 
   const applyFilters = async (loc?: string, dep?: string, rol?: string) => {

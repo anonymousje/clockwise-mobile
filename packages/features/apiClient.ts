@@ -1,20 +1,18 @@
 import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
-import { SCREENS } from '../constants/screens';
-import { NavigationProp } from '../features/types';
-import { useNavigation } from '@react-navigation/native';
+import { logoutCore } from '../features/container/useContainer';
 
-let accessToken: string | null = null;
-let refreshToken: string | null = null;
+let accessToken = '';
+let refreshToken = '';
 
-export const setAccessToken = (token: string) => {
+export function setAccessToken(token: string) {
   accessToken = token;
-};
+}
 
-export const setRefreshToken = (token: string) => {
+export function setRefreshToken(token: string) {
   refreshToken = token;
-};
+}
 
 const apiClient = axios.create({
   baseURL: 'http://10.0.2.2:5135/api',
@@ -26,6 +24,7 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   function (config) {
+    console.log(accessToken, refreshToken);
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -46,6 +45,8 @@ apiClient.interceptors.response.use(
 
   async function (error) {
     console.log('response error;', JSON.stringify(error));
+    //const accessToken = store.getState().user.accessToken;
+    //const refreshToken = store.getState().user.refreshToken;
 
     const originalRequest = error.config;
     if (error.response && error.response.status === 401) {
@@ -58,6 +59,11 @@ apiClient.interceptors.response.use(
           },
         );
 
+        console.log('Refresh token response:', response.data);
+
+        accessToken = response.data.data.accessToken;
+        refreshToken = response.data.data.refreshToken;
+
         store.dispatch(
           setTokens(
             response.data.data.accessToken,
@@ -65,13 +71,19 @@ apiClient.interceptors.response.use(
           ),
         );
 
-        return await apiClient(originalRequest);
+        originalRequest.headers.Authorization = `Bearer ${response.data.data.accessToken}`;
+
+        console.log(
+          'Retrying original request with new token:',
+          originalRequest,
+        );
+
+        return await axios(originalRequest);
       } catch (refreshError) {
         store.dispatch(setTokens('', ''));
+        console.error('Refresh token failed:', refreshError);
+        logoutCore(store);
 
-        const navigation = useNavigation<NavigationProp>();
-
-        navigation.replace(SCREENS.Login);
         return Promise.reject(refreshError);
       }
     }

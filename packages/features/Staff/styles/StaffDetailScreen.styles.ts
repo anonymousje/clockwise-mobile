@@ -83,8 +83,10 @@ export const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 5,
     borderBottomWidth: 1,
-    borderColor:
-      mode === 'dark' ? 'transparent' : colors.TEXT_LIGHT_LIGHTER_MODE,
+    borderBottomColor:
+      mode === 'dark'
+        ? colors.BORDER_COLOR_DARK_MODE
+        : colors.BORDER_COLOR_LIGHT_MODE,
   },
 
   textHeader: {
