@@ -11,12 +11,13 @@ import { fetchUpdated } from '../../../store/actions/fetchUsers';
 export default function useAddEmployee() {
   const [errorMsg, setErrorMsg] = useState(false);
   const [firstName, setFirstName] = useState('');
+  const dispatch = useDispatch();
+  const navigation = useNavigation<NavigationProp>();
 
   const staffSchema = z.object({
     firstName: z.string().min(1, 'First Name is required'),
     lastName: z.string().min(1, 'Last Name is required'),
     email: z.string().email('Invalid email address'),
-
     password: z
       .string()
       .min(7, 'Minimum 7 characters required')
@@ -26,9 +27,6 @@ export default function useAddEmployee() {
         'Password must contain at least one special character',
       ),
   });
-
-  const dispatch = useDispatch();
-  const navigation = useNavigation<NavigationProp>();
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -43,21 +41,20 @@ export default function useAddEmployee() {
 
   const onSubmit = async (data: StaffFormData) => {
     try {
-      const response = await apiClient.post('/user/create-user', {
+      await apiClient.post('/user/create-user', {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
         password: data.password,
       });
 
-      const { succeeded } = response.data;
-      console.log('Succeeded: ', succeeded);
-
       reset();
       dispatch(fetchUpdated(true));
+
       navigation.goBack();
     } catch (errors) {
       console.log('Errors: ', errors);
+
       setErrorMsg(true);
     }
   };

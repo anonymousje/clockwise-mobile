@@ -23,6 +23,7 @@ export default function AddEmployee() {
       >
         <View style={styles.editButtonContainer}>
           <Text style={styles.title}>Employee Detail</Text>
+
           <TouchableOpacity
             onPress={() => clearForm()}
             style={styles.editButton}

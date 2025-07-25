@@ -141,6 +141,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             {validationErrors?.firstName && (
               <Text style={styles.error}>{validationErrors.firstName}</Text>
             )}
@@ -154,6 +155,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             {validationErrors?.lastName && (
               <Text style={styles.error}>{validationErrors.lastName}</Text>
             )}
@@ -167,6 +169,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             {validationErrors?.email && (
               <Text style={styles.error}>{validationErrors.email}</Text>
             )}
@@ -190,6 +193,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             {validationErrors?.username && (
               <Text style={styles.error}>{validationErrors.username}</Text>
             )}
@@ -223,6 +227,7 @@ export default function StaffDetail() {
                 }
               }}
             />
+
             {validationErrors?.userCode && (
               <Text style={styles.error}>{validationErrors.userCode}</Text>
             )}
@@ -258,6 +263,7 @@ export default function StaffDetail() {
                   ))}
                 </Picker>
               </View>
+
               <View style={styles.picker}>
                 <Picker
                   selectedValue={staffData?.locationName || ''}
@@ -346,6 +352,7 @@ export default function StaffDetail() {
                   />
                 </Picker>
               </View>
+
               <View style={styles.picker}>
                 <Picker
                   selectedValue={staffData?.userStatus || undefined}

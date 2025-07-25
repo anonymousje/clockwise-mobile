@@ -10,7 +10,6 @@ import { z } from 'zod';
 export default function useStaffDetail() {
   const route = useRoute<StaffDetailNavigationProp>();
   const { recordId } = route.params;
-  //const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   console.log('Staff Detail Data:', recordId);
