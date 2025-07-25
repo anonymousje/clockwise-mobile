@@ -43,6 +43,7 @@ export default function StaffDetail() {
           <View style={styles.avatarContainer}>
             <Text style={styles.avatarText}>
               {staffData?.firstName.charAt(0).toUpperCase()}
+              {staffData?.lastName.charAt(0).toUpperCase()}
             </Text>
           </View>
         </View>
