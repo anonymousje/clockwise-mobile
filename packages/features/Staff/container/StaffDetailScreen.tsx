@@ -69,15 +69,6 @@ export default function StaffDetail() {
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Cell Phone</Text>
-              <Text style={styles.text}>
-                {staffData?.phoneNumber === undefined
-                  ? ' -'
-                  : staffData?.phoneNumber}
-              </Text>
-            </View>
-
-            <View style={styles.textContainer}>
               <Text style={styles.textHeader}>Last Login</Text>
               <Text style={styles.text}>
                 {staffData?.lastLoginDate === undefined
@@ -349,33 +340,6 @@ export default function StaffDetail() {
                   <Picker.Item
                     label='Employee'
                     value='User'
-                  />
-                </Picker>
-              </View>
-
-              <View style={styles.picker}>
-                <Picker
-                  selectedValue={staffData?.userStatus || undefined}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({ ...staffData, userStatus: itemValue });
-                    }
-                  }}
-                  style={styles.pickerItem}
-                >
-                  <Picker.Item
-                    label='Select Status'
-                    value={undefined}
-                  />
-
-                  <Picker.Item
-                    label='Active'
-                    value={1}
-                  />
-
-                  <Picker.Item
-                    label='Inactive'
-                    value={0}
                   />
                 </Picker>
               </View>

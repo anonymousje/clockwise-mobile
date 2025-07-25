@@ -16,7 +16,7 @@ function useStaffScreen() {
   const [location, setLocation] = useState('');
   const [department, setDepartment] = useState('');
   const [role, setRole] = useState('');
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(2);
   const [modal, setModal] = useState(false);
   const [staffList, setStaffList] = useState<staffType[]>([]);
   const [cacheStaffList, setCacheStaffList] = useState<staffType[]>([]);
@@ -145,6 +145,7 @@ function useStaffScreen() {
     setLocation('');
     setDepartment('');
     setRole('');
+    setActive(2);
     setStaffList(await getStaff());
   };
 

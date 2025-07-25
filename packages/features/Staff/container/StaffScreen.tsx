@@ -33,8 +33,6 @@ export default function Staff() {
     applyFilters,
   } = useStaffScreen();
 
-  console.log('Staff List:', staffList);
-
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>

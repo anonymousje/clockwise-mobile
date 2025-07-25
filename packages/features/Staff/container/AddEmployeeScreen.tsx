@@ -22,7 +22,7 @@ export default function AddEmployee() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.editButtonContainer}>
-          <Text style={styles.title}>Employee Detail</Text>
+          <Text style={styles.title}>Employee Details</Text>
 
           <TouchableOpacity
             onPress={() => clearForm()}
