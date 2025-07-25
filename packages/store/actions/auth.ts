@@ -1,10 +1,17 @@
-import { User } from '../../types';
-import apiClient from '../../authClient';
+import { User } from '../../features/types';
+import apiClient from '../../features/apiClient';
 
 export const setUser = (userData: User) => {
   return {
     type: 'SET_USER',
     payload: userData,
+  };
+};
+
+export const setTokens = (accessToken: string, refreshToken: string) => {
+  return {
+    type: 'SET_TOKEN',
+    payload: { accessToken, refreshToken },
   };
 };
 
@@ -15,7 +22,7 @@ export const loginUser = async (email: string, password: string) => {
       password,
     });
 
-    const { accessToken, refreshToken, role } = response.data;
+    const { accessToken, refreshToken, role } = response.data.data;
 
     return {
       type: 'LOGIN_USER',
@@ -26,8 +33,7 @@ export const loginUser = async (email: string, password: string) => {
         role,
       },
     };
-  }
- catch (error) {
+  } catch (error) {
     return { type: 'LOGIN_FAIL', payload: '' };
   }
 };

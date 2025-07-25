@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 40,
   },
+
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -175,5 +176,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
 });
+
+export const modeColor = mode === 'light' ? 'black' : 'white';
 
 export default styles;

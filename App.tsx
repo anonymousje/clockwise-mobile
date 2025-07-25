@@ -1,17 +1,21 @@
-//Imports
 import { Appearance } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
-
 import Login from './packages/features/Login/container/LoginScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
 import Dashboard from './packages/features/Dashboard/container/DashboardScreen';
-import store from './packages/features/redux/store';
+import store from './packages/store';
 import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
+import Staff from './packages/features/Staff/container/StaffScreen';
+import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
+import { colors } from './packages/features/theme';
+import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 
 const config = {
   screens: {
@@ -27,62 +31,161 @@ const config = {
     [SCREENS.Dashboard]: 'dashboard',
   },
 };
+
 const linking = {
   prefixes: ['clockwise://', 'https://clockwise.com'],
   config,
 };
-//Main Function
+
+const Tab = createBottomTabNavigator();
+
+const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
+  <Ionicons
+    name='home-outline'
+    size={size}
+    color={color}
+    style={{ width: size, height: size }}
+  />
+);
+
+const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
+  <Ionicons
+    name='people-outline'
+    size={size}
+    color={color}
+    style={{ width: size, height: size }}
+  />
+);
+
+function MainTabs() {
+  const mode = Appearance.getColorScheme();
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor:
+            mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
+          height: 65,
+        },
+      }}
+    >
+      <Tab.Screen
+        name={SCREENS.Dashboard}
+        component={Dashboard}
+        options={{
+          title: 'Dashboard',
+          headerShown: false,
+          tabBarIcon: DashboardTabIcon,
+        }}
+      />
+
+      <Tab.Screen
+        name={SCREENS.Staff}
+        component={Staff}
+        options={{
+          title: 'Staff',
+          headerShown: false,
+          tabBarIcon: StaffTabIcon,
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
 function App() {
-  //Stack Declaration
   const Stack = createStackNavigator<RoutesTypes>();
-  const modeAuto = Appearance.getColorScheme();
+
+  const mode = Appearance.getColorScheme();
 
   return (
     <Provider store={store}>
       <NavigationContainer linking={linking}>
         <Stack.Navigator>
-          {/*Login Screen */}
           <Stack.Screen
             name={SCREENS.Login}
             component={Login}
             options={{ headerShown: false }}
           />
 
-          {/*Forgot Password Screen */}
           <Stack.Screen
             name={SCREENS.ForgotPassword}
             component={ForgotPassword}
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {
-                color: modeAuto === 'dark' ? 'white' : 'black',
+                color: mode === 'dark' ? 'white' : 'black',
               },
               headerStyle: {
-                backgroundColor: modeAuto === 'dark' ? '#0E2747' : '#FFFFF',
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: modeAuto === 'dark' ? 'white' : 'black',
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
             }}
           />
+
           <Stack.Screen
             name={SCREENS.NewPassword}
             component={NewPassword}
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {
-                color: modeAuto === 'dark' ? 'white' : 'black',
+                color: mode === 'dark' ? 'white' : 'black',
               },
               headerStyle: {
-                backgroundColor: modeAuto === 'dark' ? '#0E2747' : '#FFFFF',
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: modeAuto === 'dark' ? 'white' : 'black',
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
             }}
           />
 
-          {/*Dashboard Screen */}
           <Stack.Screen
-            name={SCREENS.Dashboard}
-            component={Dashboard}
+            name={SCREENS.MainTabs}
+            component={MainTabs}
             options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name={SCREENS.AddEmployee}
+            component={AddEmployee}
+            options={{
+              headerShown: true,
+              title: 'Add Employee',
+              headerTitleStyle: {
+                color: mode === 'dark' ? 'white' : 'black',
+              },
+              headerStyle: {
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
+              },
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
+            }}
+          />
+
+          <Stack.Screen
+            name={SCREENS.StaffDetail}
+            component={StaffDetail}
+            options={{
+              headerShown: true,
+              title: 'Employee Details',
+              headerTitleStyle: {
+                color: mode === 'dark' ? 'white' : 'black',
+              },
+              headerStyle: {
+                backgroundColor:
+                  mode === 'dark'
+                    ? colors.BACKGROUND_DARK_MODE
+                    : colors.BACKGROUND_LIGHT_MODE,
+              },
+              headerTintColor: mode === 'dark' ? 'white' : 'black',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
