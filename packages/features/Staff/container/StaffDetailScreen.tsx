@@ -18,6 +18,7 @@ export default function StaffDetail() {
     validationErrors,
     changeStatus,
     formatDateTime,
+    user,
   } = useStaffDetail();
 
   return (

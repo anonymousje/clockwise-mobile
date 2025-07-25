@@ -24,64 +24,72 @@ function useStaffScreen() {
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
 
-  const updated = useSelector((state: RootState) => state.updated);
+  const { updated, userFromStore } = useSelector((state: RootState) => ({
+    updated: state.updated,
+    userFromStore: state.user,
+  }));
+
   const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getStaff().then((data: staffType[]) => {
-      setStaffList(data);
-      setCacheStaffList(data);
-    });
+    if (userFromStore?.role === 'Admin') {
+      getStaff().then((data: staffType[]) => {
+        setStaffList(data);
+        setCacheStaffList(data);
+      });
 
-    if (updated.flag) {
-      getStaff();
-      dispatch(fetchUpdated(false));
+      if (updated.flag) {
+        getStaff();
+        dispatch(fetchUpdated(false));
+      }
+
+      const fetchDepartment = async () => {
+        return await apiClient
+          .get('/department/get-all-departments')
+          .then((response) => response.data.data)
+          .catch((error) => {
+            console.error('Error fetching department:', error);
+            throw error;
+          });
+      };
+
+      const fetchLocation = async () => {
+        return await apiClient
+          .get('/location/get-all-locations')
+          .then((response) => response.data.data)
+          .catch((error) => {
+            console.error('Error fetching location:', error);
+            throw error;
+          });
+      };
+
+      const fetchJobRole = async () => {
+        return await apiClient
+          .get('/jobrole/get-all-jobroles')
+          .then((response) => response.data.data)
+          .catch((error) => {
+            console.error('Error fetching job role:', error);
+            throw error;
+          });
+      };
+
+      const fetchData = async () => {
+        const departmentData = await fetchDepartment();
+        setDepartmentList(departmentData);
+
+        const locationData = await fetchLocation();
+        setLocationList(locationData);
+
+        const jobRoleData = await fetchJobRole();
+        setJobRoleList(jobRoleData);
+      };
+
+      fetchData();
+    } else {
+      navigation.navigate(SCREENS.Login);
     }
-
-    const fetchDepartment = async () => {
-      return await apiClient
-        .get('/department/get-all-departments')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          console.error('Error fetching department:', error);
-          throw error;
-        });
-    };
-
-    const fetchLocation = async () => {
-      return await apiClient
-        .get('/location/get-all-locations')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          console.error('Error fetching location:', error);
-          throw error;
-        });
-    };
-
-    const fetchJobRole = async () => {
-      return await apiClient
-        .get('/jobrole/get-all-jobroles')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          console.error('Error fetching job role:', error);
-          throw error;
-        });
-    };
-
-    const fetchData = async () => {
-      const departmentData = await fetchDepartment();
-      setDepartmentList(departmentData);
-
-      const locationData = await fetchLocation();
-      setLocationList(locationData);
-
-      const jobRoleData = await fetchJobRole();
-      setJobRoleList(jobRoleData);
-    };
-
-    fetchData();
-  }, [updated.flag, dispatch]);
+  }, [userFromStore?.role, updated.flag, dispatch, navigation]);
 
   const getStaff = async (loc?: string, dep?: string, rol?: string) => {
     const params: staffSearchQueryType = {
