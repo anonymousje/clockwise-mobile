@@ -21,6 +21,8 @@ export default function Staff() {
     setDepartment,
     role,
     setRole,
+    active,
+    setActive,
     modal,
     setModal,
     staffDetails,
@@ -199,6 +201,27 @@ export default function Staff() {
                   value={item.recordId}
                 />
               ))}
+            </Picker>
+
+            <Picker
+              selectedValue={active}
+              onValueChange={(itemValue) => setActive(itemValue)}
+              style={styles.filterInput}
+            >
+              <Picker.Item
+                label='All Staff'
+                value={2}
+              />
+
+              <Picker.Item
+                label='Active Staff'
+                value={1}
+              />
+
+              <Picker.Item
+                label='Inactive Staff'
+                value={3}
+              />
             </Picker>
           </View>
 

@@ -16,6 +16,7 @@ function useStaffScreen() {
   const [location, setLocation] = useState('');
   const [department, setDepartment] = useState('');
   const [role, setRole] = useState('');
+  const [active, setActive] = useState(1);
   const [modal, setModal] = useState(false);
   const [staffList, setStaffList] = useState<staffType[]>([]);
   const [cacheStaffList, setCacheStaffList] = useState<staffType[]>([]);
@@ -97,11 +98,20 @@ function useStaffScreen() {
           Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
         ],
     }));
+
     return customizedResponse;
   };
 
   const applyFilters = async (loc?: string, dep?: string, rol?: string) => {
-    const filteredData = await getStaff(loc, dep, rol);
+    const data = await getStaff(loc, dep, rol);
+
+    let filteredData: staffType[] = data;
+
+    if (active !== 2) {
+      filteredData = data.filter(
+        (item: staffType) => item.userStatus === Number(active),
+      );
+    }
 
     setCacheStaffList(filteredData);
     setStaffList(filteredData);
@@ -153,6 +163,8 @@ function useStaffScreen() {
     setDepartment,
     role,
     setRole,
+    active,
+    setActive,
     modal,
     setModal,
     staffDetails,

@@ -166,7 +166,7 @@ export const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginVertical: 200,
+    marginVertical: 170,
     marginHorizontal: 20,
     borderRadius: 10,
     borderWidth: 1,
