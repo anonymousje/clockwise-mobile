@@ -75,7 +75,18 @@ function MainTabs() {
         component={Dashboard}
         options={{
           title: 'Dashboard',
-          headerShown: false,
+          headerShown: true,
+          headerTitleStyle: {
+            color: mode === 'dark' ? 'white' : 'black',
+          },
+          headerStyle: {
+            backgroundColor:
+              mode === 'dark'
+                ? colors.BACKGROUND_DARK_MODE
+                : colors.BACKGROUND_LIGHT_MODE,
+          },
+          headerTintColor: mode === 'dark' ? 'white' : 'black',
+
           tabBarIcon: DashboardTabIcon,
         }}
       />
