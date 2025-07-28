@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   loginButtonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
     fontSize: 16,
     fontWeight: '600',

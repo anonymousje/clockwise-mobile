@@ -10,7 +10,7 @@ import {
 
 import styles from '../styles/LoginScreen.styles';
 import useLoginScreen from '../hooks/useLoginScreen';
-import { colors } from '../../../constants/theme';
+import { colors, MODE } from '../../../constants/theme';
 
 export default function Login() {
   const {
@@ -52,7 +52,11 @@ export default function Login() {
           <TextInput
             style={styles.input}
             placeholder='Email or username'
-            placeholderTextColor={mode === 'light' ? 'black' : 'white'}
+            placeholderTextColor={
+              mode === MODE.LIGHT
+                ? colors.TEXT_LIGHT_MODE
+                : colors.TEXT_DARK_MODE
+            }
             value={email}
             onChangeText={setEmail}
             autoCapitalize='none'
@@ -62,7 +66,11 @@ export default function Login() {
             <TextInput
               style={styles.inputPassword}
               placeholder='Password'
-              placeholderTextColor={mode === 'light' ? 'black' : 'white'}
+              placeholderTextColor={
+                mode === MODE.LIGHT
+                  ? colors.TEXT_LIGHT_MODE
+                  : colors.TEXT_DARK_MODE
+              }
               value={password}
               onChangeText={setPassword}
               secureTextEntry={isPassword}

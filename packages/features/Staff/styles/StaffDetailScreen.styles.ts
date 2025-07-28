@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
   },
 
   editButtonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     padding: 10,
   },
 
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
   },
 
   avatarText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontSize: 50,
     paddingBottom: 10,
     fontFamily: fonts.CLOCKWISE_REGULAR,
@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
   },
 
   deleteButtonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
   },
 
   editDetails: {
@@ -150,4 +150,4 @@ export const styles = StyleSheet.create({
     paddingLeft: 5,
   },
 });
-export const editIconColor = 'white';
+export const editIconColor = colors.BUTTON_TEXT;

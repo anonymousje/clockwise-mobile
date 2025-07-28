@@ -160,7 +160,7 @@ export const styles = StyleSheet.create({
   addButtonText: {
     fontSize: 40,
     fontWeight: '400',
-    color: 'white',
+    color: colors.BUTTON_TEXT,
   },
 
   modalContainer: {
@@ -226,9 +226,9 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
 
-  filterText: {
+  filterButtonText: {
     fontSize: 20,
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
   },
 });

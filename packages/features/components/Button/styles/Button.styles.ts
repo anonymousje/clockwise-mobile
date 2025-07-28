@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
     fontSize: 18,
     fontWeight: '700',

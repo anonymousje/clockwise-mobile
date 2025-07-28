@@ -46,12 +46,15 @@ export const styles = StyleSheet.create({
   },
 
   editButtonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     padding: 10,
   },
 
   formContainer: {
-    backgroundColor: mode === MODE.DARK ? colors.BACKGROUND_DARK_MODE : 'white',
+    backgroundColor:
+      mode === MODE.DARK
+        ? colors.BACKGROUND_DARK_MODE
+        : colors.BACKGROUND_LIGHT_MODE,
     justifyContent: 'center',
     width: '100%',
     paddingHorizontal: 24,
@@ -107,7 +110,7 @@ export const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
     fontSize: 18,
     fontWeight: '700',

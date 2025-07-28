@@ -14,7 +14,7 @@ import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 import Staff from './packages/features/Staff/container/StaffScreen';
 import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
-import { colors } from './packages/constants/theme';
+import { colors, MODE } from './packages/constants/theme';
 import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 
 const config = {
@@ -65,7 +65,9 @@ function MainTabs() {
       screenOptions={{
         tabBarStyle: {
           backgroundColor:
-            mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
+            mode === MODE.DARK
+              ? colors.BACKGROUND_DARK_MODE
+              : colors.BACKGROUND_LIGHT_MODE,
           height: 65,
         },
       }}
@@ -114,15 +116,23 @@ function App() {
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
+
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -132,15 +142,21 @@ function App() {
             options={{
               title: 'Forgot Password',
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -157,15 +173,21 @@ function App() {
               headerShown: true,
               title: 'Add Employee',
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -176,15 +198,21 @@ function App() {
               headerShown: true,
               title: 'Employee Details',
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
         </Stack.Navigator>

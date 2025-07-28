@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontSize: 16,
     fontWeight: '600',
   },
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   popupButtonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: 'bold',
     fontSize: 16,
@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const modeColor = mode === 'light' ? 'black' : 'white';
+export const modeColor =
+  mode === MODE.LIGHT ? colors.TEXT_LIGHT_MODE : colors.TEXT_DARK_MODE;
 
 export default styles;

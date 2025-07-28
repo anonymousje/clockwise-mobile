@@ -227,7 +227,7 @@ export default function Staff() {
             onPress={() => applyFilters(location, department, role)}
             style={styles.filterButton}
           >
-            <Text style={styles.filterText}>APPLY</Text>
+            <Text style={styles.filterButtonText}>APPLY</Text>
           </TouchableOpacity>
         </View>
       </Modal>

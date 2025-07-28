@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import styles from '../styles/ForgotPasswordScreen.styles';
 import useForgotPasswordScreen from '../hooks/useForgotPasswordScreen';
-import { colors } from '../../../constants/theme';
+import { colors, MODE } from '../../../constants/theme';
 
 export default function ForgotPassword() {
   const {
@@ -34,7 +34,9 @@ export default function ForgotPassword() {
       <TextInput
         style={styles.input}
         placeholder='Email'
-        placeholderTextColor={mode === 'light' ? 'black' : 'white'}
+        placeholderTextColor={
+          mode === MODE.LIGHT ? colors.TEXT_LIGHT_MODE : colors.TEXT_DARK_MODE
+        }
         value={email}
         onChangeText={setEmail}
       />
