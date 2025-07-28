@@ -3,7 +3,7 @@ import styles from '../styles/Dashboard.styles';
 
 import useDashboardScreen from '../hooks/useDashboardScreen';
 
-export default function Dashboard() {
+const Dashboard = () => {
   const { user } = useDashboardScreen();
   return (
     <View style={styles.container}>
@@ -24,4 +24,6 @@ export default function Dashboard() {
       </View>
     </View>
   );
-}
+};
+
+export default Dashboard;

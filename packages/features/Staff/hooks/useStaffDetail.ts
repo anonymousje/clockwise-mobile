@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 import { z } from 'zod';
 
-export default function useStaffDetail() {
+const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();
   const { recordId } = route.params;
   const dispatch = useDispatch();
@@ -158,7 +158,7 @@ export default function useStaffDetail() {
     setEditMode(!editMode);
   };
 
-  function formatDateTime(dateString?: string): string {
+  const formatDateTime = (dateString?: string): string => {
     if (!dateString) return ' -';
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return dateString;
@@ -171,7 +171,7 @@ export default function useStaffDetail() {
       second: '2-digit',
       hour12: true,
     });
-  }
+  };
 
   const changeStatus = async () => {
     if (staffData?.userStatus === 3) {
@@ -204,4 +204,6 @@ export default function useStaffDetail() {
     changeStatus,
     formatDateTime,
   };
-}
+};
+
+export default useStaffDetail;

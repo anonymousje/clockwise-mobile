@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import apiClient from '../../apiClient';
 import { NavigationProp } from '../../types';
 
-function useForgotPasswordScreen() {
+const useForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [success, setSuccess] = useState(false);
@@ -17,11 +17,11 @@ function useForgotPasswordScreen() {
     return emailRegex.test(text);
   };
 
-  function handleBack() {
+  const handleBack = () => {
     navigation.navigate(SCREENS.Login);
-  }
+  };
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     setLoading(true);
 
     if (!validatedEmail(email)) {
@@ -34,7 +34,7 @@ function useForgotPasswordScreen() {
     setIsValidEmail(true);
     setSuccess(true);
     setLoading(false);
-  }
+  };
 
   return {
     email,
@@ -45,6 +45,6 @@ function useForgotPasswordScreen() {
     success,
     loading,
   };
-}
+};
 
 export default useForgotPasswordScreen;

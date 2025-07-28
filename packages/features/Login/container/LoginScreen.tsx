@@ -12,7 +12,7 @@ import styles from '../styles/LoginScreen.styles';
 import useLoginScreen from '../hooks/useLoginScreen';
 import { colors, MODE } from '../../../constants/theme';
 
-export default function Login() {
+const Login = () => {
   const {
     email,
     setEmail,
@@ -107,4 +107,6 @@ export default function Login() {
       </View>
     </SafeAreaView>
   );
-}
+};
+
+export default Login;

@@ -11,7 +11,7 @@ import { fetchUpdated } from '../../../store/actions/fetchUsers';
 
 import type { staffSearchQueryType } from '../../types';
 
-function useStaffScreen() {
+const useStaffScreen = () => {
   const [search, setSearch] = useState('');
   const [location, setLocation] = useState('');
   const [department, setDepartment] = useState('');
@@ -142,11 +142,11 @@ function useStaffScreen() {
     }
   };
 
-  function staffDetails(data: staffType) {
+  const staffDetails = (data: staffType) => {
     navigation.navigate(SCREENS.StaffDetail, {
       recordId: data.recordId,
     });
-  }
+  };
 
   const clearFilters = async () => {
     setSearch('');
@@ -157,9 +157,9 @@ function useStaffScreen() {
     setStaffList(await getStaff());
   };
 
-  function openForm() {
+  const openForm = () => {
     navigation.navigate(SCREENS.AddEmployee);
-  }
+  };
 
   return {
     openForm,
@@ -183,6 +183,6 @@ function useStaffScreen() {
     clearFilters,
     applyFilters,
   };
-}
+};
 
 export default useStaffScreen;

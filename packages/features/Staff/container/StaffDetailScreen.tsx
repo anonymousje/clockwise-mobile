@@ -6,7 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Button from '../../components/Button/container/Button';
 
-export default function StaffDetail() {
+const StaffDetail = () => {
   const {
     editMode,
     staffData,
@@ -18,7 +18,6 @@ export default function StaffDetail() {
     validationErrors,
     changeStatus,
     formatDateTime,
-    user,
   } = useStaffDetail();
 
   return (
@@ -350,4 +349,6 @@ export default function StaffDetail() {
       </ScrollView>
     </View>
   );
-}
+};
+
+export default StaffDetail;

@@ -11,7 +11,7 @@ import styles from '../styles/ForgotPasswordScreen.styles';
 import useForgotPasswordScreen from '../hooks/useForgotPasswordScreen';
 import { colors, MODE } from '../../../constants/theme';
 
-export default function ForgotPassword() {
+const ForgotPassword = () => {
   const {
     email,
     setEmail,
@@ -79,4 +79,6 @@ export default function ForgotPassword() {
       )}
     </View>
   );
-}
+};
+
+export default ForgotPassword;

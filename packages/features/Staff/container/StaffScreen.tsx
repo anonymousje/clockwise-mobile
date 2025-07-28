@@ -9,7 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 
-export default function Staff() {
+const Staff = () => {
   const {
     openForm,
     staffList,
@@ -233,4 +233,6 @@ export default function Staff() {
       </Modal>
     </View>
   );
-}
+};
+
+export default Staff;

@@ -11,7 +11,7 @@ import { styles } from '../styles/AddEmployeeScreen.styles';
 import useAddEmployee from '../hooks/useAddEmployee';
 import InputField from '../../components/InputField/container/InputField';
 
-export default function AddEmployee() {
+const AddEmployee = () => {
   const { control, handleSubmit, onSubmit, errorMsg, setFirstName, clearForm } =
     useAddEmployee();
 
@@ -133,4 +133,6 @@ export default function AddEmployee() {
       </View>
     </View>
   );
-}
+};
+
+export default AddEmployee;

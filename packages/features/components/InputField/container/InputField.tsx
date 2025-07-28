@@ -10,13 +10,13 @@ import { InputFieldProps } from '../../../types';
 import { styles } from '../styles/InputField.styles';
 import useInputField from '../hooks/useInputField';
 
-export default function InputField({
+const InputField = ({
   label,
   value,
   error,
   onChangeText,
   ...props
-}: InputFieldProps) {
+}: InputFieldProps) => {
   const {
     labelStyle,
     labelStyleFocused,
@@ -88,4 +88,6 @@ export default function InputField({
       </View>
     );
   }
-}
+};
+
+export default InputField;

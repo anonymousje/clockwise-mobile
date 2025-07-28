@@ -1,18 +1,17 @@
 import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
-import { logoutCore } from '../features/container/useContainer';
 
 let accessToken = '';
 let refreshToken = '';
 
-export function setAccessToken(token: string) {
+export const setAccessToken = (token: string) => {
   accessToken = token;
-}
+};
 
-export function setRefreshToken(token: string) {
+export const setRefreshToken = (token: string) => {
   refreshToken = token;
-}
+};
 
 const apiClient = axios.create({
   baseURL: 'http://10.0.2.2:5135/api',
@@ -82,7 +81,6 @@ apiClient.interceptors.response.use(
       } catch (refreshError) {
         store.dispatch(setTokens('', ''));
         console.error('Refresh token failed:', refreshError);
-        logoutCore(store);
 
         return Promise.reject(refreshError);
       }

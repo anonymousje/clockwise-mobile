@@ -57,7 +57,7 @@ const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
   />
 );
 
-function MainTabs() {
+const MainTabs = () => {
   const mode = Appearance.getColorScheme();
 
   return (
@@ -93,9 +93,9 @@ function MainTabs() {
       />
     </Tab.Navigator>
   );
-}
+};
 
-function App() {
+const App = () => {
   const Stack = createStackNavigator<RoutesTypes>();
 
   const mode = Appearance.getColorScheme();
@@ -219,6 +219,6 @@ function App() {
       </NavigationContainer>
     </Provider>
   );
-}
+};
 
 export default App;

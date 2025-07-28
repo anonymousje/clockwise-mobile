@@ -12,7 +12,7 @@ import useNewPasswordScreen from '../hooks/useNewPasswordScreen';
 import { colors } from '../../../constants/theme';
 import { modeColor } from '../styles/ForgotPasswordScreen.styles';
 
-export default function NewPassword() {
+const NewPassword = () => {
   const {
     newPassword,
     confirmPassword,
@@ -153,4 +153,6 @@ export default function NewPassword() {
       </View>
     </View>
   );
-}
+};
+
+export default NewPassword;

@@ -6,7 +6,7 @@ import { NavigationProp } from '../../types';
 import { SCREENS } from '../../../constants/screens';
 import apiClient from '../../apiClient';
 
-function useNewPasswordScreen() {
+const useNewPasswordScreen = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [match, setMatch] = useState(true);
@@ -21,7 +21,7 @@ function useNewPasswordScreen() {
   const [isLength, setIsLength] = useState(false);
   const [isValid, setIsValid] = useState(true);
 
-  function validatePassword(text: string) {
+  const validatePassword = (text: string) => {
     const uppercaseRegex = /[A-Z]/;
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /\d/;
@@ -33,18 +33,18 @@ function useNewPasswordScreen() {
     setIsLength(lengthRegex.test(text));
 
     return isUppercase && isSpecialChar && isLength && isNumber;
-  }
+  };
 
   const route = useRoute<NewPasswordRouteProp>();
 
   const { email, token } = route.params || {};
   const navigation = useNavigation<NavigationProp>();
 
-  function handleBack() {
+  const handleBack = () => {
     navigation.navigate(SCREENS.Login);
-  }
+  };
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     setIsValid(validatePassword(newPassword));
     setMatch(true);
     setLoading(true);
@@ -78,14 +78,14 @@ function useNewPasswordScreen() {
     }
 
     return;
-  }
-  function changePwdType() {
+  };
+  const changePwdType = () => {
     setIsPassword((prevState) => !prevState);
-  }
+  };
 
-  function changeConfirmPwdType() {
+  const changeConfirmPwdType = () => {
     setIsConfirmPassword((prevState) => !prevState);
-  }
+  };
 
   return {
     newPassword,
@@ -110,6 +110,6 @@ function useNewPasswordScreen() {
     isLength,
     isValid,
   };
-}
+};
 
 export default useNewPasswordScreen;

@@ -8,7 +8,7 @@ import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 
-export default function useAddEmployee() {
+const useAddEmployee = () => {
   const [errorMsg, setErrorMsg] = useState(false);
   const [firstName, setFirstName] = useState('');
   const dispatch = useDispatch();
@@ -59,11 +59,11 @@ export default function useAddEmployee() {
     }
   };
 
-  function clearForm() {
+  const clearForm = () => {
     reset();
     setFirstName('');
     setErrorMsg(false);
-  }
+  };
 
   return {
     control,
@@ -74,4 +74,6 @@ export default function useAddEmployee() {
     setFirstName,
     clearForm,
   };
-}
+};
+
+export default useAddEmployee;
