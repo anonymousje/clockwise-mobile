@@ -7,13 +7,14 @@ export default function Button({
   onPress,
   label,
   color = colors.CLOCKWISE_PRIMARY,
+  style = {},
 }: ButtonProps) {
   return (
     <>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={onPress}
-          style={[styles.button, { backgroundColor: color }]}
+          style={[styles.button, { backgroundColor: color }, style]}
         >
           <Text style={styles.buttonText}>{label}</Text>
         </TouchableOpacity>

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
-import { logoutCore } from '../features/container/useContainer';
 
 let accessToken = '';
 let refreshToken = '';
@@ -82,7 +81,6 @@ apiClient.interceptors.response.use(
       } catch (refreshError) {
         store.dispatch(setTokens('', ''));
         console.error('Refresh token failed:', refreshError);
-        logoutCore(store);
 
         return Promise.reject(refreshError);
       }
