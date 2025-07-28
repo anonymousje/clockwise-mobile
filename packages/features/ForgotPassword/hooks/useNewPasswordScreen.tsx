@@ -67,8 +67,7 @@ const useNewPasswordScreen = () => {
           setSuccess(true);
           setLoading(false);
         })
-        .catch((error) => {
-          console.error('Error resetting password:', error);
+        .catch(() => {
           setErrorMsg(true);
           setLoading(false);
           return;

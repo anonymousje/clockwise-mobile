@@ -10,6 +10,7 @@ import {
 import styles from '../styles/ForgotPasswordScreen.styles';
 import useForgotPasswordScreen from '../hooks/useForgotPasswordScreen';
 import { colors, MODE } from '../../../constants/theme';
+import STRINGS from '../../../utils/strings';
 
 const ForgotPassword = () => {
   const {
@@ -25,15 +26,15 @@ const ForgotPassword = () => {
   const mode = Appearance.getColorScheme();
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Enter Your Email</Text>
+      <Text style={styles.header}>{STRINGS.HEADERS.ENTER_EMAIL}</Text>
 
       {!isValidEmail && (
-        <Text style={styles.errorMsg}>Please enter a valid email address.</Text>
+        <Text style={styles.errorMsg}>{STRINGS.ERROR.ENTER_EMAIL_ERROR}</Text>
       )}
 
       <TextInput
         style={styles.input}
-        placeholder='Email'
+        placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.EMAIL}
         placeholderTextColor={
           mode === MODE.LIGHT ? colors.TEXT_LIGHT_MODE : colors.TEXT_DARK_MODE
         }
@@ -49,6 +50,7 @@ const ForgotPassword = () => {
         <View style={styles.modalContainer}>
           <View style={styles.popupBox}>
             <Text style={styles.popUpBoxText}>
+              {/*TODO: Shift to constants*/}
               {`If ${email} is registered, you will receive a password reset link.`}
             </Text>
 
@@ -56,7 +58,9 @@ const ForgotPassword = () => {
               style={styles.popupButton}
               onPress={handleBack}
             >
-              <Text style={styles.popupButtonText}>Go to Login</Text>
+              <Text style={styles.popupButtonText}>
+                {STRINGS.BUTTON_TEXT.GO_TO_LOGIN}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -72,7 +76,9 @@ const ForgotPassword = () => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleSubmit}>
             <View style={styles.button}>
-              <Text style={styles.buttonText}>RESET PASSWORD</Text>
+              <Text style={styles.buttonText}>
+                {STRINGS.BUTTON_TEXT.RESET_PASSWORD}
+              </Text>
             </View>
           </TouchableOpacity>
         </View>

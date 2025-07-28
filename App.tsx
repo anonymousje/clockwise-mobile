@@ -16,24 +16,27 @@ import Staff from './packages/features/Staff/container/StaffScreen';
 import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
 import { colors, MODE } from './packages/constants/theme';
 import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
+import STRINGS from './packages/utils/strings';
+import LINK_PREFIX from './packages/constants/links';
+import ICONS from './packages/constants/Icons';
 
 const config = {
   screens: {
-    [SCREENS.Login]: 'login',
-    [SCREENS.ForgotPassword]: 'forgotpassword',
+    [SCREENS.Login]: LINK_PREFIX.LOGIN,
+    [SCREENS.ForgotPassword]: LINK_PREFIX.FORGOT_PASSWORD,
     [SCREENS.NewPassword]: {
-      path: 'reset-password',
+      path: LINK_PREFIX.NEW_PASSWORD,
       parse: {
         email: (email: string) => decodeURIComponent(email),
         token: (token: string) => decodeURIComponent(token),
       },
     },
-    [SCREENS.Dashboard]: 'dashboard',
+    [SCREENS.Dashboard]: LINK_PREFIX.DASHBOARD,
   },
 };
 
 const linking = {
-  prefixes: ['clockwise://', 'https://clockwise.com'],
+  prefixes: [LINK_PREFIX.CLOCKWISE, LINK_PREFIX.HTTPS],
   config,
 };
 
@@ -41,7 +44,7 @@ const Tab = createBottomTabNavigator();
 
 const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
   <Ionicons
-    name='home-outline'
+    name={ICONS.home}
     size={size}
     color={color}
     style={{ width: size, height: size }}
@@ -50,7 +53,7 @@ const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
 
 const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
   <Ionicons
-    name='people-outline'
+    name={ICONS.people}
     size={size}
     color={color}
     style={{ width: size, height: size }}
@@ -76,7 +79,7 @@ const MainTabs = () => {
         name={SCREENS.Dashboard}
         component={Dashboard}
         options={{
-          title: 'Dashboard',
+          title: STRINGS.SCREEN_TITLE.DASHBOARD,
           headerShown: false,
           tabBarIcon: DashboardTabIcon,
         }}
@@ -86,7 +89,7 @@ const MainTabs = () => {
         name={SCREENS.Staff}
         component={Staff}
         options={{
-          title: 'Staff',
+          title: STRINGS.SCREEN_TITLE.STAFF,
           headerShown: false,
           tabBarIcon: StaffTabIcon,
         }}
@@ -114,7 +117,7 @@ const App = () => {
             name={SCREENS.ForgotPassword}
             component={ForgotPassword}
             options={{
-              title: 'Forgot Password',
+              title: STRINGS.SCREEN_TITLE.FORGOT_PASSWORD,
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
@@ -140,7 +143,7 @@ const App = () => {
             name={SCREENS.NewPassword}
             component={NewPassword}
             options={{
-              title: 'Forgot Password',
+              title: STRINGS.SCREEN_TITLE.NEW_PASSWORD,
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
@@ -171,7 +174,7 @@ const App = () => {
             component={AddEmployee}
             options={{
               headerShown: true,
-              title: 'Add Employee',
+              title: STRINGS.SCREEN_TITLE.ADD_EMPLOYEE,
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
@@ -196,7 +199,7 @@ const App = () => {
             component={StaffDetail}
             options={{
               headerShown: true,
-              title: 'Employee Details',
+              title: STRINGS.SCREEN_TITLE.STAFF_DETAIL,
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK

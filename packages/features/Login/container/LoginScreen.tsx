@@ -11,6 +11,7 @@ import {
 import styles from '../styles/LoginScreen.styles';
 import useLoginScreen from '../hooks/useLoginScreen';
 import { colors, MODE } from '../../../constants/theme';
+import STRINGS from '../../../utils/strings';
 
 const Login = () => {
   const {
@@ -33,25 +34,31 @@ const Login = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.logoContainer}>
-          <Text style={styles.logo}>CW</Text>
+          <Text style={styles.logo}>{STRINGS.CLOCKWISE_INITIALS}</Text>
           <Text style={styles.logoSeparator}>|</Text>
-          <Text style={styles.logoText}>ClockWise</Text>
+          <Text style={styles.logoText}>{STRINGS.CLOCKWISE}</Text>
         </View>
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.title}>Log in to your account</Text>
+        <Text style={styles.title}>{STRINGS.HEADERS.LOGIN}</Text>
 
         <View style={styles.form}>
           {attempt && (
             <Text style={styles.errorMsg}>
-              Incorrect Email or Password. Please Try again.
+              {STRINGS.ERROR.INCORRECT_CREDENTIALS}
             </Text>
           )}
-          {!isValid && <Text style={styles.errorMsg}>Email is invalid</Text>}
+
+          {!isValid && (
+            <Text style={styles.errorMsg}>
+              {STRINGS.ERROR.ENTER_EMAIL_ERROR}
+            </Text>
+          )}
+
           <TextInput
             style={styles.input}
-            placeholder='Email or username'
+            placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.EMAIL_OR_USERNAME}
             placeholderTextColor={
               mode === MODE.LIGHT
                 ? colors.TEXT_LIGHT_MODE
@@ -65,7 +72,7 @@ const Login = () => {
           <View style={styles.passwordRow}>
             <TextInput
               style={styles.inputPassword}
-              placeholder='Password'
+              placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.PASSWORD}
               placeholderTextColor={
                 mode === MODE.LIGHT
                   ? colors.TEXT_LIGHT_MODE
@@ -77,7 +84,9 @@ const Login = () => {
             />
             <TouchableOpacity onPress={changePwdType}>
               <Text style={styles.showPasswordButton}>
-                {isPassword ? 'Show' : 'Hide'}
+                {isPassword
+                  ? STRINGS.ICON_TITLES.SHOW
+                  : STRINGS.ICON_TITLES.HIDE}
               </Text>
             </TouchableOpacity>
           </View>
@@ -93,7 +102,9 @@ const Login = () => {
               style={styles.loginButton}
               onPress={handleLogin}
             >
-              <Text style={styles.loginButtonText}>LOG IN</Text>
+              <Text style={styles.loginButtonText}>
+                {STRINGS.BUTTON_TEXT.LOG_IN}
+              </Text>
             </TouchableOpacity>
           )}
 
@@ -101,7 +112,9 @@ const Login = () => {
             style={styles.forgotPasswordButton}
             onPress={handleForgotPassword}
           >
-            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+            <Text style={styles.forgotPasswordText}>
+              {STRINGS.BUTTON_TEXT.FORGOT_PASSWORD}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

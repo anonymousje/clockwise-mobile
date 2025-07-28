@@ -9,6 +9,7 @@ import {
 import { InputFieldProps } from '../../../types';
 import { styles } from '../styles/InputField.styles';
 import useInputField from '../hooks/useInputField';
+import STRINGS from '../../../../utils/strings';
 
 const InputField = ({
   label,
@@ -79,7 +80,7 @@ const InputField = ({
 
           <TouchableOpacity onPress={changePwdType}>
             <Text style={styles.showPasswordButton}>
-              {isPassword ? 'Show' : 'Hide'}
+              {isPassword ? STRINGS.ICON_TITLES.SHOW : STRINGS.ICON_TITLES.HIDE}
             </Text>
           </TouchableOpacity>
         </View>

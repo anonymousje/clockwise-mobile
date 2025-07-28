@@ -8,6 +8,10 @@ import { staffType } from '../../types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
+import ICONS from '../../../constants/Icons';
+import STRINGS from '../../../utils/strings';
+import VALUES from '../../../constants/values';
+import { colors } from '../../../constants/theme';
 
 const Staff = () => {
   const {
@@ -40,13 +44,13 @@ const Staff = () => {
           <View style={styles.searchContainer}>
             <View style={styles.searchInputContainer}>
               <Ionicons
-                name='search-outline'
+                name={ICONS.search}
                 size={30}
                 style={styles.searchIcon}
               />
 
               <TextInput
-                placeholder='Search Staff'
+                placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.SEARCH_STAFF}
                 placeholderTextColor={placeholderColor}
                 style={styles.searchInput}
                 value={search}
@@ -56,7 +60,7 @@ const Staff = () => {
 
             <TouchableOpacity onPress={() => setModal(true)}>
               <Ionicons
-                name='filter-outline'
+                name={ICONS.filter}
                 size={30}
                 style={styles.filterIcon}
               />
@@ -64,7 +68,9 @@ const Staff = () => {
           </View>
 
           <View style={styles.headerContainer}>
-            <Text style={styles.staffSectionHeader}>STAFF</Text>
+            <Text style={styles.staffSectionHeader}>
+              {STRINGS.HEADERS.STAFF}
+            </Text>
           </View>
 
           <View style={styles.shadowSeparator} />
@@ -85,7 +91,9 @@ const Staff = () => {
               >
                 <Text style={styles.staffAvatarText}>
                   {staff.firstName[0].toUpperCase()}
-                  {staff.lastName ? staff.lastName[0].toUpperCase() : ''}
+                  {staff.lastName
+                    ? staff.lastName[0].toUpperCase()
+                    : VALUES.DEFAULT}
                 </Text>
               </View>
 
@@ -127,9 +135,9 @@ const Staff = () => {
               onPress={() => setModal(false)}
             >
               <Ionicons
-                name='arrow-back-outline'
+                name={ICONS.arrow}
                 size={25}
-                color='black'
+                color={colors.BLACK}
               />
             </TouchableOpacity>
 
@@ -137,12 +145,16 @@ const Staff = () => {
               style={styles.modalCloseButton}
               onPress={() => clearFilters()}
             >
-              <Text style={styles.modalCloseButtonText}>CLEAR</Text>
+              <Text style={styles.modalCloseButtonText}>
+                {STRINGS.ICON_TITLES.CLEAR}
+              </Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Filter Options</Text>
+            <Text style={styles.modalTitle}>
+              {STRINGS.HEADERS.FILTER_OPTIONS}
+            </Text>
 
             <Picker
               selectedValue={location}
@@ -150,8 +162,8 @@ const Staff = () => {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='Select Location'
-                value=''
+                label={STRINGS.PICKER_LABELS.LOCATION}
+                value={VALUES.DEFAULT}
               />
 
               {locationList.map((item) => (
@@ -169,8 +181,8 @@ const Staff = () => {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='Select Department'
-                value=''
+                label={STRINGS.PICKER_LABELS.DEPARTMENT}
+                value={VALUES.DEFAULT}
               />
 
               {departmentList.map((item) => (
@@ -188,8 +200,8 @@ const Staff = () => {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='Select Role'
-                value=''
+                label={STRINGS.PICKER_LABELS.JOB_ROLE}
+                value={VALUES.DEFAULT}
               />
 
               {jobRolelist.map((item) => (
@@ -207,17 +219,17 @@ const Staff = () => {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='All Staff'
+                label={STRINGS.PICKER_LABELS.ALL_STAFF}
                 value={2}
               />
 
               <Picker.Item
-                label='Active Staff'
+                label={STRINGS.PICKER_LABELS.ACTIVE_STAFF}
                 value={1}
               />
 
               <Picker.Item
-                label='Inactive Staff'
+                label={STRINGS.PICKER_LABELS.INACTIVE_STAFF}
                 value={3}
               />
             </Picker>
@@ -227,7 +239,9 @@ const Staff = () => {
             onPress={() => applyFilters(location, department, role)}
             style={styles.filterButton}
           >
-            <Text style={styles.filterButtonText}>APPLY</Text>
+            <Text style={styles.filterButtonText}>
+              {STRINGS.ICON_TITLES.APPLY}
+            </Text>
           </TouchableOpacity>
         </View>
       </Modal>

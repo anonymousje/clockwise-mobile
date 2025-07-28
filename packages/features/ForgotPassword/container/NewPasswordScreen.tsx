@@ -11,6 +11,7 @@ import styles from '../styles/ForgotPasswordScreen.styles';
 import useNewPasswordScreen from '../hooks/useNewPasswordScreen';
 import { colors } from '../../../constants/theme';
 import { modeColor } from '../styles/ForgotPasswordScreen.styles';
+import STRINGS from '../../../utils/strings';
 
 const NewPassword = () => {
   const {
@@ -37,15 +38,17 @@ const NewPassword = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Enter New Password</Text>
+      <Text style={styles.header}>{STRINGS.ENTER_NEW_PASSWORD}</Text>
 
       <View style={styles.form}>
-        {!match && <Text style={styles.errorMsg}>Passwords do not match</Text>}
+        {!match && (
+          <Text style={styles.errorMsg}>{STRINGS.VALIDATIONS.MATCH_ERROR}</Text>
+        )}
 
         <View style={styles.NewPasswordRow}>
           <TextInput
             style={styles.inputPassword}
-            placeholder='New Password'
+            placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.NEW_PASSWORD}
             placeholderTextColor={modeColor}
             value={newPassword}
             onChangeText={setNewPassword}
@@ -55,7 +58,7 @@ const NewPassword = () => {
 
           <TouchableOpacity onPress={changePwdType}>
             <Text style={styles.showPassButton}>
-              {isPassword ? 'Show' : 'Hide'}
+              {isPassword ? STRINGS.ICON_TITLES.SHOW : STRINGS.ICON_TITLES.HIDE}
             </Text>
           </TouchableOpacity>
         </View>
@@ -63,7 +66,7 @@ const NewPassword = () => {
         <View style={styles.ConfirmPasswordRow}>
           <TextInput
             style={styles.inputPassword}
-            placeholder='Confirm New Password'
+            placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.CONFIRM_PASSWORD}
             placeholderTextColor={modeColor}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
@@ -72,28 +75,34 @@ const NewPassword = () => {
 
           <TouchableOpacity onPress={changeConfirmPwdType}>
             <Text style={styles.showPassButton}>
-              {isConfirmPassword ? 'Show' : 'Hide'}
+              {isConfirmPassword
+                ? STRINGS.ICON_TITLES.SHOW
+                : STRINGS.ICON_TITLES.HIDE}
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.rulesContainer}>
-          <Text style={styles.rulesText}>Password must contain:</Text>
+          <Text style={styles.rulesText}>{STRINGS.VALIDATIONS.TITLE}</Text>
 
           {!isLength && (
-            <Text style={styles.rulesText}>• At least 7 characters</Text>
+            <Text style={styles.rulesText}>• {STRINGS.VALIDATIONS.LENGTH}</Text>
           )}
 
           {!isSpecialChar && (
-            <Text style={styles.rulesText}>• At least 1 special character</Text>
+            <Text style={styles.rulesText}>
+              • {STRINGS.VALIDATIONS.SPECIAL_CHAR}
+            </Text>
           )}
 
           {!isUppercase && (
-            <Text style={styles.rulesText}>• At least 1 uppercase letter</Text>
+            <Text style={styles.rulesText}>
+              • {STRINGS.VALIDATIONS.UPPERCASE}
+            </Text>
           )}
 
           {!isNumber && (
-            <Text style={styles.rulesText}>• At least 1 number</Text>
+            <Text style={styles.rulesText}>• {STRINGS.VALIDATIONS.NUMBER}</Text>
           )}
         </View>
 
@@ -104,13 +113,15 @@ const NewPassword = () => {
         >
           <View style={styles.modalContainer}>
             <View style={styles.popupBox}>
-              <Text style={styles.popUpBoxText}>Error resetting password</Text>
+              <Text style={styles.popUpBoxText}>{STRINGS.ERROR.DEFAULT}</Text>
 
               <TouchableOpacity
                 style={styles.popupButton}
                 onPress={() => setErrorMsg(false)}
               >
-                <Text style={styles.popupButtonText}>Close</Text>
+                <Text style={styles.popupButtonText}>
+                  {STRINGS.ICON_TITLES.CLOSE}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -123,14 +134,16 @@ const NewPassword = () => {
           <View style={styles.modalContainer}>
             <View style={styles.popupBox}>
               <Text style={styles.popUpBoxText}>
-                Password reset successfully!
+                {STRINGS.RESET_PASSWORD_SUCCESS}
               </Text>
 
               <TouchableOpacity
                 style={styles.popupButton}
                 onPress={handleBack}
               >
-                <Text style={styles.popupButtonText}>Go to Login</Text>
+                <Text style={styles.popupButtonText}>
+                  {STRINGS.BUTTON_TEXT.GO_TO_LOGIN}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -147,7 +160,7 @@ const NewPassword = () => {
             style={styles.button}
             onPress={handleSubmit}
           >
-            <Text style={styles.buttonText}>RESET</Text>
+            <Text style={styles.buttonText}>{STRINGS.ICON_TITLES.RESET}</Text>
           </TouchableOpacity>
         )}
       </View>
