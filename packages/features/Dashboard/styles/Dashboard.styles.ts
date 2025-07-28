@@ -6,7 +6,6 @@ const mode = Appearance.getColorScheme();
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor:
       mode === 'dark'
         ? colors.BACKGROUND_DARK_MODE

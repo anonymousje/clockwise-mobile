@@ -1,7 +1,7 @@
-import { View } from 'react-native';
-import Button from '../../Button/container/Button';
+import { View, TouchableOpacity } from 'react-native';
 import useClock from '../hooks/useClock';
 import { styles } from '../styles/Clock.styles';
+import { Text } from 'react-native-gesture-handler';
 
 export default function Clocking({}) {
   const { clockIn, timePunch } = useClock();
@@ -12,13 +12,14 @@ export default function Clocking({}) {
       {clockIn && (
         <View style={styles.container}>
           <View style={styles.buttonContainer}>
-            <Button
-              label='Clocking In'
+            <TouchableOpacity
               onPress={() => {
                 timePunch();
               }}
               style={styles.button}
-            />
+            >
+              <Text style={styles.ButtonText}>CLOCK IN</Text>
+            </TouchableOpacity>
           </View>
         </View>
       )}
@@ -26,13 +27,14 @@ export default function Clocking({}) {
       {!clockIn && (
         <View style={styles.container}>
           <View style={styles.buttonContainer}>
-            <Button
-              label='Clocking Out'
+            <TouchableOpacity
               onPress={() => {
                 timePunch();
               }}
               style={styles.button}
-            />
+            >
+              <Text style={styles.ButtonText}>CLOCK OUT</Text>
+            </TouchableOpacity>
           </View>
         </View>
       )}

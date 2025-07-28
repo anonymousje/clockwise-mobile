@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors, fonts } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,19 +7,24 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    borderWidth: 1,
-    borderColor: 'black',
   },
 
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'blue',
-    padding: 20,
   },
 
   button: {
-    width: 300,
+    width: '95%',
+    backgroundColor: colors.CLOCKWISE_PRIMARY,
+    alignItems: 'center',
+    paddingVertical: 11,
+    borderRadius: 5,
+  },
+
+  ButtonText: {
+    fontFamily: fonts.CLOCKWISE_BOLD,
+    fontSize: 20,
+    color: 'white',
   },
 });
