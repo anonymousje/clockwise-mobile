@@ -1,6 +1,7 @@
 import { useState } from 'react';
 export default function useClock() {
   const [clockIn, setClockIn] = useState(false);
+  const [onBreak, setOnBreak] = useState(false);
 
   function timePunch() {
     if (clockIn) {
@@ -11,5 +12,9 @@ export default function useClock() {
 
     setClockIn(!clockIn);
   }
-  return { clockIn, timePunch };
+
+  function BreakSetter() {
+    setOnBreak(!onBreak);
+  }
+  return { clockIn, timePunch, BreakSetter, onBreak };
 }

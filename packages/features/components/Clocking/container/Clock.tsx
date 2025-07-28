@@ -25,13 +25,28 @@ export default function Clocking({}) {
       )}
 
       {!clockIn && (
-        <View style={styles.container}>
-          <View style={styles.buttonContainer}>
+        <View style={styles.clockOutContainer}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.titleText}>You have been Clocked in for</Text>
+
+            <Text style={styles.timeText}>5m</Text>
+          </View>
+
+          <View style={styles.clockOutButtonContainer}>
             <TouchableOpacity
               onPress={() => {
                 timePunch();
               }}
-              style={styles.button}
+              style={styles.clockOutButton}
+            >
+              <Text style={styles.ButtonText}>TAKE A BREAK</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => {
+                timePunch();
+              }}
+              style={styles.clockOutButton}
             >
               <Text style={styles.ButtonText}>CLOCK OUT</Text>
             </TouchableOpacity>

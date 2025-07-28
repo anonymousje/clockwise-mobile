@@ -24,7 +24,45 @@ export const styles = StyleSheet.create({
 
   ButtonText: {
     fontFamily: fonts.CLOCKWISE_BOLD,
-    fontSize: 20,
+    fontSize: 17,
     color: 'white',
+  },
+
+  clockOutContainer: {
+    flex: 1,
+  },
+
+  headerContainer: {
+    alignItems: 'flex-start',
+    padding: 10,
+  },
+
+  titleText: {
+    fontSize: 17,
+    opacity: 0.5,
+    fontFamily: fonts.CLOCKWISE_REGULAR,
+    color: colors.TEXT_LIGHT_MODE,
+  },
+
+  timeText: {
+    fontSize: 35,
+    paddingVertical: 20,
+    fontFamily: fonts.CLOCKWISE_BOLD,
+    color: colors.TEXT_LIGHT_MODE,
+  },
+
+  clockOutButtonContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  clockOutButton: {
+    width: '45%',
+    backgroundColor: 'red',
+    alignItems: 'center',
+    paddingVertical: 11,
+    borderRadius: 5,
   },
 });
