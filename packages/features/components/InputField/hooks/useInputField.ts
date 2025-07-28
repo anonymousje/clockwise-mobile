@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Animated, Appearance, TextInput } from 'react-native';
-import { colors } from '../../../theme';
+import { colors, MODE } from '../../../../constants/theme';
 
 export default function useInputField(value: string) {
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -37,7 +37,7 @@ export default function useInputField(value: string) {
       outputRange: [17, 15],
     }),
 
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
 
     backgroundColor: 'transparent',
     zIndex: 1,

@@ -1,5 +1,5 @@
 import { Appearance, StyleSheet } from 'react-native';
-import { colors, fonts } from '../../theme';
+import { colors, fonts, MODE } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
   },
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
     padding: 16,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 40,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     paddingTop: 60,
     paddingHorizontal: 16,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 5,
     borderBottomWidth: 1,
     borderBottomColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BORDER_COLOR_DARK_MODE
         : colors.BORDER_COLOR_LIGHT_MODE,
   },
@@ -92,14 +92,14 @@ export const styles = StyleSheet.create({
   textHeader: {
     fontSize: 16,
     marginVertical: 4,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_BOLD,
   },
 
   text: {
     fontSize: 17,
     marginTop: 4,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
 
@@ -117,7 +117,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
 
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     alignItems: 'center',

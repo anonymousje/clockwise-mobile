@@ -10,7 +10,7 @@ import {
 
 import styles from '../styles/LoginScreen.styles';
 import useLoginScreen from '../hooks/useLoginScreen';
-import { colors } from '../../theme';
+import { colors } from '../../../constants/theme';
 
 export default function Login() {
   const {

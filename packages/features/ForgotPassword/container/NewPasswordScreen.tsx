@@ -9,7 +9,7 @@ import {
 
 import styles from '../styles/ForgotPasswordScreen.styles';
 import useNewPasswordScreen from '../hooks/useNewPasswordScreen';
-import { colors } from '../../theme';
+import { colors } from '../../../constants/theme';
 import { modeColor } from '../styles/ForgotPasswordScreen.styles';
 
 export default function NewPassword() {

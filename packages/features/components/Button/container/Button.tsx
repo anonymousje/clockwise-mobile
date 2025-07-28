@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../styles/Button.styles';
 import { ButtonProps } from '../../../types';
-import { colors } from '../../../theme';
+import { colors } from '../../../../constants/theme';
 
 export default function Button({
   onPress,

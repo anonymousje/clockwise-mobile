@@ -1,12 +1,12 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts } from '../../theme';
+import { colors, fonts, MODE } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
     flex: 1,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   inputPassword: {
     fontSize: 17,
 
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 16,
   },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
@@ -98,21 +98,21 @@ const styles = StyleSheet.create({
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: '300',
     color:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+      mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
     marginBottom: 40,
     lineHeight: 34,
     paddingBottom: 20,
   },
   popUpBoxText: {
     color:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+      mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
     fontSize: 16,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     textAlign: 'center',
   },
   showPassButton: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
   },
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     color:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+      mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
     marginBottom: 20,
     paddingBottom: 16,
   },
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 5,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 4,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   rulesText: {
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontSize: 14,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 5,

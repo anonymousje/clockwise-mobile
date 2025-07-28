@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import styles from '../styles/ForgotPasswordScreen.styles';
 import useForgotPasswordScreen from '../hooks/useForgotPasswordScreen';
-import { colors } from '../../theme';
+import { colors } from '../../../constants/theme';
 
 export default function ForgotPassword() {
   const {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { colors } from '../../theme';
+import { colors } from '../../../constants/theme';
 import { NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,12 +1,12 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts } from '../../theme';
+import { colors, fonts, MODE } from '../../../constants/theme';
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 24,
     fontWeight: '300',
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   content: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: '300',
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 40,
     lineHeight: 34,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
@@ -76,19 +76,19 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: fonts.CLOCKWISE_REGULAR,
 
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
   },
   inputPassword: {
     fontSize: 17,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 14,
     paddingHorizontal: 12,
   },
   passwordRow: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   showPasswordButton: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingHorizontal: 12,

@@ -1,5 +1,5 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts } from '../../theme';
+import { colors, fonts, MODE } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -12,14 +12,14 @@ export const styles = StyleSheet.create({
     flex: 1,
 
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
 
   searchContainer: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 20,
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
 
   searchIcon: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingLeft: 10,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
 
   searchInput: {
     fontSize: 17,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 14,
     paddingLeft: 10,
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
 
   filterIcon: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingLeft: 20,
@@ -96,13 +96,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 30,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BORDER_COLOR_DARK_MODE
         : colors.BORDER_COLOR_LIGHT_MODE,
     paddingLeft: 20,
@@ -125,13 +125,13 @@ export const styles = StyleSheet.create({
   staffName: {
     fontSize: 19,
     fontFamily: fonts.CLOCKWISE_BOLD,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 2,
   },
 
   position: {
     fontSize: 17,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     opacity: 0.6,
   },
 
@@ -171,7 +171,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_FORMS
         : colors.BACKGROUND_LIGHT_FORMS,
   },
@@ -208,13 +208,13 @@ export const styles = StyleSheet.create({
 
   filterInput: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 10,
     paddingLeft: 15,
     marginTop: 20,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   filterButton: {
@@ -234,6 +234,6 @@ export const styles = StyleSheet.create({
 });
 
 export const placeholderColor =
-  mode === 'dark'
+  mode === MODE.DARK
     ? colors.TEXT_DARK_LIGHTER_MODE
     : colors.TEXT_LIGHT_LIGHTER_MODE;

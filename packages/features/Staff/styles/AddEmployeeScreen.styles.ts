@@ -1,6 +1,6 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors } from '../../theme';
-import { fonts } from '../../theme';
+import { colors, MODE } from '../../../constants/theme';
+import { fonts } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:
-      mode === 'dark' ? colors.BACKGROUND_DARKER_MODE : 'transparent',
+      mode === MODE.DARK ? colors.BACKGROUND_DARKER_MODE : 'transparent',
   },
 
   scrollViewContent: {
@@ -29,10 +29,10 @@ export const styles = StyleSheet.create({
 
   title: {
     fontSize: 23,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     borderBottomWidth: 1,
     borderBottomColor:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+      mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     paddingBottom: 7,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   },
 
   formContainer: {
-    backgroundColor: mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
+    backgroundColor: mode === MODE.DARK ? colors.BACKGROUND_DARK_MODE : 'white',
     justifyContent: 'center',
     width: '100%',
     paddingHorizontal: 24,
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
   linkText: {
     fontSize: 17,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   linkButton: {

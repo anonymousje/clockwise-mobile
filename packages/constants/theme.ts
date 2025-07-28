@@ -19,6 +19,10 @@ export const colors = {
   RANDOM_COLOR_ARRAY: ['#07CF99', '#086DBF', '#B63C08', '#F0F30D', '#0ED4EA'],
 };
 
+export const MODE = {
+  DARK: 'dark',
+  LIGHT: 'light',
+};
 export const fonts = {
   CLOCKWISE_REGULAR: 'Lato-Regular',
   CLOCKWISE_BOLD: 'Lato-Bold',
