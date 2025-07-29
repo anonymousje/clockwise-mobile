@@ -56,6 +56,58 @@ export interface InputFieldProps extends TextInputProps {
   secureTextEntry?: boolean;
 }
 
+export interface FORM_CONTROLLER_VALUES {
+  FIRST_NAME: const;
+  LAST_NAME: const;
+  EMAIL: const;
+  PASSWORD: const;
+  PHONE_NUMBER: const;
+  USERNAME: const;
+  NICKNAME: const;
+  ADDRESS: const;
+  USER_CODE: const;
+  DEPARTMENT: const;
+  LOCATION: const;
+  JOB_ROLE: const;
+  ROLE: const;
+}
+
+export interface COMMON_CONSTANTS_TYPE {
+  DEFAULT: string;
+  PICKER_VALUES: {
+    ADMIN: string;
+    USER: string;
+  };
+  ADMIN: string;
+  REDUX_TYPES: {
+    SET_USER: string;
+    SET_TOKEN: string;
+    LOGIN_USER: string;
+    LOGIN_FAIL: string;
+  };
+  DATE_TIME: {
+    NUMERIC: const;
+    SHORT: const;
+    TWO_DIGIT: const;
+    EN_US: const;
+  };
+  FORM_CONTROLLER_VALUES: {
+    FIRST_NAME: const;
+    LAST_NAME: const;
+    EMAIL: const;
+    PASSWORD: const;
+    PHONE_NUMBER: const;
+    USERNAME: const;
+    NICKNAME: const;
+    ADDRESS: const;
+    USER_CODE: const;
+    DEPARTMENT: const;
+    LOCATION: const;
+    JOB_ROLE: const;
+    ROLE: const;
+  };
+}
+
 export interface ButtonProps extends TouchableOpacityProps {
   onPress: () => void;
   label: string;

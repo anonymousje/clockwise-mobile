@@ -1,4 +1,6 @@
-const COMMON_CONSTANTS = {
+import { COMMON_CONSTANTS_TYPE } from '../features/types';
+
+const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
   DEFAULT: '',
   PICKER_VALUES: {
     ADMIN: 'Admin',
@@ -15,26 +17,26 @@ const COMMON_CONSTANTS = {
   },
 
   DATE_TIME: {
-    NUMERIC: 'numeric' as const,
-    SHORT: 'short' as const,
-    TWO_DIGIT: '2-digit' as const,
-    EN_US: 'en-US' as const,
+    NUMERIC: 'numeric',
+    SHORT: 'short',
+    TWO_DIGIT: '2-digit',
+    EN_US: 'en-US',
   },
 
   FORM_CONTROLLER_VALUES: {
-    FIRST_NAME: 'firstName' as const,
-    LAST_NAME: 'lastName' as const,
-    EMAIL: 'email' as const,
-    PASSWORD: 'password' as const,
-    PHONE_NUMBER: 'phoneNumber' as const,
-    USERNAME: 'username' as const,
-    NICKNAME: 'nickname' as const,
-    ADDRESS: 'address' as const,
-    USER_CODE: 'userCode' as const,
-    DEPARTMENT: 'department' as const,
-    LOCATION: 'location' as const,
-    JOB_ROLE: 'jobRole' as const,
-    ROLE: 'role' as const,
+    FIRST_NAME: 'firstName',
+    LAST_NAME: 'lastName',
+    EMAIL: 'email',
+    PASSWORD: 'password',
+    PHONE_NUMBER: 'phoneNumber',
+    USERNAME: 'username',
+    NICKNAME: 'nickname',
+    ADDRESS: 'address',
+    USER_CODE: 'userCode',
+    DEPARTMENT: 'department',
+    LOCATION: 'location',
+    JOB_ROLE: 'jobRole',
+    ROLE: 'role',
   },
 };
 
