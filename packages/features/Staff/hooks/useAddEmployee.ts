@@ -7,6 +7,8 @@ import apiClient from '../../apiClient';
 import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
+import VALUES from '../../../constants/values';
+import STRINGS from '../../../utils/strings';
 
 const useAddEmployee = () => {
   const [errorMsg, setErrorMsg] = useState(false);
@@ -15,25 +17,22 @@ const useAddEmployee = () => {
   const navigation = useNavigation<NavigationProp>();
 
   const staffSchema = z.object({
-    firstName: z.string().min(1, 'First Name is required'),
-    lastName: z.string().min(1, 'Last Name is required'),
-    email: z.string().email('Invalid email address'),
+    firstName: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
+    lastName: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
+    email: z.string().email(STRINGS.ZOD_ERRORS.EMAIL_INVALID),
     password: z
       .string()
-      .min(7, 'Minimum 7 characters required')
-      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-      .regex(
-        /[^A-Za-z0-9]/,
-        'Password must contain at least one special character',
-      ),
+      .min(7, STRINGS.VALIDATIONS.LENGTH)
+      .regex(/[A-Z]/, STRINGS.VALIDATIONS.UPPERCASE)
+      .regex(/[^A-Za-z0-9]/, STRINGS.VALIDATIONS.SPECIAL_CHAR),
   });
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      password: '',
-      email: '',
+      firstName: VALUES.DEFAULT,
+      lastName: VALUES.DEFAULT,
+      password: VALUES.DEFAULT,
+      email: VALUES.DEFAULT,
     },
 
     resolver: zodResolver(staffSchema),
@@ -52,16 +51,14 @@ const useAddEmployee = () => {
       dispatch(fetchUpdated(true));
 
       navigation.goBack();
-    } catch (errors) {
-      console.log('Errors: ', errors);
-
+    } catch (error) {
       setErrorMsg(true);
     }
   };
 
   const clearForm = () => {
     reset();
-    setFirstName('');
+    setFirstName(VALUES.DEFAULT);
     setErrorMsg(false);
   };
 

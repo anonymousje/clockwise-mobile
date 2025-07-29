@@ -1,5 +1,6 @@
 import { User } from '../../features/types';
 import apiClient from '../../features/apiClient';
+import VALUES from '../../constants/values';
 
 export const setUser = (userData: User) => {
   return {
@@ -34,7 +35,7 @@ export const loginUser = async (email: string, password: string) => {
       },
     };
   } catch (error) {
-    return { type: 'LOGIN_FAIL', payload: '' };
+    return { type: 'LOGIN_FAIL', payload: VALUES.DEFAULT };
   }
 };
 

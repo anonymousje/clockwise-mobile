@@ -48,6 +48,14 @@ const STRINGS = {
   ACTIVATE: 'Activate',
   DEACTIVATE: 'Deactivate',
 
+  RESPONSE_SORT: {
+    EMAIL: 'email',
+    USERNAME: 'username',
+    USERCODE: 'userCode',
+  },
+
+  STAFF_UPDATE_ERROR: 'Failed to update staff data',
+
   ICON_TITLES: {
     SHOW: 'SHOW',
     HIDE: 'HIDE',
@@ -96,6 +104,12 @@ const STRINGS = {
     NUMBER: 'At least one number',
     LENGTH: 'At least 7 characters',
     MATCH_ERROR: 'Passwords do not match',
+  },
+
+  ZOD_ERRORS: {
+    FIRST_NAME_REQUIRED: 'First name is required',
+    LAST_NAME_REQUIRED: 'Last name is required',
+    EMAIL_INVALID: 'Invalid email address',
   },
   ERROR: {
     DEFAULT: 'An error occurred. Please try again.',

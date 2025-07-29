@@ -6,13 +6,13 @@ import apiClient from '../../apiClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 import { z } from 'zod';
+import STRINGS from '../../../utils/strings';
+import VALUES from '../../../constants/values';
 
 const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();
   const { recordId } = route.params;
   const dispatch = useDispatch();
-
-  console.log('Staff Detail Data:', recordId);
 
   const [editMode, setEditMode] = useState(false);
 
@@ -23,14 +23,13 @@ const useStaffDetail = () => {
   const [validationErrors, setValidationErrors] = useState<errorType>({});
 
   const staffSchema = z.object({
-    firstName: z.string().min(1, 'First name is required'),
-    lastName: z.string().min(1, 'Last name is required'),
-    email: z.string().email('Invalid email'),
+    firstName: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
+    lastName: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
+    email: z.string().email(STRINGS.ZOD_ERRORS.EMAIL_INVALID),
   });
 
   useEffect(() => {
     if (!recordId) {
-      console.error('No recordId provided in params');
       return;
     }
 
@@ -39,7 +38,6 @@ const useStaffDetail = () => {
         .get('/department/get-all-departments')
         .then((response) => response.data.data)
         .catch((error) => {
-          console.error('Error fetching department:', error);
           throw error;
         });
     };
@@ -49,7 +47,6 @@ const useStaffDetail = () => {
         .get('/location/get-all-locations')
         .then((response) => response.data.data)
         .catch((error) => {
-          console.error('Error fetching location:', error);
           throw error;
         });
     };
@@ -59,7 +56,6 @@ const useStaffDetail = () => {
         .get('/jobrole/get-all-jobroles')
         .then((response) => response.data.data)
         .catch((error) => {
-          console.error('Error fetching job role:', error);
           throw error;
         });
     };
@@ -69,7 +65,6 @@ const useStaffDetail = () => {
         .get(`/user/get-user/${recordId}`)
         .then((response) => response.data.data)
         .catch((error) => {
-          console.error('Error fetching user:', error);
           throw error;
         });
     };
@@ -110,7 +105,6 @@ const useStaffDetail = () => {
 
       setValidationErrors({});
       try {
-        console.log('Staff data updated:', staffData);
         await apiClient.put(`/user/edit-user/${staffData?.recordId}`, {
           firstName: staffData?.firstName,
           lastName: staffData?.lastName,
@@ -132,21 +126,23 @@ const useStaffDetail = () => {
 
         dispatch(fetchUpdated(true));
       } catch (e: any) {
-        console.log('Error updating staff data:', e.response?.data);
-
         const errors: errorType = {};
 
         if (e.response && e.response.data) {
           const msg = e.response.data.errors[0];
 
-          if (msg.toLowerCase().includes('email')) {
+          if (msg.toLowerCase().includes(STRINGS.RESPONSE_SORT.EMAIL)) {
             errors.email = msg;
-          } else if (msg.toLowerCase().includes('username')) {
+          } else if (
+            msg.toLowerCase().includes(STRINGS.RESPONSE_SORT.USERNAME)
+          ) {
             errors.username = msg;
-          } else if (msg.toLowerCase().includes('usercode')) {
+          } else if (
+            msg.toLowerCase().includes(STRINGS.RESPONSE_SORT.USERCODE)
+          ) {
             errors.userCode = msg;
           } else {
-            errors.general = 'Failed to update staff data';
+            errors.general = STRINGS.STAFF_UPDATE_ERROR;
           }
         }
 
@@ -159,16 +155,16 @@ const useStaffDetail = () => {
   };
 
   const formatDateTime = (dateString?: string): string => {
-    if (!dateString) return ' -';
+    if (!dateString) return ` ${STRINGS.DASH}`;
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return dateString;
     return date.toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
+      year: VALUES.DATE_TIME.NUMERIC,
+      month: VALUES.DATE_TIME.SHORT,
+      day: VALUES.DATE_TIME.TWO_DIGIT,
+      hour: VALUES.DATE_TIME.TWO_DIGIT,
+      minute: VALUES.DATE_TIME.TWO_DIGIT,
+      second: VALUES.DATE_TIME.TWO_DIGIT,
       hour12: true,
     });
   };
@@ -187,9 +183,7 @@ const useStaffDetail = () => {
         .get(`/user/get-user/${staffData?.recordId}`)
         .then((response) => response.data.data);
       setStaffData(updatedUser);
-    } catch (error) {
-      console.error('Error re-fetching user after status change:', error);
-    }
+    } catch (error) {}
   };
 
   return {

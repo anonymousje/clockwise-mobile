@@ -10,6 +10,7 @@ import { RootState } from '../../../store';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 
 import type { staffSearchQueryType } from '../../types';
+import VALUES from '../../../constants/values';
 
 const useStaffScreen = () => {
   const [search, setSearch] = useState('');
@@ -33,7 +34,7 @@ const useStaffScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userFromStore?.role === 'Admin') {
+    if (userFromStore?.role === VALUES.ADMIN) {
       getStaff().then((data: staffType[]) => {
         setStaffList(data);
         setCacheStaffList(data);
@@ -49,7 +50,6 @@ const useStaffScreen = () => {
           .get('/department/get-all-departments')
           .then((response) => response.data.data)
           .catch((error) => {
-            console.error('Error fetching department:', error);
             throw error;
           });
       };
@@ -59,7 +59,6 @@ const useStaffScreen = () => {
           .get('/location/get-all-locations')
           .then((response) => response.data.data)
           .catch((error) => {
-            console.error('Error fetching location:', error);
             throw error;
           });
       };
@@ -69,7 +68,6 @@ const useStaffScreen = () => {
           .get('/jobrole/get-all-jobroles')
           .then((response) => response.data.data)
           .catch((error) => {
-            console.error('Error fetching job role:', error);
             throw error;
           });
       };

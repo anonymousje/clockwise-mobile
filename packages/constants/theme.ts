@@ -27,6 +27,7 @@ export const MODE = {
   DARK: 'dark',
   LIGHT: 'light',
 };
+
 export const fonts = {
   CLOCKWISE_REGULAR: 'Lato-Regular',
   CLOCKWISE_BOLD: 'Lato-Bold',
