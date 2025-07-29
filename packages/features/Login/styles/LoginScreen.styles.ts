@@ -1,12 +1,13 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts } from '../../theme';
+import { colors, fonts, FONT_SIZE, MODE } from '../../../constants/theme';
+
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
@@ -31,21 +32,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    fontSize: 24,
+    fontSize: FONT_SIZE.MEDIUM,
     fontWeight: '300',
     color: colors.CLOCKWISE_PRIMARY,
     marginRight: 8,
   },
   logoSeparator: {
-    fontSize: 24,
+    fontSize: FONT_SIZE.MEDIUM,
     color: '#666',
     fontWeight: '300',
     marginRight: 8,
   },
   logoText: {
-    fontSize: 24,
+    fontSize: FONT_SIZE.MEDIUM,
     fontWeight: '300',
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   content: {
@@ -54,9 +55,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   title: {
-    fontSize: 30,
-    fontWeight: '300',
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.LARGE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 40,
     lineHeight: 34,
@@ -66,29 +66,29 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
-
     paddingVertical: 14,
     paddingHorizontal: 12,
-    fontSize: 17,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
   },
+
   inputPassword: {
-    fontSize: 17,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.SMALL,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 14,
     paddingHorizontal: 12,
   },
+
   passwordRow: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
@@ -103,17 +103,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 40,
   },
+
   showPasswordButton: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingHorizontal: 12,
   },
+
   loginButtonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
-    fontSize: 16,
+    fontSize: FONT_SIZE.SMALL,
     fontWeight: '600',
   },
   forgotPasswordButton: {
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     color: colors.CLOCKWISE_PRIMARY,
-    fontSize: 16,
+    fontSize: FONT_SIZE.X_SMALL,
     textDecorationLine: 'underline',
   },
 });

@@ -9,14 +9,15 @@ import {
 import { InputFieldProps } from '../../../types';
 import { styles } from '../styles/InputField.styles';
 import useInputField from '../hooks/useInputField';
+import STRINGS from '../../../../utils/strings';
 
-export default function InputField({
+const InputField = ({
   label,
   value,
   error,
   onChangeText,
   ...props
-}: InputFieldProps) {
+}: InputFieldProps) => {
   const {
     labelStyle,
     labelStyleFocused,
@@ -79,7 +80,7 @@ export default function InputField({
 
           <TouchableOpacity onPress={changePwdType}>
             <Text style={styles.showPasswordButton}>
-              {isPassword ? 'Show' : 'Hide'}
+              {isPassword ? STRINGS.ICON_TITLES.SHOW : STRINGS.ICON_TITLES.HIDE}
             </Text>
           </TouchableOpacity>
         </View>
@@ -88,4 +89,6 @@ export default function InputField({
       </View>
     );
   }
-}
+};
+
+export default InputField;

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../store/actions/auth';
 import { NavigationProp } from '../../types';
 
-function useLoginScreen() {
+const useLoginScreen = () => {
   const navigation = useNavigation<NavigationProp>();
 
   const [email, setEmail] = useState('');
@@ -44,13 +44,13 @@ function useLoginScreen() {
     return regex.test(text);
   };
 
-  function changePwdType() {
+  const changePwdType = () => {
     setIsPassword((prevState) => !prevState);
-  }
+  };
 
-  function handleForgotPassword() {
+  const handleForgotPassword = () => {
     navigation.navigate(SCREENS.ForgotPassword);
-  }
+  };
 
   return {
     email,
@@ -65,6 +65,6 @@ function useLoginScreen() {
     attempt,
     loading,
   };
-}
+};
 
 export default useLoginScreen;

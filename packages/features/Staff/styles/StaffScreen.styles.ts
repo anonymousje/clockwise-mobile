@@ -1,5 +1,11 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts } from '../../theme';
+import {
+  colors,
+  fonts,
+  FONT_SIZE,
+  HEIGHT,
+  MODE,
+} from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -12,14 +18,14 @@ export const styles = StyleSheet.create({
     flex: 1,
 
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
   },
 
   searchContainer: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 20,
@@ -36,7 +42,7 @@ export const styles = StyleSheet.create({
 
   searchIcon: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingLeft: 10,
@@ -44,8 +50,8 @@ export const styles = StyleSheet.create({
   },
 
   searchInput: {
-    fontSize: 17,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.SMALL,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 14,
     paddingLeft: 10,
@@ -53,7 +59,7 @@ export const styles = StyleSheet.create({
 
   filterIcon: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingLeft: 20,
@@ -68,7 +74,7 @@ export const styles = StyleSheet.create({
   },
 
   staffSectionHeader: {
-    fontSize: 19,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_BOLD,
     marginTop: 24,
     marginBottom: 12,
@@ -96,13 +102,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 30,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BORDER_COLOR_DARK_MODE
         : colors.BORDER_COLOR_LIGHT_MODE,
     paddingLeft: 20,
@@ -110,28 +116,28 @@ export const styles = StyleSheet.create({
 
   staffAvatar: {
     width: 50,
-    height: 50,
+    height: HEIGHT.SMALL,
     borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   staffAvatarText: {
-    fontSize: 20,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     color: colors.TEXT_DARK_MODE,
   },
 
   staffName: {
-    fontSize: 19,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_BOLD,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 2,
   },
 
   position: {
-    fontSize: 17,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.X_SMALL,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     opacity: 0.6,
   },
 
@@ -141,9 +147,9 @@ export const styles = StyleSheet.create({
 
   addButton: {
     backgroundColor: '#5DC036',
-    width: 60,
-    height: 60,
-    borderRadius: 28,
+    width: 65,
+    height: HEIGHT.MEDIUM,
+    borderRadius: 34,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -158,9 +164,9 @@ export const styles = StyleSheet.create({
   },
 
   addButtonText: {
-    fontSize: 40,
+    fontSize: FONT_SIZE.BUTTON_FONT_LARGE,
     fontWeight: '400',
-    color: 'white',
+    color: colors.BUTTON_TEXT,
   },
 
   modalContainer: {
@@ -171,7 +177,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_FORMS
         : colors.BACKGROUND_LIGHT_FORMS,
   },
@@ -183,13 +189,13 @@ export const styles = StyleSheet.create({
   },
 
   modalCloseButton: {
-    fontSize: 20,
+    fontSize: FONT_SIZE.BUTTON_FONT_MEDIUM,
     fontWeight: 'bold',
     padding: 10,
   },
 
   modalCloseButtonText: {
-    fontSize: 16,
+    fontSize: FONT_SIZE.X_SMALL,
     color: colors.CLOCKWISE_PRIMARY,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
@@ -200,7 +206,7 @@ export const styles = StyleSheet.create({
   },
 
   modalTitle: {
-    fontSize: 24,
+    fontSize: FONT_SIZE.MEDIUM,
     fontWeight: 'bold',
     color: colors.CLOCKWISE_PRIMARY,
     textAlign: 'center',
@@ -208,13 +214,13 @@ export const styles = StyleSheet.create({
 
   filterInput: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 10,
     paddingLeft: 15,
     marginTop: 20,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   filterButton: {
@@ -226,14 +232,14 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
 
-  filterText: {
-    fontSize: 20,
-    color: 'white',
+  filterButtonText: {
+    fontSize: FONT_SIZE.SMALL,
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
   },
 });
 
 export const placeholderColor =
-  mode === 'dark'
+  mode === MODE.DARK
     ? colors.TEXT_DARK_LIGHTER_MODE
     : colors.TEXT_LIGHT_LIGHTER_MODE;

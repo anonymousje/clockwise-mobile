@@ -1,17 +1,18 @@
 import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
+import COMMON_CONSTANTS from '../constants/CommonConstants';
 
-let accessToken = '';
-let refreshToken = '';
+let accessToken = COMMON_CONSTANTS.DEFAULT;
+let refreshToken = COMMON_CONSTANTS.DEFAULT;
 
-export function setAccessToken(token: string) {
+export const setAccessToken = (token: string) => {
   accessToken = token;
-}
+};
 
-export function setRefreshToken(token: string) {
+export const setRefreshToken = (token: string) => {
   refreshToken = token;
-}
+};
 
 const apiClient = axios.create({
   baseURL: 'http://10.0.2.2:5135/api',
@@ -23,30 +24,22 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   function (config) {
-    console.log(accessToken, refreshToken);
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
-    console.log('config;', JSON.stringify(config));
     return config;
   },
   function (error) {
-    console.log('request error;', JSON.stringify(error));
     return Promise.reject(error);
   },
 );
 
 apiClient.interceptors.response.use(
   function (response) {
-    console.log('response;', JSON.stringify(response));
     return response;
   },
 
   async function (error) {
-    console.log('response error;', JSON.stringify(error));
-    //const accessToken = store.getState().user.accessToken;
-    //const refreshToken = store.getState().user.refreshToken;
-
     const originalRequest = error.config;
     if (error.response && error.response.status === 401) {
       try {
@@ -57,8 +50,6 @@ apiClient.interceptors.response.use(
             refreshToken: refreshToken,
           },
         );
-
-        console.log('Refresh token response:', response.data);
 
         accessToken = response.data.data.accessToken;
         refreshToken = response.data.data.refreshToken;
@@ -72,15 +63,11 @@ apiClient.interceptors.response.use(
 
         originalRequest.headers.Authorization = `Bearer ${response.data.data.accessToken}`;
 
-        console.log(
-          'Retrying original request with new token:',
-          originalRequest,
-        );
-
         return await axios(originalRequest);
       } catch (refreshError) {
-        store.dispatch(setTokens('', ''));
-        console.error('Refresh token failed:', refreshError);
+        store.dispatch(
+          setTokens(COMMON_CONSTANTS.DEFAULT, COMMON_CONSTANTS.DEFAULT),
+        );
 
         return Promise.reject(refreshError);
       }

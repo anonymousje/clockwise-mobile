@@ -1,14 +1,13 @@
 import { View, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../styles/Button.styles';
 import { ButtonProps } from '../../../types';
-import { colors } from '../../../theme';
+import { colors } from '../../../../constants/theme';
 
-export default function Button({
+const Button = ({
   onPress,
   label,
   color = colors.CLOCKWISE_PRIMARY,
-  style = {},
-}: ButtonProps) {
+}: ButtonProps) => {
   return (
     <>
       <View style={styles.buttonContainer}>
@@ -21,4 +20,6 @@ export default function Button({
       </View>
     </>
   );
-}
+};
+
+export default Button;

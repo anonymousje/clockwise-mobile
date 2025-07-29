@@ -3,37 +3,36 @@ import { z } from 'zod';
 import { useDispatch } from 'react-redux';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import apiClient from '../../apiClient';
 import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import STRINGS from '../../../utils/strings';
+import AddEmployeeService from '../services/AddEmployeeService';
 
-export default function useAddEmployee() {
+const useAddEmployee = () => {
   const [errorMsg, setErrorMsg] = useState(false);
   const [firstName, setFirstName] = useState('');
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp>();
 
   const staffSchema = z.object({
-    firstName: z.string().min(1, 'First Name is required'),
-    lastName: z.string().min(1, 'Last Name is required'),
-    email: z.string().email('Invalid email address'),
+    firstName: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
+    lastName: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
+    email: z.string().email(STRINGS.ZOD_ERRORS.EMAIL_INVALID),
     password: z
       .string()
-      .min(7, 'Minimum 7 characters required')
-      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-      .regex(
-        /[^A-Za-z0-9]/,
-        'Password must contain at least one special character',
-      ),
+      .min(7, STRINGS.VALIDATIONS.LENGTH)
+      .regex(/[A-Z]/, STRINGS.VALIDATIONS.UPPERCASE)
+      .regex(/[^A-Za-z0-9]/, STRINGS.VALIDATIONS.SPECIAL_CHAR),
   });
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      password: '',
-      email: '',
+      firstName: COMMON_CONSTANTS.DEFAULT,
+      lastName: COMMON_CONSTANTS.DEFAULT,
+      password: COMMON_CONSTANTS.DEFAULT,
+      email: COMMON_CONSTANTS.DEFAULT,
     },
 
     resolver: zodResolver(staffSchema),
@@ -41,7 +40,7 @@ export default function useAddEmployee() {
 
   const onSubmit = async (data: StaffFormData) => {
     try {
-      await apiClient.post('/user/create-user', {
+      await AddEmployeeService.addEmployee({
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
@@ -52,18 +51,16 @@ export default function useAddEmployee() {
       dispatch(fetchUpdated(true));
 
       navigation.goBack();
-    } catch (errors) {
-      console.log('Errors: ', errors);
-
+    } catch (error) {
       setErrorMsg(true);
     }
   };
 
-  function clearForm() {
+  const clearForm = () => {
     reset();
-    setFirstName('');
+    setFirstName(COMMON_CONSTANTS.DEFAULT);
     setErrorMsg(false);
-  }
+  };
 
   return {
     control,
@@ -74,4 +71,6 @@ export default function useAddEmployee() {
     setFirstName,
     clearForm,
   };
-}
+};
+
+export default useAddEmployee;

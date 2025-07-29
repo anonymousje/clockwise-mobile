@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import type { filterItemsType, staffType } from '../../types';
 import { useRoute } from '@react-navigation/native';
 import { StaffDetailNavigationProp, errorType } from '../../types';
-import apiClient from '../../apiClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 import { z } from 'zod';
+import StaffDetailService from '../services/StaffDetailService';
+import STRINGS from '../../../utils/strings';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
-export default function useStaffDetail() {
+const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();
   const { recordId } = route.params;
   const dispatch = useDispatch();
-
-  console.log('Staff Detail Data:', recordId);
 
   const [editMode, setEditMode] = useState(false);
 
@@ -23,69 +23,24 @@ export default function useStaffDetail() {
   const [validationErrors, setValidationErrors] = useState<errorType>({});
 
   const staffSchema = z.object({
-    firstName: z.string().min(1, 'First name is required'),
-    lastName: z.string().min(1, 'Last name is required'),
-    email: z.string().email('Invalid email'),
+    firstName: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
+    lastName: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
+    email: z.string().email(STRINGS.ZOD_ERRORS.EMAIL_INVALID),
   });
 
   useEffect(() => {
     if (!recordId) {
-      console.error('No recordId provided in params');
       return;
     }
 
-    const fetchDepartment = async () => {
-      return await apiClient
-        .get('/department/get-all-departments')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          console.error('Error fetching department:', error);
-          throw error;
-        });
-    };
-
-    const fetchLocation = async () => {
-      return await apiClient
-        .get('/location/get-all-locations')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          console.error('Error fetching location:', error);
-          throw error;
-        });
-    };
-
-    const fetchJobRole = async () => {
-      return await apiClient
-        .get('/jobrole/get-all-jobroles')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          console.error('Error fetching job role:', error);
-          throw error;
-        });
-    };
-
-    const fetchUser = async (): Promise<staffType | null> => {
-      return await apiClient
-        .get(`/user/get-user/${recordId}`)
-        .then((response) => response.data.data)
-        .catch((error) => {
-          console.error('Error fetching user:', error);
-          throw error;
-        });
-    };
-
     const fetchData = async () => {
-      const data = await fetchUser();
-      setStaffData(data);
+      setStaffData(await StaffDetailService.getUser(recordId));
 
-      const departmentData = await fetchDepartment();
-      setDepartmentList(departmentData);
+      setDepartmentList(await StaffDetailService.getDepartment());
 
-      const locationData = await fetchLocation();
-      setLocationList(locationData);
+      setLocationList(await StaffDetailService.getLocation());
 
-      const jobRoleData = await fetchJobRole();
-      setJobRoleList(jobRoleData);
+      setJobRoleList(await StaffDetailService.getJobRole());
     };
 
     fetchData();
@@ -110,8 +65,7 @@ export default function useStaffDetail() {
 
       setValidationErrors({});
       try {
-        console.log('Staff data updated:', staffData);
-        await apiClient.put(`/user/edit-user/${staffData?.recordId}`, {
+        await StaffDetailService.updateUser(staffData?.recordId, {
           firstName: staffData?.firstName,
           lastName: staffData?.lastName,
           email: staffData?.email,
@@ -131,22 +85,29 @@ export default function useStaffDetail() {
         });
 
         dispatch(fetchUpdated(true));
-      } catch (e: any) {
-        console.log('Error updating staff data:', e.response?.data);
+        const updatedUser: staffType | null = await StaffDetailService.getUser(
+          staffData?.recordId,
+        );
 
+        setStaffData(updatedUser);
+      } catch (e: any) {
         const errors: errorType = {};
 
         if (e.response && e.response.data) {
           const msg = e.response.data.errors[0];
 
-          if (msg.toLowerCase().includes('email')) {
+          if (msg.toLowerCase().includes(STRINGS.RESPONSE_SORT.EMAIL)) {
             errors.email = msg;
-          } else if (msg.toLowerCase().includes('username')) {
+          } else if (
+            msg.toLowerCase().includes(STRINGS.RESPONSE_SORT.USERNAME)
+          ) {
             errors.username = msg;
-          } else if (msg.toLowerCase().includes('usercode')) {
+          } else if (
+            msg.toLowerCase().includes(STRINGS.RESPONSE_SORT.USERCODE)
+          ) {
             errors.userCode = msg;
           } else {
-            errors.general = 'Failed to update staff data';
+            errors.general = STRINGS.STAFF_UPDATE_ERROR;
           }
         }
 
@@ -158,37 +119,66 @@ export default function useStaffDetail() {
     setEditMode(!editMode);
   };
 
-  function formatDateTime(dateString?: string): string {
-    if (!dateString) return ' -';
+  const formatDateTime = (dateString?: string): string => {
+    if (!dateString) return ` ${STRINGS.DASH}`;
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return dateString;
-    return date.toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
+    return date.toLocaleString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
+      year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
+      month: COMMON_CONSTANTS.DATE_TIME.SHORT,
+      day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      second: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
       hour12: true,
     });
-  }
+  };
 
   const changeStatus = async () => {
     if (staffData?.userStatus === 3) {
-      await apiClient.post(`/user/restore-user/${staffData?.recordId}`);
+      await StaffDetailService.restoreUser(staffData?.recordId);
       dispatch(fetchUpdated(true));
     } else {
-      await apiClient.post(`/user/delete-user`, { id: staffData?.recordId });
+      await StaffDetailService.deleteUser(staffData?.recordId);
       dispatch(fetchUpdated(true));
     }
 
     try {
-      const updatedUser = await apiClient
-        .get(`/user/get-user/${staffData?.recordId}`)
-        .then((response) => response.data.data);
+      const updatedUser: staffType | null = await StaffDetailService.getUser(
+        staffData?.recordId,
+      );
+
       setStaffData(updatedUser);
-    } catch (error) {
-      console.error('Error re-fetching user after status change:', error);
+    } catch (error) {}
+  };
+
+  const checkUndefined = (value: string | null | undefined) => {
+    return value === null || value === undefined ? ` ${STRINGS.DASH}` : value;
+  };
+
+  const handleTextChange = (text: string, field: keyof staffType) => {
+    if (staffData) {
+      setStaffData({ ...staffData, [field]: text });
+    }
+  };
+
+  const handlePickerChange = (
+    itemValue: string | null | undefined,
+    fieldName: string,
+  ) => {
+    if (staffData) {
+      const listMap: { [key: string]: filterItemsType[] } = {
+        department: departmentList,
+        location: locationList,
+        jobRole: jobRolelist,
+      };
+      setStaffData({
+        ...staffData,
+        [`${fieldName}Name`]: itemValue,
+        [`${fieldName}RecordId`]: listMap[fieldName]?.find(
+          (item) => item.name === itemValue,
+        )?.recordId,
+      });
     }
   };
 
@@ -203,5 +193,10 @@ export default function useStaffDetail() {
     validationErrors,
     changeStatus,
     formatDateTime,
+    checkUndefined,
+    handleTextChange,
+    handlePickerChange,
   };
-}
+};
+
+export default useStaffDetail;

@@ -9,6 +9,7 @@ export const colors = {
   BACKGROUND_LIGHT_FORMS: '#F0F4F5',
   BACKGROUND_ICONS_LIGHT_MODE: '#cacccc',
   BACKGROUND_ICONS_DARK_MODE: '#1c1c1c',
+  BUTTON_TEXT: 'white',
 
   BORDER_COLOR_LIGHT_MODE: '#E0E0E0',
   BORDER_COLOR_DARK_MODE: 'white',
@@ -17,6 +18,31 @@ export const colors = {
   TEXT_DARK_LIGHTER_MODE: '#656565',
   TEXT_LIGHT_LIGHTER_MODE: '#656565',
   RANDOM_COLOR_ARRAY: ['#07CF99', '#086DBF', '#B63C08', '#F0F30D', '#0ED4EA'],
+  RED: 'red',
+  GREEN: 'green',
+  BLACK: 'black',
+};
+
+export const FONT_SIZE = {
+  ERROR: 13,
+  X_SMALL: 15,
+  SMALL: 18,
+  MEDIUM: 24,
+  LARGE: 30,
+  X_LARGE: 50,
+  BUTTON_FONT_LARGE: 40,
+  BUTTON_FONT_MEDIUM: 20,
+  BUTTON_SMALL: 13,
+};
+
+export const HEIGHT = {
+  MEDIUM: 65,
+  SMALL: 50,
+  LARGE: 120,
+};
+export const MODE = {
+  DARK: 'dark',
+  LIGHT: 'light',
 };
 
 export const fonts = {

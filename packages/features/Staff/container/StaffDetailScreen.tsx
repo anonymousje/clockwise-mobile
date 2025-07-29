@@ -5,12 +5,16 @@ import useStaffDetail from '../hooks/useStaffDetail';
 import { Picker } from '@react-native-picker/picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Button from '../../components/Button/container/Button';
+import ICONS from '../../../constants/Icons';
+import STRINGS from '../../../utils/strings';
+import { colors } from '../../../constants/theme';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import { getInitials } from '../../../utils/helper';
 
-export default function StaffDetail() {
+const StaffDetail = () => {
   const {
     editMode,
     staffData,
-    setStaffData,
     editStaffData,
     departmentList,
     locationList,
@@ -18,23 +22,26 @@ export default function StaffDetail() {
     validationErrors,
     changeStatus,
     formatDateTime,
+    checkUndefined,
+    handleTextChange,
+    handlePickerChange,
   } = useStaffDetail();
 
   return (
     <View style={styles.container}>
       <View style={styles.editButtonContainer}>
         <TouchableOpacity
-          onPress={() => editStaffData()}
+          onPress={editStaffData}
           style={styles.editButton}
         >
           <Icons
-            name={editMode ? 'save-outline' : 'create-outline'}
+            name={editMode ? ICONS.save : ICONS.create}
             size={24}
             color={editIconColor}
           />
 
           <Text style={styles.editButtonText}>
-            {editMode ? 'Save' : 'Edit'}{' '}
+            {editMode ? STRINGS.ICON_TITLES.SAVE : STRINGS.ICON_TITLES.EDIT}
           </Text>
         </TouchableOpacity>
       </View>
@@ -43,8 +50,7 @@ export default function StaffDetail() {
         <View style={styles.headerContainer}>
           <View style={styles.avatarContainer}>
             <Text style={styles.avatarText}>
-              {staffData?.firstName.charAt(0).toUpperCase()}
-              {staffData?.lastName.charAt(0).toUpperCase()}
+              {getInitials(staffData?.firstName, staffData?.lastName)}
             </Text>
           </View>
         </View>
@@ -52,71 +58,97 @@ export default function StaffDetail() {
         {!editMode && (
           <View style={styles.staffDetails}>
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>First Name</Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.FIRST_NAME}
+              </Text>
               <Text style={styles.text}>{staffData?.firstName}</Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Last Name</Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.LAST_NAME}
+              </Text>
               <Text style={styles.text}>
-                {staffData?.lastName === undefined ? ' -' : staffData?.lastName}
+                {staffData?.lastName === undefined
+                  ? ` ${STRINGS.DASH}`
+                  : staffData?.lastName}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Email</Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.EMAIL}
+              </Text>
               <Text style={styles.text}>{staffData?.email}</Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Last Login</Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.LAST_LOGIN}
+              </Text>
               <Text style={styles.text}>
                 {staffData?.lastLoginDate === undefined
-                  ? ' -'
-                  : formatDateTime(staffData?.lastLoginDate || '')}
+                  ? ` ${STRINGS.DASH}`
+                  : formatDateTime(
+                      staffData?.lastLoginDate || COMMON_CONSTANTS.DEFAULT,
+                    )}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Permission Level</Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.PERMISSION_LEVEL}
+              </Text>
+
               <Text style={styles.text}>
-                {staffData?.role === undefined ? ' -' : staffData?.role}
+                {staffData?.role === undefined
+                  ? ` ${STRINGS.DASH}`
+                  : staffData?.role}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Status </Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.STATUS}
+              </Text>
+
               <Text style={styles.text}>
                 {staffData?.userStatus === undefined
-                  ? ' -'
+                  ? ` ${STRINGS.DASH}`
                   : String(staffData?.userStatus) === '1'
-                  ? 'Active'
-                  : 'Inactive'}
+                  ? STRINGS.ACTIVE
+                  : STRINGS.INACTIVE}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Location</Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.LOCATION}
+              </Text>
+
               <Text style={styles.text}>
-                {staffData?.locationName === undefined
-                  ? ' -'
-                  : staffData?.locationName}
+                {checkUndefined(staffData?.locationName)}
               </Text>
             </View>
 
             <View style={styles.textContainer}>
-              <Text style={styles.textHeader}>Job Role</Text>
+              <Text style={styles.textHeader}>
+                {STRINGS.EMPLOYEE_FORM.JOB_ROLE}
+              </Text>
+
               <Text style={styles.text}>
-                {staffData?.jobRoleName === undefined
-                  ? ' -'
-                  : staffData?.jobRoleName}
+                {checkUndefined(staffData?.jobRoleName)}
               </Text>
             </View>
 
             <Button
-              label={staffData?.userStatus === 1 ? 'Deactivate' : 'Activate'}
-              onPress={() => changeStatus()}
-              color={staffData?.userStatus === 1 ? 'red' : 'green'}
+              label={
+                staffData?.userStatus === 1
+                  ? STRINGS.DEACTIVATE
+                  : STRINGS.ACTIVATE
+              }
+              onPress={changeStatus}
+              color={staffData?.userStatus === 1 ? colors.RED : colors.GREEN}
             />
           </View>
         )}
@@ -124,12 +156,13 @@ export default function StaffDetail() {
         {editMode && (
           <View style={styles.editDetails}>
             <InputField
-              label='First Name'
-              value={staffData?.firstName || ''}
+              label={STRINGS.EMPLOYEE_FORM.FIRST_NAME}
+              value={staffData?.firstName || COMMON_CONSTANTS.DEFAULT}
               onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, firstName: text });
-                }
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.FIRST_NAME,
+                );
               }}
             />
 
@@ -138,13 +171,14 @@ export default function StaffDetail() {
             )}
 
             <InputField
-              label='Last Name'
-              value={staffData?.lastName || ''}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, lastName: text });
-                }
-              }}
+              label={STRINGS.EMPLOYEE_FORM.LAST_NAME}
+              value={staffData?.lastName || COMMON_CONSTANTS.DEFAULT}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.LAST_NAME,
+                )
+              }
             />
 
             {validationErrors?.lastName && (
@@ -152,13 +186,14 @@ export default function StaffDetail() {
             )}
 
             <InputField
-              label='Email'
-              value={staffData?.email || ''}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, email: text });
-                }
-              }}
+              label={STRINGS.EMPLOYEE_FORM.EMAIL}
+              value={staffData?.email || COMMON_CONSTANTS.DEFAULT}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.EMAIL,
+                )
+              }
             />
 
             {validationErrors?.email && (
@@ -166,23 +201,25 @@ export default function StaffDetail() {
             )}
 
             <InputField
-              label='Cell Phone'
-              value={staffData?.phoneNumber || ''}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, phoneNumber: text });
-                }
-              }}
+              label={STRINGS.EMPLOYEE_FORM.CELL_PHONE}
+              value={staffData?.phoneNumber || COMMON_CONSTANTS.DEFAULT}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.PHONE_NUMBER,
+                )
+              }
             />
 
             <InputField
-              label='User Name'
-              value={staffData?.username || ''}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, username: text });
-                }
-              }}
+              label={STRINGS.EMPLOYEE_FORM.USERNAME}
+              value={staffData?.username || COMMON_CONSTANTS.DEFAULT}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.USERNAME,
+                )
+              }
             />
 
             {validationErrors?.username && (
@@ -190,33 +227,36 @@ export default function StaffDetail() {
             )}
 
             <InputField
-              label='Nick Name'
-              value={staffData?.nickname || ''}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, nickname: text });
-                }
-              }}
+              label={STRINGS.EMPLOYEE_FORM.NICKNAME}
+              value={staffData?.nickname || COMMON_CONSTANTS.DEFAULT}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.NICKNAME,
+                )
+              }
             />
 
             <InputField
-              label='Address'
-              value={staffData?.address || ''}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, address: text });
-                }
-              }}
+              label={STRINGS.EMPLOYEE_FORM.ADDRESS}
+              value={staffData?.address || COMMON_CONSTANTS.DEFAULT}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.ADDRESS,
+                )
+              }
             />
 
             <InputField
-              label='User Code'
-              value={staffData?.userCode || ''}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, userCode: text });
-                }
-              }}
+              label={STRINGS.EMPLOYEE_FORM.USERCODE}
+              value={staffData?.userCode || COMMON_CONSTANTS.DEFAULT}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.USER_CODE,
+                )
+              }
             />
 
             {validationErrors?.userCode && (
@@ -226,23 +266,20 @@ export default function StaffDetail() {
             <View style={styles.pickersContainer}>
               <View style={styles.picker}>
                 <Picker
-                  selectedValue={staffData?.departmentName || ''}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({
-                        ...staffData,
-                        departmentName: itemValue,
-                        departmentRecordId: departmentList.find(
-                          (department) => department.name === itemValue,
-                        )?.recordId,
-                      });
-                    }
-                  }}
+                  selectedValue={
+                    staffData?.departmentName || COMMON_CONSTANTS.DEFAULT
+                  }
+                  onValueChange={(itemValue) =>
+                    handlePickerChange(
+                      itemValue,
+                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.DEPARTMENT,
+                    )
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item
-                    label='Select Department'
-                    value=''
+                    label={STRINGS.PICKER_LABELS.DEPARTMENT}
+                    value={COMMON_CONSTANTS.DEFAULT}
                   />
 
                   {departmentList.map((department) => (
@@ -257,23 +294,20 @@ export default function StaffDetail() {
 
               <View style={styles.picker}>
                 <Picker
-                  selectedValue={staffData?.locationName || ''}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({
-                        ...staffData,
-                        locationName: itemValue,
-                        locationRecordId: locationList.find(
-                          (location) => location.name === itemValue,
-                        )?.recordId,
-                      });
-                    }
-                  }}
+                  selectedValue={
+                    staffData?.locationName || COMMON_CONSTANTS.DEFAULT
+                  }
+                  onValueChange={(itemValue) =>
+                    handlePickerChange(
+                      itemValue,
+                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.LOCATION,
+                    )
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item
-                    label='Select Location'
-                    value=''
+                    label={STRINGS.PICKER_LABELS.LOCATION}
+                    value={COMMON_CONSTANTS.DEFAULT}
                   />
 
                   {locationList.map((location) => (
@@ -288,23 +322,20 @@ export default function StaffDetail() {
 
               <View style={styles.picker}>
                 <Picker
-                  selectedValue={staffData?.jobRoleName || ''}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({
-                        ...staffData,
-                        jobRoleName: itemValue,
-                        jobRoleRecordId: jobRolelist.find(
-                          (jobRole) => jobRole.name === itemValue,
-                        )?.recordId,
-                      });
-                    }
-                  }}
+                  selectedValue={
+                    staffData?.jobRoleName || COMMON_CONSTANTS.DEFAULT
+                  }
+                  onValueChange={(itemValue) =>
+                    handlePickerChange(
+                      itemValue,
+                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.JOB_ROLE,
+                    )
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item
-                    label='Select Job Role'
-                    value=''
+                    label={STRINGS.PICKER_LABELS.JOB_ROLE}
+                    value={COMMON_CONSTANTS.DEFAULT}
                   />
 
                   {jobRolelist.map((jobRole) => (
@@ -319,27 +350,28 @@ export default function StaffDetail() {
 
               <View style={styles.picker}>
                 <Picker
-                  selectedValue={staffData?.role || ''}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({ ...staffData, role: itemValue });
-                    }
-                  }}
+                  selectedValue={staffData?.role || COMMON_CONSTANTS.DEFAULT}
+                  onValueChange={(itemValue) =>
+                    handleTextChange(
+                      itemValue,
+                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.ROLE,
+                    )
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item
-                    label='Select Permission Level'
-                    value=''
+                    label={STRINGS.PICKER_LABELS.PERMISSION_LEVEL}
+                    value={COMMON_CONSTANTS.DEFAULT}
                   />
 
                   <Picker.Item
-                    label='Manager'
-                    value='Admin'
+                    label={STRINGS.ROLES.ADMIN}
+                    value={COMMON_CONSTANTS.PICKER_VALUES.ADMIN}
                   />
 
                   <Picker.Item
-                    label='Employee'
-                    value='User'
+                    label={STRINGS.ROLES.USER}
+                    value={COMMON_CONSTANTS.PICKER_VALUES.USER}
                   />
                 </Picker>
               </View>
@@ -349,4 +381,6 @@ export default function StaffDetail() {
       </ScrollView>
     </View>
   );
-}
+};
+
+export default StaffDetail;

@@ -8,8 +8,12 @@ import { staffType } from '../../types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
+import ICONS from '../../../constants/Icons';
+import STRINGS from '../../../utils/strings';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import { colors } from '../../../constants/theme';
 
-export default function Staff() {
+const Staff = () => {
   const {
     openForm,
     staffList,
@@ -40,13 +44,13 @@ export default function Staff() {
           <View style={styles.searchContainer}>
             <View style={styles.searchInputContainer}>
               <Ionicons
-                name='search-outline'
+                name={ICONS.search}
                 size={30}
                 style={styles.searchIcon}
               />
 
               <TextInput
-                placeholder='Search Staff'
+                placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.SEARCH_STAFF}
                 placeholderTextColor={placeholderColor}
                 style={styles.searchInput}
                 value={search}
@@ -56,7 +60,7 @@ export default function Staff() {
 
             <TouchableOpacity onPress={() => setModal(true)}>
               <Ionicons
-                name='filter-outline'
+                name={ICONS.filter}
                 size={30}
                 style={styles.filterIcon}
               />
@@ -64,7 +68,9 @@ export default function Staff() {
           </View>
 
           <View style={styles.headerContainer}>
-            <Text style={styles.staffSectionHeader}>STAFF</Text>
+            <Text style={styles.staffSectionHeader}>
+              {STRINGS.HEADERS.STAFF}
+            </Text>
           </View>
 
           <View style={styles.shadowSeparator} />
@@ -85,7 +91,9 @@ export default function Staff() {
               >
                 <Text style={styles.staffAvatarText}>
                   {staff.firstName[0].toUpperCase()}
-                  {staff.lastName ? staff.lastName[0].toUpperCase() : ''}
+                  {staff.lastName
+                    ? staff.lastName[0].toUpperCase()
+                    : COMMON_CONSTANTS.DEFAULT}
                 </Text>
               </View>
 
@@ -127,22 +135,26 @@ export default function Staff() {
               onPress={() => setModal(false)}
             >
               <Ionicons
-                name='arrow-back-outline'
+                name={ICONS.arrow}
                 size={25}
-                color='black'
+                color={colors.BLACK}
               />
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.modalCloseButton}
-              onPress={() => clearFilters()}
+              onPress={clearFilters}
             >
-              <Text style={styles.modalCloseButtonText}>CLEAR</Text>
+              <Text style={styles.modalCloseButtonText}>
+                {STRINGS.ICON_TITLES.CLEAR}
+              </Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Filter Options</Text>
+            <Text style={styles.modalTitle}>
+              {STRINGS.HEADERS.FILTER_OPTIONS}
+            </Text>
 
             <Picker
               selectedValue={location}
@@ -150,8 +162,8 @@ export default function Staff() {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='Select Location'
-                value=''
+                label={STRINGS.PICKER_LABELS.LOCATION}
+                value={COMMON_CONSTANTS.DEFAULT}
               />
 
               {locationList.map((item) => (
@@ -169,8 +181,8 @@ export default function Staff() {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='Select Department'
-                value=''
+                label={STRINGS.PICKER_LABELS.DEPARTMENT}
+                value={COMMON_CONSTANTS.DEFAULT}
               />
 
               {departmentList.map((item) => (
@@ -188,8 +200,8 @@ export default function Staff() {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='Select Role'
-                value=''
+                label={STRINGS.PICKER_LABELS.JOB_ROLE}
+                value={COMMON_CONSTANTS.DEFAULT}
               />
 
               {jobRolelist.map((item) => (
@@ -207,17 +219,17 @@ export default function Staff() {
               style={styles.filterInput}
             >
               <Picker.Item
-                label='All Staff'
+                label={STRINGS.PICKER_LABELS.ALL_STAFF}
                 value={2}
               />
 
               <Picker.Item
-                label='Active Staff'
+                label={STRINGS.PICKER_LABELS.ACTIVE_STAFF}
                 value={1}
               />
 
               <Picker.Item
-                label='Inactive Staff'
+                label={STRINGS.PICKER_LABELS.INACTIVE_STAFF}
                 value={3}
               />
             </Picker>
@@ -227,10 +239,14 @@ export default function Staff() {
             onPress={() => applyFilters(location, department, role)}
             style={styles.filterButton}
           >
-            <Text style={styles.filterText}>APPLY</Text>
+            <Text style={styles.filterButtonText}>
+              {STRINGS.ICON_TITLES.APPLY}
+            </Text>
           </TouchableOpacity>
         </View>
       </Modal>
     </View>
   );
-}
+};
+
+export default Staff;

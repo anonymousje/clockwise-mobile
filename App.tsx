@@ -14,26 +14,29 @@ import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 import Staff from './packages/features/Staff/container/StaffScreen';
 import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
-import { colors } from './packages/features/theme';
+import { colors, FONT_SIZE, HEIGHT, MODE } from './packages/constants/theme';
 import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
+import STRINGS from './packages/utils/strings';
+import LINK_PREFIX from './packages/constants/links';
+import ICONS from './packages/constants/Icons';
 
 const config = {
   screens: {
-    [SCREENS.Login]: 'login',
-    [SCREENS.ForgotPassword]: 'forgotpassword',
+    [SCREENS.Login]: LINK_PREFIX.LOGIN,
+    [SCREENS.ForgotPassword]: LINK_PREFIX.FORGOT_PASSWORD,
     [SCREENS.NewPassword]: {
-      path: 'reset-password',
+      path: LINK_PREFIX.NEW_PASSWORD,
       parse: {
         email: (email: string) => decodeURIComponent(email),
         token: (token: string) => decodeURIComponent(token),
       },
     },
-    [SCREENS.Dashboard]: 'dashboard',
+    [SCREENS.Dashboard]: LINK_PREFIX.DASHBOARD,
   },
 };
 
 const linking = {
-  prefixes: ['clockwise://', 'https://clockwise.com'],
+  prefixes: [LINK_PREFIX.CLOCKWISE, LINK_PREFIX.HTTPS],
   config,
 };
 
@@ -41,7 +44,7 @@ const Tab = createBottomTabNavigator();
 
 const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
   <Ionicons
-    name='home-outline'
+    name={ICONS.home}
     size={size}
     color={color}
     style={{ width: size, height: size }}
@@ -50,14 +53,14 @@ const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
 
 const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
   <Ionicons
-    name='people-outline'
+    name={ICONS.people}
     size={size}
     color={color}
     style={{ width: size, height: size }}
   />
 );
 
-function MainTabs() {
+const MainTabs = () => {
   const mode = Appearance.getColorScheme();
 
   return (
@@ -65,8 +68,13 @@ function MainTabs() {
       screenOptions={{
         tabBarStyle: {
           backgroundColor:
-            mode === 'dark' ? colors.BACKGROUND_DARK_MODE : 'white',
-          height: 65,
+            mode === MODE.DARK
+              ? colors.BACKGROUND_DARK_MODE
+              : colors.BACKGROUND_LIGHT_MODE,
+          height: HEIGHT.MEDIUM,
+        },
+        tabBarLabelStyle: {
+          fontSize: FONT_SIZE.BUTTON_SMALL,
         },
       }}
     >
@@ -74,19 +82,8 @@ function MainTabs() {
         name={SCREENS.Dashboard}
         component={Dashboard}
         options={{
-          title: 'Dashboard',
-          headerShown: true,
-          headerTitleStyle: {
-            color: mode === 'dark' ? 'white' : 'black',
-          },
-          headerStyle: {
-            backgroundColor:
-              mode === 'dark'
-                ? colors.BACKGROUND_DARK_MODE
-                : colors.BACKGROUND_LIGHT_MODE,
-          },
-          headerTintColor: mode === 'dark' ? 'white' : 'black',
-
+          title: STRINGS.SCREEN_TITLE.DASHBOARD,
+          headerShown: false,
           tabBarIcon: DashboardTabIcon,
         }}
       />
@@ -95,16 +92,16 @@ function MainTabs() {
         name={SCREENS.Staff}
         component={Staff}
         options={{
-          title: 'Staff',
+          title: STRINGS.SCREEN_TITLE.STAFF,
           headerShown: false,
           tabBarIcon: StaffTabIcon,
         }}
       />
     </Tab.Navigator>
   );
-}
+};
 
-function App() {
+const App = () => {
   const Stack = createStackNavigator<RoutesTypes>();
 
   const mode = Appearance.getColorScheme();
@@ -123,17 +120,25 @@ function App() {
             name={SCREENS.ForgotPassword}
             component={ForgotPassword}
             options={{
-              title: 'Forgot Password',
+              title: STRINGS.SCREEN_TITLE.FORGOT_PASSWORD,
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
+
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -141,17 +146,23 @@ function App() {
             name={SCREENS.NewPassword}
             component={NewPassword}
             options={{
-              title: 'Forgot Password',
+              title: STRINGS.SCREEN_TITLE.NEW_PASSWORD,
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -166,17 +177,23 @@ function App() {
             component={AddEmployee}
             options={{
               headerShown: true,
-              title: 'Add Employee',
+              title: STRINGS.SCREEN_TITLE.ADD_EMPLOYEE,
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -185,23 +202,29 @@ function App() {
             component={StaffDetail}
             options={{
               headerShown: true,
-              title: 'Employee Details',
+              title: STRINGS.SCREEN_TITLE.STAFF_DETAIL,
               headerTitleStyle: {
-                color: mode === 'dark' ? 'white' : 'black',
+                color:
+                  mode === MODE.DARK
+                    ? colors.TEXT_DARK_MODE
+                    : colors.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
-                  mode === 'dark'
+                  mode === MODE.DARK
                     ? colors.BACKGROUND_DARK_MODE
                     : colors.BACKGROUND_LIGHT_MODE,
               },
-              headerTintColor: mode === 'dark' ? 'white' : 'black',
+              headerTintColor:
+                mode === MODE.DARK
+                  ? colors.TEXT_DARK_MODE
+                  : colors.TEXT_LIGHT_MODE,
             }}
           />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
-}
+};
 
 export default App;

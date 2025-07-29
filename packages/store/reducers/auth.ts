@@ -1,11 +1,12 @@
 import { setAccessToken, setRefreshToken } from '../../features/apiClient';
 import { Action } from '../actions/auth';
+import COMMON_CONSTANTS from '../../constants/CommonConstants';
 
 const initialState = {
-  email: '',
-  accessToken: '',
-  refreshToken: '',
-  role: '',
+  email: COMMON_CONSTANTS.DEFAULT,
+  accessToken: COMMON_CONSTANTS.DEFAULT,
+  refreshToken: COMMON_CONSTANTS.DEFAULT,
+  role: COMMON_CONSTANTS.DEFAULT,
   authenticated: false,
 };
 

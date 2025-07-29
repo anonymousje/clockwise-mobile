@@ -1,6 +1,6 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors } from '../../../theme';
-import { fonts } from '../../../theme';
+import { colors, FONT_SIZE, MODE } from '../../../../constants/theme';
+import { fonts } from '../../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -10,16 +10,16 @@ export const styles = StyleSheet.create({
   },
 
   input: {
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontSize: 20,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
     borderBottomWidth: 1,
     borderBottomColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BORDER_COLOR_DARK_MODE
         : colors.BORDER_COLOR_LIGHT_MODE,
   },
@@ -35,21 +35,21 @@ export const styles = StyleSheet.create({
 
   errorMsg: {
     color: 'red',
-    fontSize: 13,
+    fontSize: FONT_SIZE.ERROR,
     marginBottom: 2,
     marginLeft: 4,
   },
 
   passwordContainer: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
 
     borderBottomWidth: 1,
 
     borderBottomColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BORDER_COLOR_DARK_MODE
         : colors.BORDER_COLOR_LIGHT_MODE,
     flexDirection: 'row',
@@ -59,16 +59,16 @@ export const styles = StyleSheet.create({
 
   inputPassword: {
     flex: 1,
-    fontSize: 20,
+    fontSize: FONT_SIZE.SMALL,
     flexDirection: 'row',
     alignItems: 'center',
     fontFamily: fonts.CLOCKWISE_REGULAR,
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
 
   showPasswordButton: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingHorizontal: 12,

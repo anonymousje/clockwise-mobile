@@ -3,10 +3,13 @@ import styles from '../styles/Dashboard.styles';
 
 import Clocking from '../../components/Clocking/container/Clock';
 
-export default function Dashboard() {
+const Dashboard = () => {
+  const { user } = useDashboardScreen();
   return (
     <View style={styles.container}>
       <Clocking />
     </View>
   );
-}
+};
+
+export default Dashboard;
