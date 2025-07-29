@@ -4,7 +4,7 @@ import { NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { SCREENS } from '../../../constants/screens';
-import apiClient from '../../apiClient';
+import StaffService from '../services/StaffService';
 import { staffType, filterItemsType } from '../../types';
 import { RootState } from '../../../store';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
@@ -35,51 +35,40 @@ const useStaffScreen = () => {
 
   useEffect(() => {
     if (userFromStore?.role === VALUES.ADMIN) {
-      getStaff().then((data: staffType[]) => {
-        setStaffList(data);
-        setCacheStaffList(data);
+      StaffService.getStaff().then((data: staffType[]) => {
+        setStaffList(
+          data.map((item: staffType) => ({
+            ...item,
+            iconColor:
+              colors.RANDOM_COLOR_ARRAY[
+                Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
+              ],
+          })),
+        );
+        setCacheStaffList(
+          data.map((item: staffType) => ({
+            ...item,
+            iconColor:
+              colors.RANDOM_COLOR_ARRAY[
+                Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
+              ],
+          })),
+        );
       });
 
       if (updated.flag) {
-        getStaff();
+        StaffService.getStaff();
         dispatch(fetchUpdated(false));
       }
 
-      const fetchDepartment = async () => {
-        return await apiClient
-          .get('/department/get-all-departments')
-          .then((response) => response.data.data)
-          .catch((error) => {
-            throw error;
-          });
-      };
-
-      const fetchLocation = async () => {
-        return await apiClient
-          .get('/location/get-all-locations')
-          .then((response) => response.data.data)
-          .catch((error) => {
-            throw error;
-          });
-      };
-
-      const fetchJobRole = async () => {
-        return await apiClient
-          .get('/jobrole/get-all-jobroles')
-          .then((response) => response.data.data)
-          .catch((error) => {
-            throw error;
-          });
-      };
-
       const fetchData = async () => {
-        const departmentData = await fetchDepartment();
+        const departmentData = await StaffService.fetchDepartment();
         setDepartmentList(departmentData);
 
-        const locationData = await fetchLocation();
+        const locationData = await StaffService.fetchLocation();
         setLocationList(locationData);
 
-        const jobRoleData = await fetchJobRole();
+        const jobRoleData = await StaffService.fetchJobRole();
         setJobRoleList(jobRoleData);
       };
 
@@ -89,36 +78,31 @@ const useStaffScreen = () => {
     }
   }, [userFromStore?.role, updated.flag, dispatch, navigation]);
 
-  const getStaff = async (loc?: string, dep?: string, rol?: string) => {
+  const getStaffList = async (loc?: string, dep?: string, rol?: string) => {
     const params: staffSearchQueryType = {
       location: loc,
       department: dep,
       role: rol,
     };
-
-    const response = await apiClient.get('/user/get-all-users', { params });
-    const customizedResponse = response.data.data.map((item: staffType) => ({
+    const data = await StaffService.getStaff(params);
+    const customizedResponse = data.map((item: staffType) => ({
       ...item,
       iconColor:
         colors.RANDOM_COLOR_ARRAY[
           Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
         ],
     }));
-
     return customizedResponse;
   };
 
   const applyFilters = async (loc?: string, dep?: string, rol?: string) => {
-    const data = await getStaff(loc, dep, rol);
-
+    const data = await getStaffList(loc, dep, rol);
     let filteredData: staffType[] = data;
-
     if (active !== 2) {
       filteredData = data.filter(
         (item: staffType) => item.userStatus === Number(active),
       );
     }
-
     setCacheStaffList(filteredData);
     setStaffList(filteredData);
     setModal(false);
@@ -152,7 +136,7 @@ const useStaffScreen = () => {
     setDepartment('');
     setRole('');
     setActive(2);
-    setStaffList(await getStaff());
+    setStaffList(await getStaffList());
   };
 
   const openForm = () => {

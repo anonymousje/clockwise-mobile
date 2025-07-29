@@ -157,12 +157,10 @@ const StaffDetail = () => {
               label={STRINGS.EMPLOYEE_FORM.FIRST_NAME}
               value={staffData?.firstName || VALUES.DEFAULT}
               onChangeText={(text) => {
-                if (staffData) {
-                  handleTextChange(
-                    text,
-                    VALUES.FORM_CONTROLLER_VALUES.FIRST_NAME,
-                  );
-                }
+                handleTextChange(
+                  text,
+                  VALUES.FORM_CONTROLLER_VALUES.FIRST_NAME,
+                );
               }}
             />
 
