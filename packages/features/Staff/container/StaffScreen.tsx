@@ -10,7 +10,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 import ICONS from '../../../constants/Icons';
 import STRINGS from '../../../utils/strings';
-import VALUES from '../../../constants/values';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import { colors } from '../../../constants/theme';
 
 const Staff = () => {
@@ -93,7 +93,7 @@ const Staff = () => {
                   {staff.firstName[0].toUpperCase()}
                   {staff.lastName
                     ? staff.lastName[0].toUpperCase()
-                    : VALUES.DEFAULT}
+                    : COMMON_CONSTANTS.DEFAULT}
                 </Text>
               </View>
 
@@ -163,7 +163,7 @@ const Staff = () => {
             >
               <Picker.Item
                 label={STRINGS.PICKER_LABELS.LOCATION}
-                value={VALUES.DEFAULT}
+                value={COMMON_CONSTANTS.DEFAULT}
               />
 
               {locationList.map((item) => (
@@ -182,7 +182,7 @@ const Staff = () => {
             >
               <Picker.Item
                 label={STRINGS.PICKER_LABELS.DEPARTMENT}
-                value={VALUES.DEFAULT}
+                value={COMMON_CONSTANTS.DEFAULT}
               />
 
               {departmentList.map((item) => (
@@ -201,7 +201,7 @@ const Staff = () => {
             >
               <Picker.Item
                 label={STRINGS.PICKER_LABELS.JOB_ROLE}
-                value={VALUES.DEFAULT}
+                value={COMMON_CONSTANTS.DEFAULT}
               />
 
               {jobRolelist.map((item) => (

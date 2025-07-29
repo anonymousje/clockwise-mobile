@@ -1,4 +1,4 @@
-const VALUES = {
+const COMMON_CONSTANTS = {
   DEFAULT: '',
   PICKER_VALUES: {
     ADMIN: 'Admin',
@@ -38,4 +38,4 @@ const VALUES = {
   },
 };
 
-export default VALUES;
+export default COMMON_CONSTANTS;

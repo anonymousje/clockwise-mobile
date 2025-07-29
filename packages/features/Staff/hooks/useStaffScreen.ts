@@ -8,9 +8,8 @@ import StaffService from '../services/StaffService';
 import { staffType, filterItemsType } from '../../types';
 import { RootState } from '../../../store';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
-
 import type { staffSearchQueryType } from '../../types';
-import VALUES from '../../../constants/values';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const useStaffScreen = () => {
   const [search, setSearch] = useState('');
@@ -34,7 +33,7 @@ const useStaffScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userFromStore?.role === VALUES.ADMIN) {
+    if (userFromStore?.role === COMMON_CONSTANTS.ADMIN) {
       StaffService.getStaff().then((data: staffType[]) => {
         setStaffList(
           data.map((item: staffType) => ({

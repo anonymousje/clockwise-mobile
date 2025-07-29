@@ -1,10 +1,10 @@
 import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
-import VALUES from '../constants/values';
+import COMMON_CONSTANTS from '../constants/CommonConstants';
 
-let accessToken = VALUES.DEFAULT;
-let refreshToken = VALUES.DEFAULT;
+let accessToken = COMMON_CONSTANTS.DEFAULT;
+let refreshToken = COMMON_CONSTANTS.DEFAULT;
 
 export const setAccessToken = (token: string) => {
   accessToken = token;
@@ -65,7 +65,9 @@ apiClient.interceptors.response.use(
 
         return await axios(originalRequest);
       } catch (refreshError) {
-        store.dispatch(setTokens(VALUES.DEFAULT, VALUES.DEFAULT));
+        store.dispatch(
+          setTokens(COMMON_CONSTANTS.DEFAULT, COMMON_CONSTANTS.DEFAULT),
+        );
 
         return Promise.reject(refreshError);
       }

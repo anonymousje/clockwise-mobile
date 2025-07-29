@@ -7,7 +7,7 @@ import { fetchUpdated } from '../../../store/actions/fetchUsers';
 import { z } from 'zod';
 import StaffDetailService from '../services/StaffDetailService';
 import STRINGS from '../../../utils/strings';
-import VALUES from '../../../constants/values';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();
@@ -123,13 +123,13 @@ const useStaffDetail = () => {
     if (!dateString) return ` ${STRINGS.DASH}`;
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return dateString;
-    return date.toLocaleString(VALUES.DATE_TIME.EN_US, {
-      year: VALUES.DATE_TIME.NUMERIC,
-      month: VALUES.DATE_TIME.SHORT,
-      day: VALUES.DATE_TIME.TWO_DIGIT,
-      hour: VALUES.DATE_TIME.TWO_DIGIT,
-      minute: VALUES.DATE_TIME.TWO_DIGIT,
-      second: VALUES.DATE_TIME.TWO_DIGIT,
+    return date.toLocaleString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
+      year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
+      month: COMMON_CONSTANTS.DATE_TIME.SHORT,
+      day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      second: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
       hour12: true,
     });
   };

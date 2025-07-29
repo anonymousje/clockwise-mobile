@@ -12,7 +12,7 @@ import useAddEmployee from '../hooks/useAddEmployee';
 import InputField from '../../components/InputField/container/InputField';
 import STRINGS from '../../../utils/strings';
 import LINK_PREFIX from '../../../constants/links';
-import VALUES from '../../../constants/values';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const AddEmployee = () => {
   const { control, handleSubmit, onSubmit, errorMsg, setFirstName, clearForm } =
@@ -40,7 +40,7 @@ const AddEmployee = () => {
         <View style={styles.formContainer}>
           <Controller
             control={control}
-            name={VALUES.FORM_CONTROLLER_VALUES.FIRST_NAME}
+            name={COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.FIRST_NAME}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
@@ -60,7 +60,7 @@ const AddEmployee = () => {
 
           <Controller
             control={control}
-            name={VALUES.FORM_CONTROLLER_VALUES.LAST_NAME}
+            name={COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.LAST_NAME}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
@@ -77,7 +77,7 @@ const AddEmployee = () => {
 
           <Controller
             control={control}
-            name={VALUES.FORM_CONTROLLER_VALUES.EMAIL}
+            name={COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.EMAIL}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
@@ -99,7 +99,7 @@ const AddEmployee = () => {
 
           <Controller
             control={control}
-            name={VALUES.FORM_CONTROLLER_VALUES.PASSWORD}
+            name={COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.PASSWORD}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>

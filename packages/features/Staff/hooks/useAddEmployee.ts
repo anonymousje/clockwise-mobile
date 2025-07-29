@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
-import VALUES from '../../../constants/values';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import STRINGS from '../../../utils/strings';
 import AddEmployeeService from '../services/AddEmployeeService';
 
@@ -29,10 +29,10 @@ const useAddEmployee = () => {
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
-      firstName: VALUES.DEFAULT,
-      lastName: VALUES.DEFAULT,
-      password: VALUES.DEFAULT,
-      email: VALUES.DEFAULT,
+      firstName: COMMON_CONSTANTS.DEFAULT,
+      lastName: COMMON_CONSTANTS.DEFAULT,
+      password: COMMON_CONSTANTS.DEFAULT,
+      email: COMMON_CONSTANTS.DEFAULT,
     },
 
     resolver: zodResolver(staffSchema),
@@ -58,7 +58,7 @@ const useAddEmployee = () => {
 
   const clearForm = () => {
     reset();
-    setFirstName(VALUES.DEFAULT);
+    setFirstName(COMMON_CONSTANTS.DEFAULT);
     setErrorMsg(false);
   };
 
