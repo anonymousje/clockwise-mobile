@@ -90,6 +90,9 @@ const STRINGS = {
     RESET_PASSWORD: 'RESET PASSWORD',
     LOG_IN: 'LOG IN',
     FORGOT_PASSWORD: 'Forgot Password?',
+    BREAK: 'TAKE A BREAK',
+    CLOCK_IN: 'CLOCK IN',
+    CLOCK_OUT: 'CLOCK OUT',
   },
 
   HEADERS: {
@@ -98,7 +101,10 @@ const STRINGS = {
     EMPLOYEE_DETAILS: 'Employee Details',
     STAFF: 'STAFF',
     FILTER_OPTIONS: 'Filter Options',
+    CLOCK_IN: 'You have been clocked in for',
   },
+
+  PLACEHOLDERTIME: '5m',
 
   VALIDATIONS: {
     TITLE: 'Password must contain:',

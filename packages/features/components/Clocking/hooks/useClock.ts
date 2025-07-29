@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 export default function useClock() {
   const [clockIn, setClockIn] = useState(false);
   const [onBreak, setOnBreak] = useState(false);
@@ -13,8 +14,9 @@ export default function useClock() {
     setClockIn(!clockIn);
   }
 
-  function BreakSetter() {
+  const BreakSetter = () => {
     setOnBreak(!onBreak);
-  }
+  };
+
   return { clockIn, timePunch, BreakSetter, onBreak };
 }

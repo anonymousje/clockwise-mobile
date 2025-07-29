@@ -27,6 +27,7 @@ export const FONT_SIZE = {
   ERROR: 13,
   SIZE_13: 13,
   SIZE_15: 15,
+  SIZE_17: 17,
   SIZE_18: 18,
   SIZE_20: 20,
   SIZE_24: 24,

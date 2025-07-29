@@ -2,10 +2,10 @@ import { View, TouchableOpacity } from 'react-native';
 import useClock from '../hooks/useClock';
 import { styles } from '../styles/Clock.styles';
 import { Text } from 'react-native-gesture-handler';
+import STRINGS from '../../../../utils/strings';
 
 export default function Clocking({}) {
   const { clockIn, timePunch } = useClock();
-  console.log('Clock in value:', clockIn);
 
   return (
     <>
@@ -18,7 +18,9 @@ export default function Clocking({}) {
               }}
               style={styles.button}
             >
-              <Text style={styles.ButtonText}>CLOCK IN</Text>
+              <Text style={styles.ButtonText}>
+                {STRINGS.BUTTON_TEXT.CLOCK_IN}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -27,28 +29,26 @@ export default function Clocking({}) {
       {!clockIn && (
         <View style={styles.clockOutContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.titleText}>You have been Clocked in for</Text>
+            <Text style={styles.titleText}>{STRINGS.HEADERS.CLOCK_IN}</Text>
 
-            <Text style={styles.timeText}>5m</Text>
+            <Text style={styles.timeText}>{STRINGS.PLACEHOLDERTIME}</Text>
           </View>
 
           <View style={styles.clockOutButtonContainer}>
             <TouchableOpacity
-              onPress={() => {
-                timePunch();
-              }}
+              onPress={timePunch}
               style={styles.clockOutButton}
             >
-              <Text style={styles.ButtonText}>TAKE A BREAK</Text>
+              <Text style={styles.ButtonText}>{STRINGS.BUTTON_TEXT.BREAK}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => {
-                timePunch();
-              }}
+              onPress={timePunch}
               style={styles.clockOutButton}
             >
-              <Text style={styles.ButtonText}>CLOCK OUT</Text>
+              <Text style={styles.ButtonText}>
+                {STRINGS.BUTTON_TEXT.CLOCK_OUT}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
