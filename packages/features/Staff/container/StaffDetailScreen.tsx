@@ -15,7 +15,6 @@ const StaffDetail = () => {
   const {
     editMode,
     staffData,
-    setStaffData,
     editStaffData,
     departmentList,
     locationList,
@@ -23,6 +22,9 @@ const StaffDetail = () => {
     validationErrors,
     changeStatus,
     formatDateTime,
+    checkUndefined,
+    handleTextChange,
+    handlePickerChange,
   } = useStaffDetail();
 
   return (
@@ -95,6 +97,7 @@ const StaffDetail = () => {
               <Text style={styles.textHeader}>
                 {STRINGS.EMPLOYEE_FORM.PERMISSION_LEVEL}
               </Text>
+
               <Text style={styles.text}>
                 {staffData?.role === undefined
                   ? ` ${STRINGS.DASH}`
@@ -106,6 +109,7 @@ const StaffDetail = () => {
               <Text style={styles.textHeader}>
                 {STRINGS.EMPLOYEE_FORM.STATUS}
               </Text>
+
               <Text style={styles.text}>
                 {staffData?.userStatus === undefined
                   ? ` ${STRINGS.DASH}`
@@ -119,10 +123,9 @@ const StaffDetail = () => {
               <Text style={styles.textHeader}>
                 {STRINGS.EMPLOYEE_FORM.LOCATION}
               </Text>
+
               <Text style={styles.text}>
-                {staffData?.locationName === undefined
-                  ? ` ${STRINGS.DASH}`
-                  : staffData?.locationName}
+                {checkUndefined(staffData?.locationName)}
               </Text>
             </View>
 
@@ -130,10 +133,9 @@ const StaffDetail = () => {
               <Text style={styles.textHeader}>
                 {STRINGS.EMPLOYEE_FORM.JOB_ROLE}
               </Text>
+
               <Text style={styles.text}>
-                {staffData?.jobRoleName === undefined
-                  ? ` ${STRINGS.DASH}`
-                  : staffData?.jobRoleName}
+                {checkUndefined(staffData?.jobRoleName)}
               </Text>
             </View>
 
@@ -143,7 +145,7 @@ const StaffDetail = () => {
                   ? STRINGS.DEACTIVATE
                   : STRINGS.ACTIVATE
               }
-              onPress={() => changeStatus()}
+              onPress={changeStatus}
               color={staffData?.userStatus === 1 ? colors.RED : colors.GREEN}
             />
           </View>
@@ -156,7 +158,7 @@ const StaffDetail = () => {
               value={staffData?.firstName || VALUES.DEFAULT}
               onChangeText={(text) => {
                 if (staffData) {
-                  setStaffData({ ...staffData, firstName: text });
+                  handleTextChange(text, 'firstName');
                 }
               }}
             />
@@ -168,11 +170,7 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.LAST_NAME}
               value={staffData?.lastName || VALUES.DEFAULT}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, lastName: text });
-                }
-              }}
+              onChangeText={(text) => handleTextChange(text, 'lastName')}
             />
 
             {validationErrors?.lastName && (
@@ -182,11 +180,7 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.EMAIL}
               value={staffData?.email || VALUES.DEFAULT}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, email: text });
-                }
-              }}
+              onChangeText={(text) => handleTextChange(text, 'email')}
             />
 
             {validationErrors?.email && (
@@ -196,21 +190,13 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.CELL_PHONE}
               value={staffData?.phoneNumber || VALUES.DEFAULT}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, phoneNumber: text });
-                }
-              }}
+              onChangeText={(text) => handleTextChange(text, 'phoneNumber')}
             />
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.USERNAME}
               value={staffData?.username || VALUES.DEFAULT}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, username: text });
-                }
-              }}
+              onChangeText={(text) => handleTextChange(text, 'username')}
             />
 
             {validationErrors?.username && (
@@ -220,31 +206,19 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.NICKNAME}
               value={staffData?.nickname || VALUES.DEFAULT}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, nickname: text });
-                }
-              }}
+              onChangeText={(text) => handleTextChange(text, 'nickname')}
             />
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.ADDRESS}
               value={staffData?.address || VALUES.DEFAULT}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, address: text });
-                }
-              }}
+              onChangeText={(text) => handleTextChange(text, 'address')}
             />
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.USERCODE}
               value={staffData?.userCode || VALUES.DEFAULT}
-              onChangeText={(text) => {
-                if (staffData) {
-                  setStaffData({ ...staffData, userCode: text });
-                }
-              }}
+              onChangeText={(text) => handleTextChange(text, 'userCode')}
             />
 
             {validationErrors?.userCode && (
@@ -255,17 +229,9 @@ const StaffDetail = () => {
               <View style={styles.picker}>
                 <Picker
                   selectedValue={staffData?.departmentName || VALUES.DEFAULT}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({
-                        ...staffData,
-                        departmentName: itemValue,
-                        departmentRecordId: departmentList.find(
-                          (department) => department.name === itemValue,
-                        )?.recordId,
-                      });
-                    }
-                  }}
+                  onValueChange={(itemValue) =>
+                    handlePickerChange(itemValue, 'department')
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item
@@ -286,17 +252,9 @@ const StaffDetail = () => {
               <View style={styles.picker}>
                 <Picker
                   selectedValue={staffData?.locationName || VALUES.DEFAULT}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({
-                        ...staffData,
-                        locationName: itemValue,
-                        locationRecordId: locationList.find(
-                          (location) => location.name === itemValue,
-                        )?.recordId,
-                      });
-                    }
-                  }}
+                  onValueChange={(itemValue) =>
+                    handlePickerChange(itemValue, 'location')
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item
@@ -317,17 +275,9 @@ const StaffDetail = () => {
               <View style={styles.picker}>
                 <Picker
                   selectedValue={staffData?.jobRoleName || VALUES.DEFAULT}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({
-                        ...staffData,
-                        jobRoleName: itemValue,
-                        jobRoleRecordId: jobRolelist.find(
-                          (jobRole) => jobRole.name === itemValue,
-                        )?.recordId,
-                      });
-                    }
-                  }}
+                  onValueChange={(itemValue) =>
+                    handlePickerChange(itemValue, 'jobRole')
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item
@@ -348,11 +298,9 @@ const StaffDetail = () => {
               <View style={styles.picker}>
                 <Picker
                   selectedValue={staffData?.role || VALUES.DEFAULT}
-                  onValueChange={(itemValue) => {
-                    if (staffData) {
-                      setStaffData({ ...staffData, role: itemValue });
-                    }
-                  }}
+                  onValueChange={(itemValue) =>
+                    handleTextChange(itemValue, 'role')
+                  }
                   style={styles.pickerItem}
                 >
                   <Picker.Item

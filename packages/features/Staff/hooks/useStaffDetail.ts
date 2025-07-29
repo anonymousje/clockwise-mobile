@@ -186,6 +186,36 @@ const useStaffDetail = () => {
     } catch (error) {}
   };
 
+  const checkUndefined = (value: string | null | undefined) => {
+    return value === null || value === undefined ? ` ${STRINGS.DASH}` : value;
+  };
+
+  const handleTextChange = (text: string, field: keyof staffType) => {
+    if (staffData) {
+      setStaffData({ ...staffData, [field]: text });
+    }
+  };
+
+  const handlePickerChange = (
+    itemValue: string | null | undefined,
+    fieldName: string,
+  ) => {
+    if (staffData) {
+      const listMap: { [key: string]: filterItemsType[] } = {
+        department: departmentList,
+        location: locationList,
+        jobRole: jobRolelist,
+      };
+      setStaffData({
+        ...staffData,
+        [`${fieldName}Name`]: itemValue,
+        [`${fieldName}RecordId`]: listMap[fieldName]?.find(
+          (item) => item.name === itemValue,
+        )?.recordId,
+      });
+    }
+  };
+
   return {
     editMode,
     staffData,
@@ -197,6 +227,9 @@ const useStaffDetail = () => {
     validationErrors,
     changeStatus,
     formatDateTime,
+    checkUndefined,
+    handleTextChange,
+    handlePickerChange,
   };
 };
 
