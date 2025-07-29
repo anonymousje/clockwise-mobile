@@ -3,12 +3,12 @@ import { z } from 'zod';
 import { useDispatch } from 'react-redux';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import apiClient from '../../apiClient';
 import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 import VALUES from '../../../constants/values';
 import STRINGS from '../../../utils/strings';
+import AddEmployeeService from '../services/AddEmployeeService';
 
 const useAddEmployee = () => {
   const [errorMsg, setErrorMsg] = useState(false);
@@ -40,7 +40,7 @@ const useAddEmployee = () => {
 
   const onSubmit = async (data: StaffFormData) => {
     try {
-      await apiClient.post('/user/create-user', {
+      await AddEmployeeService.addEmployee({
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
