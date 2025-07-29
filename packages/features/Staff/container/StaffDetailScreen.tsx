@@ -31,7 +31,7 @@ const StaffDetail = () => {
     <View style={styles.container}>
       <View style={styles.editButtonContainer}>
         <TouchableOpacity
-          onPress={() => editStaffData()}
+          onPress={editStaffData}
           style={styles.editButton}
         >
           <Icons

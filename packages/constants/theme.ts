@@ -35,6 +35,11 @@ export const FONTSIZE = {
   BUTTON_SMALL: 13,
 };
 
+export const HEIGHT = {
+  MEDIUM: 65,
+  SMALL: 50,
+  LARGE: 120,
+};
 export const MODE = {
   DARK: 'dark',
   LIGHT: 'light',

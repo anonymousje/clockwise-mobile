@@ -28,7 +28,7 @@ const AddEmployee = () => {
           <Text style={styles.title}>{STRINGS.HEADERS.EMPLOYEE_DETAILS}</Text>
 
           <TouchableOpacity
-            onPress={() => clearForm()}
+            onPress={clearForm}
             style={styles.editButton}
           >
             <Text style={styles.editButtonText}>

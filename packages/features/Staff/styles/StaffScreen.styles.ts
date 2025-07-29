@@ -1,5 +1,11 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts, FONTSIZE, MODE } from '../../../constants/theme';
+import {
+  colors,
+  fonts,
+  FONTSIZE,
+  HEIGHT,
+  MODE,
+} from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -110,7 +116,7 @@ export const styles = StyleSheet.create({
 
   staffAvatar: {
     width: 50,
-    height: 50,
+    height: HEIGHT.SMALL,
     borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center',
@@ -141,9 +147,9 @@ export const styles = StyleSheet.create({
 
   addButton: {
     backgroundColor: '#5DC036',
-    width: 60,
-    height: 60,
-    borderRadius: 28,
+    width: 65,
+    height: HEIGHT.MEDIUM,
+    borderRadius: 34,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',

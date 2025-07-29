@@ -143,7 +143,7 @@ const Staff = () => {
 
             <TouchableOpacity
               style={styles.modalCloseButton}
-              onPress={() => clearFilters()}
+              onPress={clearFilters}
             >
               <Text style={styles.modalCloseButtonText}>
                 {STRINGS.ICON_TITLES.CLEAR}

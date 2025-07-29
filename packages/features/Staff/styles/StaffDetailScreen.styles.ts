@@ -1,5 +1,11 @@
 import { Appearance, StyleSheet } from 'react-native';
-import { colors, fonts, FONTSIZE, MODE } from '../../../constants/theme';
+import {
+  colors,
+  fonts,
+  FONTSIZE,
+  HEIGHT,
+  MODE,
+} from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -53,7 +59,7 @@ export const styles = StyleSheet.create({
 
   avatarContainer: {
     width: 120,
-    height: 120,
+    height: HEIGHT.LARGE,
     borderRadius: 60,
     backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
     alignItems: 'center',

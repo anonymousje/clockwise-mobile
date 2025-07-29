@@ -1,5 +1,11 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts, MODE, FONTSIZE } from '../../../constants/theme';
+import {
+  colors,
+  fonts,
+  MODE,
+  FONTSIZE,
+  HEIGHT,
+} from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -128,7 +134,7 @@ const styles = StyleSheet.create({
 
   input: {
     width: '100%',
-    height: 50,
+    height: HEIGHT.SMALL,
     backgroundColor:
       mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
