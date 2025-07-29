@@ -1,5 +1,5 @@
 import { Appearance, StyleSheet } from 'react-native';
-import { colors, fonts, MODE } from '../../../constants/theme';
+import { colors, fonts, FONTSIZE, MODE } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
 
   avatarText: {
     color: colors.BUTTON_TEXT,
-    fontSize: 50,
+    fontSize: FONTSIZE.X_LARGE,
     paddingBottom: 10,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
@@ -90,14 +90,14 @@ export const styles = StyleSheet.create({
   },
 
   textHeader: {
-    fontSize: 16,
+    fontSize: FONTSIZE.SMALL,
     marginVertical: 4,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_BOLD,
   },
 
   text: {
-    fontSize: 17,
+    fontSize: FONTSIZE.SMALL,
     marginTop: 4,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,

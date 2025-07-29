@@ -1,5 +1,5 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts, MODE } from '../../../constants/theme';
+import { colors, fonts, FONTSIZE, MODE } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   },
 
   searchInput: {
-    fontSize: 17,
+    fontSize: FONTSIZE.SMALL,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 14,
@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
   },
 
   staffSectionHeader: {
-    fontSize: 19,
+    fontSize: FONTSIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_BOLD,
     marginTop: 24,
     marginBottom: 12,
@@ -117,20 +117,20 @@ export const styles = StyleSheet.create({
   },
 
   staffAvatarText: {
-    fontSize: 20,
+    fontSize: FONTSIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     color: colors.TEXT_DARK_MODE,
   },
 
   staffName: {
-    fontSize: 19,
+    fontSize: FONTSIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_BOLD,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 2,
   },
 
   position: {
-    fontSize: 17,
+    fontSize: FONTSIZE.X_SMALL,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     opacity: 0.6,
   },
@@ -158,7 +158,7 @@ export const styles = StyleSheet.create({
   },
 
   addButtonText: {
-    fontSize: 40,
+    fontSize: FONTSIZE.BUTTON_FONT_LARGE,
     fontWeight: '400',
     color: colors.BUTTON_TEXT,
   },
@@ -183,13 +183,13 @@ export const styles = StyleSheet.create({
   },
 
   modalCloseButton: {
-    fontSize: 20,
+    fontSize: FONTSIZE.BUTTON_FONT_MEDIUM,
     fontWeight: 'bold',
     padding: 10,
   },
 
   modalCloseButtonText: {
-    fontSize: 16,
+    fontSize: FONTSIZE.X_SMALL,
     color: colors.CLOCKWISE_PRIMARY,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
@@ -200,7 +200,7 @@ export const styles = StyleSheet.create({
   },
 
   modalTitle: {
-    fontSize: 24,
+    fontSize: FONTSIZE.MEDIUM,
     fontWeight: 'bold',
     color: colors.CLOCKWISE_PRIMARY,
     textAlign: 'center',
@@ -227,7 +227,7 @@ export const styles = StyleSheet.create({
   },
 
   filterButtonText: {
-    fontSize: 20,
+    fontSize: FONTSIZE.SMALL,
     color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
   },

@@ -1,5 +1,6 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts, MODE } from '../../../constants/theme';
+import { colors, fonts, FONTSIZE, MODE } from '../../../constants/theme';
+
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
@@ -31,19 +32,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    fontSize: 24,
+    fontSize: FONTSIZE.MEDIUM,
     fontWeight: '300',
     color: colors.CLOCKWISE_PRIMARY,
     marginRight: 8,
   },
   logoSeparator: {
-    fontSize: 24,
+    fontSize: FONTSIZE.MEDIUM,
     color: '#666',
     fontWeight: '300',
     marginRight: 8,
   },
   logoText: {
-    fontSize: 24,
+    fontSize: FONTSIZE.MEDIUM,
     fontWeight: '300',
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
@@ -54,8 +55,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   title: {
-    fontSize: 30,
-    fontWeight: '300',
+    fontSize: FONTSIZE.LARGE,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 40,
@@ -70,22 +70,22 @@ const styles = StyleSheet.create({
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
-
     paddingVertical: 14,
     paddingHorizontal: 12,
-    fontSize: 17,
+    fontSize: FONTSIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
   },
+
   inputPassword: {
-    fontSize: 17,
+    fontSize: FONTSIZE.SMALL,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 14,
     paddingHorizontal: 12,
   },
+
   passwordRow: {
     backgroundColor:
       mode === MODE.DARK
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 40,
   },
+
   showPasswordButton: {
     color:
       mode === MODE.DARK
@@ -110,10 +111,11 @@ const styles = StyleSheet.create({
         : colors.CLOCKWISE_PRIMARY_DARK,
     paddingHorizontal: 12,
   },
+
   loginButtonText: {
     color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
-    fontSize: 16,
+    fontSize: FONTSIZE.SMALL,
     fontWeight: '600',
   },
   forgotPasswordButton: {
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     color: colors.CLOCKWISE_PRIMARY,
-    fontSize: 16,
+    fontSize: FONTSIZE.X_SMALL,
     textDecorationLine: 'underline',
   },
 });

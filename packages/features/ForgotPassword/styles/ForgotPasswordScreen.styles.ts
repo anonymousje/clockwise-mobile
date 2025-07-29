@@ -1,5 +1,5 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts, MODE } from '../../../constants/theme';
+import { colors, fonts, MODE, FONTSIZE } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -20,32 +20,37 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   closeButton: {
     position: 'absolute',
     top: 20,
     right: 20,
   },
+
   successMsg: {
     color: colors.CLOCKWISE_PRIMARY,
-    fontSize: 16,
+    fontSize: FONTSIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginTop: 20,
     textAlign: 'center',
   },
+
   form: {
     flex: 1,
   },
+
   errorMsg: {
     color: 'red',
     marginBottom: 10,
   },
-  inputPassword: {
-    fontSize: 17,
 
+  inputPassword: {
+    fontSize: FONTSIZE.SMALL,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 16,
   },
+
   NewPasswordRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -57,6 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 14,
   },
+
   ConfirmPasswordRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -77,6 +83,7 @@ const styles = StyleSheet.create({
   loader: {
     marginTop: 20,
   },
+
   button: {
     backgroundColor: colors.CLOCKWISE_PRIMARY,
     paddingVertical: 16,
@@ -88,13 +95,13 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: colors.BUTTON_TEXT,
-    fontSize: 16,
+    fontSize: FONTSIZE.SMALL,
     fontWeight: '600',
   },
 
   header: {
     width: '100%',
-    fontSize: 30,
+    fontSize: FONTSIZE.LARGE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: '300',
     color:
@@ -103,13 +110,15 @@ const styles = StyleSheet.create({
     lineHeight: 34,
     paddingBottom: 20,
   },
+
   popUpBoxText: {
     color:
       mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
-    fontSize: 16,
+    fontSize: FONTSIZE.MEDIUM,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     textAlign: 'center',
   },
+
   showPassButton: {
     color:
       mode === MODE.DARK
@@ -126,12 +135,13 @@ const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
     paddingHorizontal: 14,
-    fontSize: 17,
+    fontSize: FONTSIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
     paddingBottom: 16,
   },
+
   popupBox: {
     width: '80%',
     height: '20%',
@@ -150,6 +160,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
+
   popupButton: {
     marginTop: 20,
     backgroundColor: colors.CLOCKWISE_PRIMARY,
@@ -157,18 +168,21 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 24,
   },
+
   popupButtonText: {
     color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: FONTSIZE.SMALL,
   },
+
   rulesContainer: {
     marginBottom: 10,
   },
+
   rulesText: {
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontSize: 14,
+    fontSize: FONTSIZE.X_SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 5,
     lineHeight: 20,

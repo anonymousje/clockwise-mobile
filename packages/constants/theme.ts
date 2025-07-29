@@ -23,6 +23,18 @@ export const colors = {
   BLACK: 'black',
 };
 
+export const FONTSIZE = {
+  ERROR: 13,
+  X_SMALL: 15,
+  SMALL: 18,
+  MEDIUM: 24,
+  LARGE: 30,
+  X_LARGE: 50,
+  BUTTON_FONT_LARGE: 40,
+  BUTTON_FONT_MEDIUM: 20,
+  BUTTON_SMALL: 13,
+};
+
 export const MODE = {
   DARK: 'dark',
   LIGHT: 'light',
