@@ -1,12 +1,18 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, fonts } from '../../theme';
+import {
+  colors,
+  fonts,
+  MODE,
+  FONT_SIZE,
+  HEIGHT,
+} from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARK_MODE
         : colors.BACKGROUND_LIGHT_MODE,
     flex: 1,
@@ -14,54 +20,61 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 40,
   },
+
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   closeButton: {
     position: 'absolute',
     top: 20,
     right: 20,
   },
+
   successMsg: {
     color: colors.CLOCKWISE_PRIMARY,
-    fontSize: 16,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginTop: 20,
     textAlign: 'center',
   },
+
   form: {
     flex: 1,
   },
+
   errorMsg: {
     color: 'red',
     marginBottom: 10,
   },
-  inputPassword: {
-    fontSize: 17,
 
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+  inputPassword: {
+    fontSize: FONT_SIZE.SMALL,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 16,
   },
+
   NewPasswordRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
     paddingHorizontal: 14,
   },
+
   ConfirmPasswordRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
@@ -76,6 +89,7 @@ const styles = StyleSheet.create({
   loader: {
     marginTop: 20,
   },
+
   button: {
     backgroundColor: colors.CLOCKWISE_PRIMARY,
     paddingVertical: 16,
@@ -86,59 +100,61 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: 'white',
-    fontSize: 16,
+    color: colors.BUTTON_TEXT,
+    fontSize: FONT_SIZE.SMALL,
     fontWeight: '600',
   },
 
   header: {
     width: '100%',
-    fontSize: 30,
+    fontSize: FONT_SIZE.LARGE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: '300',
     color:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+      mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
     marginBottom: 40,
     lineHeight: 34,
     paddingBottom: 20,
   },
+
   popUpBoxText: {
     color:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
-    fontSize: 16,
+      mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+    fontSize: FONT_SIZE.MEDIUM,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     textAlign: 'center',
   },
+
   showPassButton: {
     color:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.CLOCKWISE_PRIMARY
         : colors.CLOCKWISE_PRIMARY_DARK,
   },
 
   input: {
     width: '100%',
-    height: 50,
+    height: HEIGHT.SMALL,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
     paddingHorizontal: 14,
-    fontSize: 17,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-    color:
-      mode === 'dark' ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
     paddingBottom: 16,
   },
+
   popupBox: {
     width: '80%',
     height: '20%',
     justifyContent: 'center',
     gap: 5,
     backgroundColor:
-      mode === 'dark'
+      mode === MODE.DARK
         ? colors.BACKGROUND_DARKER_MODE
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 4,
@@ -150,6 +166,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
+
   popupButton: {
     marginTop: 20,
     backgroundColor: colors.CLOCKWISE_PRIMARY,
@@ -157,23 +174,29 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 24,
   },
+
   popupButtonText: {
-    color: 'white',
+    color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: FONT_SIZE.SMALL,
   },
+
   rulesContainer: {
     marginBottom: 10,
   },
+
   rulesText: {
-    color: mode === 'dark' ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontSize: 14,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.X_SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 5,
     lineHeight: 20,
     paddingLeft: 10,
   },
 });
+
+export const modeColor =
+  mode === MODE.LIGHT ? colors.TEXT_LIGHT_MODE : colors.TEXT_DARK_MODE;
 
 export default styles;

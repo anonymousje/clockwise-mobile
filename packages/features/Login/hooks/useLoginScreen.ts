@@ -3,10 +3,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import { SCREENS } from '../../../constants/screens';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../redux/actions/auth';
+import { loginUser } from '../../../store/actions/auth';
 import { NavigationProp } from '../../types';
 
-function useLoginScreen() {
+const useLoginScreen = () => {
   const navigation = useNavigation<NavigationProp>();
 
   const [email, setEmail] = useState('');
@@ -31,7 +31,7 @@ function useLoginScreen() {
       if (!user.payload) {
         setAttempt(true);
       } else {
-        navigation.replace(SCREENS.Dashboard);
+        navigation.replace(SCREENS.MainTabs);
       }
     }
 
@@ -44,13 +44,13 @@ function useLoginScreen() {
     return regex.test(text);
   };
 
-  function changePwdType() {
+  const changePwdType = () => {
     setIsPassword((prevState) => !prevState);
-  }
+  };
 
-  function handleForgotPassword() {
+  const handleForgotPassword = () => {
     navigation.navigate(SCREENS.ForgotPassword);
-  }
+  };
 
   return {
     email,
@@ -65,6 +65,6 @@ function useLoginScreen() {
     attempt,
     loading,
   };
-}
+};
 
 export default useLoginScreen;

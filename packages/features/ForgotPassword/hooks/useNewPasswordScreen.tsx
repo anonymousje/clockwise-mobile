@@ -4,9 +4,9 @@ import { useRoute } from '@react-navigation/native';
 import { NewPasswordRouteProp } from '../../types';
 import { NavigationProp } from '../../types';
 import { SCREENS } from '../../../constants/screens';
-import apiClient from '../../authClient';
+import NewPasswordService from '../services/NewPasswordService';
 
-function useNewPasswordScreen() {
+const useNewPasswordScreen = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [match, setMatch] = useState(true);
@@ -21,7 +21,7 @@ function useNewPasswordScreen() {
   const [isLength, setIsLength] = useState(false);
   const [isValid, setIsValid] = useState(true);
 
-  function validatePassword(text: string) {
+  const validatePassword = (text: string) => {
     const uppercaseRegex = /[A-Z]/;
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /\d/;
@@ -33,17 +33,18 @@ function useNewPasswordScreen() {
     setIsLength(lengthRegex.test(text));
 
     return isUppercase && isSpecialChar && isLength && isNumber;
-  }
+  };
 
   const route = useRoute<NewPasswordRouteProp>();
+
   const { email, token } = route.params || {};
   const navigation = useNavigation<NavigationProp>();
 
-  function handleBack() {
+  const handleBack = () => {
     navigation.navigate(SCREENS.Login);
-  }
+  };
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     setIsValid(validatePassword(newPassword));
     setMatch(true);
     setLoading(true);
@@ -56,35 +57,31 @@ function useNewPasswordScreen() {
 
     if (token && validatePassword(newPassword)) {
       const encodedToken = encodeURIComponent(token);
-      apiClient
-        .post('/Auth/reset-password', {
-          email,
-          token: encodedToken,
-          newPassword,
-        })
+
+      NewPasswordService.resetPassword(email, encodedToken, newPassword)
         .then(() => {
           setSuccess(true);
           setLoading(false);
         })
-        .catch((error) => {
-          console.error('Error resetting password:', error);
+        .catch(() => {
           setErrorMsg(true);
           setLoading(false);
-          return;
         });
+
+      return;
     } else {
       setLoading(false);
     }
 
     return;
-  }
-  function changePwdType() {
+  };
+  const changePwdType = () => {
     setIsPassword((prevState) => !prevState);
-  }
+  };
 
-  function changeConfirmPwdType() {
+  const changeConfirmPwdType = () => {
     setIsConfirmPassword((prevState) => !prevState);
-  }
+  };
 
   return {
     newPassword,
@@ -109,6 +106,6 @@ function useNewPasswordScreen() {
     isLength,
     isValid,
   };
-}
+};
 
 export default useNewPasswordScreen;

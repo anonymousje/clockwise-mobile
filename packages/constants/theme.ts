@@ -1,0 +1,51 @@
+export const colors = {
+  CLOCKWISE_PRIMARY: '#00bcd4',
+  CLOCKWISE_PRIMARY_DARK: '#008ba3',
+  BACKGROUND_DARK_MODE: '#0E2747',
+  BACKGROUND_DARKER_MODE: '#0A1B2D',
+  BACKGROUND_LIGHT_MODE: 'white',
+  BACKGROUND_LIGHTER_MODE: '#E6E6E2',
+  BACKGROUND_DARK_FORMS: '#012451',
+  BACKGROUND_LIGHT_FORMS: '#F0F4F5',
+  BACKGROUND_ICONS_LIGHT_MODE: '#cacccc',
+  BACKGROUND_ICONS_DARK_MODE: '#1c1c1c',
+  BUTTON_TEXT: 'white',
+
+  BORDER_COLOR_LIGHT_MODE: '#E0E0E0',
+  BORDER_COLOR_DARK_MODE: 'white',
+  TEXT_DARK_MODE: 'white',
+  TEXT_LIGHT_MODE: 'black',
+  TEXT_DARK_LIGHTER_MODE: '#656565',
+  TEXT_LIGHT_LIGHTER_MODE: '#656565',
+  RANDOM_COLOR_ARRAY: ['#07CF99', '#086DBF', '#B63C08', '#F0F30D', '#0ED4EA'],
+  RED: 'red',
+  GREEN: 'green',
+  BLACK: 'black',
+};
+
+export const FONT_SIZE = {
+  ERROR: 13,
+  X_SMALL: 15,
+  SMALL: 18,
+  MEDIUM: 24,
+  LARGE: 30,
+  X_LARGE: 50,
+  BUTTON_FONT_LARGE: 40,
+  BUTTON_FONT_MEDIUM: 20,
+  BUTTON_SMALL: 13,
+};
+
+export const HEIGHT = {
+  MEDIUM: 65,
+  SMALL: 50,
+  LARGE: 120,
+};
+export const MODE = {
+  DARK: 'dark',
+  LIGHT: 'light',
+};
+
+export const fonts = {
+  CLOCKWISE_REGULAR: 'Lato-Regular',
+  CLOCKWISE_BOLD: 'Lato-Bold',
+};
