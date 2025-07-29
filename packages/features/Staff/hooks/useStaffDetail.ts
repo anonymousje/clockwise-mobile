@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import type { filterItemsType, staffType } from '../../types';
 import { useRoute } from '@react-navigation/native';
 import { StaffDetailNavigationProp, errorType } from '../../types';
-import apiClient from '../../apiClient';
 import { useDispatch } from 'react-redux';
 import { fetchUpdated } from '../../../store/actions/fetchUsers';
 import { z } from 'zod';
+import StaffDetailService from '../services/StaffDetailService';
 import STRINGS from '../../../utils/strings';
 import VALUES from '../../../constants/values';
 
@@ -33,54 +33,14 @@ const useStaffDetail = () => {
       return;
     }
 
-    const fetchDepartment = async () => {
-      return await apiClient
-        .get('/department/get-all-departments')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          throw error;
-        });
-    };
-
-    const fetchLocation = async () => {
-      return await apiClient
-        .get('/location/get-all-locations')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          throw error;
-        });
-    };
-
-    const fetchJobRole = async () => {
-      return await apiClient
-        .get('/jobrole/get-all-jobroles')
-        .then((response) => response.data.data)
-        .catch((error) => {
-          throw error;
-        });
-    };
-
-    const fetchUser = async (): Promise<staffType | null> => {
-      return await apiClient
-        .get(`/user/get-user/${recordId}`)
-        .then((response) => response.data.data)
-        .catch((error) => {
-          throw error;
-        });
-    };
-
     const fetchData = async () => {
-      const data = await fetchUser();
-      setStaffData(data);
+      setStaffData(await StaffDetailService.getUser(recordId));
 
-      const departmentData = await fetchDepartment();
-      setDepartmentList(departmentData);
+      setDepartmentList(await StaffDetailService.getDepartment());
 
-      const locationData = await fetchLocation();
-      setLocationList(locationData);
+      setLocationList(await StaffDetailService.getLocation());
 
-      const jobRoleData = await fetchJobRole();
-      setJobRoleList(jobRoleData);
+      setJobRoleList(await StaffDetailService.getJobRole());
     };
 
     fetchData();
@@ -105,7 +65,7 @@ const useStaffDetail = () => {
 
       setValidationErrors({});
       try {
-        await apiClient.put(`/user/edit-user/${staffData?.recordId}`, {
+        await StaffDetailService.updateUser(staffData?.recordId, {
           firstName: staffData?.firstName,
           lastName: staffData?.lastName,
           email: staffData?.email,
@@ -171,17 +131,18 @@ const useStaffDetail = () => {
 
   const changeStatus = async () => {
     if (staffData?.userStatus === 3) {
-      await apiClient.post(`/user/restore-user/${staffData?.recordId}`);
+      await StaffDetailService.restoreUser(staffData?.recordId);
       dispatch(fetchUpdated(true));
     } else {
-      await apiClient.post(`/user/delete-user`, { id: staffData?.recordId });
+      await StaffDetailService.deleteUser(staffData?.recordId);
       dispatch(fetchUpdated(true));
     }
 
     try {
-      const updatedUser = await apiClient
-        .get(`/user/get-user/${staffData?.recordId}`)
-        .then((response) => response.data.data);
+      const updatedUser: staffType | null = await StaffDetailService.getUser(
+        staffData?.recordId,
+      );
+
       setStaffData(updatedUser);
     } catch (error) {}
   };
