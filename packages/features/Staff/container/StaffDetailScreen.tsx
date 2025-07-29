@@ -9,6 +9,7 @@ import ICONS from '../../../constants/Icons';
 import STRINGS from '../../../utils/strings';
 import { colors } from '../../../constants/theme';
 import VALUES from '../../../constants/values';
+import { getInitials } from '../../../utils/helper';
 
 const StaffDetail = () => {
   const {
@@ -47,8 +48,7 @@ const StaffDetail = () => {
         <View style={styles.headerContainer}>
           <View style={styles.avatarContainer}>
             <Text style={styles.avatarText}>
-              {staffData?.firstName.charAt(0).toUpperCase()}
-              {staffData?.lastName.charAt(0).toUpperCase()}
+              {getInitials(staffData?.firstName, staffData?.lastName)}
             </Text>
           </View>
         </View>
