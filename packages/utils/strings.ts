@@ -27,6 +27,9 @@ const STRINGS = {
     USERCODE: 'User Code',
   },
 
+  RESET_PASSWORD_EMAIL:
+    'If {0} is registered, you will receive a password reset link.',
+
   PICKER_LABELS: {
     PERMISSION_LEVEL: 'Select Permission Level',
     STATUS: 'Select Status',

@@ -11,6 +11,7 @@ import styles from '../styles/ForgotPasswordScreen.styles';
 import useForgotPasswordScreen from '../hooks/useForgotPasswordScreen';
 import { colors, MODE } from '../../../constants/theme';
 import STRINGS from '../../../utils/strings';
+import { stringFormat } from '../../../utils/helper';
 
 const ForgotPassword = () => {
   const {
@@ -50,8 +51,7 @@ const ForgotPassword = () => {
         <View style={styles.modalContainer}>
           <View style={styles.popupBox}>
             <Text style={styles.popUpBoxText}>
-              {/*TODO: Shift to constants*/}
-              {`If ${email} is registered, you will receive a password reset link.`}
+              {stringFormat(STRINGS.RESET_PASSWORD_EMAIL, email)}
             </Text>
 
             <TouchableOpacity

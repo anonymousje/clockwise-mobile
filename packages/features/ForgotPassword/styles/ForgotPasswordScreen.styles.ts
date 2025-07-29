@@ -128,8 +128,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     fontSize: 17,
     fontFamily: fonts.CLOCKWISE_REGULAR,
-    color:
-      mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
+    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
     paddingBottom: 16,
   },

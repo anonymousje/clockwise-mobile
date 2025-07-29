@@ -7,6 +7,12 @@ const VALUES = {
 
   ADMIN: 'Admin',
 
+  REDUX_TYPES: {
+    SET_USER: 'SET_USER',
+    SET_TOKEN: 'SET_TOKEN',
+    LOGIN_USER: 'LOGIN_USER',
+    LOGIN_FAIL: 'LOGIN_FAIL',
+  },
   DATE_TIME: {
     NUMERIC: 'numeric' as const,
     SHORT: 'short' as const,

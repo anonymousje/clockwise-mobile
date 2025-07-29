@@ -4,14 +4,14 @@ import VALUES from '../../constants/values';
 
 export const setUser = (userData: User) => {
   return {
-    type: 'SET_USER',
+    type: VALUES.REDUX_TYPES.SET_USER,
     payload: userData,
   };
 };
 
 export const setTokens = (accessToken: string, refreshToken: string) => {
   return {
-    type: 'SET_TOKEN',
+    type: VALUES.REDUX_TYPES.SET_TOKEN,
     payload: { accessToken, refreshToken },
   };
 };
@@ -26,7 +26,7 @@ export const loginUser = async (email: string, password: string) => {
     const { accessToken, refreshToken, role } = response.data.data;
 
     return {
-      type: 'LOGIN_USER',
+      type: VALUES.REDUX_TYPES.LOGIN_USER,
       payload: {
         email,
         accessToken,
@@ -35,7 +35,7 @@ export const loginUser = async (email: string, password: string) => {
       },
     };
   } catch (error) {
-    return { type: 'LOGIN_FAIL', payload: VALUES.DEFAULT };
+    return { type: VALUES.REDUX_TYPES.LOGIN_FAIL, payload: VALUES.DEFAULT };
   }
 };
 
