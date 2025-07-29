@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, FONTSIZE } from '../../../../constants/theme';
+import { colors, FONT_SIZE } from '../../../../constants/theme';
 import { fonts } from '../../../../constants/theme';
 
 export const styles = StyleSheet.create({
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     fontWeight: '700',
     letterSpacing: 1,
   },

@@ -1,5 +1,5 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, FONTSIZE, MODE } from '../../../constants/theme';
+import { colors, FONT_SIZE, MODE } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: FONTSIZE.MEDIUM,
+    fontSize: FONT_SIZE.MEDIUM,
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',

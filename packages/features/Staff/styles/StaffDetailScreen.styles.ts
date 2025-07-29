@@ -2,7 +2,7 @@ import { Appearance, StyleSheet } from 'react-native';
 import {
   colors,
   fonts,
-  FONTSIZE,
+  FONT_SIZE,
   HEIGHT,
   MODE,
 } from '../../../constants/theme';
@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
 
   avatarText: {
     color: colors.BUTTON_TEXT,
-    fontSize: FONTSIZE.X_LARGE,
+    fontSize: FONT_SIZE.X_LARGE,
     paddingBottom: 10,
     fontFamily: fonts.CLOCKWISE_REGULAR,
   },
@@ -96,14 +96,14 @@ export const styles = StyleSheet.create({
   },
 
   textHeader: {
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     marginVertical: 4,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_BOLD,
   },
 
   text: {
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     marginTop: 4,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,

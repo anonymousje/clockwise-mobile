@@ -14,7 +14,7 @@ import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 import Staff from './packages/features/Staff/container/StaffScreen';
 import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
-import { colors, FONTSIZE, HEIGHT, MODE } from './packages/constants/theme';
+import { colors, FONT_SIZE, HEIGHT, MODE } from './packages/constants/theme';
 import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 import STRINGS from './packages/utils/strings';
 import LINK_PREFIX from './packages/constants/links';
@@ -74,7 +74,7 @@ const MainTabs = () => {
           height: HEIGHT.MEDIUM,
         },
         tabBarLabelStyle: {
-          fontSize: FONTSIZE.BUTTON_SMALL,
+          fontSize: FONT_SIZE.BUTTON_SMALL,
         },
       }}
     >

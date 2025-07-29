@@ -1,5 +1,5 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, FONTSIZE, MODE } from '../../../constants/theme';
+import { colors, FONT_SIZE, MODE } from '../../../constants/theme';
 import { fonts } from '../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: FONTSIZE.MEDIUM,
+    fontSize: FONT_SIZE.MEDIUM,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     borderBottomWidth: 1,
     borderBottomColor:
@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
 
   errorMsg: {
     color: 'red',
-    fontSize: FONTSIZE.ERROR,
+    fontSize: FONT_SIZE.ERROR,
     marginBottom: 8,
     marginLeft: 4,
   },
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
   },
 
   linkText: {
-    fontSize: FONTSIZE.X_SMALL,
+    fontSize: FONT_SIZE.X_SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
   },
@@ -112,7 +112,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_BOLD,
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     fontWeight: '700',
     letterSpacing: 1,
   },

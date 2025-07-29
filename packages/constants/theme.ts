@@ -23,7 +23,7 @@ export const colors = {
   BLACK: 'black',
 };
 
-export const FONTSIZE = {
+export const FONT_SIZE = {
   ERROR: 13,
   X_SMALL: 15,
   SMALL: 18,

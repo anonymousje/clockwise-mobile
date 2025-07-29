@@ -1,5 +1,5 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, FONTSIZE, MODE } from '../../../../constants/theme';
+import { colors, FONT_SIZE, MODE } from '../../../../constants/theme';
 import { fonts } from '../../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
 
   input: {
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     backgroundColor:
       mode === MODE.DARK
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
 
   errorMsg: {
     color: 'red',
-    fontSize: FONTSIZE.ERROR,
+    fontSize: FONT_SIZE.ERROR,
     marginBottom: 2,
     marginLeft: 4,
   },
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
 
   inputPassword: {
     flex: 1,
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     flexDirection: 'row',
     alignItems: 'center',
     fontFamily: fonts.CLOCKWISE_REGULAR,

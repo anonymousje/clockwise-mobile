@@ -3,7 +3,7 @@ import {
   colors,
   fonts,
   MODE,
-  FONTSIZE,
+  FONT_SIZE,
   HEIGHT,
 } from '../../../constants/theme';
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
   successMsg: {
     color: colors.CLOCKWISE_PRIMARY,
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginTop: 20,
     textAlign: 'center',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
 
   inputPassword: {
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     paddingVertical: 16,
@@ -101,13 +101,13 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: colors.BUTTON_TEXT,
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     fontWeight: '600',
   },
 
   header: {
     width: '100%',
-    fontSize: FONTSIZE.LARGE,
+    fontSize: FONT_SIZE.LARGE,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: '300',
     color:
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   popUpBoxText: {
     color:
       mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.BACKGROUND_LIGHT_MODE,
-    fontSize: FONTSIZE.MEDIUM,
+    fontSize: FONT_SIZE.MEDIUM,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     textAlign: 'center',
   },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         : colors.BACKGROUND_LIGHTER_MODE,
     borderRadius: 8,
     paddingHorizontal: 14,
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
     marginBottom: 20,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     color: colors.BUTTON_TEXT,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     fontWeight: 'bold',
-    fontSize: FONTSIZE.SMALL,
+    fontSize: FONT_SIZE.SMALL,
   },
 
   rulesContainer: {
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
 
   rulesText: {
     color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontSize: FONTSIZE.X_SMALL,
+    fontSize: FONT_SIZE.X_SMALL,
     fontFamily: fonts.CLOCKWISE_REGULAR,
     marginBottom: 5,
     lineHeight: 20,
