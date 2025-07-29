@@ -4,7 +4,7 @@ import { useRoute } from '@react-navigation/native';
 import { NewPasswordRouteProp } from '../../types';
 import { NavigationProp } from '../../types';
 import { SCREENS } from '../../../constants/screens';
-import apiClient from '../../apiClient';
+import NewPasswordService from '../services/NewPasswordService';
 
 const useNewPasswordScreen = () => {
   const [newPassword, setNewPassword] = useState('');
@@ -57,12 +57,8 @@ const useNewPasswordScreen = () => {
 
     if (token && validatePassword(newPassword)) {
       const encodedToken = encodeURIComponent(token);
-      apiClient
-        .post('/Auth/reset-password', {
-          email,
-          token: encodedToken,
-          newPassword,
-        })
+
+      NewPasswordService.resetPassword(email, encodedToken, newPassword)
         .then(() => {
           setSuccess(true);
           setLoading(false);
@@ -70,8 +66,9 @@ const useNewPasswordScreen = () => {
         .catch(() => {
           setErrorMsg(true);
           setLoading(false);
-          return;
         });
+
+      return;
     } else {
       setLoading(false);
     }

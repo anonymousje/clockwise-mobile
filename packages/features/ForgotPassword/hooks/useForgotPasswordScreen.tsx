@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { SCREENS } from '../../../constants/screens';
 import { useNavigation } from '@react-navigation/native';
-import apiClient from '../../apiClient';
 import { NavigationProp } from '../../types';
+import ForgotPasswordService from '../services/ForgotPasswordService';
 
 const useForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');
@@ -30,10 +30,17 @@ const useForgotPasswordScreen = () => {
       return;
     }
 
-    apiClient.post('/Auth/forgot-password', { email });
-    setIsValidEmail(true);
-    setSuccess(true);
-    setLoading(false);
+    ForgotPasswordService.requestPasswordReset(email)
+      .then(() => {
+        setIsValidEmail(true);
+        setSuccess(true);
+      })
+      .catch(() => {
+        setIsValidEmail(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return {
