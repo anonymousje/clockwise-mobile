@@ -5,9 +5,8 @@ import useStaffDetail from '../hooks/useStaffDetail';
 import { Picker } from '@react-native-picker/picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Button from '../../components/Button/container/Button';
-import ICONS from '../../../constants/Icons';
 import STRINGS from '../../../utils/strings';
-import { colors } from '../../../constants/theme';
+import { COLORS } from '../../../constants/theme';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import { getInitials } from '../../../utils/helper';
 
@@ -35,7 +34,11 @@ const StaffDetail = () => {
           style={styles.editButton}
         >
           <Icons
-            name={editMode ? ICONS.save : ICONS.create}
+            name={
+              editMode
+                ? COMMON_CONSTANTS.ICONS.SAVE
+                : COMMON_CONSTANTS.ICONS.CREATE
+            }
             size={24}
             color={editIconColor}
           />
@@ -148,7 +151,7 @@ const StaffDetail = () => {
                   : STRINGS.ACTIVATE
               }
               onPress={changeStatus}
-              color={staffData?.userStatus === 1 ? colors.RED : colors.GREEN}
+              color={staffData?.userStatus === 1 ? COLORS.RED : COLORS.GREEN}
             />
           </View>
         )}

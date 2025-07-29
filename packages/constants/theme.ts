@@ -1,4 +1,4 @@
-export const colors = {
+export const COLORS = {
   CLOCKWISE_PRIMARY: '#00bcd4',
   CLOCKWISE_PRIMARY_DARK: '#008ba3',
   BACKGROUND_DARK_MODE: '#0E2747',
@@ -25,14 +25,14 @@ export const colors = {
 
 export const FONT_SIZE = {
   ERROR: 13,
-  X_SMALL: 15,
-  SMALL: 18,
-  MEDIUM: 24,
-  LARGE: 30,
-  X_LARGE: 50,
-  BUTTON_FONT_LARGE: 40,
-  BUTTON_FONT_MEDIUM: 20,
-  BUTTON_SMALL: 13,
+  SIZE_13: 13,
+  SIZE_15: 15,
+  SIZE_18: 18,
+  SIZE_20: 20,
+  SIZE_24: 24,
+  SIZE_30: 30,
+  SIZE_40: 40,
+  SIZE_50: 50,
 };
 
 export const HEIGHT = {
@@ -45,7 +45,7 @@ export const MODE = {
   LIGHT: 'light',
 };
 
-export const fonts = {
+export const FONTS = {
   CLOCKWISE_REGULAR: 'Lato-Regular',
   CLOCKWISE_BOLD: 'Lato-Bold',
 };

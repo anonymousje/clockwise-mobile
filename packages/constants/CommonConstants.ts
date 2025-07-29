@@ -16,6 +16,18 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     LOGIN_FAIL: 'LOGIN_FAIL',
   },
 
+  ICONS: {
+    HOME: 'home-outline',
+    PEOPLE: 'people-outline',
+    ADD: 'add-outline',
+    EDIT: 'create-outline',
+    SAVE: 'save-outline',
+    CREATE: 'create-outline',
+    SEARCH: 'search-outline',
+    FILTER: 'filter-outline',
+    ARROW: 'arrow-back-outline',
+  },
+
   DATE_TIME: {
     NUMERIC: 'numeric',
     SHORT: 'short',

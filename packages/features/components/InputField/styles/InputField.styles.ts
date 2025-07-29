@@ -1,6 +1,6 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, FONT_SIZE, MODE } from '../../../../constants/theme';
-import { fonts } from '../../../../constants/theme';
+import { COLORS, FONT_SIZE, MODE } from '../../../../constants/theme';
+import { FONTS } from '../../../../constants/theme';
 
 const mode = Appearance.getColorScheme();
 
@@ -10,18 +10,18 @@ export const styles = StyleSheet.create({
   },
 
   input: {
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontSize: FONT_SIZE.SMALL,
-    fontFamily: fonts.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.SIZE_18,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
     borderBottomWidth: 1,
     borderBottomColor:
       mode === MODE.DARK
-        ? colors.BORDER_COLOR_DARK_MODE
-        : colors.BORDER_COLOR_LIGHT_MODE,
+        ? COLORS.BORDER_COLOR_DARK_MODE
+        : COLORS.BORDER_COLOR_LIGHT_MODE,
   },
 
   inputError: {
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
 
   inputFocused: {
-    borderBottomColor: colors.CLOCKWISE_PRIMARY,
+    borderBottomColor: COLORS.CLOCKWISE_PRIMARY,
     borderBottomWidth: 2,
   },
 
@@ -43,15 +43,15 @@ export const styles = StyleSheet.create({
   passwordContainer: {
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
 
     borderBottomWidth: 1,
 
     borderBottomColor:
       mode === MODE.DARK
-        ? colors.BORDER_COLOR_DARK_MODE
-        : colors.BORDER_COLOR_LIGHT_MODE,
+        ? COLORS.BORDER_COLOR_DARK_MODE
+        : COLORS.BORDER_COLOR_LIGHT_MODE,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -59,18 +59,18 @@ export const styles = StyleSheet.create({
 
   inputPassword: {
     flex: 1,
-    fontSize: FONT_SIZE.SMALL,
+    fontSize: FONT_SIZE.SIZE_18,
     flexDirection: 'row',
     alignItems: 'center',
-    fontFamily: fonts.CLOCKWISE_REGULAR,
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
 
   showPasswordButton: {
     color:
       mode === MODE.DARK
-        ? colors.CLOCKWISE_PRIMARY
-        : colors.CLOCKWISE_PRIMARY_DARK,
+        ? COLORS.CLOCKWISE_PRIMARY
+        : COLORS.CLOCKWISE_PRIMARY_DARK,
     paddingHorizontal: 12,
   },
 });

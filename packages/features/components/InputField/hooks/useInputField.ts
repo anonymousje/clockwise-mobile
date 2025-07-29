@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Animated, Appearance, TextInput } from 'react-native';
-import { colors, MODE } from '../../../../constants/theme';
+import { COLORS, MODE } from '../../../../constants/theme';
 
 const useInputField = (value: string) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -37,14 +37,14 @@ const useInputField = (value: string) => {
       outputRange: [17, 15],
     }),
 
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
 
     backgroundColor: 'transparent',
     zIndex: 1,
   };
 
   const labelStyleFocused = {
-    color: colors.CLOCKWISE_PRIMARY,
+    color: COLORS.CLOCKWISE_PRIMARY,
     opacity: 1,
   };
 

@@ -85,6 +85,17 @@ export interface COMMON_CONSTANTS_TYPE {
     LOGIN_USER: string;
     LOGIN_FAIL: string;
   };
+  ICONS: {
+    HOME: const;
+    PEOPLE: const;
+    ADD: const;
+    EDIT: const;
+    SAVE: const;
+    CREATE: const;
+    SEARCH: const;
+    FILTER: const;
+    ARROW: const;
+  };
   DATE_TIME: {
     NUMERIC: const;
     SHORT: const;

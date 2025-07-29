@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, fonts } from '../../../theme';
+import { COLORS, FONT_SIZE, FONTS } from '../../../../constants/theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,15 +16,15 @@ export const styles = StyleSheet.create({
 
   button: {
     width: '95%',
-    backgroundColor: colors.CLOCKWISE_PRIMARY,
+    backgroundColor: COLORS.CLOCKWISE_PRIMARY,
     alignItems: 'center',
     paddingVertical: 11,
     borderRadius: 5,
   },
 
   ButtonText: {
-    fontFamily: fonts.CLOCKWISE_BOLD,
-    fontSize: 17,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    fontSize: FONT_SIZE.SIZE_20,
     color: 'white',
   },
 
@@ -40,15 +40,15 @@ export const styles = StyleSheet.create({
   titleText: {
     fontSize: 17,
     opacity: 0.5,
-    fontFamily: fonts.CLOCKWISE_REGULAR,
-    color: colors.TEXT_LIGHT_MODE,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: COLORS.TEXT_LIGHT_MODE,
   },
 
   timeText: {
     fontSize: 35,
     paddingVertical: 20,
-    fontFamily: fonts.CLOCKWISE_BOLD,
-    color: colors.TEXT_LIGHT_MODE,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: COLORS.TEXT_LIGHT_MODE,
   },
 
   clockOutButtonContainer: {

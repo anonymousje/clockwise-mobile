@@ -9,7 +9,7 @@ import {
 
 import styles from '../styles/ForgotPasswordScreen.styles';
 import useNewPasswordScreen from '../hooks/useNewPasswordScreen';
-import { colors } from '../../../constants/theme';
+import { COLORS } from '../../../constants/theme';
 import { modeColor } from '../styles/ForgotPasswordScreen.styles';
 import STRINGS from '../../../utils/strings';
 
@@ -152,7 +152,7 @@ const NewPassword = () => {
         {loading ? (
           <ActivityIndicator
             size='large'
-            color={colors.CLOCKWISE_PRIMARY}
+            color={COLORS.CLOCKWISE_PRIMARY}
             style={styles.loader}
           />
         ) : (
