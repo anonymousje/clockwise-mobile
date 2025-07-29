@@ -18,7 +18,7 @@ export const colors = {
   TEXT_DARK_LIGHTER_MODE: '#656565',
   TEXT_LIGHT_LIGHTER_MODE: '#656565',
   RANDOM_COLOR_ARRAY: ['#07CF99', '#086DBF', '#B63C08', '#F0F30D', '#0ED4EA'],
-  RED: ' red',
+  RED: 'red',
   GREEN: 'green',
   BLACK: 'black',
 };

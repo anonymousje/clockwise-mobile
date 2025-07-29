@@ -48,8 +48,8 @@ const STRINGS = {
 
   ACTIVE: 'Active',
   INACTIVE: 'Inactive',
-  ACTIVATE: 'Activate',
-  DEACTIVATE: 'Deactivate',
+  ACTIVATE: 'ACTIVATE',
+  DEACTIVATE: 'DEACTIVATE',
 
   RESPONSE_SORT: {
     EMAIL: 'email',

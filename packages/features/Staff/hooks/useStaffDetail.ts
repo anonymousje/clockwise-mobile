@@ -85,6 +85,11 @@ const useStaffDetail = () => {
         });
 
         dispatch(fetchUpdated(true));
+        const updatedUser: staffType | null = await StaffDetailService.getUser(
+          staffData?.recordId,
+        );
+
+        setStaffData(updatedUser);
       } catch (e: any) {
         const errors: errorType = {};
 

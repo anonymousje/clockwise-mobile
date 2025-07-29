@@ -33,7 +33,9 @@ class StaffDetailService {
   }
 
   async deleteUser(recordId?: string) {
-    const response = await apiClient.delete(`/user/delete-user/${recordId}`);
+    const response = await apiClient.post('/user/delete-user', {
+      id: recordId,
+    });
     return response.data.data;
   }
 
