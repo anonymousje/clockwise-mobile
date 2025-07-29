@@ -158,7 +158,10 @@ const StaffDetail = () => {
               value={staffData?.firstName || VALUES.DEFAULT}
               onChangeText={(text) => {
                 if (staffData) {
-                  handleTextChange(text, 'firstName');
+                  handleTextChange(
+                    text,
+                    VALUES.FORM_CONTROLLER_VALUES.FIRST_NAME,
+                  );
                 }
               }}
             />
@@ -170,7 +173,9 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.LAST_NAME}
               value={staffData?.lastName || VALUES.DEFAULT}
-              onChangeText={(text) => handleTextChange(text, 'lastName')}
+              onChangeText={(text) =>
+                handleTextChange(text, VALUES.FORM_CONTROLLER_VALUES.LAST_NAME)
+              }
             />
 
             {validationErrors?.lastName && (
@@ -180,7 +185,9 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.EMAIL}
               value={staffData?.email || VALUES.DEFAULT}
-              onChangeText={(text) => handleTextChange(text, 'email')}
+              onChangeText={(text) =>
+                handleTextChange(text, VALUES.FORM_CONTROLLER_VALUES.EMAIL)
+              }
             />
 
             {validationErrors?.email && (
@@ -190,13 +197,20 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.CELL_PHONE}
               value={staffData?.phoneNumber || VALUES.DEFAULT}
-              onChangeText={(text) => handleTextChange(text, 'phoneNumber')}
+              onChangeText={(text) =>
+                handleTextChange(
+                  text,
+                  VALUES.FORM_CONTROLLER_VALUES.PHONE_NUMBER,
+                )
+              }
             />
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.USERNAME}
               value={staffData?.username || VALUES.DEFAULT}
-              onChangeText={(text) => handleTextChange(text, 'username')}
+              onChangeText={(text) =>
+                handleTextChange(text, VALUES.FORM_CONTROLLER_VALUES.USERNAME)
+              }
             />
 
             {validationErrors?.username && (
@@ -206,19 +220,25 @@ const StaffDetail = () => {
             <InputField
               label={STRINGS.EMPLOYEE_FORM.NICKNAME}
               value={staffData?.nickname || VALUES.DEFAULT}
-              onChangeText={(text) => handleTextChange(text, 'nickname')}
+              onChangeText={(text) =>
+                handleTextChange(text, VALUES.FORM_CONTROLLER_VALUES.NICKNAME)
+              }
             />
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.ADDRESS}
               value={staffData?.address || VALUES.DEFAULT}
-              onChangeText={(text) => handleTextChange(text, 'address')}
+              onChangeText={(text) =>
+                handleTextChange(text, VALUES.FORM_CONTROLLER_VALUES.ADDRESS)
+              }
             />
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.USERCODE}
               value={staffData?.userCode || VALUES.DEFAULT}
-              onChangeText={(text) => handleTextChange(text, 'userCode')}
+              onChangeText={(text) =>
+                handleTextChange(text, VALUES.FORM_CONTROLLER_VALUES.USER_CODE)
+              }
             />
 
             {validationErrors?.userCode && (
@@ -230,7 +250,10 @@ const StaffDetail = () => {
                 <Picker
                   selectedValue={staffData?.departmentName || VALUES.DEFAULT}
                   onValueChange={(itemValue) =>
-                    handlePickerChange(itemValue, 'department')
+                    handlePickerChange(
+                      itemValue,
+                      VALUES.FORM_CONTROLLER_VALUES.DEPARTMENT,
+                    )
                   }
                   style={styles.pickerItem}
                 >
@@ -253,7 +276,10 @@ const StaffDetail = () => {
                 <Picker
                   selectedValue={staffData?.locationName || VALUES.DEFAULT}
                   onValueChange={(itemValue) =>
-                    handlePickerChange(itemValue, 'location')
+                    handlePickerChange(
+                      itemValue,
+                      VALUES.FORM_CONTROLLER_VALUES.LOCATION,
+                    )
                   }
                   style={styles.pickerItem}
                 >
@@ -276,7 +302,10 @@ const StaffDetail = () => {
                 <Picker
                   selectedValue={staffData?.jobRoleName || VALUES.DEFAULT}
                   onValueChange={(itemValue) =>
-                    handlePickerChange(itemValue, 'jobRole')
+                    handlePickerChange(
+                      itemValue,
+                      VALUES.FORM_CONTROLLER_VALUES.JOB_ROLE,
+                    )
                   }
                   style={styles.pickerItem}
                 >
@@ -299,7 +328,10 @@ const StaffDetail = () => {
                 <Picker
                   selectedValue={staffData?.role || VALUES.DEFAULT}
                   onValueChange={(itemValue) =>
-                    handleTextChange(itemValue, 'role')
+                    handleTextChange(
+                      itemValue,
+                      VALUES.FORM_CONTROLLER_VALUES.ROLE,
+                    )
                   }
                   style={styles.pickerItem}
                 >

@@ -158,7 +158,7 @@ const useStaffDetail = () => {
     if (!dateString) return ` ${STRINGS.DASH}`;
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return dateString;
-    return date.toLocaleString('en-US', {
+    return date.toLocaleString(VALUES.DATE_TIME.EN_US, {
       year: VALUES.DATE_TIME.NUMERIC,
       month: VALUES.DATE_TIME.SHORT,
       day: VALUES.DATE_TIME.TWO_DIGIT,

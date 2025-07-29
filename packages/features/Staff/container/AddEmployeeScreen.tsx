@@ -12,6 +12,7 @@ import useAddEmployee from '../hooks/useAddEmployee';
 import InputField from '../../components/InputField/container/InputField';
 import STRINGS from '../../../utils/strings';
 import LINK_PREFIX from '../../../constants/links';
+import VALUES from '../../../constants/values';
 
 const AddEmployee = () => {
   const { control, handleSubmit, onSubmit, errorMsg, setFirstName, clearForm } =
@@ -35,12 +36,11 @@ const AddEmployee = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        {/*TODO: Add this to constants*/}
 
         <View style={styles.formContainer}>
           <Controller
             control={control}
-            name={'firstName'}
+            name={VALUES.FORM_CONTROLLER_VALUES.FIRST_NAME}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
@@ -60,7 +60,7 @@ const AddEmployee = () => {
 
           <Controller
             control={control}
-            name={'lastName'}
+            name={VALUES.FORM_CONTROLLER_VALUES.LAST_NAME}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
@@ -77,7 +77,7 @@ const AddEmployee = () => {
 
           <Controller
             control={control}
-            name={'email'}
+            name={VALUES.FORM_CONTROLLER_VALUES.EMAIL}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
@@ -99,7 +99,7 @@ const AddEmployee = () => {
 
           <Controller
             control={control}
-            name={'password'}
+            name={VALUES.FORM_CONTROLLER_VALUES.PASSWORD}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Pressable>
