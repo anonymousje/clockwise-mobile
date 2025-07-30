@@ -4,7 +4,7 @@ import { styles } from '../styles/Clock.styles';
 import { Text } from 'react-native-gesture-handler';
 import STRINGS from '../../../../utils/strings';
 
-export default function Clocking({}) {
+const Clocking = () => {
   const { clockIn, timePunch } = useClock();
 
   return (
@@ -37,7 +37,7 @@ export default function Clocking({}) {
           <View style={styles.clockOutButtonContainer}>
             <TouchableOpacity
               onPress={timePunch}
-              style={styles.clockOutButton}
+              style={styles.breakButton}
             >
               <Text style={styles.ButtonText}>{STRINGS.BUTTON_TEXT.BREAK}</Text>
             </TouchableOpacity>
@@ -55,4 +55,6 @@ export default function Clocking({}) {
       )}
     </>
   );
-}
+};
+
+export default Clocking;

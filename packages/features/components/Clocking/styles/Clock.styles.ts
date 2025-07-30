@@ -49,9 +49,16 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  breakButton: {
+    width: '45%',
+    backgroundColor: COLORS.BREAK_BUTTON_BACKGROUND,
+    alignItems: 'center',
+    paddingVertical: 11,
+    borderRadius: 5,
+  },
   clockOutButton: {
     width: '45%',
-    backgroundColor: 'red',
+    backgroundColor: COLORS.CLOCK_OUT_BUTTON_BACKGROUND,
     alignItems: 'center',
     paddingVertical: 11,
     borderRadius: 5,
