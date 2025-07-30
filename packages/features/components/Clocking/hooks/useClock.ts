@@ -1,14 +1,15 @@
 import { useState } from 'react';
+import ClockService from '../services/ClockService';
 
 export default function useClock() {
-  const [clockIn, setClockIn] = useState(false);
+  const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
 
   function timePunch() {
     if (clockIn) {
-      console.log('Clocking In');
+      ClockService.clockIn();
     } else {
-      console.log('Clocking Out');
+      ClockService.clockOut();
     }
 
     setClockIn(!clockIn);

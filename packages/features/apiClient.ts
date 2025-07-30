@@ -27,6 +27,7 @@ apiClient.interceptors.request.use(
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
+    console.log('config: ', config);
     return config;
   },
   function (error) {
@@ -36,6 +37,7 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   function (response) {
+    console.log('response: ', response);
     return response;
   },
 
