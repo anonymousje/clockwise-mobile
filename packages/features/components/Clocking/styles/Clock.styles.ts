@@ -12,6 +12,10 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
   },
+  clockInContainer: {
+    width: '100%',
+    height: 50,
+  },
   buttonContainer: {
     flex: 1,
     alignItems: 'center',

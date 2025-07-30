@@ -11,17 +11,19 @@ const Clocking = () => {
   return (
     <View style={styles.container}>
       {!clockIn && (
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              timePunch();
-            }}
-            style={styles.button}
-          >
-            <Text style={styles.ButtonText}>
-              {STRINGS.BUTTON_TEXT.CLOCK_IN}
-            </Text>
-          </TouchableOpacity>
+        <View style={styles.clockInContainer}>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                timePunch();
+              }}
+              style={styles.button}
+            >
+              <Text style={styles.ButtonText}>
+                {STRINGS.BUTTON_TEXT.CLOCK_IN}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
 
