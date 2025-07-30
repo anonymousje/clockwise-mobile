@@ -5,14 +5,33 @@ const mode = Appearance.getColorScheme();
 
 export const styles = StyleSheet.create({
   container: {
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
+
     flex: 1,
-    backgroundColor: COLORS.BACKGROUND_LIGHT_MODE,
-    padding: 10,
+    justifyContent: 'flex-start',
+  },
+  clockContainer: {
+    flex: 0,
+    alignSelf: 'stretch',
+    paddingVertical: 10,
     paddingHorizontal: 15,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
   headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingTop: 10,
     paddingBottom: 25,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    gap: 30,
   },
   headerText: {
     fontSize: FONT_SIZE.SIZE_20,

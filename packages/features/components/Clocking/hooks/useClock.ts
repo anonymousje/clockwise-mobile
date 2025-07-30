@@ -33,9 +33,10 @@ export default function useClock() {
     const response = await ClockService.getClockStatus();
 
     if (response.status) {
-      setClockTime(timeFormatter(response.response.hoursWorked || '00:00:00'));
+      setClockTime(timeFormatter(response.response.hoursWorked || ''));
       setClockIn(response.response.isClockedIn || false);
     }
+
     return response;
   }, []);
 
