@@ -7,8 +7,8 @@ class ClockService {
     return response;
   }
 
-  async clockOut() {
-    return await apiClient.post(ApiRoutes.clockOut, { note: 'test' });
+  async clockOut(data: string) {
+    return await apiClient.post(ApiRoutes.clockOut, { note: data });
   }
 }
 export default new ClockService();
