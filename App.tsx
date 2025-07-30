@@ -3,7 +3,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import Login from './packages/features/Login/container/LoginScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
@@ -61,6 +61,7 @@ const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
 
 const MainTabs = () => {
   const mode = Appearance.getColorScheme();
+  const User = useSelector((state: any) => state.user);
 
   return (
     <Tab.Navigator
@@ -86,16 +87,17 @@ const MainTabs = () => {
           tabBarIcon: DashboardTabIcon,
         }}
       />
-
-      <Tab.Screen
-        name={SCREENS.Staff}
-        component={Staff}
-        options={{
-          title: STRINGS.SCREEN_TITLE.STAFF,
-          headerShown: false,
-          tabBarIcon: StaffTabIcon,
-        }}
-      />
+      {User.role === COMMON_CONSTANTS.PICKER_VALUES.ADMIN && (
+        <Tab.Screen
+          name={SCREENS.Staff}
+          component={Staff}
+          options={{
+            title: STRINGS.SCREEN_TITLE.STAFF,
+            headerShown: false,
+            tabBarIcon: StaffTabIcon,
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 };
