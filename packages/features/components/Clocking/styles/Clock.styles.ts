@@ -1,19 +1,30 @@
-import { StyleSheet } from 'react-native';
-import { COLORS, FONTS, FONT_SIZE } from '../../../../constants/theme';
+import { Appearance, StyleSheet } from 'react-native';
+import { COLORS, FONTS, FONT_SIZE, MODE } from '../../../../constants/theme';
+
+const mode = Appearance.getColorScheme();
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingTop: 20,
+    backgroundColor: COLORS.BACKGROUND_LIGHT_MODE,
+    padding: 10,
+    paddingHorizontal: 15,
+  },
+  headerContainer: {
+    paddingTop: 10,
+    paddingBottom: 25,
+  },
+  headerText: {
+    fontSize: FONT_SIZE.SIZE_20,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: COLORS.TEXT_LIGHT_MODE,
   },
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
   },
   button: {
-    width: '95%',
+    width: '100%',
     backgroundColor: COLORS.CLOCKWISE_PRIMARY,
     alignItems: 'center',
     paddingVertical: 11,
@@ -24,13 +35,9 @@ export const styles = StyleSheet.create({
     fontSize: FONT_SIZE.SIZE_17,
     color: 'white',
   },
-  clockOutContainer: {
-    flex: 1,
-  },
-  headerContainer: {
-    alignItems: 'flex-start',
-    padding: 10,
-  },
+
+  clockOutContainer: {},
+  titleContainer: {},
   titleText: {
     fontSize: FONT_SIZE.SIZE_17,
     opacity: 0.5,
@@ -39,28 +46,43 @@ export const styles = StyleSheet.create({
   },
   timeText: {
     fontSize: FONT_SIZE.SIZE_30,
-    paddingVertical: 20,
+    paddingVertical: 25,
     fontFamily: FONTS.CLOCKWISE_BOLD,
     color: COLORS.TEXT_LIGHT_MODE,
   },
   clockOutButtonContainer: {
     flexDirection: 'row',
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
     gap: 10,
-    alignItems: 'center',
+    paddingVertical: 5,
     justifyContent: 'center',
   },
+  icon: {
+    transform: [{ rotate: '-20deg' }],
+  },
   breakButton: {
-    width: '45%',
+    width: '50%',
     backgroundColor: COLORS.BREAK_BUTTON_BACKGROUND,
     alignItems: 'center',
-    paddingVertical: 11,
+    paddingVertical: 12,
     borderRadius: 5,
   },
   clockOutButton: {
-    width: '45%',
+    width: '50%',
     backgroundColor: COLORS.CLOCK_OUT_BUTTON_BACKGROUND,
     alignItems: 'center',
-    paddingVertical: 11,
+    paddingVertical: 12,
     borderRadius: 5,
+  },
+  clockIconBackground: {
+    position: 'absolute',
+    top: 60,
+    left: 230,
+    right: 0,
+    bottom: 0,
+    opacity: 0.1,
   },
 });

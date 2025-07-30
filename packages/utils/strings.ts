@@ -27,6 +27,10 @@ const STRINGS = {
     USERCODE: 'User Code',
   },
 
+  TITLES: {
+    DASHBOARD: 'Dashboard',
+  },
+
   RESET_PASSWORD_EMAIL:
     'If {0} is registered, you will receive a password reset link.',
 

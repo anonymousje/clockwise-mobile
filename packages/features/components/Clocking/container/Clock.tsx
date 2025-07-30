@@ -3,32 +3,42 @@ import useClock from '../hooks/useClock';
 import { styles } from '../styles/Clock.styles';
 import { Text } from 'react-native-gesture-handler';
 import STRINGS from '../../../../utils/strings';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Clocking = () => {
   const { clockIn, timePunch } = useClock();
 
   return (
-    <>
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>{STRINGS.TITLES.DASHBOARD}</Text>
+      </View>
+      <View style={styles.clockIconBackground}>
+        <Ionicons
+          name='alarm-outline'
+          size={180}
+          color='grey'
+          style={styles.icon}
+        />
+      </View>
       {clockIn && (
-        <View style={styles.container}>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                timePunch();
-              }}
-              style={styles.button}
-            >
-              <Text style={styles.ButtonText}>
-                {STRINGS.BUTTON_TEXT.CLOCK_IN}
-              </Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              timePunch();
+            }}
+            style={styles.button}
+          >
+            <Text style={styles.ButtonText}>
+              {STRINGS.BUTTON_TEXT.CLOCK_IN}
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
 
       {!clockIn && (
         <View style={styles.clockOutContainer}>
-          <View style={styles.headerContainer}>
+          <View style={styles.titleContainer}>
             <Text style={styles.titleText}>{STRINGS.HEADERS.CLOCK_IN}</Text>
 
             <Text style={styles.timeText}>{STRINGS.PLACEHOLDERTIME}</Text>
@@ -53,7 +63,7 @@ const Clocking = () => {
           </View>
         </View>
       )}
-    </>
+    </View>
   );
 };
 
