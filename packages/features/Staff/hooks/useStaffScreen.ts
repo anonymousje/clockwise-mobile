@@ -24,10 +24,8 @@ const useStaffScreen = () => {
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
 
-  const { updated, userFromStore } = useSelector((state: RootState) => ({
-    updated: state.updated,
-    userFromStore: state.user,
-  }));
+  const updated = useSelector((state: RootState) => state.updated);
+  const userFromStore = useSelector((state: RootState) => state.user);
 
   const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
