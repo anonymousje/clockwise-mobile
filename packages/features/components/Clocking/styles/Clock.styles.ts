@@ -24,15 +24,15 @@ export const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 10,
-    paddingBottom: 25,
+    paddingTop: 15,
+    paddingBottom: 35,
   },
   iconContainer: {
     flexDirection: 'row',
     gap: 30,
   },
   headerText: {
-    fontSize: FONT_SIZE.SIZE_20,
+    fontSize: FONT_SIZE.SIZE_24,
     fontFamily: FONTS.CLOCKWISE_BOLD,
     color: COLORS.TEXT_LIGHT_MODE,
   },
@@ -53,16 +53,14 @@ export const styles = StyleSheet.create({
     color: 'white',
   },
 
-  clockOutContainer: {},
-  titleContainer: {},
   titleText: {
-    fontSize: FONT_SIZE.SIZE_17,
+    fontSize: FONT_SIZE.SIZE_20,
     opacity: 0.5,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: COLORS.TEXT_LIGHT_MODE,
   },
   timeText: {
-    fontSize: FONT_SIZE.SIZE_30,
+    fontSize: FONT_SIZE.SIZE_50,
     paddingVertical: 25,
     fontFamily: FONTS.CLOCKWISE_BOLD,
     color: COLORS.TEXT_LIGHT_MODE,
@@ -78,7 +76,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    transform: [{ rotate: '-20deg' }],
+    transform: [{ rotate: '-15deg' }],
   },
   breakButton: {
     width: '50%',
@@ -96,8 +94,8 @@ export const styles = StyleSheet.create({
   },
   clockIconBackground: {
     position: 'absolute',
-    top: 60,
-    left: 230,
+    top: 90,
+    left: 220,
     right: 0,
     bottom: 0,
     opacity: 0.1,

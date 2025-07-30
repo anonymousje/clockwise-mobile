@@ -48,16 +48,15 @@ const Clocking = () => {
           <View style={styles.clockIconBackground}>
             <Ionicons
               name='alarm-outline'
-              size={180}
+              size={200}
               color='grey'
               style={styles.icon}
             />
           </View>
 
-          <View style={styles.clockOutContainer}>
-            <View style={styles.titleContainer}>
+          <View>
+            <View>
               <Text style={styles.titleText}>{STRINGS.HEADERS.CLOCK_IN}</Text>
-
               <Text style={styles.timeText}>{clockTime}</Text>
             </View>
 
