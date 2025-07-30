@@ -41,6 +41,10 @@ export default function useClock() {
 
   useEffect(() => {
     getClockStatus();
+    const interval = setInterval(() => {
+      getClockStatus();
+    }, 60000);
+    return () => clearInterval(interval);
   }, [getClockStatus]);
 
   const BreakSetter = () => {
