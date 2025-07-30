@@ -27,6 +27,7 @@ const STRINGS = {
     USERCODE: 'User Code',
   },
 
+  PLACEHOLDER_TEXT: 'PlaceHolder',
   TITLES: {
     DASHBOARD: 'Dashboard',
   },

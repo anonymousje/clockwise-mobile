@@ -34,15 +34,15 @@ export const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: FONT_SIZE.SIZE_20,
-    opacity: 0.5,
+    opacity: mode === MODE.DARK ? 0.9 : 0.5,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    color: COLORS.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   timeText: {
     fontSize: FONT_SIZE.SIZE_50,
     paddingVertical: 25,
     fontFamily: FONTS.CLOCKWISE_BOLD,
-    color: COLORS.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   clockOutButtonContainer: {
     flexDirection: 'row',

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 20,
+    paddingTop: 35,
     paddingBottom: 35,
     paddingHorizontal: 15,
 
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: FONT_SIZE.SIZE_24,
     fontFamily: FONTS.CLOCKWISE_BOLD,
-    color: COLORS.TEXT_LIGHT_MODE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
 
   widgetContainer: {

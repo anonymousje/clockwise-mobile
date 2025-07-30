@@ -33,7 +33,7 @@ const Dashboard = () => {
       <Clocking />
 
       <View style={styles.widgetContainer}>
-        <Text>PlaceHolder</Text>
+        <Text>{STRINGS.PLACEHOLDER_TEXT}</Text>
       </View>
     </View>
   );
