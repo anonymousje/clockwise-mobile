@@ -26,7 +26,7 @@ export const timeFormatter = (hoursWorked: string): string => {
     result += (result ? ' ' : '') + `${minutes}m`;
   }
   if (!result) {
-    result = '0 m';
+    result = '0m';
   }
   return result;
 };

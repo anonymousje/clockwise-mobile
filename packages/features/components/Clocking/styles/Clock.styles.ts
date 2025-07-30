@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
   },
   clockIconBackground: {
     position: 'absolute',
-    top: 90,
+    top: 10,
     left: 220,
     right: 0,
     bottom: 0,
