@@ -27,6 +27,7 @@ apiClient.interceptors.request.use(
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
+    //TODO: remove console.log before PR
     console.log('config: ', config);
     return config;
   },

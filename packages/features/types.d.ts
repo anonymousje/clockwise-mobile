@@ -131,6 +131,12 @@ export type staffSearchQueryType = {
   role?: string;
 };
 
+export type ResponseType = {
+  status: boolean;
+  response: string | undefined;
+  exceptionMessage: string | undefined;
+};
+
 export type staffType = {
   iconColor?: string;
   recordId: string;
