@@ -84,6 +84,7 @@ export interface COMMON_CONSTANTS_TYPE {
     SET_TOKEN: string;
     LOGIN_USER: string;
     LOGIN_FAIL: string;
+    LOGOUT: string;
   };
   ICONS: {
     HOME: const;

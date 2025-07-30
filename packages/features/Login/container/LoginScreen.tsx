@@ -7,7 +7,6 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-
 import styles from '../styles/LoginScreen.styles';
 import useLoginScreen from '../hooks/useLoginScreen';
 import { COLORS, MODE } from '../../../constants/theme';

@@ -23,6 +23,7 @@ export const useSession = (state = initialState, action: Action) => {
         role: action.payload.role,
         authenticated: true,
       };
+
     case 'SET_TOKENS':
       setAccessToken(action.payload.accessToken);
       setRefreshToken(action.payload.refreshToken);
@@ -30,6 +31,18 @@ export const useSession = (state = initialState, action: Action) => {
         ...state,
         accessToken: action.payload.accessToken,
         refreshToken: action.payload.refreshToken,
+      };
+
+    case 'LOGOUT':
+      setAccessToken(COMMON_CONSTANTS.DEFAULT);
+      setRefreshToken(COMMON_CONSTANTS.DEFAULT);
+      return {
+        ...state,
+        email: COMMON_CONSTANTS.DEFAULT,
+        accessToken: COMMON_CONSTANTS.DEFAULT,
+        refreshToken: COMMON_CONSTANTS.DEFAULT,
+        role: COMMON_CONSTANTS.DEFAULT,
+        authenticated: false,
       };
 
     default:

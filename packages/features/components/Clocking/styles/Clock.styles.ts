@@ -11,30 +11,6 @@ export const styles = StyleSheet.create({
         : COLORS.BACKGROUND_LIGHT_MODE,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    shadowColor: COLORS.SHADOW_COLOR,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 15,
-    paddingBottom: 35,
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    gap: 30,
-  },
-  headerText: {
-    fontSize: FONT_SIZE.SIZE_24,
-    fontFamily: FONTS.CLOCKWISE_BOLD,
-    color: COLORS.TEXT_LIGHT_MODE,
   },
   buttonContainer: {
     flex: 1,
@@ -52,7 +28,6 @@ export const styles = StyleSheet.create({
     fontSize: FONT_SIZE.SIZE_17,
     color: 'white',
   },
-
   titleText: {
     fontSize: FONT_SIZE.SIZE_20,
     opacity: 0.5,

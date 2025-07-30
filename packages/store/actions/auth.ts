@@ -42,4 +42,11 @@ export const loginUser = async (email: string, password: string) => {
   }
 };
 
+export const logoutUser = () => {
+  return {
+    type: COMMON_CONSTANTS.REDUX_TYPES.LOGOUT,
+    payload: COMMON_CONSTANTS.DEFAULT,
+  };
+};
+
 export type Action = ReturnType<typeof setUser>;
