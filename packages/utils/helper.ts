@@ -13,3 +13,20 @@ export const stringFormat = (str?: string, ...args: string[]) => {
         .replace(/\|/g, '\n')
     : '';
 };
+
+export const timeFormatter = (hoursWorked: string): string => {
+  const [hh, mm] = hoursWorked.split(':');
+  const hours = parseInt(hh, 10);
+  const minutes = parseInt(mm, 10);
+  let result = '';
+  if (hours > 0) {
+    result += `${hours}h`;
+  }
+  if (minutes > 0) {
+    result += (result ? ' ' : '') + `${minutes}m`;
+  }
+  if (!result) {
+    result = '0 m';
+  }
+  return result;
+};

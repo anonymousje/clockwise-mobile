@@ -6,7 +6,7 @@ import STRINGS from '../../../../utils/strings';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Clocking = () => {
-  const { clockIn, timePunch } = useClock();
+  const { clockIn, timePunch, clockTime } = useClock();
 
   return (
     <View style={styles.container}>
@@ -14,7 +14,7 @@ const Clocking = () => {
         <Text style={styles.headerText}>{STRINGS.TITLES.DASHBOARD}</Text>
       </View>
 
-      {clockIn && (
+      {!clockIn && (
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => {
@@ -29,7 +29,7 @@ const Clocking = () => {
         </View>
       )}
 
-      {!clockIn && (
+      {clockIn && (
         <>
           <View style={styles.clockIconBackground}>
             <Ionicons
@@ -44,7 +44,7 @@ const Clocking = () => {
             <View style={styles.titleContainer}>
               <Text style={styles.titleText}>{STRINGS.HEADERS.CLOCK_IN}</Text>
 
-              <Text style={styles.timeText}>{STRINGS.PLACEHOLDERTIME}</Text>
+              <Text style={styles.timeText}>{clockTime}</Text>
             </View>
 
             <View style={styles.clockOutButtonContainer}>

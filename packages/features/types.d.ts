@@ -131,6 +131,17 @@ export type staffSearchQueryType = {
   role?: string;
 };
 
+export type ClockStatusResponse = {
+  status: boolean;
+  response: {
+    clockInTime?: string | undefined;
+    currentTime?: string | undefined;
+    hoursWorked?: string | undefined;
+    isClockedIn?: boolean | undefined;
+  };
+  exceptionMessage?: string | undefined;
+};
+
 export type ResponseType = {
   status: boolean;
   response: string | undefined;

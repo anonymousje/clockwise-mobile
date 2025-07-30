@@ -1,5 +1,6 @@
 import apiClient from '../../../apiClient';
 import ApiRoutes from '../../../../constants/ApiRoutes';
+import { ClockStatusResponse } from '../../../types';
 
 class ClockService {
   async clockIn() {
@@ -37,6 +38,24 @@ class ClockService {
         return {
           status: false,
           response: undefined,
+          exceptionMessage: error.message,
+        };
+      });
+  }
+  async getClockStatus(): Promise<ClockStatusResponse> {
+    return await apiClient
+      .get('/timeentry/get-shift-status')
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.data,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: {},
           exceptionMessage: error.message,
         };
       });

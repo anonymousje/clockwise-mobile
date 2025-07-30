@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
+import { ClockStatusResponse } from '../../../types';
+import { timeFormatter } from '../../../../utils/helper';
 
 export default function useClock() {
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
+  const [clockTime, setClockTime] = useState('');
   const [note] = useState('test');
 
   const timePunch = async () => {
-    if (clockIn) {
+    if (!clockIn) {
       const response = await ClockService.clockIn();
 
       if (response.status) {
@@ -23,11 +26,26 @@ export default function useClock() {
         console.error('Clock Out Error:', response.exceptionMessage);
       }
     }
+    getClockStatus();
   };
+
+  const getClockStatus = useCallback(async (): Promise<ClockStatusResponse> => {
+    const response = await ClockService.getClockStatus();
+
+    if (response.status) {
+      setClockTime(timeFormatter(response.response.hoursWorked || '00:00:00'));
+      setClockIn(response.response.isClockedIn || false);
+    }
+    return response;
+  }, []);
+
+  useEffect(() => {
+    getClockStatus();
+  }, [getClockStatus]);
 
   const BreakSetter = () => {
     setOnBreak(!onBreak);
   };
 
-  return { clockIn, timePunch, BreakSetter, onBreak };
+  return { clockIn, timePunch, BreakSetter, onBreak, clockTime };
 }
