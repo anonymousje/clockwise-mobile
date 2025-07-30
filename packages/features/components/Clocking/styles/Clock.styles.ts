@@ -7,22 +7,20 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor:
       mode === MODE.DARK
-        ? COLORS.BACKGROUND_DARKER_MODE
-        : COLORS.BACKGROUND_LIGHTER_MODE,
-
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-  clockContainer: {
-    flex: 0,
-    alignSelf: 'stretch',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    backgroundColor:
-      mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    shadowColor: COLORS.SHADOW_COLOR,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
+
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
