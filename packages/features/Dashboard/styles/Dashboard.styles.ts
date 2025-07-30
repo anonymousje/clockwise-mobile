@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
         : COLORS.BACKGROUND_LIGHTER_MODE,
     justifyContent: 'flex-start',
   },
+  scrollViewContainer: {
+    flex: 1,
+  },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
