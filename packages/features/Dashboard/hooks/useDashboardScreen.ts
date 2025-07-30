@@ -20,7 +20,7 @@ const useDashboardScreen = () => {
 
   const logout = () => {
     dispatch(logoutUser());
-    handleBack();
+    navigation.replace(SCREENS.Login);
   };
 
   return { handleBack, handleNav, user, logout };
