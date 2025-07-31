@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_BOLD,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
-
   widgetContainer: {
     alignItems: 'center',
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
