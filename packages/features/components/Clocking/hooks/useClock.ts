@@ -54,15 +54,20 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   }, []);
 
   useEffect(() => {
-    getClockStatus();
     if (onBreak) {
       getBreakStatus();
+    } else {
+      getClockStatus();
     }
     const interval = setInterval(() => {
       getClockStatus();
     }, 60000);
     if (refreshFlag.refreshFlag) {
-      getClockStatus();
+      if (onBreak) {
+        getBreakStatus();
+      } else {
+        getClockStatus();
+      }
     }
     return () => clearInterval(interval);
   }, [getClockStatus, refreshFlag.refreshFlag, getBreakStatus, onBreak]);
