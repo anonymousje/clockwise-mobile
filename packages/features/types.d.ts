@@ -147,14 +147,15 @@ export type BreakStatusResponse = {
   status: boolean;
   response: {
     isOnBreak?: boolean;
-    shiftBreaks?: Array<{
-      timeEntryId: number;
-      startTime: string;
-      endTime: string | null;
-      breakDuration: string;
-    }>;
+    shiftBreaks?: Array<BreakType>;
   };
   exceptionMessage?: string | undefined;
+};
+export type BreakType = {
+  timeEntryId: number;
+  startTime: string;
+  endTime: string | null;
+  breakDuration: string;
 };
 export type ResponseType = {
   status: boolean;

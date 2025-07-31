@@ -48,13 +48,7 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
 
     if (response.status) {
       const shiftBreaks = response.response?.shiftBreaks ?? [];
-      const currentBreak =
-        shiftBreaks.length > 0 ? shiftBreaks[shiftBreaks.length - 1] : null;
-      const startTime = currentBreak?.startTime ?? '';
-      const breakDurationMs = startTime
-        ? Date.now() - new Date(startTime).getTime()
-        : 0;
-      setBreakTime(formatDuration(breakDurationMs));
+      setBreakTime(formatDuration(shiftBreaks));
     }
     return response;
   }, []);

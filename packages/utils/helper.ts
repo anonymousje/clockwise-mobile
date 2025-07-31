@@ -1,3 +1,5 @@
+import { BreakType } from '../features/types';
+
 export const getInitials = (firstName?: string, lastName?: string): string => {
   const firstInitial =
     firstName && firstName.length > 0 ? firstName.charAt(0).toUpperCase() : '';
@@ -26,13 +28,20 @@ export const timeFormatter = (hoursWorked: string): string => {
     result += (result ? ' ' : '') + `${minutes}m`;
   }
   if (!result) {
-    result = '0m';
+    result = 'Less than 1m';
   }
   return result;
 };
 
-export const formatDuration = (ms: number): string => {
-  const totalMinutes = Math.floor(ms / 60000);
+export const formatDuration = (shiftBreaks: BreakType[]): string => {
+  const currentBreak =
+    shiftBreaks.length > 0 ? shiftBreaks[shiftBreaks.length - 1] : null;
+  const startTime = currentBreak?.startTime ?? '';
+  const breakDurationMs = startTime
+    ? Date.now() - new Date(startTime).getTime()
+    : 0;
+
+  const totalMinutes = Math.floor(breakDurationMs / 60000);
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
   let result = '';
@@ -43,7 +52,7 @@ export const formatDuration = (ms: number): string => {
     result += (result ? ' ' : '') + `${minutes}m`;
   }
   if (!result) {
-    result = '0m';
+    result = 'Less than 1m';
   }
   return result;
 };

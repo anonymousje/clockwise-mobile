@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   timeText: {
-    fontSize: FONT_SIZE.SIZE_50,
+    fontSize: FONT_SIZE.SIZE_40,
     paddingVertical: 25,
     fontFamily: FONTS.CLOCKWISE_BOLD,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
