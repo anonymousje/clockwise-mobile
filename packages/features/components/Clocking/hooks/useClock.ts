@@ -7,9 +7,10 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
   const [clockTime, setClockTime] = useState('');
-  const [note] = useState('test');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [note, setNote] = useState('');
 
-  const timePunch = async () => {
+  const handleClockOperation = async () => {
     if (!clockIn) {
       const response = await ClockService.clockIn();
 
@@ -22,6 +23,7 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
       const response = await ClockService.clockOut(note);
       if (response.status) {
         setClockIn(true);
+        setModalVisible(false);
       } else {
         console.error('Clock Out Error:', response.exceptionMessage);
       }
@@ -42,18 +44,35 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
 
   useEffect(() => {
     getClockStatus();
-    // const interval = setInterval(() => {
-    //   getClockStatus();
-    // }, 60000);
+    const interval = setInterval(() => {
+      getClockStatus();
+    }, 60000);
     if (refreshFlag.refreshFlag) {
       getClockStatus();
     }
-    return;
+    return () => clearInterval(interval);
   }, [getClockStatus, refreshFlag.refreshFlag]);
 
-  const BreakSetter = () => {
+  const handleNoteChange = (text: string) => {
+    setNote(text);
+  };
+
+  const setModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const handleBreak = () => {
     setOnBreak(!onBreak);
   };
 
-  return { clockIn, timePunch, BreakSetter, onBreak, clockTime };
+  return {
+    clockIn,
+    handleClockOperation,
+    handleBreak,
+    onBreak,
+    clockTime,
+    handleNoteChange,
+    modalVisible,
+    setModal,
+  };
 }

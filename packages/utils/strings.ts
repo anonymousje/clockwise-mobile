@@ -27,6 +27,9 @@ const STRINGS = {
     USERCODE: 'User Code',
   },
 
+  PLACEHOLDER: {
+    NOTE: 'Add a note',
+  },
   PLACEHOLDER_TEXT: 'PlaceHolder',
   TITLES: {
     DASHBOARD: 'Dashboard',
@@ -74,6 +77,7 @@ const STRINGS = {
     SAVE: 'SAVE',
     EDIT: 'EDIT',
     APPLY: 'APPLY',
+    ADD: 'ADD',
   },
 
   CLOCKWISE: 'ClockWise',
@@ -107,6 +111,7 @@ const STRINGS = {
     STAFF: 'STAFF',
     FILTER_OPTIONS: 'Filter Options',
     CLOCK_IN: 'You have been clocked in for',
+    NOTE: 'Add Note',
   },
 
   PLACEHOLDERTIME: '5m',

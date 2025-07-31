@@ -79,4 +79,41 @@ export const styles = StyleSheet.create({
     bottom: 0,
     opacity: 0.1,
   },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    paddingBottom: 15,
+    borderBottomWidth: 0.2,
+    borderBottomColor: COLORS.HEADER_BORDER_COLOR,
+  },
+  headerIcon: {
+    paddingTop: 22,
+    paddingLeft: 15,
+  },
+  modalTitle: {
+    fontSize: FONT_SIZE.SIZE_20,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    paddingTop: 20,
+    paddingLeft: 15,
+  },
+  noteInput: {
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    fontSize: FONT_SIZE.SIZE_18,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+  },
+  noteContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
 });

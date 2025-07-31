@@ -1,12 +1,20 @@
-import { View, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, TextInput } from 'react-native';
 import useClock from '../hooks/useClock';
 import { styles } from '../styles/Clock.styles';
-import { Text } from 'react-native-gesture-handler';
 import STRINGS from '../../../../utils/strings';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Button from '../../Button/container/Button';
 
 const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
-  const { clockIn, timePunch, clockTime } = useClock(refreshFlag);
+  const {
+    clockIn,
+    handleClockOperation,
+    clockTime,
+    handleBreak,
+    handleNoteChange,
+    setModal,
+    modalVisible,
+  } = useClock(refreshFlag);
 
   return (
     <View style={styles.container}>
@@ -14,9 +22,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
         <View style={styles.clockInContainer}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity
-              onPress={() => {
-                timePunch();
-              }}
+              onPress={handleClockOperation}
               style={styles.button}
             >
               <Text style={styles.ButtonText}>
@@ -46,7 +52,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
 
             <View style={styles.clockOutButtonContainer}>
               <TouchableOpacity
-                onPress={timePunch}
+                onPress={handleBreak}
                 style={styles.breakButton}
               >
                 <Text style={styles.ButtonText}>
@@ -55,7 +61,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={timePunch}
+                onPress={setModal}
                 style={styles.clockOutButton}
               >
                 <Text style={styles.ButtonText}>
@@ -66,6 +72,38 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
           </View>
         </>
       )}
+
+      <Modal
+        visible={modalVisible}
+        animationType='slide'
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeader}>
+            <TouchableOpacity onPress={setModal}>
+              <Ionicons
+                name='arrow-back-outline'
+                size={24}
+                color='white'
+                style={styles.headerIcon}
+              />
+            </TouchableOpacity>
+            <Text style={styles.modalTitle}>{STRINGS.HEADERS.NOTE}</Text>
+          </View>
+
+          <View style={styles.noteContainer}>
+            <TextInput
+              style={styles.noteInput}
+              placeholder={STRINGS.PLACEHOLDER.NOTE}
+              onChangeText={handleNoteChange}
+              multiline={true}
+            />
+            <Button
+              label={STRINGS.ICON_TITLES.ADD}
+              onPress={handleClockOperation}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
