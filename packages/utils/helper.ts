@@ -30,3 +30,20 @@ export const timeFormatter = (hoursWorked: string): string => {
   }
   return result;
 };
+
+export const formatDuration = (ms: number): string => {
+  const totalMinutes = Math.floor(ms / 60000);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  let result = '';
+  if (hours > 0) {
+    result += `${hours}h`;
+  }
+  if (minutes > 0) {
+    result += (result ? ' ' : '') + `${minutes}m`;
+  }
+  if (!result) {
+    result = '0m';
+  }
+  return result;
+};

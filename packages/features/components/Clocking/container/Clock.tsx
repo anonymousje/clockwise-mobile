@@ -15,6 +15,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
     setModal,
     modalVisible,
     onBreak,
+    breakTime,
   } = useClock(refreshFlag);
 
   return (
@@ -81,7 +82,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
               <>
                 <View>
                   <Text style={styles.titleText}>{STRINGS.HEADERS.BREAK}</Text>
-                  <Text style={styles.timeText}>{clockTime}</Text>
+                  <Text style={styles.timeText}>{breakTime}</Text>
                 </View>
                 <View style={styles.clockOutButtonContainer}>
                   <TouchableOpacity

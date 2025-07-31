@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
-import { ClockStatusResponse } from '../../../types';
-import { timeFormatter } from '../../../../utils/helper';
+import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
+import { timeFormatter, formatDuration } from '../../../../utils/helper';
 
 export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
   const [clockTime, setClockTime] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [breakTime, setBreakTime] = useState('');
   const [note, setNote] = useState('');
 
   const handleClockOperation = async () => {
@@ -42,8 +43,27 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
     return response;
   }, []);
 
+  const getBreakStatus = useCallback(async (): Promise<BreakStatusResponse> => {
+    const response = await ClockService.getBreakStatus();
+
+    if (response.status) {
+      const shiftBreaks = response.response?.shiftBreaks ?? [];
+      const currentBreak =
+        shiftBreaks.length > 0 ? shiftBreaks[shiftBreaks.length - 1] : null;
+      const startTime = currentBreak?.startTime ?? '';
+      const breakDurationMs = startTime
+        ? Date.now() - new Date(startTime).getTime()
+        : 0;
+      setBreakTime(formatDuration(breakDurationMs));
+    }
+    return response;
+  }, []);
+
   useEffect(() => {
     getClockStatus();
+    if (onBreak) {
+      getBreakStatus();
+    }
     const interval = setInterval(() => {
       getClockStatus();
     }, 60000);
@@ -51,7 +71,7 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
       getClockStatus();
     }
     return () => clearInterval(interval);
-  }, [getClockStatus, refreshFlag.refreshFlag]);
+  }, [getClockStatus, refreshFlag.refreshFlag, getBreakStatus, onBreak]);
 
   const handleNoteChange = (text: string) => {
     setNote(text);
@@ -61,9 +81,9 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
     setModalVisible(!modalVisible);
   };
 
-  const handleBreak = () => {
+  const handleBreak = async () => {
     if (!onBreak) {
-      ClockService.startBreak();
+      await ClockService.startBreak();
     } else {
       ClockService.endBreak();
     }
@@ -79,5 +99,6 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
     handleNoteChange,
     modalVisible,
     setModal,
+    breakTime,
   };
 }

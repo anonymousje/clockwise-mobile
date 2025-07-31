@@ -143,6 +143,19 @@ export type ClockStatusResponse = {
   exceptionMessage?: string | undefined;
 };
 
+export type BreakStatusResponse = {
+  status: boolean;
+  response: {
+    isOnBreak?: boolean;
+    shiftBreaks?: Array<{
+      timeEntryId: number;
+      startTime: string;
+      endTime: string | null;
+      breakDuration: string;
+    }>;
+  };
+  exceptionMessage?: string | undefined;
+};
 export type ResponseType = {
   status: boolean;
   response: string | undefined;
