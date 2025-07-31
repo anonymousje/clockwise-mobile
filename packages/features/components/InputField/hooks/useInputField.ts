@@ -48,7 +48,7 @@ const useInputField = (value: string) => {
     opacity: 1,
   };
 
-  const changePwdType = () => {
+  const changePasswordType = () => {
     setIsPassword(!isPassword);
   };
 
@@ -57,7 +57,7 @@ const useInputField = (value: string) => {
     isInputFocused,
     setIsInputFocused,
     isPassword,
-    changePwdType,
+    changePasswordType,
     inputRef,
     labelStyleFocused,
   };

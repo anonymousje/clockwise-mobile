@@ -20,10 +20,10 @@ const NewPassword = () => {
     setNewPassword,
     setConfirmPassword,
     handleSubmit,
-    changePwdType,
+    changePasswordType,
     isPassword,
     isConfirmPassword,
-    changeConfirmPwdType,
+    changeConfirmPasswordType,
     match,
     success,
     errorMsg,
@@ -56,7 +56,7 @@ const NewPassword = () => {
             autoCapitalize='none'
           />
 
-          <TouchableOpacity onPress={changePwdType}>
+          <TouchableOpacity onPress={changePasswordType}>
             <Text style={styles.showPassButton}>
               {isPassword ? STRINGS.ICON_TITLES.SHOW : STRINGS.ICON_TITLES.HIDE}
             </Text>
@@ -73,7 +73,7 @@ const NewPassword = () => {
             secureTextEntry={isConfirmPassword}
           />
 
-          <TouchableOpacity onPress={changeConfirmPwdType}>
+          <TouchableOpacity onPress={changeConfirmPasswordType}>
             <Text style={styles.showPassButton}>
               {isConfirmPassword
                 ? STRINGS.ICON_TITLES.SHOW

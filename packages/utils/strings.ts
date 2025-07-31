@@ -25,7 +25,7 @@ const STRINGS = {
     USERCODE: 'User Code',
   },
 
-  LESS_THAN_ONE_MINUTE: 'Less than 1 minute',
+  LESS_THAN_ONE_MINUTE: 'Less than 1m',
 
   PLACEHOLDER: {
     PLACEHOLDER_TEXT: 'PlaceHolder',

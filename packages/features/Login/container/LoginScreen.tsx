@@ -21,7 +21,7 @@ const Login = () => {
     handleLogin,
     handleForgotPassword,
     isValid,
-    changePwdType,
+    changePasswordType,
     isPassword,
     attempt,
     loading,
@@ -81,7 +81,7 @@ const Login = () => {
               onChangeText={setPassword}
               secureTextEntry={isPassword}
             />
-            <TouchableOpacity onPress={changePwdType}>
+            <TouchableOpacity onPress={changePasswordType}>
               <Text style={styles.showPasswordButton}>
                 {isPassword
                   ? STRINGS.ICON_TITLES.SHOW

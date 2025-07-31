@@ -44,7 +44,7 @@ const useLoginScreen = () => {
     return regex.test(text);
   };
 
-  const changePwdType = () => {
+  const changePasswordType = () => {
     setIsPassword((prevState) => !prevState);
   };
 
@@ -60,7 +60,7 @@ const useLoginScreen = () => {
     handleLogin,
     handleForgotPassword,
     isValid,
-    changePwdType,
+    changePasswordType,
     isPassword,
     attempt,
     loading,
