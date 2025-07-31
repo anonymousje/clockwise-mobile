@@ -1,4 +1,4 @@
-import { setAccessToken, setRefreshToken } from '../../features/apiClient';
+import { setAccessToken, setRefreshToken } from '../../features/ApiClient';
 import { Action } from '../actions/auth';
 import COMMON_CONSTANTS from '../../constants/CommonConstants';
 

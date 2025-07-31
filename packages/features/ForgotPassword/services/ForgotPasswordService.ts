@@ -1,5 +1,5 @@
 import ApiRoutes from '../../../constants/ApiRoutes';
-import apiClient from '../../apiClient';
+import apiClient from '../../ApiClient';
 
 class ForgotPasswordService {
   async requestPasswordReset(email: string) {

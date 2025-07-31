@@ -1,5 +1,5 @@
 import ApiRoutes from '../../../constants/ApiRoutes';
-import apiClient from '../../apiClient';
+import apiClient from '../../ApiClient';
 import { staffType } from '../../types';
 import { stringFormat } from '../../../utils/helper';
 

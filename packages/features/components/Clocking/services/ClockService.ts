@@ -1,4 +1,4 @@
-import apiClient from '../../../apiClient';
+import apiClient from '../../../ApiClient';
 import ApiRoutes from '../../../../constants/ApiRoutes';
 import { ClockStatusResponse, BreakStatusResponse } from '../../../types';
 

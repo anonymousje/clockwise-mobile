@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { RootState } from '../../../store';
 import { NavigationProp } from '../../types';
 import { SCREENS } from '../../../constants/screens';
-import { logoutUser } from '../../../store/actions/auth';
+import { logOutUser } from '../../../store/actions/auth';
 
 const useDashboardScreen = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -31,7 +31,7 @@ const useDashboardScreen = () => {
   };
 
   const logout = () => {
-    dispatch(logoutUser());
+    dispatch(logOutUser());
     navigation.replace(SCREENS.Login);
   };
 
