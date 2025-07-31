@@ -62,9 +62,12 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   };
 
   const handleBreak = () => {
-    console.log('Break status:', !onBreak);
+    if (!onBreak) {
+      ClockService.startBreak();
+    } else {
+      ClockService.endBreak();
+    }
     setOnBreak(!onBreak);
-    console.log('onBreak After:', onBreak);
   };
 
   return {

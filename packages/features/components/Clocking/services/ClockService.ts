@@ -60,5 +60,43 @@ class ClockService {
         };
       });
   }
+
+  async startBreak() {
+    return await apiClient
+      .post(ApiRoutes.startBreak)
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.message,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: undefined,
+          exceptionMessage: error.message,
+        };
+      });
+  }
+
+  async endBreak() {
+    return await apiClient
+      .post(ApiRoutes.endBreak)
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.message,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: undefined,
+          exceptionMessage: error.message,
+        };
+      });
+  }
 }
 export default new ClockService();
