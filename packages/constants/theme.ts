@@ -24,6 +24,8 @@ export const COLORS = {
   RED: 'red',
   GREEN: 'green',
   BLACK: 'black',
+  WHITE: 'white',
+  GREY: 'grey',
 };
 
 export const FONT_SIZE = {

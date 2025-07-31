@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
 import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
-import { timeFormatter, formatDuration } from '../../../../utils/helper';
+import { formatTime, formatDuration } from '../../../../utils/helper';
 
 export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   const [clockIn, setClockIn] = useState(true);
@@ -17,16 +17,13 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
 
       if (response.status) {
         setClockIn(false);
-      } else {
-        console.error('Clock In Error:', response.exceptionMessage);
       }
     } else {
       const response = await ClockService.clockOut(note);
+
       if (response.status) {
         setClockIn(true);
         setModalVisible(false);
-      } else {
-        console.error('Clock Out Error:', response.exceptionMessage);
       }
     }
     getClockStatus();
@@ -36,10 +33,9 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
     const response = await ClockService.getClockStatus();
 
     if (response.status) {
-      setClockTime(timeFormatter(response.response.hoursWorked || ''));
+      setClockTime(formatTime(response.response.hoursWorked || ''));
       setClockIn(response.response.isClockedIn || false);
     }
-
     return response;
   }, []);
 
@@ -59,9 +55,11 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
     } else {
       getClockStatus();
     }
+
     const interval = setInterval(() => {
       getClockStatus();
     }, 60000);
+
     if (refreshFlag.refreshFlag) {
       if (onBreak) {
         getBreakStatus();
@@ -83,6 +81,7 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   const handleBreak = async () => {
     if (!onBreak) {
       await ClockService.startBreak();
+      getBreakStatus();
     } else {
       ClockService.endBreak();
     }

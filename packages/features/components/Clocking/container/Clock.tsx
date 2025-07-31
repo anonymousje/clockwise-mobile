@@ -1,9 +1,11 @@
 import { View, Text, TouchableOpacity, Modal, TextInput } from 'react-native';
 import useClock from '../hooks/useClock';
-import { styles } from '../styles/Clock.styles';
+import { styles, iconColour } from '../styles/Clock.styles';
 import STRINGS from '../../../../utils/strings';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Button from '../../Button/container/Button';
+import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
+import { COLORS } from '../../../../constants/theme';
 
 const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
   const {
@@ -39,9 +41,9 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
         <>
           <View style={styles.clockIconBackground}>
             <Ionicons
-              name='alarm-outline'
-              size={200}
-              color='grey'
+              name={COMMON_CONSTANTS.ICONS.ALARM}
+              size={COMMON_CONSTANTS.SIZE.SIZE_200}
+              color={COLORS.GREY}
               style={styles.icon}
             />
           </View>
@@ -100,17 +102,14 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
         </>
       )}
 
-      <Modal
-        visible={modalVisible}
-        animationType='slide'
-      >
+      <Modal visible={modalVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalHeader}>
             <TouchableOpacity onPress={setModal}>
               <Ionicons
-                name='arrow-back-outline'
-                size={24}
-                color='white'
+                name={COMMON_CONSTANTS.ICONS.ARROW}
+                size={COMMON_CONSTANTS.SIZE.SIZE_24}
+                color={iconColour}
                 style={styles.headerIcon}
               />
             </TouchableOpacity>

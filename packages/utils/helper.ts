@@ -16,7 +16,7 @@ export const stringFormat = (str?: string, ...args: string[]) => {
     : '';
 };
 
-export const timeFormatter = (hoursWorked: string): string => {
+export const formatTime = (hoursWorked: string): string => {
   const [hh, mm] = hoursWorked.split(':');
   const hours = parseInt(hh, 10);
   const minutes = parseInt(mm, 10);

@@ -96,6 +96,7 @@ export interface COMMON_CONSTANTS_TYPE {
     SEARCH: const;
     FILTER: const;
     ARROW: const;
+    ALARM: const;
   };
   DATE_TIME: {
     NUMERIC: const;
@@ -117,6 +118,34 @@ export interface COMMON_CONSTANTS_TYPE {
     LOCATION: const;
     JOB_ROLE: const;
     ROLE: const;
+  };
+  SIZE: {
+    SIZE_1: number;
+    SIZE_5: number;
+    SIZE_10: number;
+    SIZE_12: number;
+    SIZE_14: number;
+    SIZE_15: number;
+    SIZE_16: number;
+    SIZE_17: number;
+    SIZE_18: number;
+    SIZE_20: number;
+    SIZE_22: number;
+    SIZE_24: number;
+    SIZE_26: number;
+    SIZE_28: number;
+    SIZE_30: number;
+    SIZE_32: number;
+    SIZE_34: number;
+    SIZE_36: number;
+    SIZE_40: number;
+    SIZE_50: number;
+    SIZE_60: number;
+    SIZE_100: number;
+    SIZE_120: number;
+    SIZE_150: number;
+    SIZE_200: number;
+    SIZE_220: number;
   };
 }
 

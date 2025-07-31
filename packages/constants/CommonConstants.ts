@@ -27,6 +27,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     SEARCH: 'search-outline',
     FILTER: 'filter-outline',
     ARROW: 'arrow-back-outline',
+    ALARM: 'alarm-outline',
   },
 
   DATE_TIME: {
@@ -50,6 +51,35 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     LOCATION: 'location',
     JOB_ROLE: 'jobRole',
     ROLE: 'role',
+  },
+
+  SIZE: {
+    SIZE_1: 1,
+    SIZE_5: 5,
+    SIZE_10: 10,
+    SIZE_12: 12,
+    SIZE_14: 14,
+    SIZE_15: 15,
+    SIZE_16: 16,
+    SIZE_17: 17,
+    SIZE_18: 18,
+    SIZE_20: 20,
+    SIZE_22: 22,
+    SIZE_24: 24,
+    SIZE_26: 26,
+    SIZE_28: 28,
+    SIZE_30: 30,
+    SIZE_32: 32,
+    SIZE_34: 34,
+    SIZE_36: 36,
+    SIZE_40: 40,
+    SIZE_50: 50,
+    SIZE_60: 60,
+    SIZE_100: 100,
+    SIZE_120: 120,
+    SIZE_150: 150,
+    SIZE_200: 200,
+    SIZE_220: 220,
   },
 };
 
