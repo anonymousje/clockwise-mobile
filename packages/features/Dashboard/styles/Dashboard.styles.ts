@@ -1,43 +1,55 @@
 import { StyleSheet, Appearance } from 'react-native';
-import { colors, FONT_SIZE, MODE } from '../../../constants/theme';
+import { COLORS, MODE, FONT_SIZE, FONTS } from '../../../constants/theme';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const mode = Appearance.getColorScheme();
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
-    justifyContent: 'center',
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
+    justifyContent: 'flex-start',
   },
-  title: {
-    fontSize: FONT_SIZE.MEDIUM,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+  scrollViewContainer: {
+    flex: 1,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_34,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_34,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_15,
 
-  infoBox: {
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_FORMS
-        : colors.BACKGROUND_LIGHT_FORMS,
-    padding: 15,
-    borderRadius: 10,
-    elevation: 3,
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
-  label: {
-    fontWeight: '600',
-    marginTop: 10,
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+  iconContainer: {
+    flexDirection: 'row',
+    gap: COMMON_CONSTANTS.SIZE.SIZE_30,
   },
-  value: {
-    marginBottom: 10,
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
+  headerText: {
+    fontSize: FONT_SIZE.SIZE_24,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+  },
+  widgetContainer: {
+    alignItems: 'center',
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
+    marginHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_200,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+    shadowColor: COLORS.SHADOW_COLOR,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
 });
 

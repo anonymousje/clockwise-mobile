@@ -1,7 +1,7 @@
 import { Appearance, StyleSheet } from 'react-native';
 import {
-  colors,
-  fonts,
+  COLORS,
+  FONTS,
   FONT_SIZE,
   HEIGHT,
   MODE,
@@ -14,8 +14,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARKER_MODE
-        : colors.BACKGROUND_LIGHTER_MODE,
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
   },
 
   editButtonContainer: {
@@ -23,20 +23,20 @@ export const styles = StyleSheet.create({
     padding: 16,
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
 
   editButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
+    backgroundColor: COLORS.CLOCKWISE_PRIMARY_DARK,
     borderRadius: 10,
     paddingHorizontal: 16,
   },
 
   editButtonText: {
-    color: colors.BUTTON_TEXT,
+    color: COLORS.BUTTON_TEXT,
     padding: 10,
   },
 
@@ -53,24 +53,24 @@ export const styles = StyleSheet.create({
     paddingBottom: 40,
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
 
   avatarContainer: {
     width: 120,
     height: HEIGHT.LARGE,
     borderRadius: 60,
-    backgroundColor: colors.CLOCKWISE_PRIMARY_DARK,
+    backgroundColor: COLORS.CLOCKWISE_PRIMARY_DARK,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   avatarText: {
-    color: colors.BUTTON_TEXT,
-    fontSize: FONT_SIZE.X_LARGE,
+    color: COLORS.BUTTON_TEXT,
+    fontSize: FONT_SIZE.SIZE_50,
     paddingBottom: 10,
-    fontFamily: fonts.CLOCKWISE_REGULAR,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
   },
 
   staffDetails: {
@@ -80,8 +80,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
 
   textContainer: {
@@ -91,30 +91,30 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor:
       mode === MODE.DARK
-        ? colors.BORDER_COLOR_DARK_MODE
-        : colors.BORDER_COLOR_LIGHT_MODE,
+        ? COLORS.BORDER_COLOR_DARK_MODE
+        : COLORS.BORDER_COLOR_LIGHT_MODE,
   },
 
   textHeader: {
-    fontSize: FONT_SIZE.SMALL,
+    fontSize: FONT_SIZE.SIZE_18,
     marginVertical: 4,
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontFamily: fonts.CLOCKWISE_BOLD,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
   },
 
   text: {
-    fontSize: FONT_SIZE.SMALL,
+    fontSize: FONT_SIZE.SIZE_18,
     marginTop: 4,
-    color: mode === MODE.DARK ? colors.TEXT_DARK_MODE : colors.TEXT_LIGHT_MODE,
-    fontFamily: fonts.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
   },
 
   deleteButton: {
-    backgroundColor: colors.CLOCKWISE_PRIMARY,
+    backgroundColor: COLORS.CLOCKWISE_PRIMARY,
   },
 
   deleteButtonText: {
-    color: colors.BUTTON_TEXT,
+    color: COLORS.BUTTON_TEXT,
   },
 
   editDetails: {
@@ -124,8 +124,8 @@ export const styles = StyleSheet.create({
 
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARK_MODE
-        : colors.BACKGROUND_LIGHT_MODE,
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
 
   error: {
@@ -146,8 +146,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor:
       mode === MODE.DARK
-        ? colors.BACKGROUND_DARKER_MODE
-        : colors.BACKGROUND_LIGHTER_MODE,
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
     alignItems: 'center',
     alignSelf: 'stretch',
     borderRadius: 20,
@@ -156,4 +156,4 @@ export const styles = StyleSheet.create({
     paddingLeft: 5,
   },
 });
-export const editIconColor = colors.BUTTON_TEXT;
+export const editIconColor = COLORS.BUTTON_TEXT;

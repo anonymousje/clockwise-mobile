@@ -1,13 +1,26 @@
 import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useCallback, useState } from 'react';
 import { RootState } from '../../../store';
 import { NavigationProp } from '../../types';
 import { SCREENS } from '../../../constants/screens';
+import { logOutUser } from '../../../store/actions/auth';
 
 const useDashboardScreen = () => {
   const user = useSelector((state: RootState) => state.user);
-
+  const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp>();
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshFlag, setRefreshFlag] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setRefreshFlag(true);
+    setTimeout(() => {
+      setRefreshing(false);
+      setRefreshFlag(false);
+    }, 2000);
+  }, []);
 
   const handleBack = () => {
     navigation.replace(SCREENS.Login);
@@ -17,7 +30,20 @@ const useDashboardScreen = () => {
     navigation.navigate(SCREENS.Staff);
   };
 
-  return { handleBack, handleNav, user };
+  const logout = () => {
+    dispatch(logOutUser());
+    navigation.replace(SCREENS.Login);
+  };
+
+  return {
+    handleBack,
+    handleNav,
+    user,
+    logout,
+    onRefresh,
+    refreshing,
+    refreshFlag,
+  };
 };
 
 export default useDashboardScreen;

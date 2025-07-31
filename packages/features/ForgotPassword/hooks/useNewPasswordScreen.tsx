@@ -75,11 +75,11 @@ const useNewPasswordScreen = () => {
 
     return;
   };
-  const changePwdType = () => {
+  const changePasswordType = () => {
     setIsPassword((prevState) => !prevState);
   };
 
-  const changeConfirmPwdType = () => {
+  const changeConfirmPasswordType = () => {
     setIsConfirmPassword((prevState) => !prevState);
   };
 
@@ -90,9 +90,9 @@ const useNewPasswordScreen = () => {
     setConfirmPassword,
     isPassword,
     isConfirmPassword,
-    changeConfirmPwdType,
+    changeConfirmPasswordType,
     setIsConfirmPassword,
-    changePwdType,
+    changePasswordType,
     handleSubmit,
     match,
     success,

@@ -8,10 +8,9 @@ import { staffType } from '../../types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
-import ICONS from '../../../constants/Icons';
 import STRINGS from '../../../utils/strings';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
-import { colors } from '../../../constants/theme';
+import { COLORS } from '../../../constants/theme';
 
 const Staff = () => {
   const {
@@ -44,7 +43,7 @@ const Staff = () => {
           <View style={styles.searchContainer}>
             <View style={styles.searchInputContainer}>
               <Ionicons
-                name={ICONS.search}
+                name={COMMON_CONSTANTS.ICONS.SEARCH}
                 size={30}
                 style={styles.searchIcon}
               />
@@ -60,7 +59,7 @@ const Staff = () => {
 
             <TouchableOpacity onPress={() => setModal(true)}>
               <Ionicons
-                name={ICONS.filter}
+                name={COMMON_CONSTANTS.ICONS.FILTER}
                 size={30}
                 style={styles.filterIcon}
               />
@@ -135,9 +134,9 @@ const Staff = () => {
               onPress={() => setModal(false)}
             >
               <Ionicons
-                name={ICONS.arrow}
+                name={COMMON_CONSTANTS.ICONS.ARROW}
                 size={25}
-                color={colors.BLACK}
+                color={COLORS.BLACK}
               />
             </TouchableOpacity>
 

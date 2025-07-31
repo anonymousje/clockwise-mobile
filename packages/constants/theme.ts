@@ -1,4 +1,4 @@
-export const colors = {
+export const COLORS = {
   CLOCKWISE_PRIMARY: '#00bcd4',
   CLOCKWISE_PRIMARY_DARK: '#008ba3',
   BACKGROUND_DARK_MODE: '#0E2747',
@@ -10,29 +10,35 @@ export const colors = {
   BACKGROUND_ICONS_LIGHT_MODE: '#cacccc',
   BACKGROUND_ICONS_DARK_MODE: '#1c1c1c',
   BUTTON_TEXT: 'white',
-
+  BREAK_BUTTON_BACKGROUND: '#FEB62F',
+  CLOCK_OUT_BUTTON_BACKGROUND: '#FF186F',
   BORDER_COLOR_LIGHT_MODE: '#E0E0E0',
   BORDER_COLOR_DARK_MODE: 'white',
   TEXT_DARK_MODE: 'white',
   TEXT_LIGHT_MODE: 'black',
+  SHADOW_COLOR: '#000',
+  HEADER_BORDER_COLOR: '#777674',
   TEXT_DARK_LIGHTER_MODE: '#656565',
   TEXT_LIGHT_LIGHTER_MODE: '#656565',
   RANDOM_COLOR_ARRAY: ['#07CF99', '#086DBF', '#B63C08', '#F0F30D', '#0ED4EA'],
   RED: 'red',
   GREEN: 'green',
   BLACK: 'black',
+  WHITE: 'white',
+  GREY: 'grey',
 };
 
 export const FONT_SIZE = {
   ERROR: 13,
-  X_SMALL: 15,
-  SMALL: 18,
-  MEDIUM: 24,
-  LARGE: 30,
-  X_LARGE: 50,
-  BUTTON_FONT_LARGE: 40,
-  BUTTON_FONT_MEDIUM: 20,
-  BUTTON_SMALL: 13,
+  SIZE_13: 13,
+  SIZE_15: 15,
+  SIZE_17: 17,
+  SIZE_18: 18,
+  SIZE_20: 20,
+  SIZE_24: 24,
+  SIZE_30: 30,
+  SIZE_40: 40,
+  SIZE_50: 50,
 };
 
 export const HEIGHT = {
@@ -45,7 +51,7 @@ export const MODE = {
   LIGHT: 'light',
 };
 
-export const fonts = {
+export const FONTS = {
   CLOCKWISE_REGULAR: 'Lato-Regular',
   CLOCKWISE_BOLD: 'Lato-Bold',
 };

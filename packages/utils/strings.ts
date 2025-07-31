@@ -8,8 +8,6 @@ const STRINGS = {
     NEW_PASSWORD: 'New Password',
   },
 
-  DASH: '-',
-
   EMPLOYEE_FORM: {
     FIRST_NAME: 'First Name',
     LAST_NAME: 'Last Name',
@@ -25,6 +23,15 @@ const STRINGS = {
     NICKNAME: 'Nick Name',
     ADDRESS: 'Address',
     USERCODE: 'User Code',
+  },
+
+  LESS_THAN_ONE_MINUTE: 'Less than 1m',
+
+  PLACEHOLDER: {
+    PLACEHOLDER_TEXT: 'PlaceHolder',
+  },
+  TITLES: {
+    DASHBOARD: 'Dashboard',
   },
 
   RESET_PASSWORD_EMAIL:
@@ -69,6 +76,7 @@ const STRINGS = {
     SAVE: 'SAVE',
     EDIT: 'EDIT',
     APPLY: 'APPLY',
+    ADD: 'ADD',
   },
 
   CLOCKWISE: 'ClockWise',
@@ -83,6 +91,8 @@ const STRINGS = {
     CONFIRM_PASSWORD: 'Confirm New Password',
     EMAIL_OR_USERNAME: 'Email or username',
     SEARCH_STAFF: 'Search Staff',
+    NOTE: 'Add a note',
+    DASH: '-',
   },
 
   BUTTON_TEXT: {
@@ -90,6 +100,10 @@ const STRINGS = {
     RESET_PASSWORD: 'RESET PASSWORD',
     LOG_IN: 'LOG IN',
     FORGOT_PASSWORD: 'Forgot Password?',
+    BREAK: 'TAKE A BREAK',
+    CLOCK_IN: 'CLOCK IN',
+    CLOCK_OUT: 'CLOCK OUT',
+    RESUME_SHIFT: 'RESUME SHIFT',
   },
 
   HEADERS: {
@@ -98,6 +112,9 @@ const STRINGS = {
     EMPLOYEE_DETAILS: 'Employee Details',
     STAFF: 'STAFF',
     FILTER_OPTIONS: 'Filter Options',
+    CLOCK_IN: 'You have been clocked in for',
+    NOTE: 'Add Note',
+    BREAK: 'You have been on a break for',
   },
 
   VALIDATIONS: {

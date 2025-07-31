@@ -7,10 +7,9 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-
 import styles from '../styles/LoginScreen.styles';
 import useLoginScreen from '../hooks/useLoginScreen';
-import { colors, MODE } from '../../../constants/theme';
+import { COLORS, MODE } from '../../../constants/theme';
 import STRINGS from '../../../utils/strings';
 
 const Login = () => {
@@ -22,7 +21,7 @@ const Login = () => {
     handleLogin,
     handleForgotPassword,
     isValid,
-    changePwdType,
+    changePasswordType,
     isPassword,
     attempt,
     loading,
@@ -61,8 +60,8 @@ const Login = () => {
             placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.EMAIL_OR_USERNAME}
             placeholderTextColor={
               mode === MODE.LIGHT
-                ? colors.TEXT_LIGHT_MODE
-                : colors.TEXT_DARK_MODE
+                ? COLORS.TEXT_LIGHT_MODE
+                : COLORS.TEXT_DARK_MODE
             }
             value={email}
             onChangeText={setEmail}
@@ -75,14 +74,14 @@ const Login = () => {
               placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.PASSWORD}
               placeholderTextColor={
                 mode === MODE.LIGHT
-                  ? colors.TEXT_LIGHT_MODE
-                  : colors.TEXT_DARK_MODE
+                  ? COLORS.TEXT_LIGHT_MODE
+                  : COLORS.TEXT_DARK_MODE
               }
               value={password}
               onChangeText={setPassword}
               secureTextEntry={isPassword}
             />
-            <TouchableOpacity onPress={changePwdType}>
+            <TouchableOpacity onPress={changePasswordType}>
               <Text style={styles.showPasswordButton}>
                 {isPassword
                   ? STRINGS.ICON_TITLES.SHOW
@@ -94,7 +93,7 @@ const Login = () => {
           {loading ? (
             <ActivityIndicator
               size='large'
-              color={colors.CLOCKWISE_PRIMARY}
+              color={COLORS.CLOCKWISE_PRIMARY}
               style={styles.loader}
             />
           ) : (

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import styles from '../styles/ForgotPasswordScreen.styles';
 import useForgotPasswordScreen from '../hooks/useForgotPasswordScreen';
-import { colors, MODE } from '../../../constants/theme';
+import { COLORS, MODE } from '../../../constants/theme';
 import STRINGS from '../../../utils/strings';
 import { stringFormat } from '../../../utils/helper';
 
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
         style={styles.input}
         placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.EMAIL}
         placeholderTextColor={
-          mode === MODE.LIGHT ? colors.TEXT_LIGHT_MODE : colors.TEXT_DARK_MODE
+          mode === MODE.LIGHT ? COLORS.TEXT_LIGHT_MODE : COLORS.TEXT_DARK_MODE
         }
         value={email}
         onChangeText={setEmail}
@@ -69,7 +69,7 @@ const ForgotPassword = () => {
       {loading ? (
         <ActivityIndicator
           size='large'
-          color={colors.CLOCKWISE_PRIMARY}
+          color={COLORS.CLOCKWISE_PRIMARY}
           style={styles.loader}
         />
       ) : (
