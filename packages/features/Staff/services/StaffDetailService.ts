@@ -1,23 +1,31 @@
+import ApiRoutes from '../../../constants/ApiRoutes';
 import apiClient from '../../apiClient';
 import { staffType } from '../../types';
+import { stringFormat } from '../../../utils/helper';
 
 class StaffDetailService {
   async getDepartment() {
-    const response = await apiClient.get('/department/get-all-departments');
+    const response = await apiClient.get(ApiRoutes.getAllDepartments);
     return response.data.data;
   }
 
   async getLocation() {
-    const response = await apiClient.get('/location/get-all-locations');
+    const response = await apiClient.get(ApiRoutes.getAllLocations);
     return response.data.data;
   }
 
   async getJobRole() {
-    const response = await apiClient.get('/jobrole/get-all-jobroles');
+    const response = await apiClient.get(ApiRoutes.getAllJobRoles);
     return response.data.data;
   }
   async getUser(recordId?: string): Promise<staffType | null> {
-    const response = await apiClient.get(`/user/get-user/${recordId}`);
+    if (!recordId) {
+      throw Error;
+    }
+
+    const response = await apiClient.get(
+      stringFormat(ApiRoutes.getUser, recordId),
+    );
     return response.data.data;
   }
 
@@ -25,22 +33,28 @@ class StaffDetailService {
     if (!recordId || !userData) {
       throw Error;
     }
+
     const response = await apiClient.put(
-      `/user/edit-user/${recordId}`,
+      stringFormat(ApiRoutes.updateUser, recordId),
       userData,
     );
     return response.data.data;
   }
 
   async deleteUser(recordId?: string) {
-    const response = await apiClient.post('/user/delete-user', {
+    const response = await apiClient.post(ApiRoutes.deleteUser, {
       id: recordId,
     });
     return response.data.data;
   }
 
   async restoreUser(recordId?: string) {
-    const response = await apiClient.post(`/user/restore-user/${recordId}`);
+    if (!recordId) {
+      throw Error;
+    }
+    const response = await apiClient.post(
+      stringFormat(ApiRoutes.restoreUser, recordId),
+    );
     return response.data.data;
   }
 }
