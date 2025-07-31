@@ -5,8 +5,8 @@ import { Text } from 'react-native-gesture-handler';
 import STRINGS from '../../../../utils/strings';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Clocking = () => {
-  const { clockIn, timePunch, clockTime } = useClock();
+const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
+  const { clockIn, timePunch, clockTime } = useClock(refreshFlag);
 
   return (
     <View style={styles.container}>

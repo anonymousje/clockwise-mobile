@@ -11,11 +11,14 @@ const useDashboardScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp>();
   const [refreshing, setRefreshing] = useState(false);
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
+    setRefreshFlag(true);
     setTimeout(() => {
       setRefreshing(false);
+      setRefreshFlag(false);
     }, 2000);
   }, []);
 
@@ -32,7 +35,15 @@ const useDashboardScreen = () => {
     navigation.replace(SCREENS.Login);
   };
 
-  return { handleBack, handleNav, user, logout, onRefresh, refreshing };
+  return {
+    handleBack,
+    handleNav,
+    user,
+    logout,
+    onRefresh,
+    refreshing,
+    refreshFlag,
+  };
 };
 
 export default useDashboardScreen;

@@ -3,7 +3,7 @@ import ClockService from '../services/ClockService';
 import { ClockStatusResponse } from '../../../types';
 import { timeFormatter } from '../../../../utils/helper';
 
-export default function useClock() {
+export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
   const [clockTime, setClockTime] = useState('');
@@ -42,11 +42,14 @@ export default function useClock() {
 
   useEffect(() => {
     getClockStatus();
-    const interval = setInterval(() => {
+    // const interval = setInterval(() => {
+    //   getClockStatus();
+    // }, 60000);
+    if (refreshFlag.refreshFlag) {
       getClockStatus();
-    }, 60000);
-    return () => clearInterval(interval);
-  }, [getClockStatus]);
+    }
+    return;
+  }, [getClockStatus, refreshFlag.refreshFlag]);
 
   const BreakSetter = () => {
     setOnBreak(!onBreak);

@@ -9,7 +9,7 @@ import STRINGS from '../../../utils/strings';
 import useDashboard from '../hooks/useDashboardScreen';
 
 const Dashboard = () => {
-  const { logout, onRefresh, refreshing } = useDashboard();
+  const { logout, onRefresh, refreshing, refreshFlag } = useDashboard();
   return (
     <ScrollView
       contentContainerStyle={styles.scrollViewContainer}
@@ -40,7 +40,7 @@ const Dashboard = () => {
           </View>
         </View>
 
-        <Clocking />
+        <Clocking refreshFlag={refreshFlag} />
 
         <View style={styles.widgetContainer}>
           <Text>{STRINGS.PLACEHOLDER_TEXT}</Text>
