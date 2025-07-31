@@ -119,7 +119,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
           <View style={styles.noteContainer}>
             <TextInput
               style={styles.noteInput}
-              placeholder={STRINGS.PLACEHOLDER.NOTE}
+              placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.NOTE}
               onChangeText={handleNoteChange}
               multiline={true}
             />

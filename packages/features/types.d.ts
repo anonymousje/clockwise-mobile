@@ -97,6 +97,8 @@ export interface COMMON_CONSTANTS_TYPE {
     FILTER: const;
     ARROW: const;
     ALARM: const;
+    SETTINGS: const;
+    LOG_OUT: const;
   };
   DATE_TIME: {
     NUMERIC: const;
@@ -146,6 +148,14 @@ export interface COMMON_CONSTANTS_TYPE {
     SIZE_150: number;
     SIZE_200: number;
     SIZE_220: number;
+  };
+  TIME_CONSTANTS: {
+    ZERO: number;
+    ONE: number;
+    DECIMAL: number;
+    MINUTE: number;
+    HOUR: number;
+    MINUTE_IN_MS: number;
   };
 }
 

@@ -7,6 +7,7 @@ import { RefreshControl } from 'react-native-gesture-handler';
 import { FONT_SIZE, COLORS } from '../../../constants/theme';
 import STRINGS from '../../../utils/strings';
 import useDashboard from '../hooks/useDashboardScreen';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const Dashboard = () => {
   const { logout, onRefresh, refreshing, refreshFlag } = useDashboard();
@@ -25,14 +26,14 @@ const Dashboard = () => {
           <Text style={styles.headerText}>{STRINGS.TITLES.DASHBOARD}</Text>
           <View style={styles.iconContainer}>
             <Ionicons
-              name='settings-outline'
+              name={COMMON_CONSTANTS.ICONS.SETTINGS}
               size={FONT_SIZE.SIZE_24}
               color={COLORS.CLOCKWISE_PRIMARY}
             />
 
             <TouchableOpacity onPress={logout}>
               <Ionicons
-                name='log-out-outline'
+                name={COMMON_CONSTANTS.ICONS.LOG_OUT}
                 size={FONT_SIZE.SIZE_24}
                 color={COLORS.CLOCKWISE_PRIMARY}
               />
@@ -43,7 +44,7 @@ const Dashboard = () => {
         <Clocking refreshFlag={refreshFlag} />
 
         <View style={styles.widgetContainer}>
-          <Text>{STRINGS.PLACEHOLDER_TEXT}</Text>
+          <Text>{STRINGS.PLACEHOLDER.PLACEHOLDER_TEXT}</Text>
         </View>
       </View>
     </ScrollView>

@@ -73,7 +73,7 @@ const StaffDetail = () => {
               </Text>
               <Text style={styles.text}>
                 {staffData?.lastName === undefined
-                  ? ` ${STRINGS.DASH}`
+                  ? ` ${STRINGS.INPUT_PLACEHOLDER_TEXT.DASH}`
                   : staffData?.lastName}
               </Text>
             </View>
@@ -91,7 +91,7 @@ const StaffDetail = () => {
               </Text>
               <Text style={styles.text}>
                 {staffData?.lastLoginDate === undefined
-                  ? ` ${STRINGS.DASH}`
+                  ? ` ${STRINGS.INPUT_PLACEHOLDER_TEXT.DASH}`
                   : formatDateTime(
                       staffData?.lastLoginDate || COMMON_CONSTANTS.DEFAULT,
                     )}
@@ -105,7 +105,7 @@ const StaffDetail = () => {
 
               <Text style={styles.text}>
                 {staffData?.role === undefined
-                  ? ` ${STRINGS.DASH}`
+                  ? ` ${STRINGS.INPUT_PLACEHOLDER_TEXT.DASH}`
                   : staffData?.role}
               </Text>
             </View>
@@ -117,7 +117,7 @@ const StaffDetail = () => {
 
               <Text style={styles.text}>
                 {staffData?.userStatus === undefined
-                  ? ` ${STRINGS.DASH}`
+                  ? ` ${STRINGS.INPUT_PLACEHOLDER_TEXT.DASH}`
                   : String(staffData?.userStatus) === '1'
                   ? STRINGS.ACTIVE
                   : STRINGS.INACTIVE}

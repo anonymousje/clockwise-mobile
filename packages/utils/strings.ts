@@ -8,8 +8,6 @@ const STRINGS = {
     NEW_PASSWORD: 'New Password',
   },
 
-  DASH: '-',
-
   EMPLOYEE_FORM: {
     FIRST_NAME: 'First Name',
     LAST_NAME: 'Last Name',
@@ -27,10 +25,11 @@ const STRINGS = {
     USERCODE: 'User Code',
   },
 
+  LESS_THAN_ONE_MINUTE: 'Less than 1 minute',
+
   PLACEHOLDER: {
-    NOTE: 'Add a note',
+    PLACEHOLDER_TEXT: 'PlaceHolder',
   },
-  PLACEHOLDER_TEXT: 'PlaceHolder',
   TITLES: {
     DASHBOARD: 'Dashboard',
   },
@@ -92,6 +91,8 @@ const STRINGS = {
     CONFIRM_PASSWORD: 'Confirm New Password',
     EMAIL_OR_USERNAME: 'Email or username',
     SEARCH_STAFF: 'Search Staff',
+    NOTE: 'Add a note',
+    DASH: '-',
   },
 
   BUTTON_TEXT: {
@@ -115,8 +116,6 @@ const STRINGS = {
     NOTE: 'Add Note',
     BREAK: 'You have been on a break for',
   },
-
-  PLACEHOLDERTIME: '5m',
 
   VALIDATIONS: {
     TITLE: 'Password must contain:',

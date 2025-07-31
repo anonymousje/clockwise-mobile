@@ -1,4 +1,6 @@
+import COMMON_CONSTANTS from '../constants/CommonConstants';
 import { BreakType } from '../features/types';
+import STRINGS from './strings';
 
 export const getInitials = (firstName?: string, lastName?: string): string => {
   const firstInitial =
@@ -18,41 +20,47 @@ export const stringFormat = (str?: string, ...args: string[]) => {
 
 export const formatTime = (hoursWorked: string): string => {
   const [hh, mm] = hoursWorked.split(':');
-  const hours = parseInt(hh, 10);
-  const minutes = parseInt(mm, 10);
+  const hours = parseInt(hh, COMMON_CONSTANTS.TIME_CONSTANTS.DECIMAL);
+  const minutes = parseInt(mm, COMMON_CONSTANTS.TIME_CONSTANTS.DECIMAL);
   let result = '';
-  if (hours > 0) {
+  if (hours > COMMON_CONSTANTS.TIME_CONSTANTS.ZERO) {
     result += `${hours}h`;
   }
-  if (minutes > 0) {
+  if (minutes > COMMON_CONSTANTS.TIME_CONSTANTS.ZERO) {
     result += (result ? ' ' : '') + `${minutes}m`;
   }
   if (!result) {
-    result = 'Less than 1m';
+    result = STRINGS.LESS_THAN_ONE_MINUTE;
   }
   return result;
 };
 
 export const formatDuration = (shiftBreaks: BreakType[]): string => {
   const currentBreak =
-    shiftBreaks.length > 0 ? shiftBreaks[shiftBreaks.length - 1] : null;
+    shiftBreaks.length > COMMON_CONSTANTS.TIME_CONSTANTS.ZERO
+      ? shiftBreaks[shiftBreaks.length - 1]
+      : null;
   const startTime = currentBreak?.startTime ?? '';
   const breakDurationMs = startTime
     ? Date.now() - new Date(startTime).getTime()
     : 0;
 
-  const totalMinutes = Math.floor(breakDurationMs / 60000);
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
+  const totalMinutes = Math.floor(
+    breakDurationMs / COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS,
+  );
+  const hours = Math.floor(
+    totalMinutes / COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE,
+  );
+  const minutes = totalMinutes % COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE;
   let result = '';
-  if (hours > 0) {
+  if (hours > COMMON_CONSTANTS.TIME_CONSTANTS.ZERO) {
     result += `${hours}h`;
   }
-  if (minutes > 0) {
+  if (minutes > COMMON_CONSTANTS.TIME_CONSTANTS.ZERO) {
     result += (result ? ' ' : '') + `${minutes}m`;
   }
   if (!result) {
-    result = 'Less than 1m';
+    result = STRINGS.LESS_THAN_ONE_MINUTE;
   }
   return result;
 };

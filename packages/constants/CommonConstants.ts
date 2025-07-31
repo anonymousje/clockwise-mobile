@@ -28,6 +28,8 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     FILTER: 'filter-outline',
     ARROW: 'arrow-back-outline',
     ALARM: 'alarm-outline',
+    SETTINGS: 'settings-outline',
+    LOG_OUT: 'log-out-outline',
   },
 
   DATE_TIME: {
@@ -80,6 +82,15 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     SIZE_150: 150,
     SIZE_200: 200,
     SIZE_220: 220,
+  },
+
+  TIME_CONSTANTS: {
+    ZERO: 0,
+    ONE: 1,
+    DECIMAL: 10,
+    MINUTE: 60,
+    HOUR: 3600,
+    MINUTE_IN_MS: 60000,
   },
 };
 

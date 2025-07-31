@@ -1,5 +1,6 @@
 import { StyleSheet, Appearance } from 'react-native';
 import { COLORS, MODE, FONT_SIZE, FONTS } from '../../../constants/theme';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const mode = Appearance.getColorScheme();
 
@@ -18,9 +19,9 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 35,
-    paddingBottom: 35,
-    paddingHorizontal: 15,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_34,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_34,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_15,
 
     backgroundColor:
       mode === MODE.DARK
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     flexDirection: 'row',
-    gap: 30,
+    gap: COMMON_CONSTANTS.SIZE.SIZE_30,
   },
   headerText: {
     fontSize: FONT_SIZE.SIZE_24,
@@ -39,21 +40,17 @@ const styles = StyleSheet.create({
 
   widgetContainer: {
     alignItems: 'center',
-    marginTop: 10,
-    marginHorizontal: 10,
-    paddingBottom: 200,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
+    marginHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_200,
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
     shadowColor: COLORS.SHADOW_COLOR,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
 });
 
