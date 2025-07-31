@@ -54,6 +54,17 @@ export const styles = StyleSheet.create({
     paddingVertical: 5,
     justifyContent: 'center',
   },
+  breakEndButton: {
+    width: '100%',
+    alignItems: 'center',
+    paddingVertical: 11,
+    borderRadius: 5,
+    backgroundColor: COLORS.BREAK_BUTTON_BACKGROUND,
+  },
+  breakButtonText: {
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    fontSize: FONT_SIZE.SIZE_17,
+  },
   icon: {
     transform: [{ rotate: '-15deg' }],
   },

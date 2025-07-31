@@ -14,6 +14,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
     handleNoteChange,
     setModal,
     modalVisible,
+    onBreak,
   } = useClock(refreshFlag);
 
   return (
@@ -45,30 +46,55 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
           </View>
 
           <View>
-            <View>
-              <Text style={styles.titleText}>{STRINGS.HEADERS.CLOCK_IN}</Text>
-              <Text style={styles.timeText}>{clockTime}</Text>
-            </View>
+            {!onBreak && (
+              <>
+                <View>
+                  <Text style={styles.titleText}>
+                    {STRINGS.HEADERS.CLOCK_IN}
+                  </Text>
+                  <Text style={styles.timeText}>{clockTime}</Text>
+                </View>
 
-            <View style={styles.clockOutButtonContainer}>
-              <TouchableOpacity
-                onPress={handleBreak}
-                style={styles.breakButton}
-              >
-                <Text style={styles.ButtonText}>
-                  {STRINGS.BUTTON_TEXT.BREAK}
-                </Text>
-              </TouchableOpacity>
+                <View style={styles.clockOutButtonContainer}>
+                  <TouchableOpacity
+                    onPress={handleBreak}
+                    style={styles.breakButton}
+                  >
+                    <Text style={styles.ButtonText}>
+                      {STRINGS.BUTTON_TEXT.BREAK}
+                    </Text>
+                  </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={setModal}
-                style={styles.clockOutButton}
-              >
-                <Text style={styles.ButtonText}>
-                  {STRINGS.BUTTON_TEXT.CLOCK_OUT}
-                </Text>
-              </TouchableOpacity>
-            </View>
+                  <TouchableOpacity
+                    onPress={setModal}
+                    style={styles.clockOutButton}
+                  >
+                    <Text style={styles.ButtonText}>
+                      {STRINGS.BUTTON_TEXT.CLOCK_OUT}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            )}
+
+            {onBreak && (
+              <>
+                <View>
+                  <Text style={styles.titleText}>{STRINGS.HEADERS.BREAK}</Text>
+                  <Text style={styles.timeText}>{clockTime}</Text>
+                </View>
+                <View style={styles.clockOutButtonContainer}>
+                  <TouchableOpacity
+                    onPress={handleBreak}
+                    style={styles.breakEndButton}
+                  >
+                    <Text style={styles.ButtonText}>
+                      {STRINGS.BUTTON_TEXT.RESUME_SHIFT}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            )}
           </View>
         </>
       )}

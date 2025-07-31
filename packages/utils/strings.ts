@@ -102,6 +102,7 @@ const STRINGS = {
     BREAK: 'TAKE A BREAK',
     CLOCK_IN: 'CLOCK IN',
     CLOCK_OUT: 'CLOCK OUT',
+    RESUME_SHIFT: 'RESUME SHIFT',
   },
 
   HEADERS: {
@@ -112,6 +113,7 @@ const STRINGS = {
     FILTER_OPTIONS: 'Filter Options',
     CLOCK_IN: 'You have been clocked in for',
     NOTE: 'Add Note',
+    BREAK: 'You have been on a break for',
   },
 
   PLACEHOLDERTIME: '5m',
