@@ -149,6 +149,14 @@ const styles = StyleSheet.create({
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
   },
+  noDataText: {
+    fontSize: 16,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    textAlign: 'center',
+    marginTop: 40,
+    marginBottom: 40,
+  },
   modalTitle: {
     fontSize: 22,
     fontFamily: FONTS.CLOCKWISE_BOLD,

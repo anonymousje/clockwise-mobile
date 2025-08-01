@@ -20,33 +20,41 @@ const WhoIsOn = (refreshFlag: { refreshFlag: boolean }) => {
         <Text style={styles.title}> Who Is On Now </Text>
       </View>
 
-      {whoIsOnList.slice(0, 2).map((user, index) => (
-        <View
-          style={styles.widgetListContainer}
-          key={index}
-        >
-          <View style={styles.widgetListItem}>
-            <View style={styles.avatarIconContainer}>
-              <Text style={styles.avatarText}>
-                {user ? getInitials(user.name) : ''}
-              </Text>
+      {whoIsOnList.length > 0 && (
+        <>
+          {whoIsOnList.slice(0, 2).map((user, index) => (
+            <View
+              style={styles.widgetListContainer}
+              key={index}
+            >
+              <View style={styles.widgetListItem}>
+                <View style={styles.avatarIconContainer}>
+                  <Text style={styles.avatarText}>
+                    {user ? getInitials(user.name) : ''}
+                  </Text>
+                </View>
+                <View style={styles.nameContainer}>
+                  <Text style={styles.nameText}>{user?.name || ''}</Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.nameContainer}>
-              <Text style={styles.nameText}>{user?.name || ''}</Text>
-            </View>
+          ))}
+          <View style={styles.bottomBorder}>
+            <TouchableOpacity
+              onPress={() => {
+                setShowModal(true);
+              }}
+            >
+              <Text style={styles.bottomText}>SEE MORE</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      ))}
+        </>
+      )}
 
-      <View style={styles.bottomBorder}>
-        <TouchableOpacity
-          onPress={() => {
-            setShowModal(true);
-          }}
-        >
-          <Text style={styles.bottomText}>SEE MORE</Text>
-        </TouchableOpacity>
-      </View>
+      {whoIsOnList.length === 0 && (
+        <Text style={styles.noDataText}>No users are currently online</Text>
+      )}
+
       <Modal
         visible={showModal}
         onRequestClose={() => setShowModal(false)}
