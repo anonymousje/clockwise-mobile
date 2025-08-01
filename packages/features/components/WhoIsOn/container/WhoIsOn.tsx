@@ -3,8 +3,10 @@ import styles from '../styles/WhoIsOn.styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 import { COLORS } from '../../../../constants/theme';
+import useWhoIsOn from '../hooks/useWhoIsOn';
 
 const WhoIsOn = () => {
+  const { whoIsOnList, fetchWhoIsOnData, setWhoIsOnList } = useWhoIsOn();
   return (
     <View style={styles.container}>
       <View style={styles.widgetHeaderContainer}>

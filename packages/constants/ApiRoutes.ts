@@ -16,6 +16,7 @@ const ApiRoutes = {
   endBreak: '/timeentry/end-break',
   shiftStatus: '/timeentry/get-shift-status',
   breakStatus: '/timeentry/get-shift-breaks-status',
+  whoIsOn: '/timeentry/whos-on',
 };
 
 export default ApiRoutes;

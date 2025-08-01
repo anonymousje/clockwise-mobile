@@ -159,6 +159,23 @@ export interface COMMON_CONSTANTS_TYPE {
   };
 }
 
+export type WhoIsOnUser = {
+  name: string;
+  jobRole: string | null;
+  clockInTime: string;
+  shiftStartTime: string | null;
+  shiftEndTime: string | null;
+};
+
+export type WhoIsOnResponseType = {
+  status: boolean;
+  response: {
+    onlineUsers?: Array<WhoIsOnUser>;
+    onlineUsersCount?: number;
+  };
+  exceptionMessage?: string | undefined;
+};
+
 export interface ButtonProps extends TouchableOpacityProps {
   onPress: () => void;
   label: string;
