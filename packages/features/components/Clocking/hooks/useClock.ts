@@ -26,6 +26,7 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
         setModalVisible(false);
       }
     }
+
     getClockStatus();
   };
 

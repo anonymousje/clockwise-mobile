@@ -45,7 +45,7 @@ const Dashboard = () => {
         <Clocking refreshFlag={refreshFlag} />
 
         <View style={styles.widgetContainer}>
-          <WhoIsOn />
+          <WhoIsOn refreshFlag={refreshFlag} />
         </View>
       </View>
     </ScrollView>

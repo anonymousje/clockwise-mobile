@@ -6,8 +6,8 @@ import { COLORS } from '../../../../constants/theme';
 import useWhoIsOn from '../hooks/useWhoIsOn';
 import { formatTimeFromISOString, getInitials } from '../../../../utils/helper';
 
-const WhoIsOn = () => {
-  const { whoIsOnList, showModal, setShowModal } = useWhoIsOn();
+const WhoIsOn = (refreshFlag: { refreshFlag: boolean }) => {
+  const { whoIsOnList, showModal, setShowModal } = useWhoIsOn(refreshFlag);
   return (
     <View style={styles.container}>
       <View style={styles.widgetHeaderContainer}>
@@ -20,31 +20,23 @@ const WhoIsOn = () => {
         <Text style={styles.title}> Who Is On Now </Text>
       </View>
 
-      <View style={styles.widgetListContainer}>
-        <View style={styles.widgetListItem}>
-          <View style={styles.avatarIconContainer}>
-            <Text style={styles.avatarText}>
-              {whoIsOnList[0] ? getInitials(whoIsOnList[0].name) : ''}
-            </Text>
-          </View>
-
-          <View style={styles.nameContainer}>
-            <Text style={styles.nameText}>{whoIsOnList[0]?.name || ''}</Text>
-          </View>
-        </View>
-
-        <View style={styles.widgetListItem}>
-          <View style={styles.avatarIconContainer}>
-            <Text style={styles.avatarText}>
-              {whoIsOnList[1] ? getInitials(whoIsOnList[1].name) : ''}
-            </Text>
-          </View>
-
-          <View style={styles.nameContainer}>
-            <Text style={styles.nameText}>{whoIsOnList[1]?.name || ''}</Text>
+      {whoIsOnList.slice(0, 2).map((user, index) => (
+        <View
+          style={styles.widgetListContainer}
+          key={index}
+        >
+          <View style={styles.widgetListItem}>
+            <View style={styles.avatarIconContainer}>
+              <Text style={styles.avatarText}>
+                {user ? getInitials(user.name) : ''}
+              </Text>
+            </View>
+            <View style={styles.nameContainer}>
+              <Text style={styles.nameText}>{user?.name || ''}</Text>
+            </View>
           </View>
         </View>
-      </View>
+      ))}
 
       <View style={styles.bottomBorder}>
         <TouchableOpacity

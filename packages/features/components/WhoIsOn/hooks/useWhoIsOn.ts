@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import WhoIsOnService from '../services/WhoIsOnService';
 import { WhoIsOnResponseType, WhoIsOnUser } from '../../../types';
 
-const useWhoIsOn = () => {
+const useWhoIsOn = (refreshFlag: { refreshFlag: boolean }) => {
   const [whoIsOnList, setWhoIsOnList] = useState<WhoIsOnUser[]>([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -19,7 +19,7 @@ const useWhoIsOn = () => {
 
   useEffect(() => {
     fetchWhoIsOnData();
-  }, []);
+  }, [refreshFlag]);
 
   return {
     whoIsOnList,
