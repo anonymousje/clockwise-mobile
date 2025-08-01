@@ -7,7 +7,7 @@ import { SCREENS } from '../../../constants/screens';
 import StaffService from '../services/StaffService';
 import { staffType, filterItemsType } from '../../types';
 import { RootState } from '../../../store';
-import { fetchUpdated } from '../../../store/actions/fetchUsers';
+import { fetchUpdatedStaffList } from '../../../store/actions/flags';
 import type { staffSearchQueryType } from '../../types';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
@@ -53,9 +53,9 @@ const useStaffScreen = () => {
         );
       });
 
-      if (updated.flag) {
+      if (updated.staffListUpdateFlag) {
         StaffService.getStaff();
-        dispatch(fetchUpdated(false));
+        dispatch(fetchUpdatedStaffList(false));
       }
 
       const fetchData = async () => {
@@ -73,7 +73,7 @@ const useStaffScreen = () => {
     } else {
       navigation.navigate(SCREENS.Login);
     }
-  }, [userFromStore?.role, updated.flag, dispatch, navigation]);
+  }, [userFromStore?.role, updated.staffListUpdateFlag, dispatch, navigation]);
 
   const getStaffList = async (loc?: string, dep?: string, rol?: string) => {
     const params: staffSearchQueryType = {

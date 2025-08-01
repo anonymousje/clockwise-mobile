@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { useSession } from './reducers/auth';
-import { useFetch } from './reducers/fetchUsers';
+import { useFetch } from './reducers/flags';
 
 const rootReducer = combineReducers({
   user: useSession,

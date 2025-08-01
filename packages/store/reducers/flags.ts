@@ -1,7 +1,8 @@
-import { Action } from '../actions/fetchUsers';
+import { Action } from '../actions/flags';
 
 const initialState = {
-  flag: false,
+  staffListUpdateFlag: false,
+  whoIsOnListUpdateFlag: false,
 };
 
 export const useFetch = (state = initialState, action: Action) => {
@@ -10,6 +11,11 @@ export const useFetch = (state = initialState, action: Action) => {
       return {
         ...state,
         flag: action.payload,
+      };
+    case 'SET_UPDATED_WHO_IS_ON_LIST':
+      return {
+        ...state,
+        whoIsOnListUpdateFlag: action.payload,
       };
     default:
       return state;
