@@ -21,8 +21,6 @@ const useWhoIsOn = () => {
 
   return {
     whoIsOnList,
-    setWhoIsOnList,
-    fetchWhoIsOnData,
   };
 };
 

@@ -4,9 +4,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 import { COLORS } from '../../../../constants/theme';
 import useWhoIsOn from '../hooks/useWhoIsOn';
+import { getInitials } from '../../../../utils/helper';
 
 const WhoIsOn = () => {
-  const { whoIsOnList, fetchWhoIsOnData, setWhoIsOnList } = useWhoIsOn();
+  const { whoIsOnList } = useWhoIsOn();
   return (
     <View style={styles.container}>
       <View style={styles.widgetHeaderContainer}>
@@ -22,21 +23,25 @@ const WhoIsOn = () => {
       <View style={styles.widgetListContainer}>
         <View style={styles.widgetListItem}>
           <View style={styles.avatarIconContainer}>
-            <Text style={styles.avatarText}>JD</Text>
+            <Text style={styles.avatarText}>
+              {getInitials(whoIsOnList[0].name)}
+            </Text>
           </View>
 
           <View style={styles.nameContainer}>
-            <Text style={styles.nameText}>John Doe</Text>
+            <Text style={styles.nameText}>{whoIsOnList[0].name}</Text>
           </View>
         </View>
 
         <View style={styles.widgetListItem}>
           <View style={styles.avatarIconContainer}>
-            <Text style={styles.avatarText}>JD</Text>
+            <Text style={styles.avatarText}>
+              {getInitials(whoIsOnList[1].name)}
+            </Text>
           </View>
 
           <View style={styles.nameContainer}>
-            <Text style={styles.nameText}>John Doe</Text>
+            <Text style={styles.nameText}>{whoIsOnList[1].name}</Text>
           </View>
         </View>
       </View>
