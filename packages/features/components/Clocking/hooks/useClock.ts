@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
 import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
 import { formatTime, formatDuration } from '../../../../utils/helper';
+import { useDispatch } from 'react-redux';
+import { fetchUpdatedWhoIsOnList } from '../../../../store/actions/flags';
 
 export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   const [clockIn, setClockIn] = useState(true);
@@ -10,6 +12,7 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [breakTime, setBreakTime] = useState('');
   const [note, setNote] = useState('');
+  const dispatch = useDispatch();
 
   const handleClockOperation = async () => {
     if (!clockIn) {
@@ -26,7 +29,7 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
         setModalVisible(false);
       }
     }
-
+    dispatch(fetchUpdatedWhoIsOnList(true));
     getClockStatus();
   };
 
