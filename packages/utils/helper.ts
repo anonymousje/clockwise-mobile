@@ -64,3 +64,15 @@ export const formatDuration = (shiftBreaks: BreakType[]): string => {
   }
   return result;
 };
+
+export const formatTimeFromISOString = (isoString: string): string => {
+  if (!isoString) return '';
+  const date = new Date(isoString);
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+  return `${hours}:${minutesStr} ${ampm}`;
+};

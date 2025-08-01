@@ -4,12 +4,14 @@ import { WhoIsOnResponseType, WhoIsOnUser } from '../../../types';
 
 const useWhoIsOn = () => {
   const [whoIsOnList, setWhoIsOnList] = useState<WhoIsOnUser[]>([]);
+  const [showModal, setShowModal] = useState(false);
 
   const fetchWhoIsOnData = async (): Promise<WhoIsOnResponseType> => {
     const response = await WhoIsOnService.fetchWhoIsOnData();
 
     if (response.status) {
       const whoIsOnData = response.response.onlineUsers || [];
+      console.log('Who is on data:', whoIsOnData);
       setWhoIsOnList(whoIsOnData);
     }
     return response;
@@ -21,6 +23,8 @@ const useWhoIsOn = () => {
 
   return {
     whoIsOnList,
+    showModal,
+    setShowModal,
   };
 };
 
