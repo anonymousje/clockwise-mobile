@@ -133,11 +133,26 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
+  modalHeaderContainer: {
+    flexShrink: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor:
+      mode === MODE.DARK
+        ? COLORS.BORDER_COLOR_DARK_MODE
+        : COLORS.BORDER_COLOR_LIGHT_MODE,
+    paddingHorizontal: 10,
+    paddingVertical: 18,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+  },
   modalTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: FONTS.CLOCKWISE_BOLD,
-    color: COLORS.WHITE,
-    marginBottom: 20,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   modalCloseText: {
     fontSize: 18,

@@ -60,8 +60,16 @@ const WhoIsOn = () => {
         onRequestClose={() => setShowModal(false)}
       >
         <View style={styles.modalContainer}>
-          <Text style={styles.modalTitle}>Who Is On Now</Text>
-          <TouchableOpacity onPress={() => setShowModal(false)}>
+          <View style={styles.modalHeaderContainer}>
+            <Text style={styles.modalTitle}>Who Is On Now</Text>
+            <Ionicons
+              name='close'
+              size={COMMON_CONSTANTS.SIZE.SIZE_30}
+              color={COLORS.CLOCKWISE_PRIMARY}
+              onPress={() => setShowModal(false)}
+            />
+          </View>
+          <View>
             {whoIsOnList.map((user, index) => (
               <View
                 key={index}
@@ -93,7 +101,7 @@ const WhoIsOn = () => {
                 </View>
               </View>
             ))}
-          </TouchableOpacity>
+          </View>
         </View>
       </Modal>
     </View>
