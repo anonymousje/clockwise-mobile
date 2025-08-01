@@ -1,16 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { Appearance, StyleSheet } from 'react-native';
 
+const mode = Appearance.getColorScheme();
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    color: mode === 'dark' ? '#fff' : '#000',
   },
 });
 
