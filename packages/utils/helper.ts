@@ -2,7 +2,8 @@ import COMMON_CONSTANTS from '../constants/CommonConstants';
 import { BreakType } from '../features/types';
 import STRINGS from './strings';
 
-export const getInitials = (firstName?: string, lastName?: string): string => {
+export const getInitials = (name?: string): string => {
+  const [firstName, lastName] = name ? name.split(COMMON_CONSTANTS.SPACE) : [];
   const firstInitial =
     firstName && firstName.length > 0 ? firstName.charAt(0).toUpperCase() : '';
   const lastInitial =

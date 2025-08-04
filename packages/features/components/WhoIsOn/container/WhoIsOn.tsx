@@ -85,14 +85,7 @@ const WhoIsOn = () => {
               >
                 <View style={styles.modalAvatarIconContainer}>
                   <Text style={styles.modalAvatarText}>
-                    {getInitials(
-                      user.name.split(COMMON_CONSTANTS.SPACE)[
-                        COMMON_CONSTANTS.ZERO
-                      ],
-                      user.name.split(COMMON_CONSTANTS.SPACE)[
-                        COMMON_CONSTANTS.ONE
-                      ],
-                    )}
+                    {getInitials(`${user.name}`)}
                   </Text>
                 </View>
                 <View style={styles.modalDetailsContainer}>
