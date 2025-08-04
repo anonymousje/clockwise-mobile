@@ -26,6 +26,7 @@ const useWhoIsOn = () => {
 
   useEffect(() => {
     if (updated.whoIsOnListUpdateFlag) {
+      fetchWhoIsOnData();
       dispatch(fetchUpdatedWhoIsOnList(false));
     }
     if (refreshFlag) {
