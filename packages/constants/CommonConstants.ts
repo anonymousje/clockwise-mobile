@@ -6,17 +6,16 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ADMIN: 'Admin',
     USER: 'User',
   },
-
   ADMIN: 'Admin',
-
   REDUX_TYPES: {
     SET_USER: 'SET_USER',
-    SET_TOKEN: 'SET_TOKEN',
+    SET_TOKENS: 'SET_TOKENS',
     LOGIN_USER: 'LOGIN_USER',
     LOGIN_FAIL: 'LOGIN_FAIL',
     LOGOUT: 'LOGOUT',
+    SET_UPDATED_STAFF_LIST: 'SET_UPDATED',
+    SET_UPDATED_WHO_IS_ON_LIST: 'SET_UPDATED_WHO_IS_ON_LIST',
   },
-
   ICONS: {
     HOME: 'home-outline',
     PEOPLE: 'people-outline',
@@ -31,14 +30,12 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     SETTINGS: 'settings-outline',
     LOG_OUT: 'log-out-outline',
   },
-
   DATE_TIME: {
     NUMERIC: 'numeric',
     SHORT: 'short',
     TWO_DIGIT: '2-digit',
     EN_US: 'en-US',
   },
-
   FORM_CONTROLLER_VALUES: {
     FIRST_NAME: 'firstName',
     LAST_NAME: 'lastName',
@@ -54,7 +51,6 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     JOB_ROLE: 'jobRole',
     ROLE: 'role',
   },
-
   SIZE: {
     SIZE_1: 1,
     SIZE_5: 5,
@@ -83,7 +79,6 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     SIZE_200: 200,
     SIZE_220: 220,
   },
-
   TIME_CONSTANTS: {
     ZERO: 0,
     ONE: 1,

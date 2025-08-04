@@ -13,13 +13,9 @@ const useDashboardScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
 
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    setRefreshFlag(true);
-    setTimeout(() => {
-      setRefreshing(false);
-      setRefreshFlag(false);
-    }, 2000);
+  const onRefresh = useCallback((flag: boolean) => {
+    setRefreshing(flag);
+    setRefreshFlag(flag);
   }, []);
 
   const handleBack = () => {

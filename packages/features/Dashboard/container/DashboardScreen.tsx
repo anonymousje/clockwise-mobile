@@ -18,7 +18,7 @@ const Dashboard = () => {
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
-          onRefresh={onRefresh}
+          onRefresh={() => onRefresh(true)}
         />
       }
     >
@@ -42,7 +42,7 @@ const Dashboard = () => {
           </View>
         </View>
 
-        <Clocking refreshFlag={refreshFlag} />
+        {Clocking(refreshFlag, onRefresh)}
 
         <View style={styles.widgetContainer}>
           <WhoIsOn refreshFlag={refreshFlag} />

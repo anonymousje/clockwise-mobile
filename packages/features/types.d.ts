@@ -81,10 +81,12 @@ export interface COMMON_CONSTANTS_TYPE {
   ADMIN: string;
   REDUX_TYPES: {
     SET_USER: string;
-    SET_TOKEN: string;
+    SET_TOKENS: string;
     LOGIN_USER: string;
     LOGIN_FAIL: string;
     LOGOUT: string;
+    SET_UPDATED_STAFF_LIST: string;
+    SET_UPDATED_WHO_IS_ON_LIST: string;
   };
   ICONS: {
     HOME: const;

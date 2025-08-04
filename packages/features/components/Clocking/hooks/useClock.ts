@@ -4,8 +4,12 @@ import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
 import { formatTime, formatDuration } from '../../../../utils/helper';
 import { useDispatch } from 'react-redux';
 import { fetchUpdatedWhoIsOnList } from '../../../../store/actions/flags';
+import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 
-export default function useClock(refreshFlag: { refreshFlag: boolean }) {
+export default function useClock(
+  refreshFlag: boolean,
+  onRefresh: (flag: boolean) => void,
+) {
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
   const [clockTime, setClockTime] = useState('');
@@ -62,17 +66,19 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
 
     const interval = setInterval(() => {
       getClockStatus();
-    }, 60000);
+    }, COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS);
 
-    if (refreshFlag.refreshFlag) {
+    if (refreshFlag) {
       if (onBreak) {
         getBreakStatus();
+        onRefresh(false);
       } else {
         getClockStatus();
+        onRefresh(false);
       }
     }
     return () => clearInterval(interval);
-  }, [getClockStatus, refreshFlag.refreshFlag, getBreakStatus, onBreak]);
+  }, [getClockStatus, refreshFlag, getBreakStatus, onBreak, onRefresh]);
 
   const handleNoteChange = (text: string) => {
     setNote(text);
