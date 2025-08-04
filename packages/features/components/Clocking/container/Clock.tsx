@@ -7,7 +7,7 @@ import Button from '../../Button/container/Button';
 import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 import { COLORS } from '../../../../constants/theme';
 
-const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
+const Clocking = (refreshFlag: boolean, onRefresh: (flag: boolean) => void) => {
   const {
     clockIn,
     handleClockOperation,
@@ -18,7 +18,7 @@ const Clocking = (refreshFlag: { refreshFlag: boolean }) => {
     modalVisible,
     onBreak,
     breakTime,
-  } = useClock(refreshFlag);
+  } = useClock(refreshFlag, onRefresh);
 
   return (
     <View style={styles.container}>

@@ -3,7 +3,10 @@ import ClockService from '../services/ClockService';
 import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
 import { formatTime, formatDuration } from '../../../../utils/helper';
 
-export default function useClock(refreshFlag: { refreshFlag: boolean }) {
+export default function useClock(
+  refreshFlag: boolean,
+  onRefresh: (flag: boolean) => void,
+) {
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
   const [clockTime, setClockTime] = useState('');
@@ -60,15 +63,17 @@ export default function useClock(refreshFlag: { refreshFlag: boolean }) {
       getClockStatus();
     }, 60000);
 
-    if (refreshFlag.refreshFlag) {
+    if (refreshFlag) {
       if (onBreak) {
         getBreakStatus();
+        onRefresh(false);
       } else {
         getClockStatus();
+        onRefresh(false);
       }
     }
     return () => clearInterval(interval);
-  }, [getClockStatus, refreshFlag.refreshFlag, getBreakStatus, onBreak]);
+  }, [getClockStatus, refreshFlag, getBreakStatus, onBreak, onRefresh]);
 
   const handleNoteChange = (text: string) => {
     setNote(text);
