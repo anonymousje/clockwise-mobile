@@ -6,6 +6,12 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ADMIN: 'Admin',
     USER: 'User',
   },
+  API_HEADERS: {
+    CONTENT_TYPE: 'Content-Type',
+    APPLICATION_JSON: 'application/json',
+    ACCEPT: '*/*',
+    BEARER: 'Bearer',
+  },
   ADMIN: 'Admin',
   REDUX_TYPES: {
     SET_USER: 'SET_USER',

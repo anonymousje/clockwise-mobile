@@ -1,4 +1,6 @@
 const ApiRoutes = {
+  BaseURL: 'http://10.0.2.2:5135/api',
+  refreshToken: 'http://10.0.2.2:5135/api/auth/refresh-token',
   forgotPassword: '/Auth/forgot-password',
   newPassword: '/Auth/reset-password',
   login: '/Auth/login',

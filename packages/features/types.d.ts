@@ -78,6 +78,12 @@ export interface COMMON_CONSTANTS_TYPE {
     ADMIN: string;
     USER: string;
   };
+  API_HEADERS: {
+    CONTENT_TYPE: string;
+    APPLICATION_JSON: string;
+    ACCEPT: string;
+    BEARER: string;
+  };
   ADMIN: string;
   REDUX_TYPES: {
     SET_USER: string;
