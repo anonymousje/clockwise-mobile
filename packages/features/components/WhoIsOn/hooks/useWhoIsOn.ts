@@ -3,10 +3,7 @@ import WhoIsOnService from '../services/WhoIsOnService';
 import { WhoIsOnResponseType, WhoIsOnUser } from '../../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
-import {
-  fetchUpdatedWhoIsOnList,
-  setRefreshFlag,
-} from '../../../../store/actions/flags';
+import { fetchUpdatedWhoIsOnList } from '../../../../store/actions/flags';
 
 const useWhoIsOn = () => {
   const [whoIsOnList, setWhoIsOnList] = useState<WhoIsOnUser[]>([]);
@@ -33,7 +30,6 @@ const useWhoIsOn = () => {
     }
     if (refreshFlag) {
       fetchWhoIsOnData();
-      dispatch(setRefreshFlag(false));
     }
   }, [refreshFlag, updated.whoIsOnListUpdateFlag, dispatch]);
 
