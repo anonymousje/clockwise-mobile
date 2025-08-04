@@ -12,6 +12,9 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ACCEPT: '*/*',
     BEARER: 'Bearer',
   },
+  ZERO: 0,
+  ONE: 1,
+  SPACE: ' ',
   ADMIN: 'Admin',
   REDUX_TYPES: {
     SET_USER: 'SET_USER',
@@ -36,6 +39,8 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ALARM: 'alarm-outline',
     SETTINGS: 'settings-outline',
     LOG_OUT: 'log-out-outline',
+    CLOCK: 'time-outline',
+    CLOSE: 'close',
   },
   DATE_TIME: {
     NUMERIC: 'numeric',

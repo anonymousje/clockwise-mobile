@@ -95,6 +95,8 @@ export interface COMMON_CONSTANTS_TYPE {
     SET_UPDATED_WHO_IS_ON_LIST: string;
     SET_REFRESH_FLAG: string;
   };
+  ZERO: number;
+  ONE: number;
   ICONS: {
     HOME: const;
     PEOPLE: const;
@@ -108,7 +110,10 @@ export interface COMMON_CONSTANTS_TYPE {
     ALARM: const;
     SETTINGS: const;
     LOG_OUT: const;
+    CLOCK: const;
+    CLOSE: const;
   };
+  SPACE: string;
   DATE_TIME: {
     NUMERIC: const;
     SHORT: const;

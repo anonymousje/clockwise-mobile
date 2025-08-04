@@ -5,54 +5,60 @@ import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 import { COLORS } from '../../../../constants/theme';
 import useWhoIsOn from '../hooks/useWhoIsOn';
 import { formatTimeFromISOString, getInitials } from '../../../../utils/helper';
+import STRINGS from '../../../../utils/strings';
 
 const WhoIsOn = () => {
   const { whoIsOnList, showModal, setShowModal } = useWhoIsOn();
+
+  const displayUserUI = () => {
+    return (
+      <>
+        {whoIsOnList.slice(0, 2).map((user, index) => (
+          <View
+            style={styles.widgetListContainer}
+            key={index}
+          >
+            <View style={styles.widgetListItem}>
+              <View style={styles.avatarIconContainer}>
+                <Text style={styles.avatarText}>{getInitials(user.name)}</Text>
+              </View>
+              <View style={styles.nameContainer}>
+                <Text style={styles.nameText}>{user?.name}</Text>
+              </View>
+            </View>
+          </View>
+        ))}
+        <View style={styles.bottomBorder}>
+          <TouchableOpacity
+            onPress={() => {
+              setShowModal(true);
+            }}
+          >
+            <Text style={styles.bottomText}>
+              {STRINGS.BUTTON_TEXT.SEE_MORE}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.widgetHeaderContainer}>
         <Ionicons
-          name='time-outline'
+          name={COMMON_CONSTANTS.ICONS.CLOCK}
           style={styles.iconStyle}
           size={COMMON_CONSTANTS.SIZE.SIZE_24}
           color={COLORS.CLOCKWISE_PRIMARY}
         />
-        <Text style={styles.title}> Who Is On Now </Text>
+        <Text style={styles.title}> {STRINGS.HEADERS.WHO_IS_ON_NOW} </Text>
       </View>
 
-      {whoIsOnList.length > 0 && (
-        <>
-          {whoIsOnList.slice(0, 2).map((user, index) => (
-            <View
-              style={styles.widgetListContainer}
-              key={index}
-            >
-              <View style={styles.widgetListItem}>
-                <View style={styles.avatarIconContainer}>
-                  <Text style={styles.avatarText}>
-                    {user ? getInitials(user.name) : ''}
-                  </Text>
-                </View>
-                <View style={styles.nameContainer}>
-                  <Text style={styles.nameText}>{user?.name || ''}</Text>
-                </View>
-              </View>
-            </View>
-          ))}
-          <View style={styles.bottomBorder}>
-            <TouchableOpacity
-              onPress={() => {
-                setShowModal(true);
-              }}
-            >
-              <Text style={styles.bottomText}>SEE MORE</Text>
-            </TouchableOpacity>
-          </View>
-        </>
-      )}
+      {whoIsOnList.length > COMMON_CONSTANTS.ZERO && displayUserUI()}
 
-      {whoIsOnList.length === 0 && (
-        <Text style={styles.noDataText}>No users are currently online</Text>
+      {whoIsOnList.length === COMMON_CONSTANTS.ZERO && (
+        <Text style={styles.noDataText}>{STRINGS.NO_USERS_ONLINE}</Text>
       )}
 
       <Modal
@@ -61,9 +67,11 @@ const WhoIsOn = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalHeaderContainer}>
-            <Text style={styles.modalTitle}>Who Is On Now</Text>
+            <Text style={styles.modalTitle}>
+              {STRINGS.HEADERS.WHO_IS_ON_NOW}
+            </Text>
             <Ionicons
-              name='close'
+              name={COMMON_CONSTANTS.ICONS.CLOSE}
               size={COMMON_CONSTANTS.SIZE.SIZE_30}
               color={COLORS.CLOCKWISE_PRIMARY}
               onPress={() => setShowModal(false)}
@@ -78,8 +86,12 @@ const WhoIsOn = () => {
                 <View style={styles.modalAvatarIconContainer}>
                   <Text style={styles.modalAvatarText}>
                     {getInitials(
-                      user.name.split(' ')[0],
-                      user.name.split(' ')[1],
+                      user.name.split(COMMON_CONSTANTS.SPACE)[
+                        COMMON_CONSTANTS.ZERO
+                      ],
+                      user.name.split(COMMON_CONSTANTS.SPACE)[
+                        COMMON_CONSTANTS.ONE
+                      ],
                     )}
                   </Text>
                 </View>
@@ -88,8 +100,8 @@ const WhoIsOn = () => {
                     <Text style={styles.modalNameText}>{user.name}</Text>
                     <Text style={styles.modalShiftText}>
                       {user.shiftStartTime
-                        ? `Shift: ${user.shiftStartTime} - ${user.shiftEndTime}`
-                        : 'No shift'}
+                        ? `${STRINGS.SHIFT}: ${user.shiftStartTime} - ${user.shiftEndTime}`
+                        : STRINGS.NO_SHIFT}
                     </Text>
                   </View>
 
