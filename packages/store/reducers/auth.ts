@@ -33,7 +33,7 @@ export const useSession = (state = initialState, action: Action) => {
         refreshToken: action.payload.refreshToken,
       };
 
-    case 'LOGOUT':
+    case COMMON_CONSTANTS.REDUX_TYPES.LOGOUT:
       setAccessToken(COMMON_CONSTANTS.DEFAULT);
       setRefreshToken(COMMON_CONSTANTS.DEFAULT);
       return {
