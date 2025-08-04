@@ -20,22 +20,75 @@ const Clocking = (refreshFlag: boolean, onRefresh: (flag: boolean) => void) => {
     breakTime,
   } = useClock(refreshFlag, onRefresh);
 
+  const clockInUI = () => {
+    return (
+      <View style={styles.clockInContainer}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={handleClockOperation}
+            style={styles.button}
+          >
+            <Text style={styles.ButtonText}>
+              {STRINGS.BUTTON_TEXT.CLOCK_IN}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  const clockOutUI = () => {
+    return (
+      <>
+        <View>
+          <Text style={styles.titleText}>{STRINGS.HEADERS.CLOCK_IN}</Text>
+          <Text style={styles.timeText}>{clockTime}</Text>
+        </View>
+
+        <View style={styles.clockOutButtonContainer}>
+          <TouchableOpacity
+            onPress={handleBreak}
+            style={styles.breakButton}
+          >
+            <Text style={styles.ButtonText}>{STRINGS.BUTTON_TEXT.BREAK}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={setModal}
+            style={styles.clockOutButton}
+          >
+            <Text style={styles.ButtonText}>
+              {STRINGS.BUTTON_TEXT.CLOCK_OUT}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </>
+    );
+  };
+
+  const breakUI = () => {
+    return (
+      <>
+        <View>
+          <Text style={styles.titleText}>{STRINGS.HEADERS.BREAK}</Text>
+          <Text style={styles.timeText}>{breakTime}</Text>
+        </View>
+        <View style={styles.clockOutButtonContainer}>
+          <TouchableOpacity
+            onPress={handleBreak}
+            style={styles.breakEndButton}
+          >
+            <Text style={styles.ButtonText}>
+              {STRINGS.BUTTON_TEXT.RESUME_SHIFT}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </>
+    );
+  };
   return (
     <View style={styles.container}>
-      {!clockIn && (
-        <View style={styles.clockInContainer}>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={handleClockOperation}
-              style={styles.button}
-            >
-              <Text style={styles.ButtonText}>
-                {STRINGS.BUTTON_TEXT.CLOCK_IN}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
+      {!clockIn && clockInUI()}
 
       {clockIn && (
         <>
@@ -49,55 +102,8 @@ const Clocking = (refreshFlag: boolean, onRefresh: (flag: boolean) => void) => {
           </View>
 
           <View>
-            {!onBreak && (
-              <>
-                <View>
-                  <Text style={styles.titleText}>
-                    {STRINGS.HEADERS.CLOCK_IN}
-                  </Text>
-                  <Text style={styles.timeText}>{clockTime}</Text>
-                </View>
-
-                <View style={styles.clockOutButtonContainer}>
-                  <TouchableOpacity
-                    onPress={handleBreak}
-                    style={styles.breakButton}
-                  >
-                    <Text style={styles.ButtonText}>
-                      {STRINGS.BUTTON_TEXT.BREAK}
-                    </Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    onPress={setModal}
-                    style={styles.clockOutButton}
-                  >
-                    <Text style={styles.ButtonText}>
-                      {STRINGS.BUTTON_TEXT.CLOCK_OUT}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </>
-            )}
-
-            {onBreak && (
-              <>
-                <View>
-                  <Text style={styles.titleText}>{STRINGS.HEADERS.BREAK}</Text>
-                  <Text style={styles.timeText}>{breakTime}</Text>
-                </View>
-                <View style={styles.clockOutButtonContainer}>
-                  <TouchableOpacity
-                    onPress={handleBreak}
-                    style={styles.breakEndButton}
-                  >
-                    <Text style={styles.ButtonText}>
-                      {STRINGS.BUTTON_TEXT.RESUME_SHIFT}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </>
-            )}
+            {!onBreak && clockOutUI()}
+            {onBreak && breakUI()}
           </View>
         </>
       )}
