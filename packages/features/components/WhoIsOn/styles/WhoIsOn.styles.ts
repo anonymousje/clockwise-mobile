@@ -1,5 +1,6 @@
 import { Appearance, StyleSheet } from 'react-native';
 import { COLORS, FONTS, MODE } from '../../../../constants/theme';
+import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 
 const mode = Appearance.getColorScheme();
 const styles = StyleSheet.create({
@@ -7,12 +8,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   widgetHeaderContainer: {
-    flexGrow: 1,
+    flexGrow: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
-    paddingLeft: 10,
-    paddingVertical: 10,
+    gap: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_10,
     borderBottomWidth: 0.6,
     borderBottomColor:
       mode === MODE.DARK
@@ -20,47 +21,47 @@ const styles = StyleSheet.create({
         : COLORS.BORDER_COLOR_LIGHT_MODE,
   },
   widgetListItem: {
-    flexGrow: 1,
+    flexGrow: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
-    paddingLeft: 10,
-    paddingTop: 12,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_12,
   },
   avatarIconContainer: {
-    borderRadius: 50,
-    height: 40,
-    width: 40,
+    borderRadius: COMMON_CONSTANTS.SIZE.SIZE_50,
+    height: COMMON_CONSTANTS.SIZE.SIZE_40,
+    width: COMMON_CONSTANTS.SIZE.SIZE_40,
     backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
   },
   widgetListContainer: {},
   avatarText: {
-    fontSize: 17,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_17,
     color: COLORS.WHITE,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
   },
   nameContainer: {
-    flex: 1,
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
     justifyContent: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingRight: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
   nameText: {
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    fontSize: 16,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_16,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   iconStyle: {
-    paddingTop: 5,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
   title: {
-    fontSize: 21,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_22,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === 'dark' ? '#fff' : '#000',
   },
   bottomBorder: {
-    paddingVertical: 15,
-    marginTop: 10,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_15,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
     alignItems: 'center',
     borderTopWidth: 0.6,
     borderTopColor:
@@ -69,34 +70,34 @@ const styles = StyleSheet.create({
         : COLORS.BORDER_COLOR_LIGHT_MODE,
   },
   bottomText: {
-    fontSize: 18,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: COLORS.CLOCKWISE_PRIMARY,
   },
   modalContainer: {
-    flex: 1,
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARKER_MODE
         : COLORS.BACKGROUND_LIGHTER_MODE,
   },
   closeModalText: {
-    fontSize: 18,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: COLORS.WHITE,
   },
   modalAvatarIconContainer: {
-    borderRadius: 50,
-    height: 50,
-    width: 50,
+    borderRadius: COMMON_CONSTANTS.SIZE.SIZE_50,
+    height: COMMON_CONSTANTS.SIZE.SIZE_50,
+    width: COMMON_CONSTANTS.SIZE.SIZE_50,
     backgroundColor: 'blue',
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalListItem: {
     flexDirection: 'row',
-    paddingLeft: 10,
-    paddingVertical: 30,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_30,
     alignItems: 'center',
     backgroundColor:
       mode === MODE.DARK
@@ -104,72 +105,72 @@ const styles = StyleSheet.create({
         : COLORS.BACKGROUND_LIGHT_MODE,
   },
   modalDetailsContainer: {
-    flex: 1,
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingRight: 20,
+    paddingRight: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   modalNameText: {
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    fontSize: 20,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_20,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   modalAvatarText: {
-    fontSize: 20,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_20,
     color: COLORS.WHITE,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
   },
   modalNameContainer: {
     flex: 1,
     justifyContent: 'center',
-    paddingLeft: 20,
-    gap: 5,
-    paddingBottom: 5,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_20,
+    gap: COMMON_CONSTANTS.SIZE.SIZE_5,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
   modalShiftText: {
-    fontSize: 18,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
     opacity: 0.7,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   modalHeaderContainer: {
-    flexShrink: 1,
+    flexShrink: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
+    borderBottomWidth: COMMON_CONSTANTS.SIZE.SIZE_1,
     borderBottomColor:
       mode === MODE.DARK
         ? COLORS.BORDER_COLOR_DARK_MODE
         : COLORS.BORDER_COLOR_LIGHT_MODE,
-    paddingHorizontal: 10,
-    paddingVertical: 18,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_18,
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
   },
   noDataText: {
-    fontSize: 16,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_16,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     textAlign: 'center',
-    marginTop: 40,
-    marginBottom: 40,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_40,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_40,
   },
   modalTitle: {
-    fontSize: 22,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_22,
     fontFamily: FONTS.CLOCKWISE_BOLD,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   modalCloseText: {
-    fontSize: 18,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
 
   clockInTimeText: {
-    fontSize: 20,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_20,
     color: COLORS.CLOCKWISE_PRIMARY_DARK,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
   },
