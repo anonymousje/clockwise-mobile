@@ -1,3 +1,4 @@
+import COMMON_CONSTANTS from '../../constants/CommonConstants';
 import { Action } from '../actions/fetchUsers';
 
 const initialState = {
@@ -6,7 +7,7 @@ const initialState = {
 
 export const useFetch = (state = initialState, action: Action) => {
   switch (action.type) {
-    case 'SET_UPDATED':
+    case COMMON_CONSTANTS.REDUX_TYPES.SET_UPDATED:
       return {
         ...state,
         flag: action.payload,

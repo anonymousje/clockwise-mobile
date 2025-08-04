@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
 import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
 import { formatTime, formatDuration } from '../../../../utils/helper';
+import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 
 export default function useClock(
   refreshFlag: boolean,
@@ -61,7 +62,7 @@ export default function useClock(
 
     const interval = setInterval(() => {
       getClockStatus();
-    }, 60000);
+    }, COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS);
 
     if (refreshFlag) {
       if (onBreak) {

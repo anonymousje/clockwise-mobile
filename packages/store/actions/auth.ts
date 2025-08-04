@@ -11,7 +11,7 @@ export const setUser = (userData: User) => {
 
 export const setTokens = (accessToken: string, refreshToken: string) => {
   return {
-    type: COMMON_CONSTANTS.REDUX_TYPES.SET_TOKEN,
+    type: COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS,
     payload: { accessToken, refreshToken },
   };
 };

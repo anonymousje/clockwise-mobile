@@ -12,7 +12,7 @@ const initialState = {
 
 export const useSession = (state = initialState, action: Action) => {
   switch (action.type) {
-    case 'LOGIN_USER':
+    case COMMON_CONSTANTS.REDUX_TYPES.LOGIN_USER:
       setAccessToken(action.payload.accessToken);
       setRefreshToken(action.payload.refreshToken);
       return {
@@ -24,7 +24,7 @@ export const useSession = (state = initialState, action: Action) => {
         authenticated: true,
       };
 
-    case 'SET_TOKENS':
+    case COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS:
       setAccessToken(action.payload.accessToken);
       setRefreshToken(action.payload.refreshToken);
       return {
