@@ -1,4 +1,4 @@
-import { setAccessToken, setRefreshToken } from '../../features/apiClient';
+import { setAccessToken, setRefreshToken } from '../../features/ApiClient';
 import { Action } from '../actions/auth';
 import COMMON_CONSTANTS from '../../constants/CommonConstants';
 
@@ -12,7 +12,7 @@ const initialState = {
 
 export const useSession = (state = initialState, action: Action) => {
   switch (action.type) {
-    case 'LOGIN_USER':
+    case COMMON_CONSTANTS.REDUX_TYPES.LOGIN_USER:
       setAccessToken(action.payload.accessToken);
       setRefreshToken(action.payload.refreshToken);
       return {
@@ -23,13 +23,26 @@ export const useSession = (state = initialState, action: Action) => {
         role: action.payload.role,
         authenticated: true,
       };
-    case 'SET_TOKENS':
+
+    case COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS:
       setAccessToken(action.payload.accessToken);
       setRefreshToken(action.payload.refreshToken);
       return {
         ...state,
         accessToken: action.payload.accessToken,
         refreshToken: action.payload.refreshToken,
+      };
+
+    case COMMON_CONSTANTS.REDUX_TYPES.LOGOUT:
+      setAccessToken(COMMON_CONSTANTS.DEFAULT);
+      setRefreshToken(COMMON_CONSTANTS.DEFAULT);
+      return {
+        ...state,
+        email: COMMON_CONSTANTS.DEFAULT,
+        accessToken: COMMON_CONSTANTS.DEFAULT,
+        refreshToken: COMMON_CONSTANTS.DEFAULT,
+        role: COMMON_CONSTANTS.DEFAULT,
+        authenticated: false,
       };
 
     default:

@@ -1,28 +1,53 @@
-import { View, Text } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import styles from '../styles/Dashboard.styles';
-
-import useDashboardScreen from '../hooks/useDashboardScreen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Clocking from '../../components/Clocking/container/Clock';
+import { Text } from 'react-native-gesture-handler';
+import { RefreshControl } from 'react-native-gesture-handler';
+import { FONT_SIZE, COLORS } from '../../../constants/theme';
+import STRINGS from '../../../utils/strings';
+import useDashboard from '../hooks/useDashboardScreen';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const Dashboard = () => {
-  const { user } = useDashboardScreen();
+  const { logout, onRefresh, refreshing, refreshFlag } = useDashboard();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}> Dashboard Under Construction </Text>
+    <ScrollView
+      contentContainerStyle={styles.scrollViewContainer}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={() => onRefresh(true)}
+        />
+      }
+    >
+      <View style={styles.container}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>{STRINGS.TITLES.DASHBOARD}</Text>
+          <View style={styles.iconContainer}>
+            <Ionicons
+              name={COMMON_CONSTANTS.ICONS.SETTINGS}
+              size={FONT_SIZE.SIZE_24}
+              color={COLORS.CLOCKWISE_PRIMARY}
+            />
 
-      <View style={styles.infoBox}>
-        <Text style={styles.label}> Email:</Text>
-        <Text style={styles.value}>{user.email}</Text>
+            <TouchableOpacity onPress={logout}>
+              <Ionicons
+                name={COMMON_CONSTANTS.ICONS.LOG_OUT}
+                size={FONT_SIZE.SIZE_24}
+                color={COLORS.CLOCKWISE_PRIMARY}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
 
-        <Text style={styles.label}> Access Token:</Text>
-        <Text style={styles.value}>{user.accessToken}</Text>
+        {Clocking(refreshFlag, onRefresh)}
 
-        <Text style={styles.label}> Refresh Token:</Text>
-        <Text style={styles.value}>{user.refreshToken}</Text>
-
-        <Text style={styles.label}> Role:</Text>
-        <Text style={styles.value}>{user.role}</Text>
+        <View style={styles.widgetContainer}>
+          <Text>{STRINGS.PLACEHOLDER.PLACEHOLDER_TEXT}</Text>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

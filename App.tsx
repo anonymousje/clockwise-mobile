@@ -1,10 +1,9 @@
 import { Appearance } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import Login from './packages/features/Login/container/LoginScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
@@ -14,11 +13,11 @@ import { RoutesTypes } from './packages/features/types';
 import NewPassword from './packages/features/ForgotPassword/container/NewPasswordScreen';
 import Staff from './packages/features/Staff/container/StaffScreen';
 import AddEmployee from './packages/features/Staff/container/AddEmployeeScreen';
-import { colors, FONT_SIZE, HEIGHT, MODE } from './packages/constants/theme';
+import { COLORS, FONT_SIZE, HEIGHT, MODE } from './packages/constants/theme';
 import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 import STRINGS from './packages/utils/strings';
 import LINK_PREFIX from './packages/constants/links';
-import ICONS from './packages/constants/Icons';
+import COMMON_CONSTANTS from './packages/constants/CommonConstants';
 
 const config = {
   screens: {
@@ -44,7 +43,7 @@ const Tab = createBottomTabNavigator();
 
 const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
   <Ionicons
-    name={ICONS.home}
+    name={COMMON_CONSTANTS.ICONS.HOME}
     size={size}
     color={color}
     style={{ width: size, height: size }}
@@ -53,7 +52,7 @@ const DashboardTabIcon = ({ color, size }: { color: string; size: number }) => (
 
 const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
   <Ionicons
-    name={ICONS.people}
+    name={COMMON_CONSTANTS.ICONS.PEOPLE}
     size={size}
     color={color}
     style={{ width: size, height: size }}
@@ -62,6 +61,7 @@ const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
 
 const MainTabs = () => {
   const mode = Appearance.getColorScheme();
+  const User = useSelector((state: any) => state.user);
 
   return (
     <Tab.Navigator
@@ -69,12 +69,12 @@ const MainTabs = () => {
         tabBarStyle: {
           backgroundColor:
             mode === MODE.DARK
-              ? colors.BACKGROUND_DARK_MODE
-              : colors.BACKGROUND_LIGHT_MODE,
+              ? COLORS.BACKGROUND_DARK_MODE
+              : COLORS.BACKGROUND_LIGHT_MODE,
           height: HEIGHT.MEDIUM,
         },
         tabBarLabelStyle: {
-          fontSize: FONT_SIZE.BUTTON_SMALL,
+          fontSize: FONT_SIZE.SIZE_13,
         },
       }}
     >
@@ -87,16 +87,17 @@ const MainTabs = () => {
           tabBarIcon: DashboardTabIcon,
         }}
       />
-
-      <Tab.Screen
-        name={SCREENS.Staff}
-        component={Staff}
-        options={{
-          title: STRINGS.SCREEN_TITLE.STAFF,
-          headerShown: false,
-          tabBarIcon: StaffTabIcon,
-        }}
-      />
+      {User.role === COMMON_CONSTANTS.PICKER_VALUES.ADMIN && (
+        <Tab.Screen
+          name={SCREENS.Staff}
+          component={Staff}
+          options={{
+            title: STRINGS.SCREEN_TITLE.STAFF,
+            headerShown: false,
+            tabBarIcon: StaffTabIcon,
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 };
@@ -124,21 +125,21 @@ const App = () => {
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
-                    ? colors.TEXT_DARK_MODE
-                    : colors.TEXT_LIGHT_MODE,
+                    ? COLORS.TEXT_DARK_MODE
+                    : COLORS.TEXT_LIGHT_MODE,
               },
 
               headerStyle: {
                 backgroundColor:
                   mode === MODE.DARK
-                    ? colors.BACKGROUND_DARK_MODE
-                    : colors.BACKGROUND_LIGHT_MODE,
+                    ? COLORS.BACKGROUND_DARK_MODE
+                    : COLORS.BACKGROUND_LIGHT_MODE,
               },
 
               headerTintColor:
                 mode === MODE.DARK
-                  ? colors.TEXT_DARK_MODE
-                  : colors.TEXT_LIGHT_MODE,
+                  ? COLORS.TEXT_DARK_MODE
+                  : COLORS.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -150,19 +151,19 @@ const App = () => {
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
-                    ? colors.TEXT_DARK_MODE
-                    : colors.TEXT_LIGHT_MODE,
+                    ? COLORS.TEXT_DARK_MODE
+                    : COLORS.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
                   mode === MODE.DARK
-                    ? colors.BACKGROUND_DARK_MODE
-                    : colors.BACKGROUND_LIGHT_MODE,
+                    ? COLORS.BACKGROUND_DARK_MODE
+                    : COLORS.BACKGROUND_LIGHT_MODE,
               },
               headerTintColor:
                 mode === MODE.DARK
-                  ? colors.TEXT_DARK_MODE
-                  : colors.TEXT_LIGHT_MODE,
+                  ? COLORS.TEXT_DARK_MODE
+                  : COLORS.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -181,19 +182,19 @@ const App = () => {
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
-                    ? colors.TEXT_DARK_MODE
-                    : colors.TEXT_LIGHT_MODE,
+                    ? COLORS.TEXT_DARK_MODE
+                    : COLORS.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
                   mode === MODE.DARK
-                    ? colors.BACKGROUND_DARK_MODE
-                    : colors.BACKGROUND_LIGHT_MODE,
+                    ? COLORS.BACKGROUND_DARK_MODE
+                    : COLORS.BACKGROUND_LIGHT_MODE,
               },
               headerTintColor:
                 mode === MODE.DARK
-                  ? colors.TEXT_DARK_MODE
-                  : colors.TEXT_LIGHT_MODE,
+                  ? COLORS.TEXT_DARK_MODE
+                  : COLORS.TEXT_LIGHT_MODE,
             }}
           />
 
@@ -206,19 +207,19 @@ const App = () => {
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
-                    ? colors.TEXT_DARK_MODE
-                    : colors.TEXT_LIGHT_MODE,
+                    ? COLORS.TEXT_DARK_MODE
+                    : COLORS.TEXT_LIGHT_MODE,
               },
               headerStyle: {
                 backgroundColor:
                   mode === MODE.DARK
-                    ? colors.BACKGROUND_DARK_MODE
-                    : colors.BACKGROUND_LIGHT_MODE,
+                    ? COLORS.BACKGROUND_DARK_MODE
+                    : COLORS.BACKGROUND_LIGHT_MODE,
               },
               headerTintColor:
                 mode === MODE.DARK
-                  ? colors.TEXT_DARK_MODE
-                  : colors.TEXT_LIGHT_MODE,
+                  ? COLORS.TEXT_DARK_MODE
+                  : COLORS.TEXT_LIGHT_MODE,
             }}
           />
         </Stack.Navigator>

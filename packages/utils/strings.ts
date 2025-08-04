@@ -7,9 +7,6 @@ const STRINGS = {
     FORGOT_PASSWORD: 'Forgot Password',
     NEW_PASSWORD: 'New Password',
   },
-
-  DASH: '-',
-
   EMPLOYEE_FORM: {
     FIRST_NAME: 'First Name',
     LAST_NAME: 'Last Name',
@@ -26,10 +23,15 @@ const STRINGS = {
     ADDRESS: 'Address',
     USERCODE: 'User Code',
   },
-
+  LESS_THAN_ONE_MINUTE: 'Less than 1m',
+  PLACEHOLDER: {
+    PLACEHOLDER_TEXT: 'PlaceHolder',
+  },
+  TITLES: {
+    DASHBOARD: 'Dashboard',
+  },
   RESET_PASSWORD_EMAIL:
     'If {0} is registered, you will receive a password reset link.',
-
   PICKER_LABELS: {
     PERMISSION_LEVEL: 'Select Permission Level',
     STATUS: 'Select Status',
@@ -40,25 +42,20 @@ const STRINGS = {
     ACTIVE_STAFF: 'Active Staff',
     INACTIVE_STAFF: 'Inactive Staff',
   },
-
   ROLES: {
     ADMIN: 'Admin',
     USER: 'User',
   },
-
   ACTIVE: 'Active',
   INACTIVE: 'Inactive',
   ACTIVATE: 'ACTIVATE',
   DEACTIVATE: 'DEACTIVATE',
-
   RESPONSE_SORT: {
     EMAIL: 'email',
     USERNAME: 'username',
     USERCODE: 'userCode',
   },
-
   STAFF_UPDATE_ERROR: 'Failed to update staff data',
-
   ICON_TITLES: {
     SHOW: 'SHOW',
     HIDE: 'HIDE',
@@ -69,13 +66,12 @@ const STRINGS = {
     SAVE: 'SAVE',
     EDIT: 'EDIT',
     APPLY: 'APPLY',
+    ADD: 'ADD',
   },
-
   CLOCKWISE: 'ClockWise',
   CLOCKWISE_INITIALS: 'CW',
   PRIVACY_POLICY: 'Read our ',
   PRIVACY_POLICY_LINK: 'Privacy Policy',
-
   INPUT_PLACEHOLDER_TEXT: {
     EMAIL: 'Email',
     PASSWORD: 'Password',
@@ -83,23 +79,29 @@ const STRINGS = {
     CONFIRM_PASSWORD: 'Confirm New Password',
     EMAIL_OR_USERNAME: 'Email or username',
     SEARCH_STAFF: 'Search Staff',
+    NOTE: 'Add a note',
+    DASH: '-',
   },
-
   BUTTON_TEXT: {
     GO_TO_LOGIN: 'Go to Login',
     RESET_PASSWORD: 'RESET PASSWORD',
     LOG_IN: 'LOG IN',
     FORGOT_PASSWORD: 'Forgot Password?',
+    BREAK: 'TAKE A BREAK',
+    CLOCK_IN: 'CLOCK IN',
+    CLOCK_OUT: 'CLOCK OUT',
+    RESUME_SHIFT: 'RESUME SHIFT',
   },
-
   HEADERS: {
     ENTER_EMAIL: 'Enter Your Email',
     LOGIN: 'Log in to your account',
     EMPLOYEE_DETAILS: 'Employee Details',
     STAFF: 'STAFF',
     FILTER_OPTIONS: 'Filter Options',
+    CLOCK_IN: 'You have been clocked in for',
+    NOTE: 'Add Note',
+    BREAK: 'You have been on a break for',
   },
-
   VALIDATIONS: {
     TITLE: 'Password must contain:',
     UPPERCASE: 'At least one uppercase letter',
@@ -108,7 +110,6 @@ const STRINGS = {
     LENGTH: 'At least 7 characters',
     MATCH_ERROR: 'Passwords do not match',
   },
-
   ZOD_ERRORS: {
     FIRST_NAME_REQUIRED: 'First name is required',
     LAST_NAME_REQUIRED: 'Last name is required',
@@ -120,7 +121,6 @@ const STRINGS = {
     INCORRECT_CREDENTIALS: 'Incorrect Email or Password. Please Try again.',
     EMAIL_IN_USE: ' Email already in use.',
   },
-
   ENTER_NEW_PASSWORD: 'Enter New Password',
   RESET_PASSWORD_SUCCESS: 'Password reset successfully!',
 };

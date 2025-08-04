@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
-import { colors, FONT_SIZE } from '../../../../constants/theme';
-import { fonts } from '../../../../constants/theme';
+import { COLORS, FONT_SIZE } from '../../../../constants/theme';
+import { FONTS } from '../../../../constants/theme';
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.CLOCKWISE_PRIMARY,
+    backgroundColor: COLORS.CLOCKWISE_PRIMARY,
     width: '90%',
     paddingVertical: 16,
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 24,
     marginBottom: 30,
-    shadowColor: colors.CLOCKWISE_PRIMARY,
+    shadowColor: COLORS.CLOCKWISE_PRIMARY,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -23,9 +23,9 @@ export const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: colors.BUTTON_TEXT,
-    fontFamily: fonts.CLOCKWISE_BOLD,
-    fontSize: FONT_SIZE.SMALL,
+    color: COLORS.BUTTON_TEXT,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    fontSize: FONT_SIZE.SIZE_18,
     fontWeight: '700',
     letterSpacing: 1,
   },

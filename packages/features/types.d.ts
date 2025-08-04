@@ -81,9 +81,25 @@ export interface COMMON_CONSTANTS_TYPE {
   ADMIN: string;
   REDUX_TYPES: {
     SET_USER: string;
-    SET_TOKEN: string;
+    SET_TOKENS: string;
     LOGIN_USER: string;
     LOGIN_FAIL: string;
+    LOGOUT: string;
+    SET_UPDATED: string;
+  };
+  ICONS: {
+    HOME: const;
+    PEOPLE: const;
+    ADD: const;
+    EDIT: const;
+    SAVE: const;
+    CREATE: const;
+    SEARCH: const;
+    FILTER: const;
+    ARROW: const;
+    ALARM: const;
+    SETTINGS: const;
+    LOG_OUT: const;
   };
   DATE_TIME: {
     NUMERIC: const;
@@ -106,6 +122,42 @@ export interface COMMON_CONSTANTS_TYPE {
     JOB_ROLE: const;
     ROLE: const;
   };
+  SIZE: {
+    SIZE_1: number;
+    SIZE_5: number;
+    SIZE_10: number;
+    SIZE_12: number;
+    SIZE_14: number;
+    SIZE_15: number;
+    SIZE_16: number;
+    SIZE_17: number;
+    SIZE_18: number;
+    SIZE_20: number;
+    SIZE_22: number;
+    SIZE_24: number;
+    SIZE_26: number;
+    SIZE_28: number;
+    SIZE_30: number;
+    SIZE_32: number;
+    SIZE_34: number;
+    SIZE_36: number;
+    SIZE_40: number;
+    SIZE_50: number;
+    SIZE_60: number;
+    SIZE_100: number;
+    SIZE_120: number;
+    SIZE_150: number;
+    SIZE_200: number;
+    SIZE_220: number;
+  };
+  TIME_CONSTANTS: {
+    ZERO: number;
+    ONE: number;
+    DECIMAL: number;
+    MINUTE: number;
+    HOUR: number;
+    MINUTE_IN_MS: number;
+  };
 }
 
 export interface ButtonProps extends TouchableOpacityProps {
@@ -118,6 +170,37 @@ export type staffSearchQueryType = {
   location?: string;
   department?: string;
   role?: string;
+};
+
+export type ClockStatusResponse = {
+  status: boolean;
+  response: {
+    clockInTime?: string | undefined;
+    currentTime?: string | undefined;
+    hoursWorked?: string | undefined;
+    isClockedIn?: boolean | undefined;
+  };
+  exceptionMessage?: string | undefined;
+};
+
+export type BreakStatusResponse = {
+  status: boolean;
+  response: {
+    isOnBreak?: boolean;
+    shiftBreaks?: Array<BreakType>;
+  };
+  exceptionMessage?: string | undefined;
+};
+export type BreakType = {
+  timeEntryId: number;
+  startTime: string;
+  endTime: string | null;
+  breakDuration: string;
+};
+export type ResponseType = {
+  status: boolean;
+  response: string | undefined;
+  exceptionMessage: string | undefined;
 };
 
 export type staffType = {

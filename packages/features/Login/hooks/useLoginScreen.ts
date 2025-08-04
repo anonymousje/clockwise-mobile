@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { SCREENS } from '../../../constants/screens';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../../store/actions/auth';
+import { logInUser } from '../../../store/actions/auth';
 import { NavigationProp } from '../../types';
 
 const useLoginScreen = () => {
@@ -25,7 +25,7 @@ const useLoginScreen = () => {
     setIsValid(valid);
 
     if (valid) {
-      const user = dispatch(await loginUser(email, password));
+      const user = dispatch(await logInUser(email, password));
       setLoading(false);
 
       if (!user.payload) {
@@ -44,7 +44,7 @@ const useLoginScreen = () => {
     return regex.test(text);
   };
 
-  const changePwdType = () => {
+  const changePasswordType = () => {
     setIsPassword((prevState) => !prevState);
   };
 
@@ -60,7 +60,7 @@ const useLoginScreen = () => {
     handleLogin,
     handleForgotPassword,
     isValid,
-    changePwdType,
+    changePasswordType,
     isPassword,
     attempt,
     loading,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { colors } from '../../../constants/theme';
+import { COLORS } from '../../../constants/theme';
 import { NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,10 +24,8 @@ const useStaffScreen = () => {
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
 
-  const { updated, userFromStore } = useSelector((state: RootState) => ({
-    updated: state.updated,
-    userFromStore: state.user,
-  }));
+  const updated = useSelector((state: RootState) => state.updated);
+  const userFromStore = useSelector((state: RootState) => state.user);
 
   const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
@@ -39,8 +37,8 @@ const useStaffScreen = () => {
           data.map((item: staffType) => ({
             ...item,
             iconColor:
-              colors.RANDOM_COLOR_ARRAY[
-                Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
+              COLORS.RANDOM_COLOR_ARRAY[
+                Math.floor(Math.random() * COLORS.RANDOM_COLOR_ARRAY.length)
               ],
           })),
         );
@@ -48,8 +46,8 @@ const useStaffScreen = () => {
           data.map((item: staffType) => ({
             ...item,
             iconColor:
-              colors.RANDOM_COLOR_ARRAY[
-                Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
+              COLORS.RANDOM_COLOR_ARRAY[
+                Math.floor(Math.random() * COLORS.RANDOM_COLOR_ARRAY.length)
               ],
           })),
         );
@@ -87,8 +85,8 @@ const useStaffScreen = () => {
     const customizedResponse = data.map((item: staffType) => ({
       ...item,
       iconColor:
-        colors.RANDOM_COLOR_ARRAY[
-          Math.floor(Math.random() * colors.RANDOM_COLOR_ARRAY.length)
+        COLORS.RANDOM_COLOR_ARRAY[
+          Math.floor(Math.random() * COLORS.RANDOM_COLOR_ARRAY.length)
         ],
     }));
     return customizedResponse;

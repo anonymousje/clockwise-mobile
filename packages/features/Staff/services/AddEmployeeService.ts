@@ -1,8 +1,9 @@
-import apiClient from '../../apiClient';
+import ApiRoutes from '../../../constants/ApiRoutes';
+import apiClient from '../../ApiClient';
 
 class AddEmployeeService {
   async addEmployee(userData: any) {
-    const response = await apiClient.post('/user/create-user', userData);
+    const response = await apiClient.post(ApiRoutes.addEmployee, userData);
     return response.data.data;
   }
 }

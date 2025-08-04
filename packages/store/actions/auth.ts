@@ -1,5 +1,5 @@
 import { User } from '../../features/types';
-import apiClient from '../../features/apiClient';
+import apiClient from '../../features/ApiClient';
 import COMMON_CONSTANTS from '../../constants/CommonConstants';
 
 export const setUser = (userData: User) => {
@@ -11,12 +11,12 @@ export const setUser = (userData: User) => {
 
 export const setTokens = (accessToken: string, refreshToken: string) => {
   return {
-    type: COMMON_CONSTANTS.REDUX_TYPES.SET_TOKEN,
+    type: COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS,
     payload: { accessToken, refreshToken },
   };
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const logInUser = async (email: string, password: string) => {
   try {
     const response = await apiClient.post('/Auth/login', {
       email,
@@ -40,6 +40,13 @@ export const loginUser = async (email: string, password: string) => {
       payload: COMMON_CONSTANTS.DEFAULT,
     };
   }
+};
+
+export const logOutUser = () => {
+  return {
+    type: COMMON_CONSTANTS.REDUX_TYPES.LOGOUT,
+    payload: COMMON_CONSTANTS.DEFAULT,
+  };
 };
 
 export type Action = ReturnType<typeof setUser>;

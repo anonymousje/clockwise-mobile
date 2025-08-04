@@ -24,7 +24,7 @@ const InputField = ({
     isInputFocused,
     setIsInputFocused,
     isPassword,
-    changePwdType,
+    changePasswordType,
     inputRef,
   } = useInputField(value);
 
@@ -78,7 +78,7 @@ const InputField = ({
             onBlur={() => setIsInputFocused(false)}
           />
 
-          <TouchableOpacity onPress={changePwdType}>
+          <TouchableOpacity onPress={changePasswordType}>
             <Text style={styles.showPasswordButton}>
               {isPassword ? STRINGS.ICON_TITLES.SHOW : STRINGS.ICON_TITLES.HIDE}
             </Text>
