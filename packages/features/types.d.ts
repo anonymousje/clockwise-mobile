@@ -87,6 +87,7 @@ export interface COMMON_CONSTANTS_TYPE {
     LOGOUT: string;
     SET_UPDATED_STAFF_LIST: string;
     SET_UPDATED_WHO_IS_ON_LIST: string;
+    SET_REFRESH_FLAG: string;
   };
   ICONS: {
     HOME: const;

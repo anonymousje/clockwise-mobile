@@ -1,6 +1,7 @@
 const ApiRoutes = {
   forgotPassword: '/Auth/forgot-password',
   newPassword: '/Auth/reset-password',
+  login: '/Auth/login',
   addEmployee: '/user/create-user',
   getStaff: '/user/get-all-users',
   getAllDepartments: '/department/get-all-departments',

@@ -14,6 +14,15 @@ export const fetchUpdatedWhoIsOnList = (flag: boolean) => {
   };
 };
 
+export const setRefreshFlag = (flag: boolean) => {
+  return {
+    type: COMMON_CONSTANTS.REDUX_TYPES.SET_REFRESH_FLAG,
+    payload: flag,
+  };
+};
+
 export type Action = ReturnType<
-  typeof fetchUpdatedStaffList | typeof fetchUpdatedWhoIsOnList
+  | typeof fetchUpdatedStaffList
+  | typeof fetchUpdatedWhoIsOnList
+  | typeof setRefreshFlag
 >;

@@ -6,8 +6,8 @@ import { COLORS } from '../../../../constants/theme';
 import useWhoIsOn from '../hooks/useWhoIsOn';
 import { formatTimeFromISOString, getInitials } from '../../../../utils/helper';
 
-const WhoIsOn = (refreshFlag: { refreshFlag: boolean }) => {
-  const { whoIsOnList, showModal, setShowModal } = useWhoIsOn(refreshFlag);
+const WhoIsOn = () => {
+  const { whoIsOnList, showModal, setShowModal } = useWhoIsOn();
   return (
     <View style={styles.container}>
       <View style={styles.widgetHeaderContainer}>

@@ -11,14 +11,15 @@ import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import WhoIsOn from '../../components/WhoIsOn/container/WhoIsOn';
 
 const Dashboard = () => {
-  const { logout, onRefresh, refreshing, refreshFlag } = useDashboard();
+  const { logout, onRefresh, refreshing } = useDashboard();
+
   return (
     <ScrollView
       contentContainerStyle={styles.scrollViewContainer}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
-          onRefresh={() => onRefresh(true)}
+          onRefresh={onRefresh}
         />
       }
     >
@@ -42,10 +43,10 @@ const Dashboard = () => {
           </View>
         </View>
 
-        {Clocking(refreshFlag, onRefresh)}
+        <Clocking />
 
         <View style={styles.widgetContainer}>
-          <WhoIsOn refreshFlag={refreshFlag} />
+          <WhoIsOn />
         </View>
       </View>
     </ScrollView>

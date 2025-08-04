@@ -4,6 +4,7 @@ import { Action } from '../actions/flags';
 const initialState = {
   staffListUpdateFlag: false,
   whoIsOnListUpdateFlag: false,
+  refreshFlag: false,
 };
 
 export const useFetch = (state = initialState, action: Action) => {
@@ -17,6 +18,11 @@ export const useFetch = (state = initialState, action: Action) => {
       return {
         ...state,
         whoIsOnListUpdateFlag: action.payload,
+      };
+    case COMMON_CONSTANTS.REDUX_TYPES.SET_REFRESH_FLAG:
+      return {
+        ...state,
+        refreshFlag: action.payload,
       };
     default:
       return state;
