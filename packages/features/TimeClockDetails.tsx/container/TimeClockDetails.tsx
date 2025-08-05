@@ -4,6 +4,8 @@ import Iconicons from 'react-native-vector-icons/Ionicons';
 import styles from '../styles/TimeClockDetails.styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { COLORS } from '../../../constants/theme';
+import STRINGS from '../../../utils/strings';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const TimeClockDetails = () => {
   const { clockInTime, clockTime, breakTime, clockInDate } =
@@ -12,19 +14,19 @@ const TimeClockDetails = () => {
   return (
     <View style={styles.container}>
       <View style={styles.workLabelContainer}>
-        <Text style={styles.workLabel}>You worked for</Text>
+        <Text style={styles.workLabel}>{STRINGS.HEADERS.YOU_WORKED_FOR}</Text>
         <Text style={styles.workDuration}>{clockTime}</Text>
       </View>
       <ScrollView style={styles.timelineContainer}>
         <View style={styles.clockTimesContainer}>
           <View style={styles.clockTimeSection}>
-            <Text style={styles.clockLabel}>Clock in</Text>
+            <Text style={styles.clockLabel}>{STRINGS.CLOCK_IN}</Text>
             <Text style={styles.clockTime}>{clockInTime}</Text>
             <Text style={styles.clockDate}>{clockInDate}</Text>
           </View>
 
           <View style={styles.clockTimeSection}>
-            <Text style={styles.clockLabel}>Clock out</Text>
+            <Text style={styles.clockLabel}>{STRINGS.CLOCK_OUT}</Text>
             <Text style={styles.clockTime}>...</Text>
             <Text style={styles.clockDate}>...</Text>
           </View>
@@ -33,14 +35,14 @@ const TimeClockDetails = () => {
         <View style={styles.timelineClockItem}>
           <View style={styles.timelineClockIcon}>
             <Iconicons
-              name='ellipse'
-              size={24}
-              color='green'
+              name={COMMON_CONSTANTS.ICONS.ELLIPSE}
+              size={COMMON_CONSTANTS.SIZE.SIZE_24}
+              color={COLORS.GREEN}
             />
             {breakTime.length > 0 && <View style={styles.timelineClockLine} />}
           </View>
           <View style={styles.timelineContent}>
-            <Text style={styles.timelineLabel}>Clock In</Text>
+            <Text style={styles.timelineLabel}>{STRINGS.CLOCK_IN}</Text>
             <Text style={styles.timelineTime}>{clockInTime}</Text>
           </View>
         </View>
@@ -54,14 +56,16 @@ const TimeClockDetails = () => {
               <View style={styles.timelineItem}>
                 <View style={styles.timelineIconContainer}>
                   <Iconicons
-                    name='cafe-outline'
-                    size={30}
+                    name={COMMON_CONSTANTS.ICONS.CAFE}
+                    size={COMMON_CONSTANTS.SIZE.SIZE_30}
                     color={COLORS.WHITE}
                   />
                   <View style={styles.timelineLine} />
                 </View>
                 <View style={styles.timelineContent}>
-                  <Text style={styles.timelineLabel}>Break Start</Text>
+                  <Text style={styles.timelineLabel}>
+                    {STRINGS.BREAK_START}
+                  </Text>
                   <Text style={styles.timelineTime}>{entry.startTime}</Text>
                 </View>
               </View>
@@ -69,8 +73,8 @@ const TimeClockDetails = () => {
                 <View style={styles.timelineItem}>
                   <View style={styles.timelineIconContainer}>
                     <Iconicons
-                      name='cafe-outline'
-                      size={30}
+                      name={COMMON_CONSTANTS.ICONS.CAFE}
+                      size={COMMON_CONSTANTS.SIZE.SIZE_30}
                       color={COLORS.WHITE}
                     />
                     {(index < breakTime.length - 1 || entry.endTime) && (
@@ -79,7 +83,9 @@ const TimeClockDetails = () => {
                   </View>
 
                   <View style={styles.timelineContent}>
-                    <Text style={styles.timelineLabel}>Break End</Text>
+                    <Text style={styles.timelineLabel}>
+                      {STRINGS.BREAK_END}
+                    </Text>
                     <Text style={styles.timelineTime}>{entry.endTime}</Text>
                   </View>
                 </View>
@@ -90,7 +96,9 @@ const TimeClockDetails = () => {
       </ScrollView>
 
       <TouchableOpacity style={styles.clockOutButton}>
-        <Text style={styles.clockOutButtonText}>CLOCK OUT</Text>
+        <Text style={styles.clockOutButtonText}>
+          {STRINGS.BUTTON_TEXT.CLOCK_OUT}
+        </Text>
       </TouchableOpacity>
     </View>
   );

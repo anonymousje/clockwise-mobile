@@ -7,6 +7,8 @@ const STRINGS = {
     FORGOT_PASSWORD: 'Forgot Password',
     NEW_PASSWORD: 'New Password',
   },
+  CLOCK_IN: 'Clock In',
+  CLOCK_OUT: 'Clock Out',
   EMPLOYEE_FORM: {
     FIRST_NAME: 'First Name',
     LAST_NAME: 'Last Name',
@@ -44,6 +46,8 @@ const STRINGS = {
     ACTIVE_STAFF: 'Active Staff',
     INACTIVE_STAFF: 'Inactive Staff',
   },
+  BREAK_START: 'Break Start',
+  BREAK_END: 'Break End',
   ROLES: {
     ADMIN: 'Admin',
     USER: 'User',
@@ -106,6 +110,7 @@ const STRINGS = {
     NOTE: 'Add Note',
     BREAK: 'You have been on a break for',
     WHO_IS_ON_NOW: 'Who Is On Now',
+    YOU_WORKED_FOR: 'You worked for',
   },
   VALIDATIONS: {
     TITLE: 'Password must contain:',

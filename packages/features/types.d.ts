@@ -117,6 +117,8 @@ export interface COMMON_CONSTANTS_TYPE {
     LOG_OUT: const;
     CLOCK: const;
     CLOSE: const;
+    ELLIPSE: const;
+    CAFE: const;
   };
   SPACE: string;
   DATE_TIME: {

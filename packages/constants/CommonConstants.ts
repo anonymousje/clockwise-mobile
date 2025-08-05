@@ -41,6 +41,8 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     LOG_OUT: 'log-out-outline',
     CLOCK: 'time-outline',
     CLOSE: 'close',
+    ELLIPSE: 'ellipse',
+    CAFE: 'cafe-outline',
   },
   DATE_TIME: {
     NUMERIC: 'numeric',
