@@ -53,6 +53,12 @@ export type StaffFormData = {
   status?: string;
 };
 
+export type GetUserResponse = {
+  status: boolean;
+  response: staffType | null;
+  exceptionMessage?: string | undefined;
+};
+
 export interface InputFieldProps extends TextInputProps {
   label: string;
   value: string;
