@@ -80,6 +80,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     SIZE_28: 28,
     SIZE_30: 30,
     SIZE_32: 32,
+    SIZE_33: 33,
     SIZE_34: 34,
     SIZE_36: 36,
     SIZE_40: 40,

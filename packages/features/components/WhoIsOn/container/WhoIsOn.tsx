@@ -8,7 +8,8 @@ import { formatTimeFromISOString, getInitials } from '../../../../utils/helper';
 import STRINGS from '../../../../utils/strings';
 
 const WhoIsOn = () => {
-  const { whoIsOnList, showModal, setShowModal } = useWhoIsOn();
+  const { whoIsOnList, showModal, setShowModal, handleUserPress } =
+    useWhoIsOn();
 
   const displayUserUI = () => {
     return (
@@ -79,32 +80,34 @@ const WhoIsOn = () => {
           </View>
           <View>
             {whoIsOnList.map((user, index) => (
-              <View
-                key={index}
-                style={styles.modalListItem}
-              >
-                <View style={styles.modalAvatarIconContainer}>
-                  <Text style={styles.modalAvatarText}>
-                    {getInitials(`${user.name}`)}
-                  </Text>
-                </View>
-                <View style={styles.modalDetailsContainer}>
-                  <View style={styles.modalNameContainer}>
-                    <Text style={styles.modalNameText}>{user.name}</Text>
-                    <Text style={styles.modalShiftText}>
-                      {user.shiftStartTime
-                        ? `${STRINGS.SHIFT}: ${user.shiftStartTime} - ${user.shiftEndTime}`
-                        : STRINGS.NO_SHIFT}
+              <TouchableOpacity onPress={handleUserPress}>
+                <View
+                  key={index}
+                  style={styles.modalListItem}
+                >
+                  <View style={styles.modalAvatarIconContainer}>
+                    <Text style={styles.modalAvatarText}>
+                      {getInitials(`${user.name}`)}
                     </Text>
                   </View>
+                  <View style={styles.modalDetailsContainer}>
+                    <View style={styles.modalNameContainer}>
+                      <Text style={styles.modalNameText}>{user.name}</Text>
+                      <Text style={styles.modalShiftText}>
+                        {user.shiftStartTime
+                          ? `${STRINGS.SHIFT}: ${user.shiftStartTime} - ${user.shiftEndTime}`
+                          : STRINGS.NO_SHIFT}
+                      </Text>
+                    </View>
 
-                  <View>
-                    <Text style={styles.clockInTimeText}>
-                      {formatTimeFromISOString(user.clockInTime)}
-                    </Text>
+                    <View>
+                      <Text style={styles.clockInTimeText}>
+                        {formatTimeFromISOString(user.clockInTime)}
+                      </Text>
+                    </View>
                   </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
         </View>

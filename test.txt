@@ -1,0 +1,223 @@
+import { View } from 'react-native';
+import styles from '../styles/TimeClockDetails.styles';
+import useTimeClockDetails from '../hooks/useTimeClockDetails';
+import { ScrollView, Text } from 'react-native-gesture-handler';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import { COLORS } from '../../../constants/theme';
+import Iconicons from 'react-native-vector-icons/Ionicons';
+
+const TimeClockDetails = () => {
+  const { clockInTime, clockTime, breakTime, clockInDate } =
+    useTimeClockDetails();
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.timeClockContainer}>
+        <Text style={styles.title}>You Worked For</Text>
+        <Text style={styles.clockTime}>{clockTime}</Text>
+      </View>
+      <ScrollView>
+        <View style={styles.midContainer}>
+          <View style={styles.clockInContainer}>
+            <Text style={styles.title}>Clock In</Text>
+            <Text style={styles.clockInTime}>{clockInTime}</Text>
+            <Text style={styles.clockDate}>{clockInDate}</Text>
+          </View>
+
+          <View style={styles.clockInContainer}>
+            <Text style={styles.title}>Clock Out</Text>
+            <Text style={styles.clockInTime}>... </Text>
+            <Text style={styles.clockDate}>... </Text>
+          </View>
+        </View>
+
+        <View style={styles.timeLine}>
+          <View style={styles.timeLineLine} />
+          <View style={styles.breakItem}>
+            <View style={styles.timeLineClockIn}>
+              <View style={styles.timeLineItem}>
+                <Iconicons
+                  name='ellipse'
+                  size={COMMON_CONSTANTS.SIZE.SIZE_30}
+                  color={COLORS.GREEN}
+                />
+              </View>
+              <Text style={styles.itemTitle}>Clocked In</Text>
+            </View>
+            <Text style={styles.breakItemTime}>{clockInTime}</Text>
+          </View>
+          {breakTime.length > 0 ? (
+            breakTime.map((breakItem, index) => (
+              <View
+                key={index}
+                style={styles.breakList}
+              >
+                <View style={styles.breakItem}>
+                  <View style={styles.breakTitle}>
+                    <View style={styles.timeLineItem}>
+                      <Iconicons
+                        name='cafe-outline'
+                        size={COMMON_CONSTANTS.SIZE.SIZE_30}
+                        color={COLORS.CLOCKWISE_PRIMARY}
+                      />
+                    </View>
+                    <Text style={styles.itemTitle}>Break Start</Text>
+                  </View>
+                  <Text style={styles.breakItemTime}>
+                    {breakItem.startTime}
+                  </Text>
+                </View>
+
+                {breakItem.endTime && (
+                  <View style={styles.breakItem}>
+                    <View style={styles.breakTitle}>
+                      <View style={styles.timeLineItem}>
+                        <Iconicons
+                          name='cafe-outline'
+                          size={COMMON_CONSTANTS.SIZE.SIZE_30}
+                          color={COLORS.CLOCKWISE_PRIMARY}
+                        />
+                      </View>
+                      <Text style={styles.itemTitle}>Break End</Text>
+                    </View>
+
+                    <Text style={styles.breakItemTime}>
+                      {breakItem.endTime}
+                    </Text>
+                  </View>
+                )}
+              </View>
+            ))
+          ) : (
+            <Text>No breaks taken</Text>
+          )}
+        </View>
+      </ScrollView>
+    </View>
+  );
+};
+
+
+
+
+
+
+
+import { Appearance, StyleSheet } from 'react-native';
+import { COLORS, FONTS, MODE } from '../../../constants/theme';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+
+const mode = Appearance.getColorScheme();
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_20,
+  },
+  midContainer: {
+    flexDirection: 'row',
+    gap: COMMON_CONSTANTS.SIZE.SIZE_100,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_5,
+  },
+  title: {
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
+    opacity: 0.7,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+  },
+  clockTime: {
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_40,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
+  },
+  clockInContainer: {
+    flexDirection: 'column',
+    gap: 7,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_20,
+  },
+  timeClockContainer: {
+    flexShrink: 1,
+    gap: COMMON_CONSTANTS.SIZE.SIZE_15,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_60,
+    borderBottomWidth: 0.4,
+    borderColor: COLORS.BORDER_COLOR_DARK_MODE,
+  },
+  clockInTime: {
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_24,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
+  },
+  clockDate: {
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_16,
+    opacity: 0.8,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_5,
+  },
+  timeLine: {
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_40,
+    position: 'relative',
+  },
+
+  itemTitle: {
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_22,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+  },
+  breakList: {
+    flex: 1,
+    gap: 50,
+    marginBottom: 50,
+  },
+  timeLineClockIn: {
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 17,
+    position: 'relative',
+  },
+  breakItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_10,
+  },
+  breakItemTime: {
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
+    opacity: 0.8,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_5,
+  },
+  breakTitle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 17,
+    position: 'relative',
+  },
+  timeLineLine: {
+    position: 'absolute',
+    left: COMMON_CONSTANTS.SIZE.SIZE_33,
+    top: COMMON_CONSTANTS.SIZE.SIZE_1,
+    bottom: 0,
+    width: 2,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BORDER_COLOR_DARK_MODE
+        : COLORS.BORDER_COLOR_DARK_MODE,
+    opacity: 0.2,
+  },
+  timeLineItem: {
+    position: 'relative',
+  },
+});
+
+export default styles;

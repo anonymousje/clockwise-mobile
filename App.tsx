@@ -18,6 +18,7 @@ import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 import STRINGS from './packages/utils/strings';
 import LINK_PREFIX from './packages/constants/links';
 import COMMON_CONSTANTS from './packages/constants/CommonConstants';
+import TimeClockDetails from './packages/features/TimeClockDetails.tsx/container/TimeClockDetails';
 
 const config = {
   screens: {
@@ -221,6 +222,11 @@ const App = () => {
                   ? COLORS.TEXT_DARK_MODE
                   : COLORS.TEXT_LIGHT_MODE,
             }}
+          />
+          <Stack.Screen
+            name={SCREENS.TimeClockDetails}
+            component={TimeClockDetails}
+            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>

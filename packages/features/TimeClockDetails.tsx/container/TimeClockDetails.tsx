@@ -1,0 +1,101 @@
+import { View, TouchableOpacity, Text } from 'react-native';
+import useTimeClockDetails from '../hooks/useTimeClockDetails';
+import Iconicons from 'react-native-vector-icons/Ionicons';
+import styles from '../styles/TimeClockDetails.styles';
+import { ScrollView } from 'react-native-gesture-handler';
+
+const TimeClockDetails = () => {
+  const { clockInTime, clockTime, breakTime, clockInDate } =
+    useTimeClockDetails();
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.workLabelContainer}>
+        <Text style={styles.workLabel}>You worked for</Text>
+        <Text style={styles.workDuration}>{clockTime}</Text>
+      </View>
+
+      <View style={styles.clockTimesContainer}>
+        <View style={styles.clockTimeSection}>
+          <Text style={styles.clockLabel}>Clock in</Text>
+          <Text style={styles.clockTime}>{clockInTime}</Text>
+          <Text style={styles.clockDate}>{clockInDate}</Text>
+        </View>
+
+        <View style={styles.clockTimeSection}>
+          <Text style={styles.clockLabel}>Clock out</Text>
+          <Text style={styles.clockTime}>...</Text>
+          <Text style={styles.clockDate}>...</Text>
+        </View>
+      </View>
+
+      <ScrollView style={styles.timelineContainer}>
+        {/* Clock In Icon at the top */}
+        <View style={styles.timelineClockItem}>
+          <View style={styles.timelineClockIcon}>
+            <Iconicons
+              name='ellipse'
+              size={24}
+              color='green'
+            />
+            {breakTime.length > 0 && <View style={styles.timelineClockLine} />}
+          </View>
+          <View style={styles.timelineContent}>
+            <Text style={styles.timelineLabel}>Clock In</Text>
+            <Text style={styles.timelineTime}>{clockInTime}</Text>
+          </View>
+        </View>
+
+        {/* Breaks Timeline */}
+        {breakTime.map(
+          (
+            entry: { startTime: string; endTime: string | null },
+            index: number,
+          ) => (
+            <View key={index}>
+              {/* Break Start */}
+              <View style={styles.timelineItem}>
+                <View style={styles.timelineIconContainer}>
+                  <Iconicons
+                    name='cafe-outline'
+                    size={30}
+                  />
+                  <View style={styles.timelineLine} />
+                </View>
+                <View style={styles.timelineContent}>
+                  <Text style={styles.timelineLabel}>Break Start</Text>
+                  <Text style={styles.timelineTime}>{entry.startTime}</Text>
+                </View>
+              </View>
+              {/* Break End */}
+              <View style={styles.timelineItem}>
+                <View style={styles.timelineIconContainer}>
+                  <Iconicons
+                    name='cafe-outline'
+                    size={30}
+                  />
+                  {/* Only show line if not last break or if endTime is present */}
+                  {(index < breakTime.length - 1 || entry.endTime) && (
+                    <View style={styles.timelineLine} />
+                  )}
+                </View>
+                <View style={styles.timelineContent}>
+                  <Text style={styles.timelineLabel}>Break End</Text>
+                  <Text style={styles.timelineTime}>
+                    {entry.endTime ?? 'Ongoing'}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          ),
+        )}
+      </ScrollView>
+
+      <TouchableOpacity style={styles.clockOutButton}>
+        <Text style={styles.clockOutButtonText}>CLOCK OUT</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default TimeClockDetails;

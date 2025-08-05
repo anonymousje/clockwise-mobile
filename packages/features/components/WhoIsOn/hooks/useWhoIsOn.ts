@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import WhoIsOnService from '../services/WhoIsOnService';
 import { WhoIsOnResponseType, WhoIsOnUser } from '../../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
+import { NavigationProp } from '../../../types';
 import { fetchUpdatedWhoIsOnList } from '../../../../store/actions/flags';
+import { SCREENS } from '../../../../constants/screens';
 
 const useWhoIsOn = () => {
   const [whoIsOnList, setWhoIsOnList] = useState<WhoIsOnUser[]>([]);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const navigation = useNavigation<NavigationProp>();
   const updated = useSelector((state: RootState) => state.updated);
   const refreshFlag = useSelector(
     (state: RootState) => state.updated.refreshFlag,
@@ -38,10 +42,15 @@ const useWhoIsOn = () => {
     fetchWhoIsOnData();
   }, []);
 
+  const handleUserPress = () => {
+    navigation.navigate(SCREENS.TimeClockDetails);
+  };
+
   return {
     whoIsOnList,
     showModal,
     setShowModal,
+    handleUserPress,
   };
 };
 

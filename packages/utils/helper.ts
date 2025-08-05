@@ -1,5 +1,5 @@
 import COMMON_CONSTANTS from '../constants/CommonConstants';
-import { BreakType } from '../features/types';
+import { breakArrayType, BreakType } from '../features/types';
 import STRINGS from './strings';
 
 export const getInitials = (name?: string): string => {
@@ -76,4 +76,24 @@ export const formatTimeFromISOString = (isoString: string): string => {
   hours = hours ? hours : 12;
   const minutesStr = minutes < 10 ? '0' + minutes : minutes;
   return `${hours}:${minutesStr} ${ampm}`;
+};
+
+export const formatDateFromISOString = (isoString: string): string => {
+  if (!isoString) return '';
+  const date = new Date(isoString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const monthAbbr = date.toLocaleString('en-US', { month: 'short' });
+  const year = date.getFullYear();
+  return `${day}. ${monthAbbr}, ${year}`;
+};
+
+export const formatBreakGaps = (breaks: BreakType[]): breakArrayType[] => {
+  if (!breaks || breaks.length === COMMON_CONSTANTS.TIME_CONSTANTS.ZERO) {
+    return [];
+  }
+
+  return breaks.map((b) => ({
+    startTime: formatTimeFromISOString(b.startTime),
+    endTime: b.endTime ? formatTimeFromISOString(b.endTime) : '',
+  }));
 };

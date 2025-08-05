@@ -11,6 +11,7 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
+  [SCREENS.TimeClockDetails]: undefined;
   [SCREENS.StaffDetail]: { recordId: string };
 };
 
@@ -21,6 +22,10 @@ export type User = {
   role: string;
 };
 
+export type breakArrayType = {
+  startTime: string;
+  endTime: string | null;
+};
 export type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
 
 export type StaffDetailNavigationProp = RouteProp<
@@ -153,6 +158,7 @@ export interface COMMON_CONSTANTS_TYPE {
     SIZE_30: number;
     SIZE_32: number;
     SIZE_34: number;
+    SIZE_33: number;
     SIZE_36: number;
     SIZE_40: number;
     SIZE_50: number;
