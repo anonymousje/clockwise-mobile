@@ -80,11 +80,11 @@ const WhoIsOn = () => {
           </View>
           <View>
             {whoIsOnList.map((user, index) => (
-              <TouchableOpacity onPress={handleUserPress}>
-                <View
-                  key={index}
-                  style={styles.modalListItem}
-                >
+              <TouchableOpacity
+                key={index}
+                onPress={handleUserPress}
+              >
+                <View style={styles.modalListItem}>
                   <View style={styles.modalAvatarIconContainer}>
                     <Text style={styles.modalAvatarText}>
                       {getInitials(`${user.name}`)}

@@ -1,5 +1,9 @@
 import ApiRoutes from '../../../constants/ApiRoutes';
-import { ClockStatusResponse, BreakStatusResponse } from '../../types';
+import {
+  ClockStatusResponse,
+  BreakStatusResponse,
+  ApiResponseType,
+} from '../../types';
 import apiClient from '../../ApiClient';
 
 class ClockService {
@@ -38,6 +42,21 @@ class ClockService {
           response: {},
           exceptionMessage: error.message,
         };
+      });
+  }
+
+  async handleClockOut(): Promise<ApiResponseType> {
+    return await apiClient
+      .post(ApiRoutes.clockOut, { data: '' })
+      .then(() => {
+        return {
+          status: true,
+          response: 'Clocked out successfully',
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        throw new Error(error.message);
       });
   }
 }

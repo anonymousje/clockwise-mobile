@@ -8,7 +8,7 @@ import STRINGS from '../../../utils/strings';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const TimeClockDetails = () => {
-  const { clockInTime, clockTime, breakTime, clockInDate } =
+  const { clockInTime, clockTime, breakTime, clockInDate, handleClockOut } =
     useTimeClockDetails();
 
   return (
@@ -70,16 +70,18 @@ const TimeClockDetails = () => {
                 </View>
               </View>
               {entry.endTime && (
-                <View style={styles.timelineItem}>
+                <View
+                  key={`end-${index}`}
+                  style={styles.timelineItem}
+                >
                   <View style={styles.timelineIconContainer}>
                     <Iconicons
                       name={COMMON_CONSTANTS.ICONS.CAFE}
                       size={COMMON_CONSTANTS.SIZE.SIZE_30}
                       color={COLORS.WHITE}
                     />
-                    {(index < breakTime.length - 1 || entry.endTime) && (
-                      <View style={styles.timelineLine} />
-                    )}
+                    {(index < breakTime.length - COMMON_CONSTANTS.ONE ||
+                      entry.endTime) && <View style={styles.timelineLine} />}
                   </View>
 
                   <View style={styles.timelineContent}>
@@ -95,7 +97,10 @@ const TimeClockDetails = () => {
         )}
       </ScrollView>
 
-      <TouchableOpacity style={styles.clockOutButton}>
+      <TouchableOpacity
+        style={styles.clockOutButton}
+        onPress={handleClockOut}
+      >
         <Text style={styles.clockOutButtonText}>
           {STRINGS.BUTTON_TEXT.CLOCK_OUT}
         </Text>

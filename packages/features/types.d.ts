@@ -234,6 +234,11 @@ export type BreakStatusResponse = {
   };
   exceptionMessage?: string | undefined;
 };
+export type ApiResponseType = {
+  status: boolean;
+  response: string | undefined;
+  exceptionMessage?: string | undefined;
+};
 export type BreakType = {
   timeEntryId: number;
   startTime: string;
