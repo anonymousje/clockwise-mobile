@@ -142,7 +142,9 @@ export interface COMMON_CONSTANTS_TYPE {
   };
   SIZE: {
     SIZE_1: number;
+    SIZE_3: number;
     SIZE_5: number;
+    SIZE_8: number;
     SIZE_10: number;
     SIZE_12: number;
     SIZE_14: number;
@@ -151,6 +153,7 @@ export interface COMMON_CONSTANTS_TYPE {
     SIZE_17: number;
     SIZE_18: number;
     SIZE_20: number;
+    SIZE_21: number;
     SIZE_22: number;
     SIZE_24: number;
     SIZE_26: number;
@@ -161,7 +164,9 @@ export interface COMMON_CONSTANTS_TYPE {
     SIZE_33: number;
     SIZE_36: number;
     SIZE_40: number;
+    SIZE_48: number;
     SIZE_50: number;
+    SIZE_57: number;
     SIZE_60: number;
     SIZE_100: number;
     SIZE_120: number;

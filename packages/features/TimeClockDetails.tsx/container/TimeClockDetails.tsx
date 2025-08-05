@@ -3,6 +3,7 @@ import useTimeClockDetails from '../hooks/useTimeClockDetails';
 import Iconicons from 'react-native-vector-icons/Ionicons';
 import styles from '../styles/TimeClockDetails.styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import { COLORS } from '../../../constants/theme';
 
 const TimeClockDetails = () => {
   const { clockInTime, clockTime, breakTime, clockInDate } =
@@ -14,23 +15,21 @@ const TimeClockDetails = () => {
         <Text style={styles.workLabel}>You worked for</Text>
         <Text style={styles.workDuration}>{clockTime}</Text>
       </View>
-
-      <View style={styles.clockTimesContainer}>
-        <View style={styles.clockTimeSection}>
-          <Text style={styles.clockLabel}>Clock in</Text>
-          <Text style={styles.clockTime}>{clockInTime}</Text>
-          <Text style={styles.clockDate}>{clockInDate}</Text>
-        </View>
-
-        <View style={styles.clockTimeSection}>
-          <Text style={styles.clockLabel}>Clock out</Text>
-          <Text style={styles.clockTime}>...</Text>
-          <Text style={styles.clockDate}>...</Text>
-        </View>
-      </View>
-
       <ScrollView style={styles.timelineContainer}>
-        {/* Clock In Icon at the top */}
+        <View style={styles.clockTimesContainer}>
+          <View style={styles.clockTimeSection}>
+            <Text style={styles.clockLabel}>Clock in</Text>
+            <Text style={styles.clockTime}>{clockInTime}</Text>
+            <Text style={styles.clockDate}>{clockInDate}</Text>
+          </View>
+
+          <View style={styles.clockTimeSection}>
+            <Text style={styles.clockLabel}>Clock out</Text>
+            <Text style={styles.clockTime}>...</Text>
+            <Text style={styles.clockDate}>...</Text>
+          </View>
+        </View>
+
         <View style={styles.timelineClockItem}>
           <View style={styles.timelineClockIcon}>
             <Iconicons
@@ -46,19 +45,18 @@ const TimeClockDetails = () => {
           </View>
         </View>
 
-        {/* Breaks Timeline */}
         {breakTime.map(
           (
             entry: { startTime: string; endTime: string | null },
             index: number,
           ) => (
             <View key={index}>
-              {/* Break Start */}
               <View style={styles.timelineItem}>
                 <View style={styles.timelineIconContainer}>
                   <Iconicons
                     name='cafe-outline'
                     size={30}
+                    color={COLORS.WHITE}
                   />
                   <View style={styles.timelineLine} />
                 </View>
@@ -67,25 +65,25 @@ const TimeClockDetails = () => {
                   <Text style={styles.timelineTime}>{entry.startTime}</Text>
                 </View>
               </View>
-              {/* Break End */}
-              <View style={styles.timelineItem}>
-                <View style={styles.timelineIconContainer}>
-                  <Iconicons
-                    name='cafe-outline'
-                    size={30}
-                  />
-                  {/* Only show line if not last break or if endTime is present */}
-                  {(index < breakTime.length - 1 || entry.endTime) && (
-                    <View style={styles.timelineLine} />
-                  )}
+              {entry.endTime && (
+                <View style={styles.timelineItem}>
+                  <View style={styles.timelineIconContainer}>
+                    <Iconicons
+                      name='cafe-outline'
+                      size={30}
+                      color={COLORS.WHITE}
+                    />
+                    {(index < breakTime.length - 1 || entry.endTime) && (
+                      <View style={styles.timelineLine} />
+                    )}
+                  </View>
+
+                  <View style={styles.timelineContent}>
+                    <Text style={styles.timelineLabel}>Break End</Text>
+                    <Text style={styles.timelineTime}>{entry.endTime}</Text>
+                  </View>
                 </View>
-                <View style={styles.timelineContent}>
-                  <Text style={styles.timelineLabel}>Break End</Text>
-                  <Text style={styles.timelineTime}>
-                    {entry.endTime ?? 'Ongoing'}
-                  </Text>
-                </View>
-              </View>
+              )}
             </View>
           ),
         )}

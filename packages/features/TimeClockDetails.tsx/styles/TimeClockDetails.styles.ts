@@ -1,89 +1,90 @@
 import { Appearance, StyleSheet } from 'react-native';
 import { COLORS, FONTS, MODE } from '../../../constants/theme';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const mode = Appearance.getColorScheme();
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
-    paddingTop: 20,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   workLabelContainer: {
     borderBottomWidth: 0.2,
-    padding: 30,
+    padding: COMMON_CONSTANTS.SIZE.SIZE_30,
   },
   workLabel: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
-    fontSize: 16,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_16,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     opacity: 0.5,
-    marginBottom: 8,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_8,
   },
   workDuration: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontFamily: FONTS.CLOCKWISE_BOLD,
-    fontSize: 48,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_48,
   },
   clockTimesContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 50,
-    marginTop: 50,
-    paddingHorizontal: 30,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_50,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_50,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
   clockTimeSection: {
-    flex: 1,
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
   },
   clockLabel: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
-    fontSize: 20,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_20,
     opacity: 0.5,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    marginBottom: 10,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
   clockTime: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
-    fontSize: 28,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_28,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    marginBottom: 8,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_8,
   },
   clockDate: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
-    fontSize: 16,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_16,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     opacity: 0.5,
   },
   timelineContainer: {
-    flex: 1,
-    marginBottom: 20,
-    paddingHorizontal: 30,
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_30,
   },
   timelineItem: {
     flexDirection: 'row',
-    marginBottom: 40,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_40,
   },
   timelineClockItem: {
     flexDirection: 'row',
-    marginBottom: 40,
-    marginLeft: 3,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_40,
+    marginLeft: COMMON_CONSTANTS.SIZE.SIZE_3,
   },
   timelineIconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 16,
+    marginRight: COMMON_CONSTANTS.SIZE.SIZE_16,
   },
   timelineClockIcon: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 21,
+    marginRight: COMMON_CONSTANTS.SIZE.SIZE_21,
+    paddingRight: 2,
   },
-
   timelineContent: {
-    height: 40,
-    flex: 1,
+    height: COMMON_CONSTANTS.SIZE.SIZE_40,
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -92,42 +93,44 @@ const styles = StyleSheet.create({
   timelineLabel: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    fontSize: 18,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
   },
   clockOutButton: {
-    backgroundColor: '#ef4444',
-    paddingVertical: 16,
-    borderRadius: 8,
+    backgroundColor: COLORS.CLOCK_OUT_BUTTON_BACKGROUND,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_16,
+    marginHorizontal: COMMON_CONSTANTS.SIZE.SIZE_30,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
+    borderRadius: COMMON_CONSTANTS.SIZE.SIZE_8,
     alignItems: 'center',
   },
   clockOutButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: 'bold',
-    letterSpacing: 1,
+    color: COLORS.WHITE,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_20,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
   },
   timelineTime: {
     color: '#8a9ba8',
-    fontSize: 18,
-    minWidth: 60,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
+    minWidth: COMMON_CONSTANTS.SIZE.SIZE_60,
     textAlign: 'right',
   },
   timelineClockLine: {
     width: 2,
-    height: 60,
+    height: COMMON_CONSTANTS.SIZE.SIZE_60,
     backgroundColor: COLORS.CLOCKWISE_PRIMARY_DARK,
     marginTop: 4,
+    marginRight: 2,
     position: 'absolute',
-    top: 24,
+    top: COMMON_CONSTANTS.SIZE.SIZE_24,
   },
   timelineLine: {
     width: 2,
-    height: 57,
+    height: COMMON_CONSTANTS.SIZE.SIZE_57,
     backgroundColor: COLORS.CLOCKWISE_PRIMARY_DARK,
     marginTop: 4,
     position: 'absolute',
     marginRight: 2,
-    top: 26,
+    top: COMMON_CONSTANTS.SIZE.SIZE_26,
   },
 });
 
