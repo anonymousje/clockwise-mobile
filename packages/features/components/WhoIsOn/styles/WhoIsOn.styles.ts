@@ -7,6 +7,13 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-evenly',
   },
+  usersHorizontalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
+    gap: COMMON_CONSTANTS.SIZE.SIZE_5,
+  },
   widgetHeaderContainer: {
     flexGrow: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
@@ -21,20 +28,22 @@ const styles = StyleSheet.create({
         : COLORS.BORDER_COLOR_LIGHT_MODE,
   },
   widgetListItem: {
-    flexGrow: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
-    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
-    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_16,
   },
   avatarIconContainer: {
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_50,
     height: COMMON_CONSTANTS.SIZE.SIZE_40,
     width: COMMON_CONSTANTS.SIZE.SIZE_40,
-    backgroundColor: 'blue',
+    backgroundColor: COLORS.CLOCKWISE_PRIMARY,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  widgetListContainer: {},
+  widgetListContainer: {
+    flexDirection: 'row',
+  },
   avatarText: {
     fontSize: COMMON_CONSTANTS.SIZE.SIZE_17,
     color: COLORS.WHITE,
@@ -57,13 +66,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: COMMON_CONSTANTS.SIZE.SIZE_22,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    color: mode === 'dark' ? '#fff' : '#000',
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   bottomBorder: {
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_15,
-    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
     alignItems: 'center',
-    borderTopWidth: 0.6,
+    borderTopWidth: 1,
     borderTopColor:
       mode === MODE.DARK
         ? COLORS.BORDER_COLOR_DARK_MODE
@@ -90,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_50,
     height: COMMON_CONSTANTS.SIZE.SIZE_50,
     width: COMMON_CONSTANTS.SIZE.SIZE_50,
-    backgroundColor: 'blue',
+    backgroundColor: COLORS.CLOCKWISE_PRIMARY,
     justifyContent: 'center',
     alignItems: 'center',
   },

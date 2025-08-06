@@ -14,21 +14,22 @@ const WhoIsOn = () => {
   const displayUserUI = () => {
     return (
       <>
-        {whoIsOnList.slice(0, 2).map((user, index) => (
-          <View
-            style={styles.widgetListContainer}
-            key={index}
-          >
-            <View style={styles.widgetListItem}>
-              <View style={styles.avatarIconContainer}>
-                <Text style={styles.avatarText}>{getInitials(user.name)}</Text>
-              </View>
-              <View style={styles.nameContainer}>
-                <Text style={styles.nameText}>{user?.name}</Text>
+        <View style={styles.usersHorizontalContainer}>
+          {whoIsOnList.slice(0, 8).map((user, index) => (
+            <View
+              style={styles.widgetListContainer}
+              key={index}
+            >
+              <View style={styles.widgetListItem}>
+                <View style={styles.avatarIconContainer}>
+                  <Text style={styles.avatarText}>
+                    {getInitials(user.name)}
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-        ))}
+          ))}
+        </View>
         <View style={styles.bottomBorder}>
           <TouchableOpacity
             onPress={() => {
