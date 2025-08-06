@@ -72,7 +72,11 @@ export default function useClock() {
     fetchData();
 
     const interval = setInterval(() => {
-      getClockStatus();
+      if (onBreak) {
+        getBreakStatus();
+      } else {
+        getClockStatus();
+      }
     }, COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS);
 
     return () => clearInterval(interval);

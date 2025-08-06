@@ -17,6 +17,8 @@ const useTimeClockDetails = () => {
   const [clockIn, setClockIn] = useState(true);
   const [clockInTime, setClockInTime] = useState('');
   const [clockInDate, setClockInDate] = useState('');
+  const [note, setNote] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
   const [clockTime, setClockTime] = useState('');
   const [breakTime, setBreakTime] = useState<breakArrayType[]>([]);
   const navigation = useNavigation<NavigationProp>();
@@ -31,6 +33,7 @@ const useTimeClockDetails = () => {
       setClockInTime(
         formatTimeFromISOString(clockInResponse.response.clockInTime || ''),
       );
+
       setClockInDate(
         formatDateFromISOString(clockInResponse.response.clockInTime || ''),
       );
@@ -51,14 +54,20 @@ const useTimeClockDetails = () => {
   }, [getClockStatus]);
 
   const handleClockOut = async () => {
-    const response = await TimeClockDetailsService.handleClockOut();
+    const response = await TimeClockDetailsService.handleClockOut(note);
     if (response.status) {
       dispatch(setRefreshFlag(true));
       navigation.replace(SCREENS.MainTabs);
     }
     return response;
   };
+  const handleNoteChange = (text: string) => {
+    setNote(text);
+  };
 
+  const setModal = () => {
+    setModalVisible(!modalVisible);
+  };
   return {
     clockIn,
     clockInTime,
@@ -67,6 +76,9 @@ const useTimeClockDetails = () => {
     clockInDate,
     getClockStatus,
     handleClockOut,
+    setModal,
+    handleNoteChange,
+    modalVisible,
   };
 };
 

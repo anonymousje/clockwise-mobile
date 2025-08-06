@@ -1,15 +1,25 @@
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, Modal, TextInput } from 'react-native';
 import useTimeClockDetails from '../hooks/useTimeClockDetails';
+import Button from '../../components/Button/container/Button';
 import Iconicons from 'react-native-vector-icons/Ionicons';
 import styles from '../styles/TimeClockDetails.styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { COLORS } from '../../../constants/theme';
 import STRINGS from '../../../utils/strings';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import { iconColour } from '../styles/TimeClockDetails.styles';
 
 const TimeClockDetails = () => {
-  const { clockInTime, clockTime, breakTime, clockInDate, handleClockOut } =
-    useTimeClockDetails();
+  const {
+    clockInTime,
+    clockTime,
+    breakTime,
+    clockInDate,
+    handleClockOut,
+    setModal,
+    handleNoteChange,
+    modalVisible,
+  } = useTimeClockDetails();
 
   return (
     <View style={styles.container}>
@@ -99,12 +109,41 @@ const TimeClockDetails = () => {
 
       <TouchableOpacity
         style={styles.clockOutButton}
-        onPress={handleClockOut}
+        onPress={setModal}
       >
         <Text style={styles.clockOutButtonText}>
           {STRINGS.BUTTON_TEXT.CLOCK_OUT}
         </Text>
       </TouchableOpacity>
+
+      <Modal visible={modalVisible}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeader}>
+            <TouchableOpacity onPress={setModal}>
+              <Iconicons
+                name={COMMON_CONSTANTS.ICONS.ARROW}
+                size={COMMON_CONSTANTS.SIZE.SIZE_24}
+                color={iconColour}
+                style={styles.headerIcon}
+              />
+            </TouchableOpacity>
+            <Text style={styles.modalTitle}>{STRINGS.HEADERS.NOTE}</Text>
+          </View>
+
+          <View style={styles.noteContainer}>
+            <TextInput
+              style={styles.noteInput}
+              placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.NOTE}
+              onChangeText={handleNoteChange}
+              multiline={true}
+            />
+            <Button
+              label={STRINGS.ICON_TITLES.ADD}
+              onPress={handleClockOut}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

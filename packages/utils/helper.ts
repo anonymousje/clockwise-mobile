@@ -68,7 +68,13 @@ export const formatDuration = (shiftBreaks: BreakType[]): string => {
 
 export const formatTimeFromISOString = (isoString: string): string => {
   if (!isoString) return '';
-  const date = new Date(isoString);
+  let date: Date;
+  if (isoString.includes('+')) {
+    date = new Date(isoString);
+  } else {
+    date = new Date(isoString);
+    date.setHours(date.getHours() + 5);
+  }
   let hours = date.getHours();
   const minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'PM' : 'AM';

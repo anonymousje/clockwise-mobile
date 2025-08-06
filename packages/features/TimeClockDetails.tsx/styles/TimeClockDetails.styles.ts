@@ -1,5 +1,5 @@
 import { Appearance, StyleSheet } from 'react-native';
-import { COLORS, FONTS, MODE } from '../../../constants/theme';
+import { COLORS, FONT_SIZE, FONTS, MODE } from '../../../constants/theme';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const mode = Appearance.getColorScheme();
@@ -132,6 +132,45 @@ const styles = StyleSheet.create({
     marginRight: 2,
     top: COMMON_CONSTANTS.SIZE.SIZE_26,
   },
+  modalContainer: {
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
+    justifyContent: 'flex-start',
+
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_15,
+    borderBottomWidth: 0.2,
+    borderBottomColor: COLORS.HEADER_BORDER_COLOR,
+  },
+  headerIcon: {
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_22,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_15,
+  },
+  modalTitle: {
+    fontSize: FONT_SIZE.SIZE_20,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_15,
+  },
+  noteInput: {
+    marginVertical: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    fontSize: FONT_SIZE.SIZE_18,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+  },
+  noteContainer: {
+    flex: COMMON_CONSTANTS.SIZE.SIZE_1,
+    justifyContent: 'space-between',
+  },
 });
 
 export default styles;
+
+export const iconColour = mode === MODE.DARK ? COLORS.WHITE : COLORS.BLACK;

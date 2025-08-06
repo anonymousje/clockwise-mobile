@@ -45,9 +45,9 @@ class ClockService {
       });
   }
 
-  async handleClockOut(): Promise<ApiResponseType> {
+  async handleClockOut(note: string): Promise<ApiResponseType> {
     return await apiClient
-      .post(ApiRoutes.clockOut, { data: '' })
+      .post(ApiRoutes.clockOut, { data: note })
       .then(() => {
         return {
           status: true,
