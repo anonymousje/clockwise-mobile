@@ -10,11 +10,11 @@ const styles = StyleSheet.create({
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
-    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   workLabelContainer: {
     borderBottomWidth: 0.2,
-    padding: COMMON_CONSTANTS.SIZE.SIZE_30,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_30,
   },
   workLabel: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
