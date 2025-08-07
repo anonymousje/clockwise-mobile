@@ -8,7 +8,7 @@ import { formatTimeFromISOString, getInitials } from '../../../../utils/helper';
 import STRINGS from '../../../../utils/strings';
 
 const WhoIsOn = () => {
-  const { whoIsOnList, showModal, setShowModal, handleUserPress } =
+  const { whoIsOnList, showModal, setShowModal, handleUserPress, userName } =
     useWhoIsOn();
 
   const displayUserUI = () => {
@@ -45,6 +45,49 @@ const WhoIsOn = () => {
     );
   };
 
+  const displayUserList = () => {
+    return (
+      <>
+        {whoIsOnList.map((user, index) => {
+          const isCurrentUser = userName === user.name;
+          const content = (
+            <View style={styles.modalListItem}>
+              <View style={styles.modalAvatarIconContainer}>
+                <Text style={styles.modalAvatarText}>
+                  {getInitials(`${user.name}`)}
+                </Text>
+              </View>
+              <View style={styles.modalDetailsContainer}>
+                <View style={styles.modalNameContainer}>
+                  <Text style={styles.modalNameText}>{user.name}</Text>
+                  <Text style={styles.modalShiftText}>
+                    {user.shiftStartTime
+                      ? `${STRINGS.SHIFT}: ${user.shiftStartTime} - ${user.shiftEndTime}`
+                      : STRINGS.NO_SHIFT}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.clockInTimeText}>
+                    {formatTimeFromISOString(user.clockInTime)}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          );
+          return isCurrentUser ? (
+            <TouchableOpacity
+              key={index}
+              onPress={handleUserPress}
+            >
+              {content}
+            </TouchableOpacity>
+          ) : (
+            <View key={index}>{content}</View>
+          );
+        })}
+      </>
+    );
+  };
   return (
     <View style={styles.container}>
       <View style={styles.widgetHeaderContainer}>
@@ -79,38 +122,7 @@ const WhoIsOn = () => {
               onPress={() => setShowModal(false)}
             />
           </View>
-          <View>
-            {whoIsOnList.map((user, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={handleUserPress}
-              >
-                <View style={styles.modalListItem}>
-                  <View style={styles.modalAvatarIconContainer}>
-                    <Text style={styles.modalAvatarText}>
-                      {getInitials(`${user.name}`)}
-                    </Text>
-                  </View>
-                  <View style={styles.modalDetailsContainer}>
-                    <View style={styles.modalNameContainer}>
-                      <Text style={styles.modalNameText}>{user.name}</Text>
-                      <Text style={styles.modalShiftText}>
-                        {user.shiftStartTime
-                          ? `${STRINGS.SHIFT}: ${user.shiftStartTime} - ${user.shiftEndTime}`
-                          : STRINGS.NO_SHIFT}
-                      </Text>
-                    </View>
-
-                    <View>
-                      <Text style={styles.clockInTimeText}>
-                        {formatTimeFromISOString(user.clockInTime)}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <View>{displayUserList()}</View>
         </View>
       </Modal>
     </View>

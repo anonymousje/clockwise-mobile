@@ -265,6 +265,11 @@ export type ApiResponseType = {
   response: string | undefined;
   exceptionMessage?: string | undefined;
 };
+export type StaffApiResponseType = {
+  status: boolean;
+  response: Array<staffType> | undefined;
+  exceptionMessage?: string | undefined;
+};
 export type BreakType = {
   timeEntryId: number;
   startTime: string;

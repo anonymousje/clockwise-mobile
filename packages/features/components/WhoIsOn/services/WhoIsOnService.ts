@@ -1,6 +1,6 @@
 import ApiRoutes from '../../../../constants/ApiRoutes';
 import apiClient from '../../../ApiClient';
-import { GetUserResponse, WhoIsOnResponseType } from '../../../types';
+import { StaffApiResponseType, WhoIsOnResponseType } from '../../../types';
 
 class WhoIsOnService {
   async fetchWhoIsOnData(): Promise<WhoIsOnResponseType> {
@@ -23,9 +23,9 @@ class WhoIsOnService {
 
     return response;
   }
-  async fetchUserDetails(userId: string): Promise<GetUserResponse> {
-    const response = await apiClient
-      .get(`${ApiRoutes.whoIsOn}/${userId}`)
+  async fetchUsersDetails(): Promise<StaffApiResponseType> {
+    return await apiClient
+      .get(ApiRoutes.getStaff)
       .then((res) => {
         return {
           status: true,
@@ -36,12 +36,10 @@ class WhoIsOnService {
       .catch((error) => {
         return {
           status: false,
-          response: null,
+          response: undefined,
           exceptionMessage: error.message,
         };
       });
-
-    return response;
   }
 }
 

@@ -11,8 +11,10 @@ import { SCREENS } from '../../../../constants/screens';
 const useWhoIsOn = () => {
   const [whoIsOnList, setWhoIsOnList] = useState<WhoIsOnUser[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [userName, setUserName] = useState('');
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationProp>();
+  const user = useSelector((state: RootState) => state.user);
   const updated = useSelector((state: RootState) => state.updated);
   const refreshFlag = useSelector(
     (state: RootState) => state.updated.refreshFlag,
@@ -40,7 +42,16 @@ const useWhoIsOn = () => {
 
   useEffect(() => {
     fetchWhoIsOnData();
-  }, []);
+    WhoIsOnService.fetchUsersDetails().then((res) => {
+      if (res.status) {
+        res.response?.forEach((iter) => {
+          if (user.email === iter.email) {
+            setUserName(iter.firstName + ' ' + iter.lastName);
+          }
+        });
+      }
+    });
+  }, [user]);
 
   const handleUserPress = () => {
     navigation.navigate(SCREENS.TimeClockDetails);
@@ -51,6 +62,7 @@ const useWhoIsOn = () => {
     showModal,
     setShowModal,
     handleUserPress,
+    userName,
   };
 };
 
