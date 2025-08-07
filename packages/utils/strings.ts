@@ -6,6 +6,7 @@ const STRINGS = {
     ADD_EMPLOYEE: 'Add Employee',
     FORGOT_PASSWORD: 'Forgot Password',
     NEW_PASSWORD: 'New Password',
+    TIME_CLOCK_DETAILS: 'Time Clock Details',
   },
   CLOCK_IN: 'Clock In',
   CLOCK_OUT: 'Clock Out',

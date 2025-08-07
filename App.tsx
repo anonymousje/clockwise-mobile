@@ -228,7 +228,7 @@ const App = () => {
             component={TimeClockDetails}
             options={{
               headerShown: true,
-              title: STRINGS.SCREEN_TITLE.STAFF_DETAIL,
+              title: STRINGS.SCREEN_TITLE.TIME_CLOCK_DETAILS,
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK
