@@ -33,11 +33,9 @@ const useTimeClockDetails = () => {
       setClockInTime(
         formatTimeFromISOString(clockInResponse.response.clockInTime || ''),
       );
-
       setClockInDate(
         formatDateFromISOString(clockInResponse.response.clockInTime || ''),
       );
-
       setClockIn(clockInResponse.response.isClockedIn || false);
     }
 
