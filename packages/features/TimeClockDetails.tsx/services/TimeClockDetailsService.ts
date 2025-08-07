@@ -48,15 +48,19 @@ class ClockService {
   async handleClockOut(note: string): Promise<ApiResponseType> {
     return await apiClient
       .post(ApiRoutes.clockOut, { data: note })
-      .then(() => {
+      .then((response) => {
         return {
           status: true,
-          response: 'Clocked out successfully',
+          response: response.data.message,
           exceptionMessage: undefined,
         };
       })
       .catch((error) => {
-        throw new Error(error.message);
+        return {
+          status: false,
+          response: undefined,
+          exceptionMessage: error.message,
+        };
       });
   }
 }
