@@ -173,4 +173,4 @@ const styles = StyleSheet.create({
 
 export default styles;
 
-export const iconColour = mode === MODE.DARK ? COLORS.BLACK : COLORS.BLACK;
+export const iconColour = mode === MODE.DARK ? COLORS.WHITE : COLORS.BLACK;
