@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     flexShrink: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
-    borderBottomWidth: 0.3,
+    borderBottomWidth: mode === MODE.DARK ? 0.3 : 1,
     borderBottomColor:
       mode === MODE.DARK
         ? COLORS.BORDER_COLOR_DARK_MODE

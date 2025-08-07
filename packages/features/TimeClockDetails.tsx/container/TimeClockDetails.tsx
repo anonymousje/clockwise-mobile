@@ -70,7 +70,7 @@ const TimeClockDetails = () => {
                   <Iconicons
                     name={COMMON_CONSTANTS.ICONS.CAFE}
                     size={COMMON_CONSTANTS.SIZE.SIZE_30}
-                    color={COLORS.WHITE}
+                    color={iconColour}
                   />
                   {entry.endTime && <View style={styles.timelineLine} />}
                 </View>
@@ -90,7 +90,7 @@ const TimeClockDetails = () => {
                     <Iconicons
                       name={COMMON_CONSTANTS.ICONS.CAFE}
                       size={COMMON_CONSTANTS.SIZE.SIZE_30}
-                      color={COLORS.WHITE}
+                      color={iconColour}
                     />
                     {index < breakTime.length - COMMON_CONSTANTS.ONE && (
                       <View style={styles.timelineLine} />
