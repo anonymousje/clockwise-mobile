@@ -2,6 +2,7 @@ import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
 import COMMON_CONSTANTS from '../constants/CommonConstants';
+import ApiRoutes from '../constants/ApiRoutes';
 
 let accessToken = COMMON_CONSTANTS.DEFAULT;
 let refreshToken = COMMON_CONSTANTS.DEFAULT;
@@ -15,17 +16,18 @@ export const setRefreshToken = (token: string) => {
 };
 
 const apiClient = axios.create({
-  baseURL: 'http://10.0.2.2:5135/api',
+  baseURL: ApiRoutes.BaseURL,
   headers: {
-    'Content-Type': 'application/json',
-    Accept: '*/*',
+    [COMMON_CONSTANTS.API_HEADERS.CONTENT_TYPE]:
+      COMMON_CONSTANTS.API_HEADERS.APPLICATION_JSON,
+    Accept: COMMON_CONSTANTS.API_HEADERS.ACCEPT,
   },
 });
 
 apiClient.interceptors.request.use(
   function (config) {
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+      config.headers.Authorization = `${COMMON_CONSTANTS.API_HEADERS.BEARER} ${accessToken}`;
     }
     return config;
   },
@@ -43,13 +45,10 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response && error.response.status === 401) {
       try {
-        const response = await axios.post(
-          'http://10.0.2.2:5135/api/auth/refresh-token',
-          {
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-          },
-        );
+        const response = await axios.post(ApiRoutes.refreshToken, {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        });
 
         accessToken = response.data.data.accessToken;
         refreshToken = response.data.data.refreshToken;
@@ -61,7 +60,7 @@ apiClient.interceptors.response.use(
           ),
         );
 
-        originalRequest.headers.Authorization = `Bearer ${response.data.data.accessToken}`;
+        originalRequest.headers.Authorization = `${COMMON_CONSTANTS.API_HEADERS.BEARER} ${response.data.data.accessToken}`;
 
         return await axios(originalRequest);
       } catch (refreshError) {

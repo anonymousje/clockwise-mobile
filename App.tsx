@@ -18,6 +18,7 @@ import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 import STRINGS from './packages/utils/strings';
 import LINK_PREFIX from './packages/constants/links';
 import COMMON_CONSTANTS from './packages/constants/CommonConstants';
+import TimeClockDetails from './packages/features/TimeClockDetails.tsx/container/TimeClockDetails';
 
 const config = {
   screens: {
@@ -201,6 +202,30 @@ const App = () => {
           <Stack.Screen
             name={SCREENS.StaffDetail}
             component={StaffDetail}
+            options={{
+              headerShown: true,
+              title: STRINGS.SCREEN_TITLE.STAFF_DETAIL,
+              headerTitleStyle: {
+                color:
+                  mode === MODE.DARK
+                    ? COLORS.TEXT_DARK_MODE
+                    : COLORS.TEXT_LIGHT_MODE,
+              },
+              headerStyle: {
+                backgroundColor:
+                  mode === MODE.DARK
+                    ? COLORS.BACKGROUND_DARK_MODE
+                    : COLORS.BACKGROUND_LIGHT_MODE,
+              },
+              headerTintColor:
+                mode === MODE.DARK
+                  ? COLORS.TEXT_DARK_MODE
+                  : COLORS.TEXT_LIGHT_MODE,
+            }}
+          />
+          <Stack.Screen
+            name={SCREENS.TimeClockDetails}
+            component={TimeClockDetails}
             options={{
               headerShown: true,
               title: STRINGS.SCREEN_TITLE.STAFF_DETAIL,

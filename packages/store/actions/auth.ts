@@ -1,6 +1,7 @@
 import { User } from '../../features/types';
 import apiClient from '../../features/ApiClient';
 import COMMON_CONSTANTS from '../../constants/CommonConstants';
+import ApiRoutes from '../../constants/ApiRoutes';
 
 export const setUser = (userData: User) => {
   return {
@@ -18,7 +19,7 @@ export const setTokens = (accessToken: string, refreshToken: string) => {
 
 export const logInUser = async (email: string, password: string) => {
   try {
-    const response = await apiClient.post('/Auth/login', {
+    const response = await apiClient.post(ApiRoutes.login, {
       email,
       password,
     });

@@ -2,12 +2,19 @@ import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
 import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
 import { formatTime, formatDuration } from '../../../../utils/helper';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchUpdatedWhoIsOnList,
+  setRefreshFlag,
+} from '../../../../store/actions/flags';
 import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
+import { RootState } from '../../../../store';
 
-export default function useClock(
-  refreshFlag: boolean,
-  onRefresh: (flag: boolean) => void,
-) {
+export default function useClock() {
+  const refreshFlag = useSelector(
+    (state: RootState) => state.updated.refreshFlag,
+  );
+  const dispatch = useDispatch();
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
   const [clockTime, setClockTime] = useState('');
@@ -30,6 +37,7 @@ export default function useClock(
         setModalVisible(false);
       }
     }
+    dispatch(fetchUpdatedWhoIsOnList(true));
     getClockStatus();
   };
 
@@ -54,27 +62,36 @@ export default function useClock(
   }, []);
 
   useEffect(() => {
-    if (onBreak) {
-      getBreakStatus();
-    } else {
-      getClockStatus();
-    }
+    const fetchData = async () => {
+      if (onBreak) {
+        await getBreakStatus();
+      } else {
+        await getClockStatus();
+      }
+    };
+    fetchData();
 
     const interval = setInterval(() => {
-      getClockStatus();
+      if (onBreak) {
+        getBreakStatus();
+      } else {
+        getClockStatus();
+      }
     }, COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS);
 
+    return () => clearInterval(interval);
+  }, [getClockStatus, getBreakStatus, onBreak, dispatch]);
+
+  useEffect(() => {
     if (refreshFlag) {
       if (onBreak) {
         getBreakStatus();
-        onRefresh(false);
       } else {
         getClockStatus();
-        onRefresh(false);
       }
+      dispatch(setRefreshFlag(false));
     }
-    return () => clearInterval(interval);
-  }, [getClockStatus, refreshFlag, getBreakStatus, onBreak, onRefresh]);
+  }, [refreshFlag, onBreak, getBreakStatus, getClockStatus, dispatch]);
 
   const handleNoteChange = (text: string) => {
     setNote(text);

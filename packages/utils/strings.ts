@@ -7,6 +7,8 @@ const STRINGS = {
     FORGOT_PASSWORD: 'Forgot Password',
     NEW_PASSWORD: 'New Password',
   },
+  CLOCK_IN: 'Clock In',
+  CLOCK_OUT: 'Clock Out',
   EMPLOYEE_FORM: {
     FIRST_NAME: 'First Name',
     LAST_NAME: 'Last Name',
@@ -23,6 +25,8 @@ const STRINGS = {
     ADDRESS: 'Address',
     USERCODE: 'User Code',
   },
+  SHIFT: 'Shift',
+  NO_SHIFT: 'No Shift',
   LESS_THAN_ONE_MINUTE: 'Less than 1m',
   PLACEHOLDER: {
     PLACEHOLDER_TEXT: 'PlaceHolder',
@@ -42,6 +46,8 @@ const STRINGS = {
     ACTIVE_STAFF: 'Active Staff',
     INACTIVE_STAFF: 'Inactive Staff',
   },
+  BREAK_START: 'Break Start',
+  BREAK_END: 'Break End',
   ROLES: {
     ADMIN: 'Admin',
     USER: 'User',
@@ -91,7 +97,9 @@ const STRINGS = {
     CLOCK_IN: 'CLOCK IN',
     CLOCK_OUT: 'CLOCK OUT',
     RESUME_SHIFT: 'RESUME SHIFT',
+    SEE_MORE: 'SEE MORE',
   },
+  NO_USERS_ONLINE: 'No users are currently online',
   HEADERS: {
     ENTER_EMAIL: 'Enter Your Email',
     LOGIN: 'Log in to your account',
@@ -101,6 +109,8 @@ const STRINGS = {
     CLOCK_IN: 'You have been clocked in for',
     NOTE: 'Add Note',
     BREAK: 'You have been on a break for',
+    WHO_IS_ON_NOW: 'Who Is On Now',
+    YOU_WORKED_FOR: 'You worked for',
   },
   VALIDATIONS: {
     TITLE: 'Password must contain:',

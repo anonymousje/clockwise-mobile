@@ -11,6 +11,7 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
+  [SCREENS.TimeClockDetails]: undefined;
   [SCREENS.StaffDetail]: { recordId: string };
 };
 
@@ -21,6 +22,10 @@ export type User = {
   role: string;
 };
 
+export type breakArrayType = {
+  startTime: string;
+  endTime: string | null;
+};
 export type NavigationProp = NativeStackNavigationProp<RoutesTypes>;
 
 export type StaffDetailNavigationProp = RouteProp<
@@ -46,6 +51,12 @@ export type StaffFormData = {
   employeeId?: string;
   permissionLevel?: string;
   status?: string;
+};
+
+export type GetUserResponse = {
+  status: boolean;
+  response: staffType | null;
+  exceptionMessage?: string | undefined;
 };
 
 export interface InputFieldProps extends TextInputProps {
@@ -78,6 +89,12 @@ export interface COMMON_CONSTANTS_TYPE {
     ADMIN: string;
     USER: string;
   };
+  API_HEADERS: {
+    CONTENT_TYPE: string;
+    APPLICATION_JSON: string;
+    ACCEPT: string;
+    BEARER: string;
+  };
   ADMIN: string;
   REDUX_TYPES: {
     SET_USER: string;
@@ -85,8 +102,13 @@ export interface COMMON_CONSTANTS_TYPE {
     LOGIN_USER: string;
     LOGIN_FAIL: string;
     LOGOUT: string;
-    SET_UPDATED: string;
+    SET_UPDATED_STAFF_LIST: string;
+    SET_UPDATED_WHO_IS_ON_LIST: string;
+    SET_REFRESH_FLAG: string;
   };
+  END: string;
+  ZERO: number;
+  ONE: number;
   ICONS: {
     HOME: const;
     PEOPLE: const;
@@ -100,7 +122,12 @@ export interface COMMON_CONSTANTS_TYPE {
     ALARM: const;
     SETTINGS: const;
     LOG_OUT: const;
+    CLOCK: const;
+    CLOSE: const;
+    ELLIPSE: const;
+    CAFE: const;
   };
+  SPACE: string;
   DATE_TIME: {
     NUMERIC: const;
     SHORT: const;
@@ -122,9 +149,30 @@ export interface COMMON_CONSTANTS_TYPE {
     JOB_ROLE: const;
     ROLE: const;
   };
+  FLEX: {
+    ROW: const;
+    COLUMN: const;
+    CENTER: const;
+    SPACE_BETWEEN: const;
+    FLEX_START: const;
+    FLEX_END: const;
+  };
+  ALIGN: {
+    RIGHT: const;
+    LEFT: const;
+    CENTER: const;
+  };
+  POSITION: {
+    ABSOLUTE: const;
+    RELATIVE: const;
+  };
   SIZE: {
     SIZE_1: number;
+    SIZE_2: number;
+    SIZE_3: number;
+    SIZE_4: number;
     SIZE_5: number;
+    SIZE_8: number;
     SIZE_10: number;
     SIZE_12: number;
     SIZE_14: number;
@@ -133,6 +181,7 @@ export interface COMMON_CONSTANTS_TYPE {
     SIZE_17: number;
     SIZE_18: number;
     SIZE_20: number;
+    SIZE_21: number;
     SIZE_22: number;
     SIZE_24: number;
     SIZE_26: number;
@@ -140,9 +189,12 @@ export interface COMMON_CONSTANTS_TYPE {
     SIZE_30: number;
     SIZE_32: number;
     SIZE_34: number;
+    SIZE_33: number;
     SIZE_36: number;
     SIZE_40: number;
+    SIZE_48: number;
     SIZE_50: number;
+    SIZE_57: number;
     SIZE_60: number;
     SIZE_100: number;
     SIZE_120: number;
@@ -159,6 +211,23 @@ export interface COMMON_CONSTANTS_TYPE {
     MINUTE_IN_MS: number;
   };
 }
+
+export type WhoIsOnUser = {
+  name: string;
+  jobRole: string | null;
+  clockInTime: string;
+  shiftStartTime: string | null;
+  shiftEndTime: string | null;
+};
+
+export type WhoIsOnResponseType = {
+  status: boolean;
+  response: {
+    onlineUsers?: Array<WhoIsOnUser>;
+    onlineUsersCount?: number;
+  };
+  exceptionMessage?: string | undefined;
+};
 
 export interface ButtonProps extends TouchableOpacityProps {
   onPress: () => void;
@@ -189,6 +258,16 @@ export type BreakStatusResponse = {
     isOnBreak?: boolean;
     shiftBreaks?: Array<BreakType>;
   };
+  exceptionMessage?: string | undefined;
+};
+export type ApiResponseType = {
+  status: boolean;
+  response: string | undefined;
+  exceptionMessage?: string | undefined;
+};
+export type StaffApiResponseType = {
+  status: boolean;
+  response: Array<staffType> | undefined;
   exceptionMessage?: string | undefined;
 };
 export type BreakType = {
