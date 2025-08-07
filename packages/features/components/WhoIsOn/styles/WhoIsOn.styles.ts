@@ -104,13 +104,14 @@ const styles = StyleSheet.create({
   },
   modalListItem: {
     flexDirection: 'row',
-    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
-    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_30,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_18,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_20,
     alignItems: 'center',
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
+    borderBottomWidth: COMMON_CONSTANTS.SIZE.SIZE_1,
   },
   modalDetailsContainer: {
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
   },
   modalNameText: {
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    fontSize: COMMON_CONSTANTS.SIZE.SIZE_20,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   modalAvatarText: {
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
   modalShiftText: {
-    fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_16,
     opacity: 0.7,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
@@ -146,12 +147,12 @@ const styles = StyleSheet.create({
     flexShrink: COMMON_CONSTANTS.SIZE.SIZE_1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: COMMON_CONSTANTS.SIZE.SIZE_1,
+    borderBottomWidth: 0.4,
     borderBottomColor:
       mode === MODE.DARK
         ? COLORS.BORDER_COLOR_DARK_MODE
         : COLORS.BORDER_COLOR_LIGHT_MODE,
-    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_18,
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_18,
     backgroundColor:
       mode === MODE.DARK
