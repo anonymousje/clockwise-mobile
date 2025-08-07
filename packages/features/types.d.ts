@@ -106,6 +106,7 @@ export interface COMMON_CONSTANTS_TYPE {
     SET_UPDATED_WHO_IS_ON_LIST: string;
     SET_REFRESH_FLAG: string;
   };
+  END: string;
   ZERO: number;
   ONE: number;
   ICONS: {

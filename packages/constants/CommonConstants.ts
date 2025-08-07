@@ -12,6 +12,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ACCEPT: '*/*',
     BEARER: 'Bearer',
   },
+  END: 'end',
   ZERO: 0,
   ONE: 1,
   SPACE: ' ',

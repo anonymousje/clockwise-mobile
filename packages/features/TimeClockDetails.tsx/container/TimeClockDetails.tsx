@@ -49,7 +49,9 @@ const TimeClockDetails = () => {
               size={COMMON_CONSTANTS.SIZE.SIZE_24}
               color={COLORS.GREEN}
             />
-            {breakTime.length > 0 && <View style={styles.timelineClockLine} />}
+            {breakTime.length > COMMON_CONSTANTS.ZERO && (
+              <View style={styles.timelineClockLine} />
+            )}
           </View>
           <View style={styles.timelineContent}>
             <Text style={styles.timelineLabel}>{STRINGS.CLOCK_IN}</Text>
@@ -81,7 +83,7 @@ const TimeClockDetails = () => {
               </View>
               {entry.endTime && (
                 <View
-                  key={`end-${index}`}
+                  key={`${COMMON_CONSTANTS.END}-${index}`}
                   style={styles.timelineItem}
                 >
                   <View style={styles.timelineIconContainer}>
