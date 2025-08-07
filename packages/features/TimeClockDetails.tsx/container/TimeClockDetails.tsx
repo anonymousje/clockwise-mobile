@@ -70,7 +70,7 @@ const TimeClockDetails = () => {
                     size={COMMON_CONSTANTS.SIZE.SIZE_30}
                     color={COLORS.WHITE}
                   />
-                  <View style={styles.timelineLine} />
+                  {entry.endTime && <View style={styles.timelineLine} />}
                 </View>
                 <View style={styles.timelineContent}>
                   <Text style={styles.timelineLabel}>
@@ -90,8 +90,9 @@ const TimeClockDetails = () => {
                       size={COMMON_CONSTANTS.SIZE.SIZE_30}
                       color={COLORS.WHITE}
                     />
-                    {(index < breakTime.length - COMMON_CONSTANTS.ONE ||
-                      entry.endTime) && <View style={styles.timelineLine} />}
+                    {index < breakTime.length - COMMON_CONSTANTS.ONE && (
+                      <View style={styles.timelineLine} />
+                    )}
                   </View>
 
                   <View style={styles.timelineContent}>
