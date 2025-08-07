@@ -156,6 +156,7 @@ export interface COMMON_CONSTANTS_TYPE {
     SPACE_BETWEEN: const;
     FLEX_START: const;
     FLEX_END: const;
+    SPACE_EVENLY: const;
   };
   ALIGN: {
     RIGHT: const;

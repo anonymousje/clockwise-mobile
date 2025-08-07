@@ -5,19 +5,19 @@ import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 const mode = Appearance.getColorScheme();
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-evenly',
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_EVENLY,
   },
   usersHorizontalContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    justifyContent: COMMON_CONSTANTS.FLEX.FLEX_START,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
     gap: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
   widgetHeaderContainer: {
     flexGrow: COMMON_CONSTANTS.SIZE.SIZE_1,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     gap: COMMON_CONSTANTS.SIZE.SIZE_10,
     paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_10,
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
         : COLORS.BORDER_COLOR_LIGHT_MODE,
   },
   widgetListItem: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_16,
   },
   avatarIconContainer: {
@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     height: COMMON_CONSTANTS.SIZE.SIZE_40,
     width: COMMON_CONSTANTS.SIZE.SIZE_40,
     backgroundColor: COLORS.CLOCKWISE_PRIMARY,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
   },
   widgetListContainer: {
-    flexDirection: 'row',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
   },
   avatarText: {
     fontSize: COMMON_CONSTANTS.SIZE.SIZE_17,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
-    justifyContent: 'center',
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
     paddingRight: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   bottomBorder: {
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_15,
-    alignItems: 'center',
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     borderTopWidth: 1,
     borderTopColor:
       mode === MODE.DARK
@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     height: COMMON_CONSTANTS.SIZE.SIZE_50,
     width: COMMON_CONSTANTS.SIZE.SIZE_50,
     backgroundColor: COLORS.CLOCKWISE_PRIMARY,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
   },
   modalListItem: {
-    flexDirection: 'row',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_18,
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_20,
-    alignItems: 'center',
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
   },
   modalDetailsContainer: {
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     paddingRight: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   modalNameText: {
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   modalNameContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_20,
     gap: COMMON_CONSTANTS.SIZE.SIZE_5,
     paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_5,
@@ -145,15 +145,15 @@ const styles = StyleSheet.create({
   },
   modalHeaderContainer: {
     flexShrink: COMMON_CONSTANTS.SIZE.SIZE_1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 0.4,
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
+    borderBottomWidth: 0.3,
     borderBottomColor:
       mode === MODE.DARK
         ? COLORS.BORDER_COLOR_DARK_MODE
         : COLORS.BORDER_COLOR_LIGHT_MODE,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_18,
-    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_18,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_24,
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
@@ -163,12 +163,12 @@ const styles = StyleSheet.create({
     fontSize: COMMON_CONSTANTS.SIZE.SIZE_16,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
-    textAlign: 'center',
+    textAlign: COMMON_CONSTANTS.ALIGN.CENTER,
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_40,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_40,
   },
   modalTitle: {
-    fontSize: COMMON_CONSTANTS.SIZE.SIZE_22,
+    fontSize: COMMON_CONSTANTS.SIZE.SIZE_21,
     fontFamily: FONTS.CLOCKWISE_BOLD,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
-
   clockInTimeText: {
     fontSize: COMMON_CONSTANTS.SIZE.SIZE_20,
     color: COLORS.CLOCKWISE_PRIMARY_DARK,

@@ -73,6 +73,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     SPACE_BETWEEN: 'space-between',
     FLEX_START: 'flex-start',
     FLEX_END: 'flex-end',
+    SPACE_EVENLY: 'space-evenly',
   },
   ALIGN: {
     RIGHT: 'right',
