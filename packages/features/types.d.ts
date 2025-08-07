@@ -148,9 +148,28 @@ export interface COMMON_CONSTANTS_TYPE {
     JOB_ROLE: const;
     ROLE: const;
   };
+  FLEX: {
+    ROW: const;
+    COLUMN: const;
+    CENTER: const;
+    SPACE_BETWEEN: const;
+    FLEX_START: const;
+    FLEX_END: const;
+  };
+  ALIGN: {
+    RIGHT: const;
+    LEFT: const;
+    CENTER: const;
+  };
+  POSITION: {
+    ABSOLUTE: const;
+    RELATIVE: const;
+  };
   SIZE: {
     SIZE_1: number;
+    SIZE_2: number;
     SIZE_3: number;
+    SIZE_4: number;
     SIZE_5: number;
     SIZE_8: number;
     SIZE_10: number;

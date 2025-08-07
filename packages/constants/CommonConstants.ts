@@ -65,9 +65,28 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     JOB_ROLE: 'jobRole',
     ROLE: 'role',
   },
+  FLEX: {
+    ROW: 'row',
+    COLUMN: 'column',
+    CENTER: 'center',
+    SPACE_BETWEEN: 'space-between',
+    FLEX_START: 'flex-start',
+    FLEX_END: 'flex-end',
+  },
+  ALIGN: {
+    RIGHT: 'right',
+    LEFT: 'left',
+    CENTER: 'center',
+  },
+  POSITION: {
+    ABSOLUTE: 'absolute',
+    RELATIVE: 'relative',
+  },
   SIZE: {
     SIZE_1: 1,
+    SIZE_2: 2,
     SIZE_3: 3,
+    SIZE_4: 4,
     SIZE_5: 5,
     SIZE_8: 8,
     SIZE_10: 10,

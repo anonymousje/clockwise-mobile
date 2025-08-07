@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     fontSize: COMMON_CONSTANTS.SIZE.SIZE_48,
   },
   clockTimesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_50,
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_50,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
@@ -63,32 +63,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_30,
   },
   timelineItem: {
-    flexDirection: 'row',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_40,
   },
   timelineClockItem: {
-    flexDirection: 'row',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_40,
     marginLeft: COMMON_CONSTANTS.SIZE.SIZE_3,
   },
   timelineIconContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     marginRight: COMMON_CONSTANTS.SIZE.SIZE_16,
   },
   timelineClockIcon: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     marginRight: COMMON_CONSTANTS.SIZE.SIZE_21,
-    paddingRight: 2,
+    paddingRight: COMMON_CONSTANTS.SIZE.SIZE_2,
   },
   timelineContent: {
     height: COMMON_CONSTANTS.SIZE.SIZE_40,
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingBottom: 2,
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_2,
   },
   timelineLabel: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     marginHorizontal: COMMON_CONSTANTS.SIZE.SIZE_30,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_8,
-    alignItems: 'center',
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
   },
   clockOutButtonText: {
     color: COLORS.WHITE,
@@ -109,32 +109,32 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_BOLD,
   },
   timelineTime: {
-    color: '#8a9ba8',
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: COMMON_CONSTANTS.SIZE.SIZE_18,
     minWidth: COMMON_CONSTANTS.SIZE.SIZE_60,
-    textAlign: 'right',
+    textAlign: COMMON_CONSTANTS.ALIGN.RIGHT,
   },
   timelineClockLine: {
-    width: 2,
+    width: COMMON_CONSTANTS.SIZE.SIZE_2,
     height: COMMON_CONSTANTS.SIZE.SIZE_60,
     backgroundColor: COLORS.BLACK,
-    marginTop: 4,
-    marginRight: 3,
-    position: 'absolute',
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_4,
+    marginRight: COMMON_CONSTANTS.SIZE.SIZE_3,
+    position: COMMON_CONSTANTS.POSITION.ABSOLUTE,
     top: COMMON_CONSTANTS.SIZE.SIZE_26,
   },
   timelineLine: {
-    width: 2,
+    width: COMMON_CONSTANTS.SIZE.SIZE_2,
     height: COMMON_CONSTANTS.SIZE.SIZE_57,
     backgroundColor: COLORS.BLACK,
-    marginTop: 4,
-    position: 'absolute',
-    marginRight: 2,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_4,
+    position: COMMON_CONSTANTS.POSITION.ABSOLUTE,
+    marginRight: COMMON_CONSTANTS.SIZE.SIZE_2,
     top: COMMON_CONSTANTS.SIZE.SIZE_26,
   },
   modalContainer: {
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
-    justifyContent: 'flex-start',
+    justifyContent: COMMON_CONSTANTS.FLEX.FLEX_START,
 
     backgroundColor:
       mode === MODE.DARK
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         : COLORS.BACKGROUND_LIGHT_MODE,
   },
   modalHeader: {
-    flexDirection: 'row',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_15,
     borderBottomWidth: 0.2,
     borderBottomColor: COLORS.HEADER_BORDER_COLOR,
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   noteContainer: {
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
-    justifyContent: 'space-between',
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
   },
 });
 
