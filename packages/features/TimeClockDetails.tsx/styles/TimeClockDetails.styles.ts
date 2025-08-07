@@ -8,13 +8,18 @@ const styles = StyleSheet.create({
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
     backgroundColor:
       mode === MODE.DARK
-        ? COLORS.BACKGROUND_DARK_MODE
-        : COLORS.BACKGROUND_LIGHT_MODE,
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
   },
   workLabelContainer: {
     borderBottomWidth: 0.2,
-    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_30,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_30,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_10,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
   workLabel: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
@@ -31,8 +36,8 @@ const styles = StyleSheet.create({
   clockTimesContainer: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
-    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_50,
-    marginTop: COMMON_CONSTANTS.SIZE.SIZE_50,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_50,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_50,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
   clockTimeSection: {
@@ -61,6 +66,10 @@ const styles = StyleSheet.create({
     flex: COMMON_CONSTANTS.SIZE.SIZE_1,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_30,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
   },
   timelineItem: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
