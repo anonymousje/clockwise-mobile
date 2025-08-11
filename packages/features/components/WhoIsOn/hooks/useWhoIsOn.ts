@@ -64,7 +64,7 @@ const useWhoIsOn = () => {
         });
       }
     });
-  }, [user]);
+  }, [user.authenticated, user.email]);
 
   const handleUserPress = () => {
     navigation.navigate(SCREENS.TimeClockDetails);
