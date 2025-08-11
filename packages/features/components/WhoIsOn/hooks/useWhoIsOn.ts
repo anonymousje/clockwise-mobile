@@ -31,6 +31,10 @@ const useWhoIsOn = () => {
   };
 
   useEffect(() => {
+    if (!user.authenticated) {
+      return;
+    }
+
     if (updated.whoIsOnListUpdateFlag) {
       fetchWhoIsOnData();
       dispatch(fetchUpdatedWhoIsOnList(false));
@@ -38,9 +42,18 @@ const useWhoIsOn = () => {
     if (refreshFlag) {
       fetchWhoIsOnData();
     }
-  }, [refreshFlag, updated.whoIsOnListUpdateFlag, dispatch]);
+  }, [
+    refreshFlag,
+    updated.whoIsOnListUpdateFlag,
+    dispatch,
+    user.authenticated,
+  ]);
 
   useEffect(() => {
+    if (!user.authenticated) {
+      return;
+    }
+
     fetchWhoIsOnData();
     WhoIsOnService.fetchUsersDetails().then((res) => {
       if (res.status) {

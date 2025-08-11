@@ -14,6 +14,7 @@ export default function useClock() {
   const refreshFlag = useSelector(
     (state: RootState) => state.updated.refreshFlag,
   );
+  const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const [clockIn, setClockIn] = useState(true);
   const [onBreak, setOnBreak] = useState(false);
@@ -62,6 +63,10 @@ export default function useClock() {
   }, []);
 
   useEffect(() => {
+    if (!user.authenticated) {
+      return;
+    }
+
     const fetchData = async () => {
       if (onBreak) {
         await getBreakStatus();
@@ -80,10 +85,10 @@ export default function useClock() {
     }, COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS);
 
     return () => clearInterval(interval);
-  }, [getClockStatus, getBreakStatus, onBreak, dispatch]);
+  }, [getClockStatus, getBreakStatus, onBreak, dispatch, user.authenticated]);
 
   useEffect(() => {
-    if (refreshFlag) {
+    if (refreshFlag && user.authenticated) {
       if (onBreak) {
         getBreakStatus();
       } else {
@@ -91,7 +96,14 @@ export default function useClock() {
       }
       dispatch(setRefreshFlag(false));
     }
-  }, [refreshFlag, onBreak, getBreakStatus, getClockStatus, dispatch]);
+  }, [
+    refreshFlag,
+    onBreak,
+    getBreakStatus,
+    getClockStatus,
+    dispatch,
+    user.authenticated,
+  ]);
 
   const handleNoteChange = (text: string) => {
     setNote(text);

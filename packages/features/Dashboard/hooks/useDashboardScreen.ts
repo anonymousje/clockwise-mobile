@@ -17,14 +17,16 @@ const useDashboardScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    if (!refreshFlag && refreshing) {
+    if (!refreshFlag) {
       setRefreshing(false);
     }
-  }, [refreshFlag, refreshing]);
+  }, [refreshFlag]);
 
   const onRefresh = () => {
-    setRefreshing(true);
-    dispatch(setRefreshFlag(true));
+    if (!refreshing) {
+      setRefreshing(true);
+      dispatch(setRefreshFlag(true));
+    }
   };
 
   const handleBack = () => {
@@ -36,6 +38,7 @@ const useDashboardScreen = () => {
   };
 
   const logout = () => {
+    setRefreshing(false);
     dispatch(logOutUser());
     navigation.replace(SCREENS.Login);
   };
