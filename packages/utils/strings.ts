@@ -8,6 +8,7 @@ const STRINGS = {
     NEW_PASSWORD: 'New Password',
     TIME_CLOCK_DETAILS: 'Time Clock Details',
   },
+  DASH: '-',
   CLOCK_IN: 'Clock In',
   CLOCK_OUT: 'Clock Out',
   EMPLOYEE_FORM: {
