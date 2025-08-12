@@ -29,6 +29,7 @@ apiClient.interceptors.request.use(
     if (accessToken) {
       config.headers.Authorization = `${COMMON_CONSTANTS.API_HEADERS.BEARER} ${accessToken}`;
     }
+    console.log('Request made with ', config);
     return config;
   },
   function (error) {
@@ -38,6 +39,7 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   function (response) {
+    console.log('Response received:', response);
     return response;
   },
 

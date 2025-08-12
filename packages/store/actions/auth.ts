@@ -10,10 +10,14 @@ export const setUser = (userData: User) => {
   };
 };
 
-export const setTokens = (accessToken: string, refreshToken: string) => {
+export const setTokens = (
+  accessToken: string,
+  refreshToken: string,
+  role?: string,
+) => {
   return {
     type: COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS,
-    payload: { accessToken, refreshToken },
+    payload: { accessToken, refreshToken, role },
   };
 };
 
