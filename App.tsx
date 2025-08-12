@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider, useSelector } from 'react-redux';
 import Login from './packages/features/Login/container/LoginScreen';
+import SplashScreen from './packages/features/SplashScreen/container/SplashScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
 import Dashboard from './packages/features/Dashboard/container/DashboardScreen';
@@ -111,7 +112,13 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer linking={linking}>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={SCREENS.SplashScreen}>
+          <Stack.Screen
+            name={SCREENS.SplashScreen}
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
+
           <Stack.Screen
             name={SCREENS.Login}
             component={Login}

@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCREENS } from '../../../constants/screens';
 import { useDispatch } from 'react-redux';
-import { logInUser, setTokens } from '../../../store/actions/auth';
+import { logInUser } from '../../../store/actions/auth';
 import { NavigationProp } from '../../types';
 
 const useLoginScreen = () => {
@@ -17,32 +16,6 @@ const useLoginScreen = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    const checkUser = async () => {
-      const user = await AsyncStorage.getItem('user');
-      console.log('Checking user in AsyncStorage:', user);
-      if (user) {
-        const parsedUser = JSON.parse(user);
-        console.log(
-          'User found, setting tokens:',
-          parsedUser.accessToken,
-          parsedUser.refreshToken,
-          parsedUser.role,
-        );
-        dispatch(
-          setTokens(
-            parsedUser.accessToken,
-            parsedUser.refreshToken,
-            parsedUser.role,
-          ),
-        );
-        navigation.replace(SCREENS.MainTabs);
-      } else {
-        console.log('No user found, redirecting to login');
-      }
-    };
-    checkUser();
-  }, [dispatch, navigation]);
 
   const handleLogin = async () => {
     setAttempt(false);

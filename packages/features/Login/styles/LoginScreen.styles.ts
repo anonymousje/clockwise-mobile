@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

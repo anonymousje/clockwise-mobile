@@ -5,6 +5,7 @@ import { TextInputProps } from 'react-native-gesture-handler';
 
 export type RoutesTypes = {
   [SCREENS.Login]: undefined;
+  [SCREENS.SplashScreen]: undefined;
   [SCREENS.ForgotPassword]: undefined;
   [SCREENS.Dashboard]: undefined;
   [SCREENS.NewPassword]: { email?: string; token?: string };
