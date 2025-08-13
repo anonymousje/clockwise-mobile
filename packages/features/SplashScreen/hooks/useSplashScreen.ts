@@ -11,6 +11,7 @@ const useSplashScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('SplashScreen mounted');
     const checkAuth = async () => {
       try {
         const user = await AsyncStorage.getItem('user');

@@ -1,19 +1,19 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from '../styles/SplashScreen.styles';
-
-import { COLORS } from '../../../constants/theme';
 import useSplashScreen from '../hooks/useSplashScreen';
+import STRINGS from '../../../utils/strings';
 
 const SplashScreen = () => {
   useSplashScreen();
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator
-        size='large'
-        color={COLORS.CLOCKWISE_PRIMARY}
-      />
+      <View style={styles.logoContainer}>
+        <Text style={styles.logo}>{STRINGS.CLOCKWISE_INITIALS}</Text>
+        <Text style={styles.logoSeparator}>|</Text>
+        <Text style={styles.logoText}>{STRINGS.CLOCKWISE}</Text>
+      </View>
     </View>
   );
 };
