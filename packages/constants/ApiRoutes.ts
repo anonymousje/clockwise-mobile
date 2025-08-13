@@ -1,9 +1,8 @@
 const ApiRoutes = {
-  BaseURL: 'http://10.0.2.2:5135/api',
-  refreshToken: 'http://10.0.2.2:5135/api/auth/refresh-token',
+  BaseURL: 'https://web.usmank.site',
   forgotPassword: '/Auth/forgot-password',
   newPassword: '/Auth/reset-password',
-  login: '/Auth/login',
+  login: '/login',
   addEmployee: '/user/create-user',
   getStaff: '/user/get-all-users',
   getAllDepartments: '/department/get-all-departments',

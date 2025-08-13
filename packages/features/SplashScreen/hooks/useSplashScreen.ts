@@ -11,25 +11,17 @@ const useSplashScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('SplashScreen mounted');
     const checkAuth = async () => {
       try {
         const user = await AsyncStorage.getItem('user');
         if (user) {
           const parsedUser = JSON.parse(user);
-          dispatch(
-            setTokens(
-              parsedUser.accessToken,
-              parsedUser.refreshToken,
-              parsedUser.role,
-            ),
-          );
+          dispatch(setTokens(parsedUser.accessToken, parsedUser.role));
           navigation.replace(SCREENS.MainTabs);
         } else {
           navigation.replace(SCREENS.Login);
         }
       } catch (error) {
-        console.log('Error checking auth:', error);
         navigation.replace(SCREENS.Login);
       }
     };

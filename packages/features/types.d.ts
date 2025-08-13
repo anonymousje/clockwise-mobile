@@ -17,10 +17,12 @@ export type RoutesTypes = {
 };
 
 export type User = {
+  userId?: number;
+  name?: string;
   email: string;
   accessToken: string;
-  refreshToken: string;
   role: string;
+  status?: number;
 };
 
 export type breakArrayType = {
