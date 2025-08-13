@@ -56,14 +56,23 @@ export const useSession = (state = initialState, action: Action) => {
       AsyncStorage.setItem(
         'user',
         JSON.stringify({
+          userId: action.payload.userId || state.userId,
+          name: action.payload.name || state.name,
+          email: action.payload.email || state.email,
           accessToken: action.payload.accessToken,
           role: action.payload.role || state.role,
+          status: action.payload.status || state.status,
+          authenticated: true,
         }),
       );
       return {
         ...state,
+        userId: action.payload.userId || state.userId,
+        name: action.payload.name || state.name,
+        email: action.payload.email || state.email,
         accessToken: action.payload.accessToken,
         role: action.payload.role || state.role,
+        status: action.payload.status || state.status,
         authenticated: true,
       };
 

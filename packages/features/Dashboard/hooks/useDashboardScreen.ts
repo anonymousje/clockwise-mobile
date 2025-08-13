@@ -20,7 +20,8 @@ const useDashboardScreen = () => {
     if (!refreshFlag) {
       setRefreshing(false);
     }
-  }, [refreshFlag]);
+    console.log(user);
+  }, [refreshFlag, user]);
 
   const onRefresh = () => {
     if (!refreshing) {

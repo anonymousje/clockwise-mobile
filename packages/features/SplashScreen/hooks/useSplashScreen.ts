@@ -16,7 +16,16 @@ const useSplashScreen = () => {
         const user = await AsyncStorage.getItem('user');
         if (user) {
           const parsedUser = JSON.parse(user);
-          dispatch(setTokens(parsedUser.accessToken, parsedUser.role));
+          dispatch(
+            setTokens(
+              parsedUser.accessToken,
+              parsedUser.role,
+              parsedUser.email,
+              parsedUser.status,
+              parsedUser.name,
+              parsedUser.userId,
+            ),
+          );
           navigation.replace(SCREENS.MainTabs);
         } else {
           navigation.replace(SCREENS.Login);
