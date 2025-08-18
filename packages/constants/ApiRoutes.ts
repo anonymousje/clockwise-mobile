@@ -1,6 +1,6 @@
 const ApiRoutes = {
   BaseURL: 'https://web.usmank.site',
-  forgotPassword: '/Auth/forgot-password',
+  forgotPassword: '/forgot-password',
   newPassword: '/Auth/reset-password',
   login: '/login',
   addEmployee: '/user/create-user',

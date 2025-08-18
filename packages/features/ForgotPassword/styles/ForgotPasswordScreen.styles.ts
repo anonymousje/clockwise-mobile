@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   popUpBoxText: {
     color:
       mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.BACKGROUND_LIGHT_MODE,
-    fontSize: FONT_SIZE.SIZE_24,
+    fontSize: FONT_SIZE.SIZE_18,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     textAlign: 'center',
   },
