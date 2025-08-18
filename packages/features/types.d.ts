@@ -13,7 +13,7 @@ export type RoutesTypes = {
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
   [SCREENS.TimeClockDetails]: undefined;
-  [SCREENS.StaffDetail]: { recordId: string };
+  [SCREENS.StaffDetail]: { recordId: number };
 };
 
 export type User = {
@@ -297,29 +297,31 @@ export type ResponseType = {
 
 export type staffType = {
   iconColor?: string;
-  recordId: string;
-  firstName: string;
-  lastName: string;
+  id: number;
+  first_name: string;
+  last_name: string;
   email: string;
   role?: string;
-  phoneNumber?: string | null;
-  lastLoginDate?: string | null;
-  userStatus?: number;
+  cellphone?: string | null;
+  homephone?: string | null;
+  last_login?: string | null;
+  status?: number;
   username?: string;
   nickname?: string | null;
   address?: string | null;
-  departmentName?: string | null;
-  locationName?: string | null;
-  jobRoleName?: string | null;
-  userCode?: string | null;
-  departmentRecordId?: string | null;
-  locationRecordId?: string | null;
-  jobRoleRecordId?: string | null;
-  isDeleted?: boolean;
+  department_name?: string | null;
+  location_name?: string | null;
+  jobrole_name?: string | null;
+  created_at?: string | null;
+  department?: number | null;
+  location?: number | null;
+  jobrole?: number | null;
+  role_id?: number;
+  delete_user?: boolean;
 };
 
 export type filterItemsType = {
-  recordId: string;
+  recordId: number;
   name: string;
 };
 

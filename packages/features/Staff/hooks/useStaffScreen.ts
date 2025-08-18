@@ -97,7 +97,7 @@ const useStaffScreen = () => {
     let filteredData: staffType[] = data;
     if (active !== 2) {
       filteredData = data.filter(
-        (item: staffType) => item.userStatus === Number(active),
+        (item: staffType) => item.status === Number(active),
       );
     }
     setCacheStaffList(filteredData);
@@ -111,8 +111,8 @@ const useStaffScreen = () => {
     if (text) {
       const filteredData = cacheStaffList.filter(
         (item) =>
-          item.firstName.toLowerCase().includes(text.toLowerCase()) ||
-          item.lastName?.toLowerCase().includes(text.toLowerCase()),
+          item.first_name.toLowerCase().includes(text.toLowerCase()) ||
+          item.last_name?.toLowerCase().includes(text.toLowerCase()),
       );
 
       setStaffList(filteredData);
@@ -123,7 +123,7 @@ const useStaffScreen = () => {
 
   const staffDetails = (data: staffType) => {
     navigation.navigate(SCREENS.StaffDetail, {
-      recordId: data.recordId,
+      recordId: data.id,
     });
   };
 

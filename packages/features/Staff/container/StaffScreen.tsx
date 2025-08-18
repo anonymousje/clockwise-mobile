@@ -87,22 +87,21 @@ const Staff = () => {
                     backgroundColor: staff.iconColor,
                   },
                 ]}
-              >
-                <Text style={styles.staffAvatarText}>
-                  {staff.firstName[0].toUpperCase()}
-                  {staff.lastName
-                    ? staff.lastName[0].toUpperCase()
-                    : COMMON_CONSTANTS.DEFAULT}
-                </Text>
+              >              <Text style={styles.staffAvatarText}>
+                {staff.first_name[0].toUpperCase()}
+                {staff.last_name
+                  ? staff.last_name[0].toUpperCase()
+                  : COMMON_CONSTANTS.DEFAULT}
+              </Text>
               </View>
 
               <View>
                 <Text style={styles.staffName}>
-                  {staff.firstName} <Text>{staff.lastName} </Text>
+                  {staff.first_name} <Text>{staff.last_name} </Text>
                 </Text>
 
-                {staff.jobRoleName && (
-                  <Text style={styles.position}>{staff.jobRoleName}</Text>
+                {staff.jobrole_name && (
+                  <Text style={styles.position}>{staff.jobrole_name}</Text>
                 )}
               </View>
             </TouchableOpacity>
@@ -169,7 +168,7 @@ const Staff = () => {
                 <Picker.Item
                   key={item.recordId}
                   label={item.name}
-                  value={item.recordId}
+                  value={item.recordId.toString()}
                 />
               ))}
             </Picker>
@@ -188,7 +187,7 @@ const Staff = () => {
                 <Picker.Item
                   key={item.recordId}
                   label={item.name}
-                  value={item.recordId}
+                  value={item.recordId.toString()}
                 />
               ))}
             </Picker>
@@ -207,7 +206,7 @@ const Staff = () => {
                 <Picker.Item
                   key={item.recordId}
                   label={item.name}
-                  value={item.recordId}
+                  value={item.recordId.toString()}
                 />
               ))}
             </Picker>
