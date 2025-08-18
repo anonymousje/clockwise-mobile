@@ -2,12 +2,11 @@ import ApiRoutes from '../../../constants/ApiRoutes';
 import apiClient from '../../ApiClient';
 
 class NewPasswordService {
-  async resetPassword(email: string, token: string, newPassword: string) {
+  async resetPassword(token: string, newPassword: string) {
     const encodedToken = encodeURIComponent(token);
     const response = await apiClient.post(ApiRoutes.newPassword, {
-      email,
       token: encodedToken,
-      newPassword,
+      new_password: newPassword,
     });
     return response.data.data;
   }

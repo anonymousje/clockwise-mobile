@@ -27,25 +27,31 @@ const useNewPasswordScreen = () => {
     const numberRegex = /\d/;
     const lengthRegex = /.{7,}/;
 
-    setIsUppercase(uppercaseRegex.test(text));
-    setIsSpecialChar(specialCharRegex.test(text));
-    setIsNumber(numberRegex.test(text));
-    setIsLength(lengthRegex.test(text));
+    const hasUppercase = uppercaseRegex.test(text);
+    const hasSpecialChar = specialCharRegex.test(text);
+    const hasNumber = numberRegex.test(text);
+    const hasLength = lengthRegex.test(text);
 
-    return isUppercase && isSpecialChar && isLength && isNumber;
+    setIsUppercase(hasUppercase);
+    setIsSpecialChar(hasSpecialChar);
+    setIsNumber(hasNumber);
+    setIsLength(hasLength);
+
+    return hasUppercase && hasSpecialChar && hasLength && hasNumber;
   };
 
   const route = useRoute<NewPasswordRouteProp>();
 
-  const { email, token } = route.params || {};
+  const { token } = route.params || {};
   const navigation = useNavigation<NavigationProp>();
 
   const handleBack = () => {
-    navigation.navigate(SCREENS.Login);
+    navigation.replace(SCREENS.Login);
   };
 
   const handleSubmit = () => {
-    setIsValid(validatePassword(newPassword));
+    const isPasswordValid = validatePassword(newPassword);
+    setIsValid(isPasswordValid);
     setMatch(true);
     setLoading(true);
 
@@ -55,10 +61,10 @@ const useNewPasswordScreen = () => {
       return;
     }
 
-    if (token && validatePassword(newPassword)) {
+    if (token && isPasswordValid) {
       const encodedToken = encodeURIComponent(token);
 
-      NewPasswordService.resetPassword(email, encodedToken, newPassword)
+      NewPasswordService.resetPassword(encodedToken, newPassword)
         .then(() => {
           setSuccess(true);
           setLoading(false);
