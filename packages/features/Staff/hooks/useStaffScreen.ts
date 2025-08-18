@@ -31,7 +31,7 @@ const useStaffScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userFromStore?.role === COMMON_CONSTANTS.ADMIN) {
+    if (userFromStore?.role === COMMON_CONSTANTS.MANAGER) {
       StaffService.getStaff().then((data: staffType[]) => {
         setStaffList(
           data.map((item: staffType) => ({

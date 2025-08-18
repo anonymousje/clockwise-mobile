@@ -3,14 +3,14 @@ import { COMMON_CONSTANTS_TYPE } from '../features/types';
 const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
   DEFAULT: '',
   PICKER_VALUES: {
-    ADMIN: 'Admin',
+    MANAGER: 'Manager',
     USER: 'User',
   },
   API_HEADERS: {
     CONTENT_TYPE: 'Content-Type',
     APPLICATION_JSON: 'application/json',
     ACCEPT: '*/*',
-    BEARER: 'Bearer',
+    JWT: 'jwt=',
   },
   PERCENTAGES: {
     HUNDRED: '100%',
@@ -24,7 +24,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
   ZERO: 0,
   ONE: 1,
   SPACE: ' ',
-  ADMIN: 'Admin',
+  MANAGER: 'Manager',
   REDUX_TYPES: {
     SET_USER: 'SET_USER',
     SET_TOKENS: 'SET_TOKENS',

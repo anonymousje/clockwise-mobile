@@ -89,7 +89,7 @@ const MainTabs = () => {
           tabBarIcon: DashboardTabIcon,
         }}
       />
-      {User.role === COMMON_CONSTANTS.PICKER_VALUES.ADMIN && (
+      {User.role === COMMON_CONSTANTS.MANAGER && (
         <Tab.Screen
           name={SCREENS.Staff}
           component={Staff}

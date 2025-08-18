@@ -17,7 +17,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
   function (config) {
     if (accessToken) {
-      config.headers.Authorization = `${COMMON_CONSTANTS.API_HEADERS.BEARER} ${accessToken}`;
+      config.headers.Cookie = `${COMMON_CONSTANTS.API_HEADERS.JWT}${accessToken}`;
     }
     console.log('Request made with ', config);
     return config;

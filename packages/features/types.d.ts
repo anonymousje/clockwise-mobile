@@ -89,14 +89,14 @@ export interface FORM_CONTROLLER_VALUES {
 export interface COMMON_CONSTANTS_TYPE {
   DEFAULT: string;
   PICKER_VALUES: {
-    ADMIN: string;
+    MANAGER: string;
     USER: string;
   };
   API_HEADERS: {
     CONTENT_TYPE: string;
     APPLICATION_JSON: string;
     ACCEPT: string;
-    BEARER: string;
+    JWT: string;
   };
   PERCENTAGES: {
     HUNDRED: const;
@@ -107,7 +107,7 @@ export interface COMMON_CONSTANTS_TYPE {
     EIGHTY: const;
   };
   END: string;
-  ADMIN: string;
+  MANAGER: string;
   REDUX_TYPES: {
     SET_USER: string;
     SET_TOKENS: string;

@@ -369,7 +369,7 @@ const StaffDetail = () => {
 
                   <Picker.Item
                     label={STRINGS.ROLES.ADMIN}
-                    value={COMMON_CONSTANTS.PICKER_VALUES.ADMIN}
+                    value={COMMON_CONSTANTS.PICKER_VALUES.MANAGER}
                   />
 
                   <Picker.Item
