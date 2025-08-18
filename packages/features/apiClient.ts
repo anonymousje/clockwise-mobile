@@ -4,8 +4,6 @@ import { setTokens } from '../store/actions/auth';
 import COMMON_CONSTANTS from '../constants/CommonConstants';
 import ApiRoutes from '../constants/ApiRoutes';
 
-console.log('ApiClient module loaded');
-
 let accessToken = COMMON_CONSTANTS.DEFAULT;
 
 export const setAccessToken = (token: string) => {

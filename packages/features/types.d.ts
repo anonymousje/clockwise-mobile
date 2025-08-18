@@ -98,6 +98,15 @@ export interface COMMON_CONSTANTS_TYPE {
     ACCEPT: string;
     BEARER: string;
   };
+  PERCENTAGES: {
+    HUNDRED: const;
+    FIFTY: const;
+    TWENTY_FIVE: const;
+    TWENTY: const;
+    ZERO: const;
+    EIGHTY: const;
+  };
+  END: string;
   ADMIN: string;
   REDUX_TYPES: {
     SET_USER: string;
