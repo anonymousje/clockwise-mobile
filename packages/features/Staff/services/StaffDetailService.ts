@@ -29,7 +29,7 @@ class StaffDetailService {
     return response.data.data;
   }
 
-  async updateUser(recordId?: string, userData?: any) {
+  async updateUser(recordId?: number, userData?: any) {
     if (!recordId || !userData) {
       throw Error;
     }

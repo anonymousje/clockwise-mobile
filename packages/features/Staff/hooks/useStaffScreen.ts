@@ -123,7 +123,7 @@ const useStaffScreen = () => {
 
   const staffDetails = (data: staffType) => {
     navigation.navigate(SCREENS.StaffDetail, {
-      recordId: data.id,
+      data,
     });
   };
 

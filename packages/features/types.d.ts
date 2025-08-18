@@ -13,7 +13,7 @@ export type RoutesTypes = {
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
   [SCREENS.TimeClockDetails]: undefined;
-  [SCREENS.StaffDetail]: { recordId: number };
+  [SCREENS.StaffDetail]: { data: staffType | null };
 };
 
 export type User = {

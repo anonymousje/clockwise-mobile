@@ -8,10 +8,11 @@ import { z } from 'zod';
 import StaffDetailService from '../services/StaffDetailService';
 import STRINGS from '../../../utils/strings';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import { set } from 'react-hook-form';
 
 const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();
-  const { recordId } = route.params;
+  const { data } = route.params;
   const dispatch = useDispatch();
 
   const [editMode, setEditMode] = useState(false);
@@ -29,12 +30,12 @@ const useStaffDetail = () => {
   });
 
   useEffect(() => {
-    if (!recordId) {
+    if (!data) {
       return;
     }
 
     const fetchData = async () => {
-      setStaffData(await StaffDetailService.getUser(recordId));
+      setStaffData(data);
 
       setDepartmentList(await StaffDetailService.getDepartment());
 
@@ -44,7 +45,7 @@ const useStaffDetail = () => {
     };
 
     fetchData();
-  }, [recordId]);
+  }, [data]);
 
   const editStaffData = async () => {
     if (editMode) {
@@ -65,28 +66,24 @@ const useStaffDetail = () => {
 
       setValidationErrors({});
       try {
-        await StaffDetailService.updateUser(staffData?.recordId, {
-          firstName: staffData?.firstName,
-          lastName: staffData?.lastName,
+        await StaffDetailService.updateUser(staffData?.id, {
+          firstName: staffData?.first_name,
+          lastName: staffData?.last_name,
           email: staffData?.email,
-          phoneNumber: staffData?.phoneNumber,
+          phoneNumber: staffData?.cellphone,
           username: staffData?.username,
           address: staffData?.address,
           nickname: staffData?.nickname,
-          userCode: staffData?.userCode,
-          userStatus: staffData?.userStatus,
+          userStatus: staffData?.status,
           role: staffData?.role,
-          departmentRecordId: staffData?.departmentRecordId,
-          locationRecordId: staffData?.locationRecordId,
-          jobRoleRecordId: staffData?.jobRoleRecordId,
-          departmentName: staffData?.departmentName,
-          locationName: staffData?.locationName,
-          jobRoleName: staffData?.jobRoleName,
+          departmentName: staffData?.department_name,
+          locationName: staffData?.location_name,
+          jobRoleName: staffData?.jobrole_name,
         });
 
         dispatch(fetchUpdatedStaffList(true));
         const updatedUser: staffType | null = await StaffDetailService.getUser(
-          staffData?.recordId,
+          staffData?.id,
         );
 
         setStaffData(updatedUser);
@@ -135,11 +132,11 @@ const useStaffDetail = () => {
   };
 
   const changeStatus = async () => {
-    if (staffData?.userStatus === 3) {
-      await StaffDetailService.restoreUser(staffData?.recordId);
+    if (staffData?.status === 3) {
+      await StaffDetailService.restoreUser(staffData?.id);
       dispatch(fetchUpdatedStaffList(true));
     } else {
-      await StaffDetailService.deleteUser(staffData?.recordId);
+      await StaffDetailService.deleteUser(staffData?.id);
       dispatch(fetchUpdatedStaffList(true));
     }
 
