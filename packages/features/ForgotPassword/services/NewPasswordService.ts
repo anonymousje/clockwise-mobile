@@ -4,11 +4,25 @@ import apiClient from '../../ApiClient';
 class NewPasswordService {
   async resetPassword(token: string, newPassword: string) {
     const encodedToken = encodeURIComponent(token);
-    const response = await apiClient.post(ApiRoutes.newPassword, {
-      token: encodedToken,
-      new_password: newPassword,
-    });
-    return response.data.data;
+    return await apiClient
+      .post(ApiRoutes.newPassword, {
+        token: encodedToken,
+        new_password: newPassword,
+      })
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.message,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: null,
+          exceptionMessage: error.message,
+        };
+      });
   }
 }
 
