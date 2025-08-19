@@ -32,9 +32,9 @@ const useStaffScreen = () => {
 
   useEffect(() => {
     if (userFromStore?.role === COMMON_CONSTANTS.MANAGER) {
-      StaffService.getStaff().then((data: staffType[]) => {
+      StaffService.getStaff().then((data) => {
         setStaffList(
-          data.map((item: staffType) => ({
+          data.response.map((item: staffType) => ({
             ...item,
             iconColor:
               COLORS.RANDOM_COLOR_ARRAY[
@@ -43,7 +43,7 @@ const useStaffScreen = () => {
           })),
         );
         setCacheStaffList(
-          data.map((item: staffType) => ({
+          data.response.map((item: staffType) => ({
             ...item,
             iconColor:
               COLORS.RANDOM_COLOR_ARRAY[
@@ -60,13 +60,13 @@ const useStaffScreen = () => {
 
       const fetchData = async () => {
         const departmentData = await StaffService.fetchDepartment();
-        setDepartmentList(departmentData);
+        setDepartmentList(departmentData.response);
 
         const locationData = await StaffService.fetchLocation();
-        setLocationList(locationData);
+        setLocationList(locationData.response);
 
         const jobRoleData = await StaffService.fetchJobRole();
-        setJobRoleList(jobRoleData);
+        setJobRoleList(jobRoleData.response);
       };
 
       fetchData();
@@ -82,7 +82,7 @@ const useStaffScreen = () => {
       role: rol,
     };
     const data = await StaffService.getStaff(params);
-    const customizedResponse = data.map((item: staffType) => ({
+    const customizedResponse = data.response.map((item: staffType) => ({
       ...item,
       iconColor:
         COLORS.RANDOM_COLOR_ARRAY[

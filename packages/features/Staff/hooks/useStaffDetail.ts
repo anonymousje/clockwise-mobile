@@ -8,7 +8,6 @@ import { z } from 'zod';
 import StaffDetailService from '../services/StaffDetailService';
 import STRINGS from '../../../utils/strings';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
-import { set } from 'react-hook-form';
 
 const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();

@@ -26,7 +26,12 @@ const useSplashScreen = () => {
               parsedUser.userId,
             ),
           );
-          navigation.replace(SCREENS.MainTabs);
+          console.log('User authenticated:', parsedUser);
+          if (parsedUser.accessToken) {
+            navigation.replace(SCREENS.MainTabs);
+          } else {
+            navigation.replace(SCREENS.Login);
+          }
         } else {
           navigation.replace(SCREENS.Login);
         }

@@ -1,26 +1,82 @@
 import ApiRoutes from '../../../constants/ApiRoutes';
 import apiClient from '../../ApiClient';
-import { staffSearchQueryType } from '../../types';
+import { staffSearchQueryType, staffType } from '../../types';
 
 class StaffService {
   async getStaff(params?: staffSearchQueryType) {
-    const response = await apiClient.get(ApiRoutes.getStaff, { params });
-    return response.data.data;
+    return await apiClient
+      .get(ApiRoutes.getStaff, { params })
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.data as staffType[],
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: [],
+          exceptionMessage: error.message,
+        };
+      });
   }
 
   async fetchDepartment() {
-    const response = await apiClient.get(ApiRoutes.getAllDepartments);
-    return response.data.data;
+    return await apiClient
+      .get(ApiRoutes.getAllDepartments)
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.data,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: [],
+          exceptionMessage: error.message,
+        };
+      });
   }
 
   async fetchLocation() {
-    const response = await apiClient.get(ApiRoutes.getAllLocations);
-    return response.data.data;
+    return await apiClient
+      .get(ApiRoutes.getAllLocations)
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.data,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: [],
+          exceptionMessage: error.message,
+        };
+      });
   }
 
   async fetchJobRole() {
-    const response = await apiClient.get(ApiRoutes.getAllJobRoles);
-    return response.data.data;
+    return await apiClient
+      .get(ApiRoutes.getAllJobRoles)
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.data,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: [],
+          exceptionMessage: error.message,
+        };
+      });
   }
 }
 
