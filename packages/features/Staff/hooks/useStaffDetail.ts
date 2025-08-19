@@ -81,9 +81,8 @@ const useStaffDetail = () => {
         });
 
         dispatch(fetchUpdatedStaffList(true));
-        const updatedUser: staffType | null = await StaffDetailService.getUser(
-          staffData?.id,
-        );
+        const response = await StaffDetailService.getUser(staffData?.id);
+        const updatedUser: staffType | null = response.response;
 
         setStaffData(updatedUser);
       } catch (e: any) {
@@ -140,11 +139,11 @@ const useStaffDetail = () => {
     }
 
     try {
-      const updatedUser: staffType | null = await StaffDetailService.getUser(
-        staffData?.recordId,
-      );
-
-      setStaffData(updatedUser);
+      const response = await StaffDetailService.getUser(staffData?.id);
+      if (response.status) {
+        const updatedUser: staffType | null = response.response;
+        setStaffData(updatedUser);
+      }
     } catch (error) {}
   };
 
