@@ -138,6 +138,7 @@ export interface COMMON_CONSTANTS_TYPE {
     CLOSE: const;
     ELLIPSE: const;
     CAFE: const;
+    TIME: const;
   };
   SPACE: string;
   DATE_TIME: {

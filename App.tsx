@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider, useSelector } from 'react-redux';
 import Login from './packages/features/Login/container/LoginScreen';
+import TimeTracking from './packages/features/TimeTracking/container/TimeTracking';
 import SplashScreen from './packages/features/SplashScreen/container/SplashScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
@@ -61,6 +62,21 @@ const StaffTabIcon = ({ color, size }: { color: string; size: number }) => (
   />
 );
 
+const TimeTrackingTabIcon = ({
+  color,
+  size,
+}: {
+  color: string;
+  size: number;
+}) => (
+  <Ionicons
+    name={COMMON_CONSTANTS.ICONS.TIME}
+    size={size}
+    color={color}
+    style={{ width: size, height: size }}
+  />
+);
+
 const MainTabs = () => {
   const mode = Appearance.getColorScheme();
   const User = useSelector((state: any) => state.user);
@@ -90,15 +106,26 @@ const MainTabs = () => {
         }}
       />
       {User.role === COMMON_CONSTANTS.MANAGER && (
-        <Tab.Screen
-          name={SCREENS.Staff}
-          component={Staff}
-          options={{
-            title: STRINGS.SCREEN_TITLE.STAFF,
-            headerShown: false,
-            tabBarIcon: StaffTabIcon,
-          }}
-        />
+        <>
+          <Tab.Screen
+            name={SCREENS.Staff}
+            component={Staff}
+            options={{
+              title: STRINGS.SCREEN_TITLE.STAFF,
+              headerShown: false,
+              tabBarIcon: StaffTabIcon,
+            }}
+          />
+          <Tab.Screen
+            name={SCREENS.TimeTracking}
+            component={TimeTracking}
+            options={{
+              title: STRINGS.SCREEN_TITLE.TIME_TRACKING,
+              headerShown: false,
+              tabBarIcon: TimeTrackingTabIcon,
+            }}
+          />
+        </>
       )}
     </Tab.Navigator>
   );

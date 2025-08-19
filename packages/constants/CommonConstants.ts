@@ -52,6 +52,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     CLOSE: 'close-outline',
     ELLIPSE: 'ellipse',
     CAFE: 'cafe-outline',
+    TIME: 'time-outline',
   },
   DATE_TIME: {
     NUMERIC: 'numeric',

@@ -7,6 +7,7 @@ const STRINGS = {
     FORGOT_PASSWORD: 'Forgot Password',
     NEW_PASSWORD: 'New Password',
     TIME_CLOCK_DETAILS: 'Time Clock Details',
+    TIME_TRACKING: 'Time Tracking',
   },
   USER_NOT_FOUND: 'User not found',
   DASH: '-',
