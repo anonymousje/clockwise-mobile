@@ -18,13 +18,13 @@ class StaffDetailService {
     const response = await apiClient.get(ApiRoutes.getAllJobRoles);
     return response.data.data;
   }
-  async getUser(recordId?: string): Promise<staffType | null> {
+  async getUser(recordId?: number): Promise<staffType | null> {
     if (!recordId) {
       throw Error;
     }
 
     const response = await apiClient.get(
-      stringFormat(ApiRoutes.getUser, recordId),
+      stringFormat(ApiRoutes.getUser, String(recordId)),
     );
     return response.data.data;
   }
@@ -35,25 +35,8 @@ class StaffDetailService {
     }
 
     const response = await apiClient.put(
-      stringFormat(ApiRoutes.updateUser, recordId),
+      stringFormat(ApiRoutes.updateUser, String(recordId)),
       userData,
-    );
-    return response.data.data;
-  }
-
-  async deleteUser(recordId?: string) {
-    const response = await apiClient.post(ApiRoutes.deleteUser, {
-      id: recordId,
-    });
-    return response.data.data;
-  }
-
-  async restoreUser(recordId?: string) {
-    if (!recordId) {
-      throw Error;
-    }
-    const response = await apiClient.post(
-      stringFormat(ApiRoutes.restoreUser, recordId),
     );
     return response.data.data;
   }

@@ -3,7 +3,7 @@ const ApiRoutes = {
   forgotPassword: '/forgot-password',
   newPassword: '/reset-password',
   login: '/login',
-  addEmployee: '/user/create-user',
+  addEmployee: '/add-user',
   getStaff: '/get-users',
   getAllDepartments: '/department/get-all-departments',
   getAllLocations: '/location/get-all-locations',
