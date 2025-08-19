@@ -35,12 +35,15 @@ const useStaffDetail = () => {
 
     const fetchData = async () => {
       setStaffData(data);
-
-      setDepartmentList(await StaffDetailService.getDepartment());
-
-      setLocationList(await StaffDetailService.getLocation());
-
-      setJobRoleList(await StaffDetailService.getJobRole());
+      setDepartmentList(
+        await StaffDetailService.getMeta().then((res) => res.departments),
+      );
+      setLocationList(
+        await StaffDetailService.getMeta().then((res) => res.locations),
+      );
+      setJobRoleList(
+        await StaffDetailService.getMeta().then((res) => res.jobroles),
+      );
     };
 
     fetchData();
@@ -66,18 +69,20 @@ const useStaffDetail = () => {
       setValidationErrors({});
       try {
         await StaffDetailService.updateUser(staffData?.id, {
-          firstName: staffData?.first_name,
-          lastName: staffData?.last_name,
+          first_name: staffData?.first_name,
+          last_name: staffData?.last_name,
+          nickname: staffData?.nickname,
+          status: staffData?.status,
           email: staffData?.email,
-          phoneNumber: staffData?.cellphone,
+          cellphone: staffData?.cellphone,
+          homephone: '',
           username: staffData?.username,
           address: staffData?.address,
-          nickname: staffData?.nickname,
-          userStatus: staffData?.status,
-          role: staffData?.role,
-          departmentName: staffData?.department_name,
-          locationName: staffData?.location_name,
-          jobRoleName: staffData?.jobrole_name,
+          role_id: staffData?.role_id,
+          department: staffData?.department,
+          location: staffData?.location,
+          job_role: staffData?.jobrole,
+          created_by: 2,
         });
 
         dispatch(fetchUpdatedStaffList(true));

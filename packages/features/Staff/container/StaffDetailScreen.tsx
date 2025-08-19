@@ -285,7 +285,7 @@ const StaffDetail = () => {
 
                   {departmentList.map((department) => (
                     <Picker.Item
-                      key={department.recordId}
+                      key={department.id}
                       label={department.name}
                       value={department.name}
                     />
@@ -313,7 +313,7 @@ const StaffDetail = () => {
 
                   {locationList.map((location) => (
                     <Picker.Item
-                      key={location.recordId}
+                      key={location.id}
                       label={location.name}
                       value={location.name}
                     />
@@ -341,7 +341,7 @@ const StaffDetail = () => {
 
                   {jobRolelist.map((jobRole) => (
                     <Picker.Item
-                      key={jobRole.recordId}
+                      key={jobRole.id}
                       label={jobRole.name}
                       value={jobRole.name}
                     />
@@ -355,7 +355,7 @@ const StaffDetail = () => {
                   onValueChange={(itemValue) =>
                     handleTextChange(
                       itemValue,
-                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.ROLE,
+                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.JOB_ROLE,
                     )
                   }
                   style={styles.pickerItem}

@@ -5,11 +5,80 @@ import { stringFormat } from '../../../utils/helper';
 import STRINGS from '../../../utils/strings';
 
 class StaffDetailService {
-  async getDepartment() {
-    const response = await apiClient.get(ApiRoutes.getAllDepartments);
-    return response.data.data;
+  async getMeta() {
+    const response = {
+      success: true,
+      data: {
+        departments: [
+          {
+            id: 1,
+            name: 'R&D',
+          },
+          {
+            id: 2,
+            name: 'Sales',
+          },
+          {
+            id: 3,
+            name: 'QA',
+          },
+          {
+            id: 4,
+            name: 'Customer Support',
+          },
+        ],
+        jobroles: [
+          {
+            id: 1,
+            name: 'Manager',
+          },
+          {
+            id: 2,
+            name: 'HR',
+          },
+          {
+            id: 3,
+            name: 'Software Engineer',
+          },
+          {
+            id: 4,
+            name: 'Product Honor',
+          },
+          {
+            id: 5,
+            name: 'Intern',
+          },
+          {
+            id: 6,
+            name: 'SQA',
+          },
+          {
+            id: 7,
+            name: 'Team Lead',
+          },
+          {
+            id: 8,
+            name: 'Department Head',
+          },
+        ],
+        locations: [
+          {
+            id: 1,
+            name: 'Pakistan',
+          },
+          {
+            id: 2,
+            name: 'Serbia',
+          },
+          {
+            id: 3,
+            name: 'USA',
+          },
+        ],
+      },
+    };
+    return response.data;
   }
-
   async getLocation() {
     const response = await apiClient.get(ApiRoutes.getAllLocations);
     return response.data.data;

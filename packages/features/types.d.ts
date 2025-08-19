@@ -159,7 +159,7 @@ export interface COMMON_CONSTANTS_TYPE {
     DEPARTMENT: const;
     LOCATION: const;
     JOB_ROLE: const;
-    ROLE: const;
+    JOB_ROLE: const;
   };
   FLEX: {
     ROW: const;
@@ -321,7 +321,7 @@ export type staffType = {
 };
 
 export type filterItemsType = {
-  recordId: number;
+  id: number;
   name: string;
 };
 
