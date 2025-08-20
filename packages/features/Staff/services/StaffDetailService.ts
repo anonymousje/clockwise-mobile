@@ -25,15 +25,7 @@ class StaffDetailService {
 
     return response;
   }
-  async getLocation() {
-    const response = await apiClient.get(ApiRoutes.getAllLocations);
-    return response.data.data;
-  }
 
-  async getJobRole() {
-    const response = await apiClient.get(ApiRoutes.getAllJobRoles);
-    return response.data.data;
-  }
   async getUser(recordId?: number) {
     if (!recordId) {
       throw Error;

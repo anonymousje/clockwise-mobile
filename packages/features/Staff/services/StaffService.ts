@@ -22,24 +22,6 @@ class StaffService {
       });
   }
 
-  async fetchDepartment() {
-    return await apiClient
-      .get(ApiRoutes.getAllDepartments)
-      .then((res) => {
-        return {
-          status: true,
-          response: res.data.data,
-          exceptionMessage: undefined,
-        };
-      })
-      .catch((error) => {
-        return {
-          status: false,
-          response: [],
-          exceptionMessage: error.message,
-        };
-      });
-  }
   async getMeta() {
     const response = await apiClient
       .get(ApiRoutes.getMeta)
@@ -59,43 +41,6 @@ class StaffService {
       });
 
     return response;
-  }
-  async fetchLocation() {
-    return await apiClient
-      .get(ApiRoutes.getAllLocations)
-      .then((res) => {
-        return {
-          status: true,
-          response: res.data.data,
-          exceptionMessage: undefined,
-        };
-      })
-      .catch((error) => {
-        return {
-          status: false,
-          response: [],
-          exceptionMessage: error.message,
-        };
-      });
-  }
-
-  async fetchJobRole() {
-    return await apiClient
-      .get(ApiRoutes.getAllJobRoles)
-      .then((res) => {
-        return {
-          status: true,
-          response: res.data.data,
-          exceptionMessage: undefined,
-        };
-      })
-      .catch((error) => {
-        return {
-          status: false,
-          response: [],
-          exceptionMessage: error.message,
-        };
-      });
   }
 }
 
