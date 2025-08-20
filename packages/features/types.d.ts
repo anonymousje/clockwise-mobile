@@ -249,9 +249,9 @@ export interface ButtonProps extends TouchableOpacityProps {
 }
 
 export type staffSearchQueryType = {
-  location?: string;
-  department?: string;
-  role?: string;
+  location_id?: number;
+  department_id?: number;
+  job_role_id?: number;
 };
 
 export type ClockStatusResponse = {

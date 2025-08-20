@@ -40,7 +40,26 @@ class StaffService {
         };
       });
   }
+  async getMeta() {
+    const response = await apiClient
+      .get(ApiRoutes.getMeta)
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.data,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: {},
+          exceptionMessage: error.message,
+        };
+      });
 
+    return response;
+  }
   async fetchLocation() {
     return await apiClient
       .get(ApiRoutes.getAllLocations)

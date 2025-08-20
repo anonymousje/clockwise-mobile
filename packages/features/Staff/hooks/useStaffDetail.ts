@@ -74,7 +74,6 @@ const useStaffDetail = () => {
           status: staffData?.status,
           email: staffData?.email,
           cellphone: staffData?.cellphone,
-          password: 'Test@123',
           homephone: '',
           username: staffData?.username,
           address: staffData?.address,

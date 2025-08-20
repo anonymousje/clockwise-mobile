@@ -169,7 +169,7 @@ const Staff = () => {
                 <Picker.Item
                   key={item.id}
                   label={item.name}
-                  value={item.id.toString()}
+                  value={item.id}
                 />
               ))}
             </Picker>
@@ -188,7 +188,7 @@ const Staff = () => {
                 <Picker.Item
                   key={item.id}
                   label={item.name}
-                  value={item.id.toString()}
+                  value={item.id}
                 />
               ))}
             </Picker>
@@ -207,7 +207,7 @@ const Staff = () => {
                 <Picker.Item
                   key={item.id}
                   label={item.name}
-                  value={item.id.toString()}
+                  value={item.id}
                 />
               ))}
             </Picker>
@@ -229,7 +229,7 @@ const Staff = () => {
 
               <Picker.Item
                 label={STRINGS.PICKER_LABELS.INACTIVE_STAFF}
-                value={3}
+                value={0}
               />
             </Picker>
           </View>
