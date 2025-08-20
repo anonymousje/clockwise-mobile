@@ -87,12 +87,13 @@ const Staff = () => {
                     backgroundColor: staff.iconColor,
                   },
                 ]}
-              >              <Text style={styles.staffAvatarText}>
-                {staff.first_name[0].toUpperCase()}
-                {staff.last_name
-                  ? staff.last_name[0].toUpperCase()
-                  : COMMON_CONSTANTS.DEFAULT}
-              </Text>
+              >
+                <Text style={styles.staffAvatarText}>
+                  {staff.first_name[0].toUpperCase()}
+                  {staff.last_name
+                    ? staff.last_name[0].toUpperCase()
+                    : COMMON_CONSTANTS.DEFAULT}
+                </Text>
               </View>
 
               <View>
@@ -166,9 +167,9 @@ const Staff = () => {
 
               {locationList.map((item) => (
                 <Picker.Item
-                  key={item.recordId}
+                  key={item.id}
                   label={item.name}
-                  value={item.recordId.toString()}
+                  value={item.id.toString()}
                 />
               ))}
             </Picker>
@@ -185,9 +186,9 @@ const Staff = () => {
 
               {departmentList.map((item) => (
                 <Picker.Item
-                  key={item.recordId}
+                  key={item.id}
                   label={item.name}
-                  value={item.recordId.toString()}
+                  value={item.id.toString()}
                 />
               ))}
             </Picker>
@@ -204,9 +205,9 @@ const Staff = () => {
 
               {jobRolelist.map((item) => (
                 <Picker.Item
-                  key={item.recordId}
+                  key={item.id}
                   label={item.name}
-                  value={item.recordId.toString()}
+                  value={item.id.toString()}
                 />
               ))}
             </Picker>
