@@ -20,30 +20,14 @@ class ClockService {
         };
       });
   }
-  async clockIn() {
-    const response = await apiClient
-      .post(ApiRoutes.clockIn)
-      .then((res) => {
-        return {
-          status: true,
-          response: res.data.message,
-          exceptionMessage: undefined,
-        };
-      })
-      .catch((error) => {
-        return {
-          status: false,
-          response: undefined,
-          exceptionMessage: error.message,
-        };
-      });
 
-    return response;
-  }
-
-  async clockOut(data: string) {
+  async break(user_id?: number | string, action?: string, clockId?: string) {
     return await apiClient
-      .post(ApiRoutes.clockOut, { note: data })
+      .post(ApiRoutes.break, {
+        user_id: user_id,
+        action: action,
+        clock_id: clockId,
+      })
       .then((res) => {
         return {
           status: true,
@@ -59,6 +43,7 @@ class ClockService {
         };
       });
   }
+
   async getClockStatus(user_id?: number | string) {
     return await apiClient
       .get(ApiRoutes.shiftStatus, { params: { user_id: user_id } })

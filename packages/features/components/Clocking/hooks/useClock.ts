@@ -21,6 +21,7 @@ export default function useClock() {
   const [clockTime, setClockTime] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [breakTime, setBreakTime] = useState('');
+  const [clockId, setClockId] = useState('');
   const [note, setNote] = useState('');
 
   const handleClockOperation = async () => {
@@ -46,10 +47,26 @@ export default function useClock() {
     const response = await ClockService.getClockStatus(user.userId);
     if (response.status) {
       setClockIn(response.response.clockStatus || false);
+      setOnBreak(response.response.breakStatus || false);
+      if (response.response.clockStatus) {
+        setClockTime(
+          formatTime(
+            response.response.meta.clock_in_at,
+            response.response.time,
+          ),
+        );
+        setClockId(response.response.meta.clock_id || '');
+      }
+      if (response.response.breakStatus) {
+        setBreakTime(
+          formatTime(
+            response.response.meta.break_started_at,
+            response.response.time,
+          ),
+        );
+      }
     }
-    if (response.response.clockStatus) {
-      setClockTime(formatTime(response.response.clockStatus || ''));
-    }
+
     return response;
   }, [user.userId]);
 
@@ -69,20 +86,12 @@ export default function useClock() {
     }
 
     const fetchData = async () => {
-      if (onBreak) {
-        await getBreakStatus();
-      } else {
-        await getClockStatus();
-      }
+      await getClockStatus();
     };
     fetchData();
 
     const interval = setInterval(() => {
-      if (onBreak) {
-        getBreakStatus();
-      } else {
-        getClockStatus();
-      }
+      getClockStatus();
     }, COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS);
 
     return () => clearInterval(interval);
@@ -90,11 +99,7 @@ export default function useClock() {
 
   useEffect(() => {
     if (refreshFlag && user.authenticated) {
-      if (onBreak) {
-        getBreakStatus();
-      } else {
-        getClockStatus();
-      }
+      getClockStatus();
       dispatch(setRefreshFlag(false));
     }
   }, [
@@ -116,10 +121,10 @@ export default function useClock() {
 
   const handleBreak = async () => {
     if (!onBreak) {
-      await ClockService.startBreak();
+      await ClockService.break(user.userId, 'start', clockId);
       getBreakStatus();
     } else {
-      ClockService.endBreak();
+      ClockService.break(user.userId, 'end', clockId);
     }
     setOnBreak(!onBreak);
   };

@@ -19,10 +19,19 @@ export const stringFormat = (str?: string, ...args: string[]) => {
     : '';
 };
 
-export const formatTime = (hoursWorked: string): string => {
-  const [hh, mm] = hoursWorked.split(':');
-  const hours = parseInt(hh, COMMON_CONSTANTS.TIME_CONSTANTS.DECIMAL);
-  const minutes = parseInt(mm, COMMON_CONSTANTS.TIME_CONSTANTS.DECIMAL);
+export const formatTime = (start: string, end: string): string => {
+  if (!start || !end) return '';
+  const startDate = new Date(start.replace(' ', 'T'));
+  const endDate = new Date(end.replace(' ', 'T'));
+  let diffMs = endDate.getTime() - startDate.getTime();
+  if (isNaN(diffMs) || diffMs < 0) return '';
+  const totalMinutes = Math.floor(
+    diffMs / COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS,
+  );
+  const hours = Math.floor(
+    totalMinutes / COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE,
+  );
+  const minutes = totalMinutes % COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE;
   let result = '';
   if (hours > COMMON_CONSTANTS.TIME_CONSTANTS.ZERO) {
     result += `${hours}h`;

@@ -17,6 +17,7 @@ const ApiRoutes = {
   clockOperation: '/clock',
   clockIn: '/timeentry/clock-in',
   clockOut: '/timeentry/clock-out',
+  break: '/break',
   startBreak: '/timeentry/add-break',
   endBreak: '/timeentry/end-break',
   shiftStatus: '/clock/status',
