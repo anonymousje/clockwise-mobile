@@ -90,6 +90,7 @@ const MainTabs = () => {
               ? COLORS.BACKGROUND_DARK_MODE
               : COLORS.BACKGROUND_LIGHT_MODE,
           height: HEIGHT.MEDIUM,
+          paddingTop: COMMON_CONSTANTS.SIZE.SIZE_5,
         },
         tabBarLabelStyle: {
           fontSize: FONT_SIZE.SIZE_13,
