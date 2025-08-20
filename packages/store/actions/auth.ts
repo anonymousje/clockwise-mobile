@@ -59,6 +59,7 @@ export const logInUser = async (email: string, password: string) => {
 };
 
 export const logOutUser = () => {
+  apiClient.post(ApiRoutes.logout);
   return {
     type: COMMON_CONSTANTS.REDUX_TYPES.LOGOUT,
     payload: COMMON_CONSTANTS.DEFAULT,
