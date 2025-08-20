@@ -4,7 +4,9 @@ import styles from '../styles/TimeTracking.styles';
 const TimeTracking = () => {
   return (
     <View style={styles.container}>
-      <Text>Time Tracking</Text>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Time Tracking</Text>
+      </View>
     </View>
   );
 };
