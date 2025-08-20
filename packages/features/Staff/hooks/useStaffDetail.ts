@@ -23,8 +23,8 @@ const useStaffDetail = () => {
   const [validationErrors, setValidationErrors] = useState<errorType>({});
 
   const staffSchema = z.object({
-    firstName: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
-    lastName: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
+    first_name: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
+    last_name: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
     email: z.string().email(STRINGS.ZOD_ERRORS.EMAIL_INVALID),
   });
 
@@ -74,13 +74,14 @@ const useStaffDetail = () => {
           status: staffData?.status,
           email: staffData?.email,
           cellphone: staffData?.cellphone,
+          password: 'Test@123',
           homephone: '',
           username: staffData?.username,
           address: staffData?.address,
           role_id: staffData?.role_id,
           department: staffData?.department,
           location: staffData?.location,
-          job_role: staffData?.jobrole,
+          jobrole: staffData?.jobrole,
           created_by: 2,
         });
 
@@ -134,11 +135,17 @@ const useStaffDetail = () => {
   };
 
   const changeStatus = async () => {
-    if (staffData?.status === 3) {
-      await StaffDetailService.restoreUser(staffData?.id);
+    if (staffData?.status === 0) {
+      await StaffDetailService.updateUser(staffData?.id, {
+        ...staffData,
+        status: 1,
+      });
       dispatch(fetchUpdatedStaffList(true));
     } else {
-      await StaffDetailService.deleteUser(staffData?.id);
+      await StaffDetailService.updateUser(staffData?.id, {
+        ...staffData,
+        status: 0,
+      });
       dispatch(fetchUpdatedStaffList(true));
     }
 
@@ -173,10 +180,10 @@ const useStaffDetail = () => {
       };
       setStaffData({
         ...staffData,
-        [`${fieldName}Name`]: itemValue,
-        [`${fieldName}RecordId`]: listMap[fieldName]?.find(
+        [`${fieldName}_name`]: itemValue,
+        [`${fieldName}`]: listMap[fieldName]?.find(
           (item) => item.name === itemValue,
-        )?.recordId,
+        )?.id,
       });
     }
   };

@@ -10,7 +10,7 @@ const ApiRoutes = {
   getAllJobRoles: '/jobrole/get-all-jobroles',
   getMeta: '/get-meta',
   getUser: '/user/get-user/{0}',
-  updateUser: '/user/edit-user/{0}',
+  updateUser: '/users/{0}',
   deleteUser: '/user/delete-user',
   restoreUser: '/user/restore-user/{0}',
   clockIn: '/timeentry/clock-in',
