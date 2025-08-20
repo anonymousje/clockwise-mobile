@@ -98,6 +98,7 @@ export interface COMMON_CONSTANTS_TYPE {
     ACCEPT: string;
     JWT: string;
   };
+  USER: string;
   PERCENTAGES: {
     HUNDRED: const;
     FIFTY: const;

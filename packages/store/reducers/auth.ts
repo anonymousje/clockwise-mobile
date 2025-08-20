@@ -54,7 +54,7 @@ export const useSession = (state = initialState, action: Action) => {
     case COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS:
       setAccessToken(action.payload.accessToken);
       AsyncStorage.setItem(
-        'user',
+        COMMON_CONSTANTS.USER,
         JSON.stringify({
           userId: action.payload.userId || state.userId,
           name: action.payload.name || state.name,
@@ -78,7 +78,7 @@ export const useSession = (state = initialState, action: Action) => {
 
     case COMMON_CONSTANTS.REDUX_TYPES.LOGOUT:
       setAccessToken(COMMON_CONSTANTS.DEFAULT);
-      AsyncStorage.removeItem('user');
+      AsyncStorage.removeItem(COMMON_CONSTANTS.USER);
       return {
         ...state,
         userId: COMMON_CONSTANTS.DEFAULT,
