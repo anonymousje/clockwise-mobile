@@ -44,6 +44,24 @@ class ClockService {
       });
   }
 
+  async addNote(note: string) {
+    return await apiClient
+      .post(ApiRoutes.addNote, { note: note })
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.message,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: undefined,
+          exceptionMessage: error.message,
+        };
+      });
+  }
   async getClockStatus(user_id?: number | string) {
     return await apiClient
       .get(ApiRoutes.shiftStatus, { params: { user_id: user_id } })

@@ -32,6 +32,7 @@ export default function useClock() {
         setClockIn(false);
       }
     } else {
+      ClockService.addNote(note);
       const response = await ClockService.clockOperation(user.userId, 'out');
 
       if (response.status) {

@@ -15,6 +15,7 @@ const ApiRoutes = {
   deleteUser: '/user/delete-user',
   restoreUser: '/user/restore-user/{0}',
   clockOperation: '/clock',
+  addNote: '/add-note',
   clockIn: '/timeentry/clock-in',
   clockOut: '/timeentry/clock-out',
   break: '/break',
