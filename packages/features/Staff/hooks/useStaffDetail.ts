@@ -35,15 +35,14 @@ const useStaffDetail = () => {
 
     const fetchData = async () => {
       setStaffData(data);
-      setDepartmentList(
-        await StaffDetailService.getMeta().then((res) => res.departments),
-      );
-      setLocationList(
-        await StaffDetailService.getMeta().then((res) => res.locations),
-      );
-      setJobRoleList(
-        await StaffDetailService.getMeta().then((res) => res.jobroles),
-      );
+      const response = await StaffDetailService.getMeta();
+      if (response.status) {
+        setDepartmentList(response.response.departments);
+        setLocationList(response.response.locations);
+        setJobRoleList(response.response.jobroles);
+      } else {
+        console.error(response.exceptionMessage);
+      }
     };
 
     fetchData();

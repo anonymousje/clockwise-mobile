@@ -8,6 +8,7 @@ const ApiRoutes = {
   getAllDepartments: '/department/get-all-departments',
   getAllLocations: '/location/get-all-locations',
   getAllJobRoles: '/jobrole/get-all-jobroles',
+  getMeta: '/get-meta',
   getUser: '/user/get-user/{0}',
   updateUser: '/user/edit-user/{0}',
   deleteUser: '/user/delete-user',
