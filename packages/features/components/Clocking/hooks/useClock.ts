@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
-import { BreakStatusResponse, ClockStatusResponse } from '../../../types';
+import { BreakStatusResponse } from '../../../types';
 import { formatTime, formatDuration } from '../../../../utils/helper';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -25,13 +25,13 @@ export default function useClock() {
 
   const handleClockOperation = async () => {
     if (!clockIn) {
-      const response = await ClockService.clockIn();
+      const response = await ClockService.clockOperation(user.userId, 'in');
 
       if (response.status) {
         setClockIn(false);
       }
     } else {
-      const response = await ClockService.clockOut(note);
+      const response = await ClockService.clockOperation(user.userId, 'out');
 
       if (response.status) {
         setClockIn(true);
@@ -42,15 +42,16 @@ export default function useClock() {
     getClockStatus();
   };
 
-  const getClockStatus = useCallback(async (): Promise<ClockStatusResponse> => {
-    const response = await ClockService.getClockStatus();
-
+  const getClockStatus = useCallback(async () => {
+    const response = await ClockService.getClockStatus(user.userId);
     if (response.status) {
-      setClockTime(formatTime(response.response.hoursWorked || ''));
-      setClockIn(response.response.isClockedIn || false);
+      setClockIn(response.response.clockStatus || false);
+    }
+    if (response.response.clockStatus) {
+      setClockTime(formatTime(response.response.clockStatus || ''));
     }
     return response;
-  }, []);
+  }, [user.userId]);
 
   const getBreakStatus = useCallback(async (): Promise<BreakStatusResponse> => {
     const response = await ClockService.getBreakStatus();

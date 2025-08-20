@@ -14,11 +14,12 @@ const ApiRoutes = {
   updateUser: '/users/{0}',
   deleteUser: '/user/delete-user',
   restoreUser: '/user/restore-user/{0}',
+  clockOperation: '/clock',
   clockIn: '/timeentry/clock-in',
   clockOut: '/timeentry/clock-out',
   startBreak: '/timeentry/add-break',
   endBreak: '/timeentry/end-break',
-  shiftStatus: '/timeentry/get-shift-status',
+  shiftStatus: '/clock/status',
   breakStatus: '/timeentry/get-shift-breaks-status',
   whoIsOn: '/timeentry/whos-on',
 };

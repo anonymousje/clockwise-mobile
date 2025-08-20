@@ -1,8 +1,25 @@
 import apiClient from '../../../ApiClient';
 import ApiRoutes from '../../../../constants/ApiRoutes';
-import { ClockStatusResponse, BreakStatusResponse } from '../../../types';
 
 class ClockService {
+  async clockOperation(user_id?: number | string, action?: string) {
+    return await apiClient
+      .post(ApiRoutes.clockOperation, { user_id: user_id, action: action })
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.message,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: undefined,
+          exceptionMessage: error.message,
+        };
+      });
+  }
   async clockIn() {
     const response = await apiClient
       .post(ApiRoutes.clockIn)
@@ -42,9 +59,9 @@ class ClockService {
         };
       });
   }
-  async getClockStatus(): Promise<ClockStatusResponse> {
+  async getClockStatus(user_id?: number | string) {
     return await apiClient
-      .get(ApiRoutes.shiftStatus)
+      .get(ApiRoutes.shiftStatus, { params: { user_id: user_id } })
       .then((res) => {
         return {
           status: true,
@@ -61,7 +78,7 @@ class ClockService {
       });
   }
 
-  async getBreakStatus(): Promise<BreakStatusResponse> {
+  async getBreakStatus() {
     return await apiClient
       .get(ApiRoutes.breakStatus)
       .then((res) => {
