@@ -2,31 +2,24 @@ import axios from 'axios';
 import store from '../store';
 import { setTokens } from '../store/actions/auth';
 import COMMON_CONSTANTS from '../constants/CommonConstants';
+import ApiRoutes from '../constants/ApiRoutes';
 
 let accessToken = COMMON_CONSTANTS.DEFAULT;
-let refreshToken = COMMON_CONSTANTS.DEFAULT;
 
 export const setAccessToken = (token: string) => {
   accessToken = token;
 };
 
-export const setRefreshToken = (token: string) => {
-  refreshToken = token;
-};
-
 const apiClient = axios.create({
-  baseURL: 'http://10.0.2.2:5135/api',
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: '*/*',
-  },
+  baseURL: ApiRoutes.BaseURL,
 });
 
 apiClient.interceptors.request.use(
   function (config) {
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+      config.headers.Cookie = `${COMMON_CONSTANTS.API_HEADERS.JWT}${accessToken}`;
     }
+    console.log('Request made with ', config);
     return config;
   },
   function (error) {
@@ -36,41 +29,15 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   function (response) {
+    console.log('Response received:', response);
     return response;
   },
 
   async function (error) {
-    const originalRequest = error.config;
     if (error.response && error.response.status === 401) {
-      try {
-        const response = await axios.post(
-          'http://10.0.2.2:5135/api/auth/refresh-token',
-          {
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-          },
-        );
+      store.dispatch(setTokens(COMMON_CONSTANTS.DEFAULT));
 
-        accessToken = response.data.data.accessToken;
-        refreshToken = response.data.data.refreshToken;
-
-        store.dispatch(
-          setTokens(
-            response.data.data.accessToken,
-            response.data.data.refreshToken,
-          ),
-        );
-
-        originalRequest.headers.Authorization = `Bearer ${response.data.data.accessToken}`;
-
-        return await axios(originalRequest);
-      } catch (refreshError) {
-        store.dispatch(
-          setTokens(COMMON_CONSTANTS.DEFAULT, COMMON_CONSTANTS.DEFAULT),
-        );
-
-        return Promise.reject(refreshError);
-      }
+      return Promise.reject(error);
     }
 
     return Promise.reject(error);

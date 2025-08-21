@@ -89,20 +89,20 @@ const Staff = () => {
                 ]}
               >
                 <Text style={styles.staffAvatarText}>
-                  {staff.firstName[0].toUpperCase()}
-                  {staff.lastName
-                    ? staff.lastName[0].toUpperCase()
+                  {staff.first_name[0].toUpperCase()}
+                  {staff.last_name
+                    ? staff.last_name[0].toUpperCase()
                     : COMMON_CONSTANTS.DEFAULT}
                 </Text>
               </View>
 
               <View>
                 <Text style={styles.staffName}>
-                  {staff.firstName} <Text>{staff.lastName} </Text>
+                  {staff.first_name} <Text>{staff.last_name} </Text>
                 </Text>
 
-                {staff.jobRoleName && (
-                  <Text style={styles.position}>{staff.jobRoleName}</Text>
+                {staff.jobrole_name && (
+                  <Text style={styles.position}>{staff.jobrole_name}</Text>
                 )}
               </View>
             </TouchableOpacity>
@@ -167,9 +167,9 @@ const Staff = () => {
 
               {locationList.map((item) => (
                 <Picker.Item
-                  key={item.recordId}
+                  key={item.id}
                   label={item.name}
-                  value={item.recordId}
+                  value={item.id}
                 />
               ))}
             </Picker>
@@ -186,9 +186,9 @@ const Staff = () => {
 
               {departmentList.map((item) => (
                 <Picker.Item
-                  key={item.recordId}
+                  key={item.id}
                   label={item.name}
-                  value={item.recordId}
+                  value={item.id}
                 />
               ))}
             </Picker>
@@ -205,9 +205,9 @@ const Staff = () => {
 
               {jobRolelist.map((item) => (
                 <Picker.Item
-                  key={item.recordId}
+                  key={item.id}
                   label={item.name}
-                  value={item.recordId}
+                  value={item.id}
                 />
               ))}
             </Picker>
@@ -229,7 +229,7 @@ const Staff = () => {
 
               <Picker.Item
                 label={STRINGS.PICKER_LABELS.INACTIVE_STAFF}
-                value={3}
+                value={0}
               />
             </Picker>
           </View>

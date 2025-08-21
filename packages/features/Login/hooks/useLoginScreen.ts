@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
 import { SCREENS } from '../../../constants/screens';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../../store/actions/auth';

@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider, useSelector } from 'react-redux';
 import Login from './packages/features/Login/container/LoginScreen';
+import SplashScreen from './packages/features/SplashScreen/container/SplashScreen';
 import { SCREENS } from './packages/constants/screens';
 import ForgotPassword from './packages/features/ForgotPassword/container/ForgotPasswordScreen';
 import Dashboard from './packages/features/Dashboard/container/DashboardScreen';
@@ -18,6 +19,7 @@ import StaffDetail from './packages/features/Staff/container/StaffDetailScreen';
 import STRINGS from './packages/utils/strings';
 import LINK_PREFIX from './packages/constants/links';
 import COMMON_CONSTANTS from './packages/constants/CommonConstants';
+import TimeClockDetails from './packages/features/TimeClockDetails.tsx/container/TimeClockDetails';
 
 const config = {
   screens: {
@@ -87,7 +89,7 @@ const MainTabs = () => {
           tabBarIcon: DashboardTabIcon,
         }}
       />
-      {User.role === COMMON_CONSTANTS.PICKER_VALUES.ADMIN && (
+      {User.role === COMMON_CONSTANTS.MANAGER && (
         <Tab.Screen
           name={SCREENS.Staff}
           component={Staff}
@@ -110,7 +112,13 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer linking={linking}>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={SCREENS.SplashScreen}>
+          <Stack.Screen
+            name={SCREENS.SplashScreen}
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
+
           <Stack.Screen
             name={SCREENS.Login}
             component={Login}
@@ -204,6 +212,30 @@ const App = () => {
             options={{
               headerShown: true,
               title: STRINGS.SCREEN_TITLE.STAFF_DETAIL,
+              headerTitleStyle: {
+                color:
+                  mode === MODE.DARK
+                    ? COLORS.TEXT_DARK_MODE
+                    : COLORS.TEXT_LIGHT_MODE,
+              },
+              headerStyle: {
+                backgroundColor:
+                  mode === MODE.DARK
+                    ? COLORS.BACKGROUND_DARK_MODE
+                    : COLORS.BACKGROUND_LIGHT_MODE,
+              },
+              headerTintColor:
+                mode === MODE.DARK
+                  ? COLORS.TEXT_DARK_MODE
+                  : COLORS.TEXT_LIGHT_MODE,
+            }}
+          />
+          <Stack.Screen
+            name={SCREENS.TimeClockDetails}
+            component={TimeClockDetails}
+            options={{
+              headerShown: true,
+              title: STRINGS.SCREEN_TITLE.TIME_CLOCK_DETAILS,
               headerTitleStyle: {
                 color:
                   mode === MODE.DARK

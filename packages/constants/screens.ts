@@ -1,5 +1,6 @@
 export enum SCREENS {
   Login = 'LoginScreen',
+  SplashScreen = 'SplashScreen',
   ForgotPassword = 'ForgotPasswordScreen',
   NewPassword = 'NewPasswordScreen',
   Dashboard = 'DashboardScreen',
@@ -7,4 +8,5 @@ export enum SCREENS {
   AddEmployee = 'AddEmployeeScreen',
   MainTabs = 'MainTabs',
   StaffDetail = 'StaffDetailScreen',
+  TimeClockDetails = 'TimeClockDetailsScreen',
 }

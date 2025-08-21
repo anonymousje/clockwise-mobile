@@ -2,58 +2,74 @@ import ApiRoutes from '../../../constants/ApiRoutes';
 import apiClient from '../../ApiClient';
 import { staffType } from '../../types';
 import { stringFormat } from '../../../utils/helper';
+import STRINGS from '../../../utils/strings';
 
 class StaffDetailService {
-  async getDepartment() {
-    const response = await apiClient.get(ApiRoutes.getAllDepartments);
-    return response.data.data;
+  async getMeta() {
+    const response = await apiClient
+      .get(ApiRoutes.getMeta)
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.data,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: {},
+          exceptionMessage: error.message,
+        };
+      });
+
+    return response;
   }
 
-  async getLocation() {
-    const response = await apiClient.get(ApiRoutes.getAllLocations);
-    return response.data.data;
-  }
-
-  async getJobRole() {
-    const response = await apiClient.get(ApiRoutes.getAllJobRoles);
-    return response.data.data;
-  }
-  async getUser(recordId?: string): Promise<staffType | null> {
+  async getUser(recordId?: number) {
     if (!recordId) {
       throw Error;
     }
 
-    const response = await apiClient.get(
-      stringFormat(ApiRoutes.getUser, recordId),
-    );
-    return response.data.data;
+    return await apiClient
+      .get(ApiRoutes.getStaff)
+      .then((res) => {
+        const foundUser = res.data.data.find(
+          (item: any) => item.id === recordId,
+        );
+
+        if (foundUser) {
+          const user: staffType = foundUser;
+          return {
+            status: true,
+            response: user,
+            exceptionMessage: undefined,
+          };
+        }
+
+        return {
+          status: false,
+          response: null,
+          exceptionMessage: STRINGS.USER_NOT_FOUND,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: null,
+          exceptionMessage: error.message,
+        };
+      });
   }
 
-  async updateUser(recordId?: string, userData?: any) {
+  async updateUser(recordId?: number, userData?: any) {
     if (!recordId || !userData) {
       throw Error;
     }
 
     const response = await apiClient.put(
-      stringFormat(ApiRoutes.updateUser, recordId),
+      stringFormat(ApiRoutes.updateUser, String(recordId)),
       userData,
-    );
-    return response.data.data;
-  }
-
-  async deleteUser(recordId?: string) {
-    const response = await apiClient.post(ApiRoutes.deleteUser, {
-      id: recordId,
-    });
-    return response.data.data;
-  }
-
-  async restoreUser(recordId?: string) {
-    if (!recordId) {
-      throw Error;
-    }
-    const response = await apiClient.post(
-      stringFormat(ApiRoutes.restoreUser, recordId),
     );
     return response.data.data;
   }

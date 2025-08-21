@@ -27,25 +27,31 @@ const useNewPasswordScreen = () => {
     const numberRegex = /\d/;
     const lengthRegex = /.{7,}/;
 
-    setIsUppercase(uppercaseRegex.test(text));
-    setIsSpecialChar(specialCharRegex.test(text));
-    setIsNumber(numberRegex.test(text));
-    setIsLength(lengthRegex.test(text));
+    const hasUppercase = uppercaseRegex.test(text);
+    const hasSpecialChar = specialCharRegex.test(text);
+    const hasNumber = numberRegex.test(text);
+    const hasLength = lengthRegex.test(text);
 
-    return isUppercase && isSpecialChar && isLength && isNumber;
+    setIsUppercase(hasUppercase);
+    setIsSpecialChar(hasSpecialChar);
+    setIsNumber(hasNumber);
+    setIsLength(hasLength);
+
+    return hasUppercase && hasSpecialChar && hasLength && hasNumber;
   };
 
   const route = useRoute<NewPasswordRouteProp>();
 
-  const { email, token } = route.params || {};
+  const { token } = route.params || {};
   const navigation = useNavigation<NavigationProp>();
 
   const handleBack = () => {
-    navigation.navigate(SCREENS.Login);
+    navigation.replace(SCREENS.Login);
   };
 
-  const handleSubmit = () => {
-    setIsValid(validatePassword(newPassword));
+  const handleSubmit = async () => {
+    const isPasswordValid = validatePassword(newPassword);
+    setIsValid(isPasswordValid);
     setMatch(true);
     setLoading(true);
 
@@ -55,24 +61,21 @@ const useNewPasswordScreen = () => {
       return;
     }
 
-    if (token && validatePassword(newPassword)) {
-      const encodedToken = encodeURIComponent(token);
+    if (token && isPasswordValid) {
+      const response = await NewPasswordService.resetPassword(
+        token,
+        newPassword,
+      );
 
-      NewPasswordService.resetPassword(email, encodedToken, newPassword)
-        .then(() => {
-          setSuccess(true);
-          setLoading(false);
-        })
-        .catch(() => {
-          setErrorMsg(true);
-          setLoading(false);
-        });
-
-      return;
+      if (response.status) {
+        setSuccess(true);
+      } else {
+        setErrorMsg(true);
+      }
+      setLoading(false);
     } else {
       setLoading(false);
     }
-
     return;
   };
   const changePasswordType = () => {

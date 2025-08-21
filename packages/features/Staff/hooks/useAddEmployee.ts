@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
-import { fetchUpdated } from '../../../store/actions/fetchUsers';
+import { fetchUpdatedStaffList } from '../../../store/actions/flags';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import STRINGS from '../../../utils/strings';
 import AddEmployeeService from '../services/AddEmployeeService';
@@ -39,19 +39,29 @@ const useAddEmployee = () => {
   });
 
   const onSubmit = async (data: StaffFormData) => {
-    try {
-      await AddEmployeeService.addEmployee({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        password: data.password,
-      });
+    const response = await AddEmployeeService.addEmployee({
+      first_name: data.firstName,
+      last_name: data.lastName,
+      nickname: '',
+      status: 1,
+      address: '',
+      cellphone: '',
+      homephone: '',
+      location: 1,
+      department: 1,
+      email: data.email,
+      password: data.password,
+      username: data.firstName + Date.now(),
+      jobrole: 1,
+      role_id: 1,
+      created_by: 2,
+    });
 
+    if (response.status) {
       reset();
-      dispatch(fetchUpdated(true));
-
+      dispatch(fetchUpdatedStaffList(true));
       navigation.goBack();
-    } catch (error) {
+    } else {
       setErrorMsg(true);
     }
   };
