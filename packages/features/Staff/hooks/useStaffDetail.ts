@@ -74,6 +74,7 @@ const useStaffDetail = () => {
           status: staffData?.status,
           email: staffData?.email,
           cellphone: staffData?.cellphone,
+          password: '',
           homephone: '',
           username: staffData?.username,
           address: staffData?.address,
@@ -86,9 +87,11 @@ const useStaffDetail = () => {
 
         dispatch(fetchUpdatedStaffList(true));
         const response = await StaffDetailService.getUser(staffData?.id);
-        const updatedUser: staffType | null = response.response;
 
-        setStaffData(updatedUser);
+        if (response.status) {
+          const updatedUser: staffType | null = response.response;
+          setStaffData(updatedUser);
+        }
       } catch (e: any) {
         const errors: errorType = {};
 

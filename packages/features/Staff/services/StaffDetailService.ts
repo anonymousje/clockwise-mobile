@@ -34,16 +34,19 @@ class StaffDetailService {
     return await apiClient
       .get(ApiRoutes.getStaff)
       .then((res) => {
-        res.data.data.map((item: any) => {
-          if (item.id === recordId) {
-            const user: staffType = item;
-            return {
-              status: res.status,
-              response: user,
-              exceptionMessage: undefined,
-            };
-          }
-        });
+        const foundUser = res.data.data.find(
+          (item: any) => item.id === recordId,
+        );
+
+        if (foundUser) {
+          const user: staffType = foundUser;
+          return {
+            status: true,
+            response: user,
+            exceptionMessage: undefined,
+          };
+        }
+
         return {
           status: false,
           response: null,
