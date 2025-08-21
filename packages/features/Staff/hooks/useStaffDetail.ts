@@ -140,12 +140,14 @@ const useStaffDetail = () => {
     if (staffData?.status === 0) {
       await StaffDetailService.updateUser(staffData?.id, {
         ...staffData,
+        password: '',
         status: 1,
       });
       dispatch(fetchUpdatedStaffList(true));
     } else {
       await StaffDetailService.updateUser(staffData?.id, {
         ...staffData,
+        password: '',
         status: 0,
       });
       dispatch(fetchUpdatedStaffList(true));
