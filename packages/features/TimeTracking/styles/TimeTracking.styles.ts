@@ -7,14 +7,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.BACKGROUND_DARKER_MODE,
-    paddingVertical: 5,
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
     padding: 20,
+    paddingTop: 35,
+  },
+  filterIconStyle: {
+    paddingTop: 5,
   },
   headerText: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
@@ -24,6 +30,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 20,
+    paddingBottom: 5,
   },
   timeEntryCard: {
     flexDirection: 'row',
@@ -67,8 +74,10 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_BOLD,
     marginBottom: 8,
   },
-  warningIcon: {
-    marginRight: 10,
+  cardApproveButton: {
+    alignSelf: 'center',
+    padding: 5,
+    elevation: 10,
   },
   approveText: {
     color: COLORS.GREEN,
@@ -103,14 +112,14 @@ const styles = StyleSheet.create({
   },
   unapproveButton: {
     width: '50%',
-    backgroundColor: COLORS.CLOCK_OUT_BUTTON_BACKGROUND,
+    backgroundColor: COLORS.RED,
     alignItems: 'center',
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_12,
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
   approveButton: {
     width: '50%',
-    backgroundColor: COLORS.BREAK_BUTTON_BACKGROUND,
+    backgroundColor: COLORS.GREEN,
     alignItems: 'center',
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_12,
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_5,
