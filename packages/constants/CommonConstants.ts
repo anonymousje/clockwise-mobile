@@ -12,6 +12,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ACCEPT: '*/*',
     JWT: 'jwt=',
   },
+  USER: 'user',
   PERCENTAGES: {
     HUNDRED: '100%',
     FIFTY: '50%',

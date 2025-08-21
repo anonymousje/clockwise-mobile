@@ -49,7 +49,7 @@ const useNewPasswordScreen = () => {
     navigation.replace(SCREENS.Login);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const isPasswordValid = validatePassword(newPassword);
     setIsValid(isPasswordValid);
     setMatch(true);
@@ -62,23 +62,20 @@ const useNewPasswordScreen = () => {
     }
 
     if (token && isPasswordValid) {
-      const encodedToken = encodeURIComponent(token);
+      const response = await NewPasswordService.resetPassword(
+        token,
+        newPassword,
+      );
 
-      NewPasswordService.resetPassword(encodedToken, newPassword)
-        .then(() => {
-          setSuccess(true);
-          setLoading(false);
-        })
-        .catch(() => {
-          setErrorMsg(true);
-          setLoading(false);
-        });
-
-      return;
+      if (response.status) {
+        setSuccess(true);
+      } else {
+        setErrorMsg(true);
+      }
+      setLoading(false);
     } else {
       setLoading(false);
     }
-
     return;
   };
   const changePasswordType = () => {
