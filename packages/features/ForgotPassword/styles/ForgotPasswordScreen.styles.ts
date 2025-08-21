@@ -21,19 +21,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_24,
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_40,
   },
-
   modalContainer: {
     flex: COMMON_CONSTANTS.ONE,
     justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     alignItems: COMMON_CONSTANTS.FLEX.CENTER,
   },
-
   closeButton: {
     position: COMMON_CONSTANTS.POSITION.ABSOLUTE,
     top: COMMON_CONSTANTS.SIZE.SIZE_20,
     right: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
-
   successMsg: {
     color: COLORS.CLOCKWISE_PRIMARY,
     fontSize: FONT_SIZE.SIZE_18,
@@ -41,23 +38,19 @@ const styles = StyleSheet.create({
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_20,
     textAlign: COMMON_CONSTANTS.ALIGN.CENTER,
   },
-
   form: {
     flex: COMMON_CONSTANTS.ONE,
   },
-
   errorMsg: {
     color: COLORS.RED,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
-
   inputPassword: {
     fontSize: FONT_SIZE.SIZE_18,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_16,
   },
-
   NewPasswordRow: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     alignItems: COMMON_CONSTANTS.FLEX.CENTER,
@@ -69,7 +62,6 @@ const styles = StyleSheet.create({
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_8,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_14,
   },
-
   ConfirmPasswordRow: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     alignItems: COMMON_CONSTANTS.FLEX.CENTER,
@@ -82,15 +74,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_14,
     marginVertical: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
-
   buttonContainer: {
     width: COMMON_CONSTANTS.PERCENTAGES.HUNDRED,
   },
-
   loader: {
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
-
   button: {
     backgroundColor: COLORS.CLOCKWISE_PRIMARY,
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_16,
@@ -99,13 +88,11 @@ const styles = StyleSheet.create({
     alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
-
   buttonText: {
     color: COLORS.BUTTON_TEXT,
     fontSize: FONT_SIZE.SIZE_18,
     fontFamily: FONTS.CLOCKWISE_BOLD,
   },
-
   header: {
     width: COMMON_CONSTANTS.PERCENTAGES.HUNDRED,
     fontSize: FONT_SIZE.SIZE_30,
@@ -116,7 +103,6 @@ const styles = StyleSheet.create({
     lineHeight: COMMON_CONSTANTS.SIZE.SIZE_34,
     paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
-
   popUpBoxText: {
     color:
       mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.BACKGROUND_LIGHT_MODE,
@@ -124,14 +110,12 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     textAlign: COMMON_CONSTANTS.ALIGN.CENTER,
   },
-
   showPassButton: {
     color:
       mode === MODE.DARK
         ? COLORS.CLOCKWISE_PRIMARY
         : COLORS.CLOCKWISE_PRIMARY_DARK,
   },
-
   input: {
     width: COMMON_CONSTANTS.PERCENTAGES.HUNDRED,
     height: HEIGHT.SMALL,
@@ -147,7 +131,6 @@ const styles = StyleSheet.create({
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
     paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_16,
   },
-
   popupBox: {
     width: COMMON_CONSTANTS.PERCENTAGES.EIGHTY,
     height: COMMON_CONSTANTS.PERCENTAGES.TWENTY,
@@ -163,7 +146,6 @@ const styles = StyleSheet.create({
     shadowColor: COLORS.SHADOW_COLOR,
     elevation: COMMON_CONSTANTS.SIZE.SIZE_2,
   },
-
   popupButton: {
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_20,
     backgroundColor: COLORS.CLOCKWISE_PRIMARY,
@@ -171,17 +153,14 @@ const styles = StyleSheet.create({
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_10,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_24,
   },
-
   popupButtonText: {
     color: COLORS.BUTTON_TEXT,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     fontSize: FONT_SIZE.SIZE_18,
   },
-
   rulesContainer: {
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
-
   rulesText: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: FONT_SIZE.SIZE_15,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text } from 'react-native';
 import styles from '../styles/SplashScreen.styles';
 import useSplashScreen from '../hooks/useSplashScreen';
