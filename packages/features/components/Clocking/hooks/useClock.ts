@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import ClockService from '../services/ClockService';
-import { BreakStatusResponse } from '../../../types';
-import { formatTime, formatDuration } from '../../../../utils/helper';
+import { formatTime } from '../../../../utils/helper';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchUpdatedWhoIsOnList,
@@ -71,16 +70,6 @@ export default function useClock() {
     return response;
   }, [user.userId]);
 
-  const getBreakStatus = useCallback(async (): Promise<BreakStatusResponse> => {
-    const response = await ClockService.getBreakStatus();
-
-    if (response.status) {
-      const shiftBreaks = response.response?.shiftBreaks ?? [];
-      setBreakTime(formatDuration(shiftBreaks));
-    }
-    return response;
-  }, []);
-
   useEffect(() => {
     if (!user.authenticated) {
       return;
@@ -96,21 +85,14 @@ export default function useClock() {
     }, COMMON_CONSTANTS.TIME_CONSTANTS.MINUTE_IN_MS);
 
     return () => clearInterval(interval);
-  }, [getClockStatus, getBreakStatus, onBreak, dispatch, user.authenticated]);
+  }, [getClockStatus, onBreak, dispatch, user.authenticated]);
 
   useEffect(() => {
     if (refreshFlag && user.authenticated) {
       getClockStatus();
       dispatch(setRefreshFlag(false));
     }
-  }, [
-    refreshFlag,
-    onBreak,
-    getBreakStatus,
-    getClockStatus,
-    dispatch,
-    user.authenticated,
-  ]);
+  }, [refreshFlag, onBreak, getClockStatus, dispatch, user.authenticated]);
 
   const handleNoteChange = (text: string) => {
     setNote(text);
@@ -123,7 +105,6 @@ export default function useClock() {
   const handleBreak = async () => {
     if (!onBreak) {
       await ClockService.break(user.userId, 'start', clockId);
-      getBreakStatus();
     } else {
       ClockService.break(user.userId, 'end', clockId);
     }
