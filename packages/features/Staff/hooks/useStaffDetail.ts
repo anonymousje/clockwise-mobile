@@ -67,6 +67,7 @@ const useStaffDetail = () => {
 
       setValidationErrors({});
       try {
+        console.log('Updating staff data:', staffData);
         await StaffDetailService.updateUser(staffData?.id, {
           first_name: staffData?.first_name,
           last_name: staffData?.last_name,
@@ -81,8 +82,8 @@ const useStaffDetail = () => {
           role_id: staffData?.role_id,
           department: staffData?.department,
           location: staffData?.location,
-          jobrole: staffData?.jobrole,
-          created_by: 2,
+          jobrole: staffData?.jobrole || 1,
+          last_login: staffData?.last_login,
         });
 
         dispatch(fetchUpdatedStaffList(true));
@@ -180,8 +181,9 @@ const useStaffDetail = () => {
       const listMap: { [key: string]: filterItemsType[] } = {
         department: departmentList,
         location: locationList,
-        jobRole: jobRolelist,
+        jobrole: jobRolelist,
       };
+
       setStaffData({
         ...staffData,
         [`${fieldName}_name`]: itemValue,
