@@ -102,6 +102,21 @@ export const formatDateFromISOString = (isoString: string): string => {
   return `${day}. ${monthAbbr}, ${year}`;
 };
 
+export const formatDateTime = (dateString?: string): string => {
+  if (!dateString) return ` ${STRINGS.DASH}`;
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return dateString;
+  return date.toLocaleString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
+    year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
+    month: COMMON_CONSTANTS.DATE_TIME.SHORT,
+    day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+    hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+    minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+    second: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+    hour12: true,
+  });
+};
+
 export const formatBreakGaps = (breaks: BreakType[]): breakArrayType[] => {
   if (!breaks || breaks.length === COMMON_CONSTANTS.TIME_CONSTANTS.ZERO) {
     return [];

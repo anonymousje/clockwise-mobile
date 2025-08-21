@@ -8,7 +8,7 @@ import Button from '../../components/Button/container/Button';
 import STRINGS from '../../../utils/strings';
 import { COLORS } from '../../../constants/theme';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
-import { getInitials } from '../../../utils/helper';
+import { getInitials, formatDateTime } from '../../../utils/helper';
 
 const StaffDetail = () => {
   const {
@@ -20,7 +20,6 @@ const StaffDetail = () => {
     jobRolelist,
     validationErrors,
     changeStatus,
-    formatDateTime,
     checkUndefined,
     handleTextChange,
     handlePickerChange,

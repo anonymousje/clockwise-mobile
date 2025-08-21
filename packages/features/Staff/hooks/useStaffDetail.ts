@@ -7,7 +7,6 @@ import { fetchUpdatedStaffList } from '../../../store/actions/flags';
 import { z } from 'zod';
 import StaffDetailService from '../services/StaffDetailService';
 import STRINGS from '../../../utils/strings';
-import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();
@@ -122,21 +121,6 @@ const useStaffDetail = () => {
     setEditMode(!editMode);
   };
 
-  const formatDateTime = (dateString?: string): string => {
-    if (!dateString) return ` ${STRINGS.DASH}`;
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return dateString;
-    return date.toLocaleString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
-      year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
-      month: COMMON_CONSTANTS.DATE_TIME.SHORT,
-      day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-      hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-      minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-      second: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-      hour12: true,
-    });
-  };
-
   const changeStatus = async () => {
     if (staffData?.status === 0) {
       await StaffDetailService.updateUser(staffData?.id, {
@@ -204,7 +188,6 @@ const useStaffDetail = () => {
     jobRolelist,
     validationErrors,
     changeStatus,
-    formatDateTime,
     checkUndefined,
     handleTextChange,
     handlePickerChange,
