@@ -3,8 +3,11 @@ import styles from '../styles/TimeTracking.styles';
 import { COLORS } from '../../../constants/theme';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import useTimeTracking from '../hooks/useTimeTracking';
 
 const TimeTracking = () => {
+  const { approveTime, approveAll, unapproveAll } = useTimeTracking();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,7 +36,10 @@ const TimeTracking = () => {
               <Text style={styles.roleText}>Butcher</Text>
               <Text style={styles.statusText}>Pending • 16s</Text>
             </View>
-            <TouchableOpacity style={styles.cardApproveButton}>
+            <TouchableOpacity
+              style={styles.cardApproveButton}
+              onPress={approveTime}
+            >
               <Text style={styles.approveText}>APPROVE</Text>
             </TouchableOpacity>
           </View>
@@ -41,13 +47,16 @@ const TimeTracking = () => {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={approveAll}
             style={styles.approveButton}
           >
             <Text style={styles.buttonText}>Approve All</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.unapproveButton}>
+          <TouchableOpacity
+            onPress={unapproveAll}
+            style={styles.unapproveButton}
+          >
             <Text style={styles.buttonText}>Unapprove All</Text>
           </TouchableOpacity>
         </View>
