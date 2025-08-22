@@ -1,4 +1,14 @@
+import { useEffect } from 'react';
+import TimeTrackingService from '../services/TimeTrackingService';
 const useTimeTracking = () => {
+  useEffect(() => {
+    const fetchTimeSheet = async () => {
+      const response = await TimeTrackingService.getTimeSheet();
+      console.log('TimeSheet Response:', response.data);
+    };
+    fetchTimeSheet();
+  }, []);
+
   const approveTime = () => {
     console.log('Time approved');
   };
