@@ -55,12 +55,14 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     CAFE: 'cafe-outline',
     TIME: 'time-outline',
   },
+  SHORT: 'short',
   DATE_TIME: {
     NUMERIC: 'numeric',
     SHORT: 'short',
     TWO_DIGIT: '2-digit',
     EN_US: 'en-US',
   },
+  PENDING: 'Pending',
   FORM_CONTROLLER_VALUES: {
     FIRST_NAME: 'first_name',
     LAST_NAME: 'last_name',

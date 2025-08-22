@@ -9,6 +9,7 @@ const STRINGS = {
     TIME_CLOCK_DETAILS: 'Time Clock Details',
     TIME_TRACKING: 'Time Tracking',
   },
+  PENDING: 'Pending',
   USER_NOT_FOUND: 'User not found',
   DASH: '-',
   CLOCK_IN: 'Clock In',
@@ -37,6 +38,7 @@ const STRINGS = {
   },
   TITLES: {
     DASHBOARD: 'Dashboard',
+    TIME_TRACKING: 'Time Tracking',
   },
   RESET_PASSWORD_EMAIL:
     'If {0} is registered, you will receive a password reset link.',
@@ -116,6 +118,11 @@ const STRINGS = {
     WHO_IS_ON_NOW: 'Who Is On Now',
     YOU_WORKED_FOR: 'You worked for',
   },
+  LOADING_WAIT: 'Loading, please wait...',
+  APPROVE: 'APPROVE',
+  UNAPPROVE: 'UNAPPROVE',
+  APPROVE_ALL: 'APPROVE ALL',
+  UNAPPROVE_ALL: 'UNAPPROVE ALL',
   VALIDATIONS: {
     TITLE: 'Password must contain:',
     UPPERCASE: 'At least one uppercase letter',

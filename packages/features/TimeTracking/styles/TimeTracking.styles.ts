@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: COMMON_CONSTANTS.ONE,
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    gap: COMMON_CONSTANTS.SIZE.SIZE_10,
     justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     backgroundColor:
