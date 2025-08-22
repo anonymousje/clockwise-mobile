@@ -12,7 +12,7 @@ const TimeTracking = () => {
 
   if (timeSheet === null) {
     return (
-      <View style={styles.container}>
+      <View style={styles.loadingContainer}>
         <Text style={styles.headerText}>Loading...</Text>
       </View>
     );

@@ -75,6 +75,7 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     LOCATION: 'location',
     JOB_ROLE: 'jobrole',
   },
+  AUTO: 'auto',
   FLEX: {
     ROW: 'row',
     COLUMN: 'column',

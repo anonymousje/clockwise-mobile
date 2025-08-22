@@ -26,6 +26,7 @@ export const COLORS = {
   BLACK: 'black',
   WHITE: 'white',
   GREY: 'grey',
+  YELLOW: '#F39C12',
 };
 
 export const FONT_SIZE = {

@@ -181,6 +181,7 @@ export interface COMMON_CONSTANTS_TYPE {
     ABSOLUTE: const;
     RELATIVE: const;
   };
+  AUTO: const;
   SIZE: {
     SIZE_1: number;
     SIZE_2: number;
