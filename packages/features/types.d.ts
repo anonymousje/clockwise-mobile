@@ -244,6 +244,29 @@ export type WhoIsOnResponseType = {
   exceptionMessage?: string | undefined;
 };
 
+export type TimeSheetDateTime = {
+  date: string;
+  timezone_type: number;
+  timezone: string;
+};
+
+export type TimeSheetEntry = {
+  id: number;
+  user_id: number;
+  user_name: string;
+  full_name: string;
+  clock_in: TimeSheetDateTime;
+  clock_out: TimeSheetDateTime | null;
+  total_shift: string | null;
+  break_duration: string;
+};
+
+export type TimeSheetResponseType = {
+  success: boolean;
+  response: TimeSheetEntry[];
+  exceptionMessage?: string | undefined;
+};
+
 export interface ButtonProps extends TouchableOpacityProps {
   onPress: () => void;
   label: string;
