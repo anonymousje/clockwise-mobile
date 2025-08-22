@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingBottom: 5,
+    marginBottom: 5,
   },
   timeEntryCard: {
     flexDirection: 'row',
@@ -104,9 +105,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
     gap: COMMON_CONSTANTS.SIZE.SIZE_10,
-    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_5,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_10,
     justifyContent: 'center',
     marginTop: 'auto',
   },
