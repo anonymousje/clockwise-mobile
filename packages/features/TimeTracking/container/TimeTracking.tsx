@@ -4,6 +4,7 @@ import { COLORS } from '../../../constants/theme';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import useTimeTracking from '../hooks/useTimeTracking';
+import { formatHMS } from '../../../utils/helper';
 
 const TimeTracking = () => {
   const { approveTime, approveAll, unapproveAll, timeSheet } =
@@ -42,10 +43,28 @@ const TimeTracking = () => {
 
               <View style={styles.detailsSection}>
                 <View style={styles.titleRow}>
-                  <Text style={styles.titleText}>intern_sandbox</Text>
-                  <Text style={styles.timeText}>7:15 AM - 7:15 AM</Text>
-                  <Text style={styles.roleText}>Butcher</Text>
-                  <Text style={styles.statusText}>Pending • 16s</Text>
+                  <Text style={styles.titleText}>{entry.full_name}</Text>
+                  <Text style={styles.timeText}>
+                    {new Date(entry.clock_in.date).toLocaleTimeString([], {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                    {entry.clock_out
+                      ? ` - ${new Date(entry.clock_out.date).toLocaleTimeString(
+                          [],
+                          {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          },
+                        )}`
+                      : ''}
+                  </Text>
+                  <Text style={styles.roleText}>Placeholder for position</Text>
+                  <Text style={styles.statusText}>
+                    {entry.total_shift
+                      ? `Pending • ${formatHMS(entry.total_shift)}`
+                      : 'Pending • 0h, 0m, 0s'}
+                  </Text>
                 </View>
                 <TouchableOpacity
                   style={styles.cardApproveButton}

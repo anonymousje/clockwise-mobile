@@ -112,3 +112,17 @@ export const formatBreakGaps = (breaks: BreakType[]): breakArrayType[] => {
     endTime: b.endTime ? formatTimeFromISOString(b.endTime) : '',
   }));
 };
+export const formatHMS = (time: string): string => {
+  if (!time) return '';
+  const parts = time.split(':').map(Number);
+  if (parts.length !== 3 || parts.some(isNaN)) return '';
+  const [hours, minutes, seconds] = parts;
+  const result = [
+    hours > 0 ? `${hours}h` : '',
+    minutes > 0 ? `${minutes}m` : '',
+    seconds > 0 ? `${seconds}s` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+  return result || '0s';
+};
