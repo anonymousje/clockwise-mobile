@@ -40,6 +40,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     overflow: 'hidden',
   },
+  breakTimeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  breakText: {
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.SIZE_13,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+  },
   dateSection: {
     width: '20%',
     marginVertical: 20,
@@ -50,12 +60,12 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   dayText: {
-    color: COLORS.WHITE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: FONT_SIZE.SIZE_15,
     fontFamily: FONTS.CLOCKWISE_BOLD,
   },
   dateText: {
-    color: COLORS.WHITE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: FONT_SIZE.SIZE_30,
     fontFamily: FONTS.CLOCKWISE_BOLD,
   },
@@ -70,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   titleText: {
-    color: COLORS.TEXT_DARK_MODE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: FONT_SIZE.SIZE_20,
     fontFamily: FONTS.CLOCKWISE_BOLD,
     marginBottom: 8,
@@ -87,13 +97,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   timeText: {
-    color: COLORS.TEXT_DARK_MODE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: FONT_SIZE.SIZE_17,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     marginBottom: 4,
   },
   roleText: {
-    color: COLORS.TEXT_DARK_MODE,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: FONT_SIZE.SIZE_15,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     marginBottom: 4,
@@ -102,6 +112,7 @@ const styles = StyleSheet.create({
     color: '#F39C12',
     fontSize: FONT_SIZE.SIZE_15,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
+    marginBottom: 4,
   },
   buttonContainer: {
     flexDirection: 'row',

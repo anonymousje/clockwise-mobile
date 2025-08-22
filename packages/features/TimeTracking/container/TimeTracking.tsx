@@ -73,6 +73,16 @@ const TimeTracking = () => {
                         ? `Pending • ${formatHMS(entry.total_shift)}`
                         : 'Pending • 0h, 0m, 0s'}
                     </Text>
+                    <View style={styles.breakTimeContainer}>
+                      <Ionicons
+                        name={COMMON_CONSTANTS.ICONS.CAFE}
+                        size={COMMON_CONSTANTS.SIZE.SIZE_18}
+                        color={COLORS.CLOCKWISE_PRIMARY}
+                      />
+                      <Text style={styles.breakText}>
+                        {formatHMS(entry.break_duration)}
+                      </Text>
+                    </View>
                   </View>
                   <TouchableOpacity
                     style={styles.cardApproveButton}
