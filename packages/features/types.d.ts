@@ -42,8 +42,8 @@ export type NewPasswordRouteProp = RouteProp<
 >;
 
 export type StaffFormData = {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   password: string;
   cellPhone?: string;
   homePhone?: string;

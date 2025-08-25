@@ -2,7 +2,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  FlatList,
   ActivityIndicator,
 } from 'react-native';
 import styles from '../styles/TimeTracking.styles';
@@ -54,72 +54,70 @@ const TimeTracking = () => {
             />
           </TouchableOpacity>
         </View>
-        <ScrollView style={styles.content}>
-          {Array.isArray(timeSheet) &&
-            timeSheet.map((entry) => (
-              <View
-                key={entry.id}
-                style={styles.timeEntryCard}
-              >
-                <View style={styles.dateSection}>
-                  <Text style={styles.dayText}>
-                    {new Date(entry.clock_in.date)
-                      .toLocaleDateString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
-                        weekday: COMMON_CONSTANTS.SHORT,
-                      })
-                      .toUpperCase()}
-                  </Text>
-                  <Text style={styles.dateText}>
-                    {new Date(entry.clock_in.date).getDate()}
-                  </Text>
-                </View>
+        <FlatList
+          style={styles.content}
+          data={Array.isArray(timeSheet) ? timeSheet : []}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item: entry }) => (
+            <View style={styles.timeEntryCard}>
+              <View style={styles.dateSection}>
+                <Text style={styles.dayText}>
+                  {new Date(entry.clock_in.date)
+                    .toLocaleDateString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
+                      weekday: COMMON_CONSTANTS.SHORT,
+                    })
+                    .toUpperCase()}
+                </Text>
+                <Text style={styles.dateText}>
+                  {new Date(entry.clock_in.date).getDate()}
+                </Text>
+              </View>
 
-                <View style={styles.detailsSection}>
-                  <View style={styles.titleRow}>
-                    <Text style={styles.titleText}>{entry.full_name}</Text>
-                    <Text style={styles.timeText}>
-                      {new Date(entry.clock_in.date).toLocaleTimeString([], {
-                        hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                        minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                      })}
-                      {entry.clock_out
-                        ? ` - ${new Date(
-                            entry.clock_out.date,
-                          ).toLocaleTimeString([], {
+              <View style={styles.detailsSection}>
+                <View style={styles.titleRow}>
+                  <Text style={styles.titleText}>{entry.full_name}</Text>
+                  <Text style={styles.timeText}>
+                    {new Date(entry.clock_in.date).toLocaleTimeString([], {
+                      hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                      minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                    })}
+                    {entry.clock_out
+                      ? ` - ${new Date(entry.clock_out.date).toLocaleTimeString(
+                          [],
+                          {
                             hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
                             minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                          })}`
-                        : ''}
+                          },
+                        )}`
+                      : ''}
+                  </Text>
+                  <Text style={styles.roleText}>Placeholder for position</Text>
+                  <Text style={styles.statusText}>
+                    {entry.total_shift
+                      ? `${STRINGS.PENDING} • ${formatHMS(entry.total_shift)}`
+                      : `${STRINGS.PENDING}`}
+                  </Text>
+                  <View style={styles.breakTimeContainer}>
+                    <Ionicons
+                      name={COMMON_CONSTANTS.ICONS.CAFE}
+                      size={COMMON_CONSTANTS.SIZE.SIZE_18}
+                      color={COLORS.CLOCKWISE_PRIMARY}
+                    />
+                    <Text style={styles.breakText}>
+                      {formatHMS(entry.break_duration)}
                     </Text>
-                    <Text style={styles.roleText}>
-                      Placeholder for position
-                    </Text>
-                    <Text style={styles.statusText}>
-                      {entry.total_shift
-                        ? `${STRINGS.PENDING} • ${formatHMS(entry.total_shift)}`
-                        : `${STRINGS.PENDING}`}
-                    </Text>
-                    <View style={styles.breakTimeContainer}>
-                      <Ionicons
-                        name={COMMON_CONSTANTS.ICONS.CAFE}
-                        size={COMMON_CONSTANTS.SIZE.SIZE_18}
-                        color={COLORS.CLOCKWISE_PRIMARY}
-                      />
-                      <Text style={styles.breakText}>
-                        {formatHMS(entry.break_duration)}
-                      </Text>
-                    </View>
                   </View>
-                  <TouchableOpacity
-                    style={styles.cardApproveButton}
-                    onPress={approveTime}
-                  >
-                    <Text style={styles.approveText}>{STRINGS.APPROVE}</Text>
-                  </TouchableOpacity>
                 </View>
+                <TouchableOpacity
+                  style={styles.cardApproveButton}
+                  onPress={() => approveTime(entry.id)}
+                >
+                  <Text style={styles.approveText}>{STRINGS.APPROVE}</Text>
+                </TouchableOpacity>
               </View>
-            ))}
-        </ScrollView>
+            </View>
+          )}
+        />
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={approveAll}

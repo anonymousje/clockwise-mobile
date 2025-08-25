@@ -15,8 +15,8 @@ const useTimeTracking = () => {
     fetchTimeSheet();
   }, []);
 
-  const approveTime = () => {
-    console.log('Time approved');
+  const approveTime = (id: number) => {
+    console.log('Time approved for entry id:', id);
   };
 
   const approveAll = () => {
