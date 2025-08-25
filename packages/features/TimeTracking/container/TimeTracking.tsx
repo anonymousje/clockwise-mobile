@@ -62,14 +62,14 @@ const TimeTracking = () => {
             <View style={styles.timeEntryCard}>
               <View style={styles.dateSection}>
                 <Text style={styles.dayText}>
-                  {new Date(entry.clock_in.date)
+                  {new Date(entry.clock_in)
                     .toLocaleDateString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
                       weekday: COMMON_CONSTANTS.SHORT,
                     })
                     .toUpperCase()}
                 </Text>
                 <Text style={styles.dateText}>
-                  {new Date(entry.clock_in.date).getDate()}
+                  {new Date(entry.clock_in).getDate()}
                 </Text>
               </View>
 
@@ -77,21 +77,18 @@ const TimeTracking = () => {
                 <View style={styles.titleRow}>
                   <Text style={styles.titleText}>{entry.full_name}</Text>
                   <Text style={styles.timeText}>
-                    {new Date(entry.clock_in.date).toLocaleTimeString([], {
+                    {new Date(entry.clock_in).toLocaleTimeString([], {
                       hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
                       minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
                     })}
                     {entry.clock_out
-                      ? ` - ${new Date(entry.clock_out.date).toLocaleTimeString(
-                          [],
-                          {
-                            hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                            minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                          },
-                        )}`
+                      ? ` - ${new Date(entry.clock_out).toLocaleTimeString([], {
+                          hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                          minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                        })}`
                       : ''}
                   </Text>
-                  <Text style={styles.roleText}>Placeholder for position</Text>
+                  <Text style={styles.roleText}>{entry.position}</Text>
                   <Text style={styles.statusText}>
                     {entry.total_shift
                       ? `${STRINGS.PENDING} • ${formatHMS(entry.total_shift)}`

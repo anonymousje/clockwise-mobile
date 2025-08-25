@@ -247,26 +247,26 @@ export type WhoIsOnResponseType = {
   exceptionMessage?: string | undefined;
 };
 
-export type TimeSheetDateTime = {
-  date: string;
-  timezone_type: number;
-  timezone: string;
-};
-
 export type TimeSheetEntry = {
   id: number;
   user_id: number;
   user_name: string;
   full_name: string;
-  clock_in: TimeSheetDateTime;
-  clock_out: TimeSheetDateTime | null;
+  role: string;
+  position: string;
+  location: string;
+  department: string;
+  status: boolean;
+  deleted: boolean;
+  clock_in: string;
+  clock_out: string | null;
   total_shift: string | null;
   break_duration: string;
 };
 
 export type TimeSheetResponseType = {
   success: boolean;
-  response: TimeSheetEntry[];
+  data: TimeSheetEntry[];
   exceptionMessage?: string | undefined;
 };
 
