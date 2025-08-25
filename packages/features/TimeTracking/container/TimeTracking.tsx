@@ -118,12 +118,24 @@ const TimeTracking = () => {
                     </Text>
                   </View>
                 </View>
-                <TouchableOpacity
-                  style={styles.cardApproveButton}
-                  onPress={() => approveTime(entry.id)}
-                >
-                  <Text style={styles.approveText}>{STRINGS.APPROVE}</Text>
-                </TouchableOpacity>
+                {!entry.status && (
+                  <TouchableOpacity
+                    style={styles.cardApproveButton}
+                    onPress={() => approveTime(entry.id)}
+                  >
+                    <Text style={styles.approveText}>{STRINGS.APPROVE}</Text>
+                  </TouchableOpacity>
+                )}
+                {entry.status && (
+                  <TouchableOpacity
+                    style={styles.cardApproveButton}
+                    onPress={() => approveTime(entry.id)}
+                  >
+                    <Text style={styles.unapproveText}>
+                      {STRINGS.UNAPPROVE}
+                    </Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
           )}

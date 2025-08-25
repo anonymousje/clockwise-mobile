@@ -106,6 +106,12 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_BOLD,
     alignSelf: COMMON_CONSTANTS.FLEX.CENTER,
   },
+  unapproveText: {
+    color: COLORS.RED,
+    fontSize: FONT_SIZE.SIZE_15,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    alignSelf: COMMON_CONSTANTS.ALIGN.CENTER,
+  },
   timeText: {
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontSize: FONT_SIZE.SIZE_17,

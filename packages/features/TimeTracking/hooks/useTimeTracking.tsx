@@ -13,6 +13,7 @@ const useTimeTracking = () => {
       setTimeSheet(response.data);
     }
   };
+
   const onRefresh = () => {
     setRefreshing(true);
 
@@ -29,14 +30,17 @@ const useTimeTracking = () => {
 
   const approveTime = (id: number) => {
     console.log('Time approved for entry id:', id);
+    fetchTimeSheet();
   };
 
   const approveAll = () => {
     console.log('All time entries approved');
+    fetchTimeSheet();
   };
 
   const unapproveAll = () => {
     console.log('All time entries unapproved');
+    fetchTimeSheet();
   };
 
   return {
