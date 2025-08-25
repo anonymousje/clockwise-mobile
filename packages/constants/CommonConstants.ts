@@ -36,6 +36,11 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     SET_UPDATED_WHO_IS_ON_LIST: 'SET_UPDATED_WHO_IS_ON_LIST',
     SET_REFRESH_FLAG: 'SET_REFRESH_FLAG',
   },
+  ICON_SIZE: {
+    SMALL: 'small',
+    MEDIUM: 'medium',
+    LARGE: 'large',
+  },
   ICONS: {
     HOME: 'home-outline',
     PEOPLE: 'people-outline',

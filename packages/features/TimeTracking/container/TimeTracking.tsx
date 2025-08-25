@@ -5,6 +5,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
+import { RefreshControl } from 'react-native-gesture-handler';
 import styles from '../styles/TimeTracking.styles';
 import { COLORS } from '../../../constants/theme';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
@@ -14,8 +15,14 @@ import { formatHMS } from '../../../utils/helper';
 import STRINGS from '../../../utils/strings';
 
 const TimeTracking = () => {
-  const { approveTime, approveAll, unapproveAll, timeSheet } =
-    useTimeTracking();
+  const {
+    approveTime,
+    approveAll,
+    unapproveAll,
+    timeSheet,
+    onRefresh,
+    refreshing,
+  } = useTimeTracking();
 
   if (timeSheet === null) {
     return (
@@ -33,7 +40,7 @@ const TimeTracking = () => {
         </View>
         <View style={styles.loadingContainer}>
           <ActivityIndicator
-            size='large'
+            size={COMMON_CONSTANTS.ICON_SIZE.LARGE}
             color={COLORS.CLOCKWISE_PRIMARY}
           />
           <Text style={styles.headerText}>{STRINGS.LOADING_WAIT}</Text>
@@ -55,6 +62,12 @@ const TimeTracking = () => {
           </TouchableOpacity>
         </View>
         <FlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
           style={styles.content}
           data={Array.isArray(timeSheet) ? timeSheet : []}
           keyExtractor={(item) => item.id.toString()}

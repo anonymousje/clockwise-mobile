@@ -122,6 +122,11 @@ export interface COMMON_CONSTANTS_TYPE {
   END: string;
   ZERO: number;
   ONE: number;
+  ICON_SIZE: {
+    SMALL: const;
+    MEDIUM: const;
+    LARGE: const;
+  };
   ICONS: {
     HOME: const;
     PEOPLE: const;
