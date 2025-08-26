@@ -7,9 +7,9 @@ import {
 import apiClient from '../../ApiClient';
 
 class ClockService {
-  async getClockStatus(): Promise<ClockStatusResponse> {
+  async getClockStatus(id: number): Promise<ClockStatusResponse> {
     return await apiClient
-      .get(ApiRoutes.shiftStatus)
+      .get(ApiRoutes.shiftStatus, { params: { user_id: id } })
       .then((res) => {
         return {
           status: true,

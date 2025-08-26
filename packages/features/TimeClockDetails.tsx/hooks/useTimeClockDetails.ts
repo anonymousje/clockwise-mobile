@@ -8,7 +8,6 @@ import {
 import TimeClockDetailsService from '../services/TimeClockDetailsService';
 import { NavigationProp } from '../../types';
 import {
-  formatBreakGaps,
   formatTime,
   formatTimeFromISOString,
   formatDateFromISOString,
@@ -24,16 +23,16 @@ const useTimeClockDetails = () => {
   const [note, setNote] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [clockTime, setClockTime] = useState('');
-  const [breakTime, setBreakTime] = useState<breakArrayType[]>([]);
+  const [breakTime] = useState<breakArrayType[]>([]);
   const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   const route = useRoute<TimeClockDetailsRouteProp>();
-  console.log('Entry ID:', route.params.entryId);
 
   const getClockStatus = useCallback(async (): Promise<ClockStatusResponse> => {
-    const clockInResponse = await TimeClockDetailsService.getClockStatus();
-    const breakResponse = await TimeClockDetailsService.getBreakStatus();
+    const clockInResponse = await TimeClockDetailsService.getClockStatus(
+      route.params.entryId,
+    );
 
     if (clockInResponse.status) {
       setClockTime(
@@ -51,13 +50,8 @@ const useTimeClockDetails = () => {
       setClockIn(clockInResponse.response.isClockedIn || false);
     }
 
-    if (breakResponse.status) {
-      const shiftBreaks = breakResponse.response?.shiftBreaks ?? [];
-      setBreakTime(formatBreakGaps(shiftBreaks));
-    }
-
     return clockInResponse;
-  }, []);
+  }, [route.params.entryId]);
 
   useEffect(() => {
     getClockStatus();
