@@ -19,6 +19,7 @@ apiClient.interceptors.request.use(
     if (accessToken) {
       config.headers.Cookie = `${COMMON_CONSTANTS.API_HEADERS.JWT}${accessToken}`;
     }
+    console.log('API Request:', config);
     return config;
   },
   function (error) {
@@ -28,6 +29,7 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   function (response) {
+    console.log('API Response:', response);
     return response;
   },
 

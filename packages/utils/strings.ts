@@ -39,6 +39,7 @@ const STRINGS = {
   TITLES: {
     DASHBOARD: 'Dashboard',
     TIME_TRACKING: 'Time Tracking',
+    CUSTOM_FILTER: 'Custom Filter',
   },
   RESET_PASSWORD_EMAIL:
     'If {0} is registered, you will receive a password reset link.',

@@ -8,6 +8,27 @@ const styles = StyleSheet.create({
     flex: COMMON_CONSTANTS.ONE,
     backgroundColor: COLORS.BACKGROUND_DARKER_MODE,
   },
+  modalHeader: {
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+    padding: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: COMMON_CONSTANTS.SIZE.SIZE_20,
+  },
+  backButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_3,
+  },
   loadingContainer: {
     flex: COMMON_CONSTANTS.ONE,
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
@@ -156,6 +177,12 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_BOLD,
     fontSize: FONT_SIZE.SIZE_17,
     color: COLORS.WHITE,
+  },
+  clearFilterText: {
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    fontSize: FONT_SIZE.SIZE_15,
+    color: COLORS.CLOCKWISE_PRIMARY,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_3,
   },
 });
 
