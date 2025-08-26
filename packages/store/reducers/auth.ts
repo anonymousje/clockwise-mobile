@@ -18,7 +18,7 @@ export const useSession = (state = initialState, action: Action) => {
       setRefreshToken(action.payload.refreshToken);
 
       AsyncStorage.setItem(
-        'user',
+        COMMON_CONSTANTS.USER,
         JSON.stringify({
           email: action.payload.email,
           accessToken: action.payload.accessToken,
@@ -40,7 +40,7 @@ export const useSession = (state = initialState, action: Action) => {
       setAccessToken(action.payload.accessToken);
       setRefreshToken(action.payload.refreshToken);
       AsyncStorage.setItem(
-        'user',
+        COMMON_CONSTANTS.USER,
         JSON.stringify({
           accessToken: action.payload.accessToken,
           refreshToken: action.payload.refreshToken,

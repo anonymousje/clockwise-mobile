@@ -96,6 +96,7 @@ export interface COMMON_CONSTANTS_TYPE {
     ACCEPT: string;
     BEARER: string;
   };
+  USER: string;
   ADMIN: string;
   REDUX_TYPES: {
     SET_USER: string;
