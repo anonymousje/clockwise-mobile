@@ -1,6 +1,9 @@
 const ApiRoutes = {
+  BaseURL: 'http://10.0.2.2:5135/api',
+  refreshToken: 'http://10.0.2.2:5135/api/auth/refresh-token',
   forgotPassword: '/Auth/forgot-password',
   newPassword: '/Auth/reset-password',
+  login: '/Auth/login',
   addEmployee: '/user/create-user',
   getStaff: '/user/get-all-users',
   getAllDepartments: '/department/get-all-departments',
@@ -16,6 +19,7 @@ const ApiRoutes = {
   endBreak: '/timeentry/end-break',
   shiftStatus: '/timeentry/get-shift-status',
   breakStatus: '/timeentry/get-shift-breaks-status',
+  whoIsOn: '/timeentry/whos-on',
 };
 
 export default ApiRoutes;

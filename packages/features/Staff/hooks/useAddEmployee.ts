@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { StaffFormData, NavigationProp } from '../../types';
 import { useNavigation } from '@react-navigation/native';
-import { fetchUpdated } from '../../../store/actions/fetchUsers';
+import { fetchUpdatedStaffList } from '../../../store/actions/flags';
 import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 import STRINGS from '../../../utils/strings';
 import AddEmployeeService from '../services/AddEmployeeService';
@@ -48,7 +48,7 @@ const useAddEmployee = () => {
       });
 
       reset();
-      dispatch(fetchUpdated(true));
+      dispatch(fetchUpdatedStaffList(true));
 
       navigation.goBack();
     } catch (error) {

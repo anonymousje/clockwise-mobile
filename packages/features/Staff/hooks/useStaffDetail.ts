@@ -3,7 +3,7 @@ import type { filterItemsType, staffType } from '../../types';
 import { useRoute } from '@react-navigation/native';
 import { StaffDetailNavigationProp, errorType } from '../../types';
 import { useDispatch } from 'react-redux';
-import { fetchUpdated } from '../../../store/actions/fetchUsers';
+import { fetchUpdatedStaffList } from '../../../store/actions/flags';
 import { z } from 'zod';
 import StaffDetailService from '../services/StaffDetailService';
 import STRINGS from '../../../utils/strings';
@@ -84,7 +84,7 @@ const useStaffDetail = () => {
           jobRoleName: staffData?.jobRoleName,
         });
 
-        dispatch(fetchUpdated(true));
+        dispatch(fetchUpdatedStaffList(true));
         const updatedUser: staffType | null = await StaffDetailService.getUser(
           staffData?.recordId,
         );
@@ -137,10 +137,10 @@ const useStaffDetail = () => {
   const changeStatus = async () => {
     if (staffData?.userStatus === 3) {
       await StaffDetailService.restoreUser(staffData?.recordId);
-      dispatch(fetchUpdated(true));
+      dispatch(fetchUpdatedStaffList(true));
     } else {
       await StaffDetailService.deleteUser(staffData?.recordId);
-      dispatch(fetchUpdated(true));
+      dispatch(fetchUpdatedStaffList(true));
     }
 
     try {

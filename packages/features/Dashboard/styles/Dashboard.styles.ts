@@ -38,10 +38,8 @@ const styles = StyleSheet.create({
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   widgetContainer: {
-    alignItems: 'center',
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
     marginHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
-    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_200,
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE

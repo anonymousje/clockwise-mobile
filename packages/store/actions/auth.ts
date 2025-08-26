@@ -1,6 +1,7 @@
 import { User } from '../../features/types';
 import apiClient from '../../features/ApiClient';
 import COMMON_CONSTANTS from '../../constants/CommonConstants';
+import ApiRoutes from '../../constants/ApiRoutes';
 
 export const setUser = (userData: User) => {
   return {
@@ -9,16 +10,20 @@ export const setUser = (userData: User) => {
   };
 };
 
-export const setTokens = (accessToken: string, refreshToken: string) => {
+export const setTokens = (
+  accessToken: string,
+  refreshToken: string,
+  role?: string,
+) => {
   return {
     type: COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS,
-    payload: { accessToken, refreshToken },
+    payload: { accessToken, refreshToken, role },
   };
 };
 
 export const logInUser = async (email: string, password: string) => {
   try {
-    const response = await apiClient.post('/Auth/login', {
+    const response = await apiClient.post(ApiRoutes.login, {
       email,
       password,
     });

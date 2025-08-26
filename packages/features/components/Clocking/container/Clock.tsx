@@ -7,7 +7,7 @@ import Button from '../../Button/container/Button';
 import COMMON_CONSTANTS from '../../../../constants/CommonConstants';
 import { COLORS } from '../../../../constants/theme';
 
-const Clocking = (refreshFlag: boolean, onRefresh: (flag: boolean) => void) => {
+const Clocking = () => {
   const {
     clockIn,
     handleClockOperation,
@@ -18,7 +18,7 @@ const Clocking = (refreshFlag: boolean, onRefresh: (flag: boolean) => void) => {
     modalVisible,
     onBreak,
     breakTime,
-  } = useClock(refreshFlag, onRefresh);
+  } = useClock();
 
   const clockInUI = () => {
     return (

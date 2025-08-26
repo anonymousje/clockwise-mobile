@@ -53,7 +53,7 @@ const StaffDetail = () => {
         <View style={styles.headerContainer}>
           <View style={styles.avatarContainer}>
             <Text style={styles.avatarText}>
-              {getInitials(staffData?.firstName, staffData?.lastName)}
+              {getInitials(`${staffData?.firstName} ${staffData?.lastName}`)}
             </Text>
           </View>
         </View>
