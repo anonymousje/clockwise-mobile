@@ -12,7 +12,7 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
-  [SCREENS.TimeClockDetails]: undefined;
+  [SCREENS.TimeClockDetails]: { entryId: number };
   [SCREENS.StaffDetail]: { data: staffType | null };
 };
 
@@ -39,6 +39,11 @@ export type StaffDetailNavigationProp = RouteProp<
 export type NewPasswordRouteProp = RouteProp<
   RoutesTypes,
   typeof SCREENS.NewPassword
+>;
+
+export type TimeClockDetailsRouteProp = RouteProp<
+  RoutesTypes,
+  typeof SCREENS.TimeClockDetails
 >;
 
 export type StaffFormData = {

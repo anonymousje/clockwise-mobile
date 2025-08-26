@@ -1,6 +1,10 @@
 import { useEffect, useCallback, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { breakArrayType, ClockStatusResponse } from '../../types';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  breakArrayType,
+  ClockStatusResponse,
+  TimeClockDetailsRouteProp,
+} from '../../types';
 import TimeClockDetailsService from '../services/TimeClockDetailsService';
 import { NavigationProp } from '../../types';
 import {
@@ -24,12 +28,20 @@ const useTimeClockDetails = () => {
   const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
+  const route = useRoute<TimeClockDetailsRouteProp>();
+  console.log('Entry ID:', route.params.entryId);
+
   const getClockStatus = useCallback(async (): Promise<ClockStatusResponse> => {
     const clockInResponse = await TimeClockDetailsService.getClockStatus();
     const breakResponse = await TimeClockDetailsService.getBreakStatus();
 
     if (clockInResponse.status) {
-      setClockTime(formatTime(clockInResponse.response.hoursWorked || ''));
+      setClockTime(
+        formatTime(
+          clockInResponse.response.hoursWorked || '',
+          Date.now().toString(),
+        ),
+      );
       setClockInTime(
         formatTimeFromISOString(clockInResponse.response.clockInTime || ''),
       );

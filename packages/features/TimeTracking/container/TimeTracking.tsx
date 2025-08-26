@@ -22,6 +22,7 @@ const TimeTracking = () => {
     timeSheet,
     onRefresh,
     refreshing,
+    getTimeClockDetails,
   } = useTimeTracking();
 
   if (timeSheet === null) {
@@ -72,7 +73,10 @@ const TimeTracking = () => {
           data={Array.isArray(timeSheet) ? timeSheet : []}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item: entry }) => (
-            <View style={styles.timeEntryCard}>
+            <TouchableOpacity
+              style={styles.timeEntryCard}
+              onPress={() => getTimeClockDetails(entry.id)}
+            >
               <View style={styles.dateSection}>
                 <Text style={styles.dayText}>
                   {new Date(entry.clock_in)
@@ -137,7 +141,7 @@ const TimeTracking = () => {
                   </TouchableOpacity>
                 )}
               </View>
-            </View>
+            </TouchableOpacity>
           )}
         />
         <View style={styles.buttonContainer}>

@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import TimeTrackingService from '../services/TimeTrackingService';
-import { TimeSheetEntry } from '../../types';
+import { NavigationProp, TimeSheetEntry } from '../../types';
+import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '../../../constants/screens';
 
 const useTimeTracking = () => {
+  const navigation = useNavigation<NavigationProp>();
+
   const [refreshing, setRefreshing] = useState(false);
   const [timeSheet, setTimeSheet] = useState<TimeSheetEntry[] | null>(null);
 
@@ -43,10 +47,15 @@ const useTimeTracking = () => {
     fetchTimeSheet();
   };
 
+  const getTimeClockDetails = (id: number) => {
+    navigation.navigate(SCREENS.TimeClockDetails, { entryId: id });
+  };
+
   return {
     approveTime,
     approveAll,
     unapproveAll,
+    getTimeClockDetails,
     timeSheet,
     onRefresh,
     refreshing,
