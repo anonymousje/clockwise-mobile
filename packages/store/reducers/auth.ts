@@ -29,7 +29,7 @@ export const useSession = (state = initialState, action: Action) => {
       setAccessToken(action.payload.accessToken);
 
       AsyncStorage.setItem(
-        'user',
+        COMMON_CONSTANTS.USER,
         JSON.stringify({
           userId: action.payload.userId,
           name: action.payload.name,
