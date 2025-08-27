@@ -9,6 +9,7 @@ const useTimeTracking = () => {
 
   const [refreshing, setRefreshing] = useState(false);
   const [keyword, setKeyword] = useState('');
+  const [loading, setLoading] = useState(false);
   const [timeSheet, setTimeSheet] = useState<TimeSheetEntry[] | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [location, setLocation] = useState();
@@ -19,12 +20,14 @@ const useTimeTracking = () => {
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
 
   const fetchTimeSheet = useCallback(async () => {
+    setLoading(true);
     const response = await TimeTrackingService.getTimeSheet(
       keyword,
       location,
       department,
       role,
     );
+    setLoading(false);
     console.log('TimeSheet Response:', response.data);
     if (response.status) {
       setTimeSheet(response.data);
@@ -123,6 +126,7 @@ const useTimeTracking = () => {
     clearFilters,
     keyword,
     searchKeyword,
+    loading,
   };
 };
 

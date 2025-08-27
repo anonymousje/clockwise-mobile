@@ -40,6 +40,17 @@ const styles = StyleSheet.create({
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
   },
+  listLoadingContainer: {
+    flex: COMMON_CONSTANTS.ONE,
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    gap: COMMON_CONSTANTS.SIZE.SIZE_10,
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
+  },
   header: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
     justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
@@ -195,6 +206,7 @@ const styles = StyleSheet.create({
   },
   searchInputContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   searchIcon: {
     color:
@@ -214,11 +226,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   searchInput: {
+    flex: 1,
     fontSize: FONT_SIZE.SIZE_18,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     paddingVertical: 14,
     paddingLeft: 10,
+    paddingRight: 15,
   },
   filterInput: {
     backgroundColor:
