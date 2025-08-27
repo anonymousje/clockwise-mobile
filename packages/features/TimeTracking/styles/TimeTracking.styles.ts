@@ -18,6 +18,19 @@ const styles = StyleSheet.create({
         : COLORS.BACKGROUND_LIGHT_MODE,
     padding: COMMON_CONSTANTS.SIZE.SIZE_20,
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
+    borderBottomWidth: 1,
+    borderBottomColor:
+      mode === MODE.DARK
+        ? COLORS.BORDER_COLOR_DARK_MODE + '30'
+        : COLORS.BORDER_COLOR_LIGHT_MODE,
+    elevation: 2,
+    shadowColor: COLORS.SHADOW_COLOR,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   titleContainer: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
@@ -187,7 +200,7 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
   },
   clearFilterText: {
-    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
     fontSize: FONT_SIZE.SIZE_15,
     color: COLORS.CLOCKWISE_PRIMARY,
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_3,
@@ -231,19 +244,73 @@ const styles = StyleSheet.create({
     paddingRight: COMMON_CONSTANTS.SIZE.SIZE_15,
   },
   filterInput: {
-    backgroundColor:
-      mode === MODE.DARK
-        ? COLORS.BACKGROUND_DARKER_MODE
-        : COLORS.BACKGROUND_LIGHTER_MODE,
-    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_15,
-    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_5,
-    marginTop: COMMON_CONSTANTS.SIZE.SIZE_20,
+    flex: COMMON_CONSTANTS.ONE,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_1,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    fontSize: FONT_SIZE.SIZE_15,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
   },
   modalContent: {
     justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
     flex: COMMON_CONSTANTS.ONE,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
+  },
+  filterModalContainer: {
+    flex: COMMON_CONSTANTS.ONE,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+  },
+  clearFilterButton: {
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_5,
+  },
+  filtersContainer: {
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingTop: COMMON_CONSTANTS.SIZE.SIZE_10,
+  },
+  sectionTitle: {
+    fontSize: FONT_SIZE.SIZE_18,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
+    textAlign: COMMON_CONSTANTS.FLEX.CENTER,
+  },
+  filterGroup: {
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_24,
+  },
+  filterLabel: {
+    fontSize: FONT_SIZE.SIZE_17,
+    fontFamily: FONTS.CLOCKWISE_BOLD,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_15,
+    marginLeft: COMMON_CONSTANTS.SIZE.SIZE_5,
+  },
+  pickerContainer: {
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
+    borderRadius: COMMON_CONSTANTS.SIZE.SIZE_12,
+    borderWidth: COMMON_CONSTANTS.ONE,
+    borderColor:
+      mode === MODE.DARK
+        ? COLORS.BORDER_COLOR_DARK_MODE
+        : COLORS.BORDER_COLOR_LIGHT_MODE,
+    elevation: 2,
+    shadowColor: COLORS.SHADOW_COLOR,
+  },
+  pickerIcon: {
+    marginLeft: COMMON_CONSTANTS.SIZE.SIZE_15,
+    marginRight: COMMON_CONSTANTS.SIZE.SIZE_5,
+  },
+  modalButtonContainer: {
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
 });
 

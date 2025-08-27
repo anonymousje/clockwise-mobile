@@ -59,6 +59,9 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ELLIPSE: 'ellipse',
     CAFE: 'cafe-outline',
     TIME: 'time-outline',
+    LOCATION: 'location-outline',
+    DEPARTMENT: 'business-outline',
+    JOB_ROLE: 'person-outline',
   },
   SHORT: 'short',
   DATE_TIME: {

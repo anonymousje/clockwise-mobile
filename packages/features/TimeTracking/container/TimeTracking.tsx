@@ -49,7 +49,7 @@ const TimeTracking = () => {
 
   const filterModal = () => {
     return (
-      <View style={styles.container}>
+      <View style={styles.filterModalContainer}>
         <View style={styles.modalHeader}>
           <View style={styles.titleContainer}>
             <TouchableOpacity
@@ -66,75 +66,120 @@ const TimeTracking = () => {
               {STRINGS.TITLES.CUSTOM_FILTER}
             </Text>
           </View>
-          <TouchableOpacity onPress={clearFilters}>
+          <TouchableOpacity
+            onPress={clearFilters}
+            style={styles.clearFilterButton}
+          >
             <Text style={styles.clearFilterText}>{STRINGS.CLEAR_ALL}</Text>
           </TouchableOpacity>
         </View>
+
         <View style={styles.modalContent}>
-          <View>
-            <View style={styles.picker}>
-              <Picker
-                selectedValue={location}
-                onValueChange={(itemValue) => setLocation(itemValue)}
-                style={styles.filterInput}
-              >
-                <Picker.Item
-                  label={STRINGS.PICKER_LABELS.LOCATION}
-                  value={COMMON_CONSTANTS.DEFAULT}
+          <View style={styles.filtersContainer}>
+            <Text style={styles.sectionTitle}>
+              {STRINGS.HEADERS.FILTER_OPTIONS}
+            </Text>
+
+            <View style={styles.filterGroup}>
+              <Text style={styles.filterLabel}>
+                {STRINGS.PICKER_LABELS.LOCATION_FILTER}
+              </Text>
+              <View style={styles.pickerContainer}>
+                <Ionicons
+                  name={COMMON_CONSTANTS.ICONS.LOCATION}
+                  size={COMMON_CONSTANTS.SIZE.SIZE_20}
+                  color={COLORS.CLOCKWISE_PRIMARY}
+                  style={styles.pickerIcon}
                 />
-
-                {locationList.map((item) => (
+                <Picker
+                  selectedValue={location}
+                  onValueChange={(itemValue) => setLocation(itemValue)}
+                  style={styles.filterInput}
+                >
                   <Picker.Item
-                    key={item.id}
-                    label={item.name}
-                    value={item.id}
+                    label={STRINGS.PICKER_LABELS.LOCATION}
+                    value={COMMON_CONSTANTS.DEFAULT}
                   />
-                ))}
-              </Picker>
+                  {locationList.map((item) => (
+                    <Picker.Item
+                      key={item.id}
+                      label={item.name}
+                      value={item.id}
+                    />
+                  ))}
+                </Picker>
+              </View>
+            </View>
 
-              <Picker
-                selectedValue={department}
-                onValueChange={(itemValue) => setDepartment(itemValue)}
-                style={styles.filterInput}
-              >
-                <Picker.Item
-                  label={STRINGS.PICKER_LABELS.DEPARTMENT}
-                  value={COMMON_CONSTANTS.DEFAULT}
+            <View style={styles.filterGroup}>
+              <Text style={styles.filterLabel}>
+                {STRINGS.PICKER_LABELS.DEPARTMENT_FILTER}
+              </Text>
+              <View style={styles.pickerContainer}>
+                <Ionicons
+                  name={COMMON_CONSTANTS.ICONS.DEPARTMENT}
+                  size={COMMON_CONSTANTS.SIZE.SIZE_20}
+                  color={COLORS.CLOCKWISE_PRIMARY}
+                  style={styles.pickerIcon}
                 />
-
-                {departmentList.map((item) => (
+                <Picker
+                  selectedValue={department}
+                  onValueChange={(itemValue) => setDepartment(itemValue)}
+                  style={styles.filterInput}
+                >
                   <Picker.Item
-                    key={item.id}
-                    label={item.name}
-                    value={item.id}
+                    label={STRINGS.PICKER_LABELS.DEPARTMENT}
+                    value={COMMON_CONSTANTS.DEFAULT}
                   />
-                ))}
-              </Picker>
+                  {departmentList.map((item) => (
+                    <Picker.Item
+                      key={item.id}
+                      label={item.name}
+                      value={item.id}
+                    />
+                  ))}
+                </Picker>
+              </View>
+            </View>
 
-              <Picker
-                selectedValue={role}
-                onValueChange={(itemValue) => setRole(itemValue)}
-                style={styles.filterInput}
-              >
-                <Picker.Item
-                  label={STRINGS.PICKER_LABELS.JOB_ROLE}
-                  value={COMMON_CONSTANTS.DEFAULT}
+            <View style={styles.filterGroup}>
+              <Text style={styles.filterLabel}>
+                {STRINGS.PICKER_LABELS.JOB_ROLE_FILTER}
+              </Text>
+              <View style={styles.pickerContainer}>
+                <Ionicons
+                  name={COMMON_CONSTANTS.ICONS.JOB_ROLE}
+                  size={COMMON_CONSTANTS.SIZE.SIZE_20}
+                  color={COLORS.CLOCKWISE_PRIMARY}
+                  style={styles.pickerIcon}
                 />
-
-                {jobRolelist.map((item) => (
+                <Picker
+                  selectedValue={role}
+                  onValueChange={(itemValue) => setRole(itemValue)}
+                  style={styles.filterInput}
+                >
                   <Picker.Item
-                    key={item.id}
-                    label={item.name}
-                    value={item.id}
+                    label={STRINGS.PICKER_LABELS.JOB_ROLE}
+                    value={COMMON_CONSTANTS.DEFAULT}
                   />
-                ))}
-              </Picker>
+                  {jobRolelist.map((item) => (
+                    <Picker.Item
+                      key={item.id}
+                      label={item.name}
+                      value={item.id}
+                    />
+                  ))}
+                </Picker>
+              </View>
             </View>
           </View>
-          <Button
-            label={STRINGS.BUTTON_TEXT.APPLY}
-            onPress={applyFilters}
-          />
+
+          <View style={styles.modalButtonContainer}>
+            <Button
+              label={STRINGS.BUTTON_TEXT.APPLY}
+              onPress={applyFilters}
+            />
+          </View>
         </View>
       </View>
     );

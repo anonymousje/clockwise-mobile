@@ -150,6 +150,9 @@ export interface COMMON_CONSTANTS_TYPE {
     ELLIPSE: const;
     CAFE: const;
     TIME: const;
+    LOCATION: const;
+    DEPARTMENT: const;
+    JOB_ROLE: const;
   };
   SPACE: string;
   DATE_TIME: {
