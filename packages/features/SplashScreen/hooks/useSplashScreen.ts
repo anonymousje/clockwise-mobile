@@ -26,7 +26,6 @@ const useSplashScreen = () => {
               parsedUser.userId,
             ),
           );
-          console.log('User authenticated:', parsedUser);
           if (parsedUser.accessToken) {
             navigation.replace(SCREENS.MainTabs);
           } else {

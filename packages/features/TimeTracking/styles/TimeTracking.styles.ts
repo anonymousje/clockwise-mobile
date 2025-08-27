@@ -6,7 +6,10 @@ const mode = Appearance.getColorScheme();
 const styles = StyleSheet.create({
   container: {
     flex: COMMON_CONSTANTS.ONE,
-    backgroundColor: COLORS.BACKGROUND_DARKER_MODE,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
   },
   modalHeader: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
@@ -18,19 +21,13 @@ const styles = StyleSheet.create({
         : COLORS.BACKGROUND_LIGHT_MODE,
     padding: COMMON_CONSTANTS.SIZE.SIZE_20,
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
-    borderBottomWidth: 1,
+    borderBottomWidth: COMMON_CONSTANTS.ONE,
     borderBottomColor:
       mode === MODE.DARK
-        ? COLORS.BORDER_COLOR_DARK_MODE + '30'
+        ? COLORS.BORDER_COLOR_DARK_MODE
         : COLORS.BORDER_COLOR_LIGHT_MODE,
-    elevation: 2,
+    elevation: COMMON_CONSTANTS.SIZE.SIZE_2,
     shadowColor: COLORS.SHADOW_COLOR,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
   },
   titleContainer: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
@@ -59,7 +56,8 @@ const styles = StyleSheet.create({
     gap: COMMON_CONSTANTS.SIZE.SIZE_10,
     justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     alignItems: COMMON_CONSTANTS.FLEX.CENTER,
-    backgroundColor: COLORS.TRANSPARENT_BLACK,
+    backgroundColor:
+      mode === MODE.DARK ? COLORS.TRANSPARENT_BLACK : COLORS.TRANSPARENT_WHITE,
   },
   header: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
@@ -88,7 +86,10 @@ const styles = StyleSheet.create({
   },
   timeEntryCard: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,
-    backgroundColor: COLORS.BACKGROUND_DARK_MODE,
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_8,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
   },

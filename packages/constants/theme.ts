@@ -28,6 +28,7 @@ export const COLORS = {
   GREY: 'grey',
   YELLOW: '#F39C12',
   TRANSPARENT_BLACK: 'rgba(0,0,0,0.3)',
+  TRANSPARENT_WHITE: 'rgba(255,255,255,0.3)',
 };
 
 export const FONT_SIZE = {
