@@ -5,6 +5,7 @@ import {
   FlatList,
   ActivityIndicator,
   Modal,
+  TextInput,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { RefreshControl } from 'react-native-gesture-handler';
@@ -39,6 +40,8 @@ const TimeTracking = () => {
     setDepartment,
     setRole,
     clearFilters,
+    keyword,
+    searchKeyword,
   } = useTimeTracking();
 
   const filterModal = () => {
@@ -66,10 +69,11 @@ const TimeTracking = () => {
         </View>
         <View style={styles.modalContent}>
           <View>
-            <View style={{}}>
+            <View style={styles.picker}>
               <Picker
                 selectedValue={location}
                 onValueChange={(itemValue) => setLocation(itemValue)}
+                style={styles.filterInput}
               >
                 <Picker.Item
                   label={STRINGS.PICKER_LABELS.LOCATION}
@@ -88,6 +92,7 @@ const TimeTracking = () => {
               <Picker
                 selectedValue={department}
                 onValueChange={(itemValue) => setDepartment(itemValue)}
+                style={styles.filterInput}
               >
                 <Picker.Item
                   label={STRINGS.PICKER_LABELS.DEPARTMENT}
@@ -106,6 +111,7 @@ const TimeTracking = () => {
               <Picker
                 selectedValue={role}
                 onValueChange={(itemValue) => setRole(itemValue)}
+                style={styles.filterInput}
               >
                 <Picker.Item
                   label={STRINGS.PICKER_LABELS.JOB_ROLE}
@@ -169,6 +175,21 @@ const TimeTracking = () => {
                 style={styles.filterIconStyle}
               />
             </TouchableOpacity>
+          </View>
+          <View style={styles.searchContainer}>
+            <View style={styles.searchInputContainer}>
+              <Ionicons
+                name={COMMON_CONSTANTS.ICONS.SEARCH}
+                size={30}
+                style={styles.searchIcon}
+              />
+              <TextInput
+                placeholder={STRINGS.PLACEHOLDER.PLACEHOLDER_TEXT}
+                value={keyword}
+                onChangeText={searchKeyword}
+                style={styles.searchInput}
+              />
+            </View>
           </View>
           <FlatList
             refreshControl={

@@ -95,6 +95,11 @@ const useTimeTracking = () => {
     fetchTimeSheet();
   };
 
+  const searchKeyword = (text: string) => {
+    setKeyword(text);
+    fetchTimeSheet();
+  };
+
   return {
     approveTime,
     approveAll,
@@ -116,6 +121,8 @@ const useTimeTracking = () => {
     setDepartment,
     setRole,
     clearFilters,
+    keyword,
+    searchKeyword,
   };
 };
 

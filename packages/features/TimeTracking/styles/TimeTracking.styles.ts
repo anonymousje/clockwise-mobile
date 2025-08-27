@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: COMMON_CONSTANTS.ONE,
-    padding: COMMON_CONSTANTS.SIZE.SIZE_20,
-    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_5,
+    paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_5,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
   timeEntryCard: {
@@ -184,27 +184,51 @@ const styles = StyleSheet.create({
     color: COLORS.CLOCKWISE_PRIMARY,
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_3,
   },
-  pickersContainer: {
-    marginTop: 20,
-  },
-
-  pickerItem: {
-    width: '100%',
-  },
-
   picker: {
-    flex: 1,
-    justifyContent: 'center',
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARK_MODE
+        : COLORS.BACKGROUND_LIGHT_MODE,
+    width: '100%',
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_30,
+    paddingBottom: 20,
+  },
+  searchInputContainer: {
+    flexDirection: 'row',
+  },
+  searchIcon: {
+    color:
+      mode === MODE.DARK
+        ? COLORS.CLOCKWISE_PRIMARY
+        : COLORS.CLOCKWISE_PRIMARY_DARK,
+    paddingLeft: 10,
+    paddingVertical: 10,
+  },
+  searchContainer: {
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARKER_MODE
         : COLORS.BACKGROUND_LIGHTER_MODE,
-    alignItems: 'center',
-    alignSelf: 'stretch',
     borderRadius: 20,
-    width: '100%',
-    marginVertical: 30,
-    paddingLeft: 5,
+    marginTop: 10,
+    marginHorizontal: 20,
+  },
+  searchInput: {
+    fontSize: FONT_SIZE.SIZE_18,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    paddingVertical: 14,
+    paddingLeft: 10,
+  },
+  filterInput: {
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
+    paddingLeft: 15,
+    paddingVertical: 5,
+    marginTop: 20,
+    color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   modalContent: {
     justifyContent: 'space-between',
