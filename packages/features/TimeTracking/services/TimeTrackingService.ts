@@ -52,6 +52,29 @@ class TimeTrackingService {
 
     return response;
   }
+  async updateTimeEntryStatus(id: number, status: boolean) {
+    const response = await apiClient
+      .post(ApiRoutes.updateTimeEntryStatus, {
+        id,
+        status,
+      })
+      .then((res) => {
+        return {
+          status: true,
+          response: res.data.message,
+          exceptionMessage: undefined,
+        };
+      })
+      .catch((error) => {
+        return {
+          status: false,
+          response: undefined,
+          exceptionMessage: error.message,
+        };
+      });
+
+    return response;
+  }
 }
 
 export default new TimeTrackingService();

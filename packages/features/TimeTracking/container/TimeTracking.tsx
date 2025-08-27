@@ -21,6 +21,7 @@ import Button from '../../components/Button/container/Button';
 const TimeTracking = () => {
   const {
     approveTime,
+    unapproveTime,
     approveAll,
     unapproveAll,
     timeSheet,
@@ -41,6 +42,7 @@ const TimeTracking = () => {
     setRole,
     clearFilters,
     keyword,
+    setKeyword,
     searchKeyword,
     loading,
   } = useTimeTracking();
@@ -179,119 +181,107 @@ const TimeTracking = () => {
           </View>
           <View style={styles.searchContainer}>
             <View style={styles.searchInputContainer}>
-              <Ionicons
-                name={COMMON_CONSTANTS.ICONS.SEARCH}
-                size={30}
-                style={styles.searchIcon}
-              />
               <TextInput
                 placeholder={STRINGS.PLACEHOLDER.PLACEHOLDER_TEXT}
                 value={keyword}
-                onChangeText={searchKeyword}
+                onChangeText={setKeyword}
                 style={styles.searchInput}
               />
+              <TouchableOpacity onPress={searchKeyword}>
+                <Ionicons
+                  name={COMMON_CONSTANTS.ICONS.SEARCH}
+                  size={30}
+                  style={styles.searchIcon}
+                />
+              </TouchableOpacity>
             </View>
           </View>
-          {loading && (
-            <View style={styles.listLoadingContainer}>
-              <ActivityIndicator
-                size={COMMON_CONSTANTS.ICON_SIZE.LARGE}
-                color={COLORS.CLOCKWISE_PRIMARY}
-              />
-              <Text style={styles.headerText}>{STRINGS.LOADING_WAIT}</Text>
-            </View>
-          )}
-          {!loading && (
-            <FlatList
-              refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={onRefresh}
-                />
-              }
-              style={styles.content}
-              data={Array.isArray(timeSheet) ? timeSheet : []}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item: entry }) => (
-                <TouchableOpacity
-                  style={styles.timeEntryCard}
-                  onPress={() => getTimeClockDetails(entry.id)}
-                >
-                  <View style={styles.dateSection}>
-                    <Text style={styles.dayText}>
-                      {new Date(entry.clock_in)
-                        .toLocaleDateString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
-                          weekday: COMMON_CONSTANTS.SHORT,
-                        })
-                        .toUpperCase()}
-                    </Text>
-                    <Text style={styles.dateText}>
-                      {new Date(entry.clock_in).getDate()}
-                    </Text>
-                  </View>
 
-                  <View style={styles.detailsSection}>
-                    <View style={styles.titleRow}>
-                      <Text style={styles.titleText}>{entry.full_name}</Text>
-                      <Text style={styles.timeText}>
-                        {new Date(entry.clock_in).toLocaleTimeString([], {
-                          hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                          minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                        })}
-                        {entry.clock_out
-                          ? ` - ${new Date(entry.clock_out).toLocaleTimeString(
-                              [],
-                              {
-                                hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                                minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
-                              },
-                            )}`
-                          : ''}
+          <FlatList
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+              />
+            }
+            style={styles.content}
+            data={Array.isArray(timeSheet) ? timeSheet : []}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item: entry }) => (
+              <TouchableOpacity
+                style={styles.timeEntryCard}
+                onPress={() => getTimeClockDetails(entry.id)}
+              >
+                <View style={styles.dateSection}>
+                  <Text style={styles.dayText}>
+                    {new Date(entry.clock_in)
+                      .toLocaleDateString(COMMON_CONSTANTS.DATE_TIME.EN_US, {
+                        weekday: COMMON_CONSTANTS.SHORT,
+                      })
+                      .toUpperCase()}
+                  </Text>
+                  <Text style={styles.dateText}>
+                    {new Date(entry.clock_in).getDate()}
+                  </Text>
+                </View>
+
+                <View style={styles.detailsSection}>
+                  <View style={styles.titleRow}>
+                    <Text style={styles.titleText}>{entry.full_name}</Text>
+                    <Text style={styles.timeText}>
+                      {new Date(entry.clock_in).toLocaleTimeString([], {
+                        hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                        minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                      })}
+                      {entry.clock_out
+                        ? ` - ${new Date(entry.clock_out).toLocaleTimeString(
+                            [],
+                            {
+                              hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                              minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+                            },
+                          )}`
+                        : ''}
+                    </Text>
+                    <Text style={styles.roleText}>{entry.position}</Text>
+                    <Text style={styles.statusText}>
+                      {entry.total_shift
+                        ? `${STRINGS.PENDING} • ${formatHMS(entry.total_shift)}`
+                        : `${STRINGS.PENDING}`}
+                    </Text>
+                    <View style={styles.breakTimeContainer}>
+                      <Ionicons
+                        name={COMMON_CONSTANTS.ICONS.CAFE}
+                        size={COMMON_CONSTANTS.SIZE.SIZE_18}
+                        color={COLORS.CLOCKWISE_PRIMARY}
+                      />
+                      <Text style={styles.breakText}>
+                        {formatHMS(entry.break_duration)}
                       </Text>
-                      <Text style={styles.roleText}>{entry.position}</Text>
-                      <Text style={styles.statusText}>
-                        {entry.total_shift
-                          ? `${STRINGS.PENDING} • ${formatHMS(
-                              entry.total_shift,
-                            )}`
-                          : `${STRINGS.PENDING}`}
-                      </Text>
-                      <View style={styles.breakTimeContainer}>
-                        <Ionicons
-                          name={COMMON_CONSTANTS.ICONS.CAFE}
-                          size={COMMON_CONSTANTS.SIZE.SIZE_18}
-                          color={COLORS.CLOCKWISE_PRIMARY}
-                        />
-                        <Text style={styles.breakText}>
-                          {formatHMS(entry.break_duration)}
-                        </Text>
-                      </View>
                     </View>
-                    {!entry.status && (
-                      <TouchableOpacity
-                        style={styles.cardApproveButton}
-                        onPress={() => approveTime(entry.id)}
-                      >
-                        <Text style={styles.approveText}>
-                          {STRINGS.APPROVE}
-                        </Text>
-                      </TouchableOpacity>
-                    )}
-                    {entry.status && (
-                      <TouchableOpacity
-                        style={styles.cardApproveButton}
-                        onPress={() => approveTime(entry.id)}
-                      >
-                        <Text style={styles.unapproveText}>
-                          {STRINGS.UNAPPROVE}
-                        </Text>
-                      </TouchableOpacity>
-                    )}
                   </View>
-                </TouchableOpacity>
-              )}
-            />
-          )}
+                  {!entry.status && (
+                    <TouchableOpacity
+                      style={styles.cardApproveButton}
+                      onPress={() => approveTime(entry.id)}
+                    >
+                      <Text style={styles.approveText}>{STRINGS.APPROVE}</Text>
+                    </TouchableOpacity>
+                  )}
+                  {entry.status && (
+                    <TouchableOpacity
+                      style={styles.cardApproveButton}
+                      onPress={() => unapproveTime(entry.id)}
+                    >
+                      <Text style={styles.unapproveText}>
+                        {STRINGS.UNAPPROVE}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+              </TouchableOpacity>
+            )}
+          />
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               onPress={approveAll}
@@ -315,6 +305,19 @@ const TimeTracking = () => {
           onRequestClose={toggleModal}
         >
           {filterModal()}
+        </Modal>
+        <Modal
+          animationType={COMMON_CONSTANTS.MODAL_ANIMATION.FADE}
+          transparent={true}
+          visible={loading}
+        >
+          <View style={styles.listLoadingContainer}>
+            <ActivityIndicator
+              size={COMMON_CONSTANTS.ICON_SIZE.LARGE}
+              color={COLORS.CLOCKWISE_PRIMARY}
+            />
+            <Text style={styles.headerText}>{STRINGS.LOADING_WAIT}</Text>
+          </View>
         </Modal>
       </>
     );

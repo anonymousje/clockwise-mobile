@@ -46,10 +46,7 @@ const styles = StyleSheet.create({
     gap: COMMON_CONSTANTS.SIZE.SIZE_10,
     justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     alignItems: COMMON_CONSTANTS.FLEX.CENTER,
-    backgroundColor:
-      mode === MODE.DARK
-        ? COLORS.BACKGROUND_DARKER_MODE
-        : COLORS.BACKGROUND_LIGHTER_MODE,
+    backgroundColor: COLORS.TRANSPARENT_BLACK,
   },
   header: {
     flexDirection: COMMON_CONSTANTS.FLEX.ROW,

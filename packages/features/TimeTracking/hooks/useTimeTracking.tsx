@@ -19,20 +19,23 @@ const useTimeTracking = () => {
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
 
-  const fetchTimeSheet = useCallback(async () => {
-    setLoading(true);
-    const response = await TimeTrackingService.getTimeSheet(
-      keyword,
-      location,
-      department,
-      role,
-    );
-    setLoading(false);
-    console.log('TimeSheet Response:', response.data);
-    if (response.status) {
-      setTimeSheet(response.data);
-    }
-  }, [location, department, role, keyword]);
+  const fetchTimeSheet = useCallback(
+    async (searchKeyword: string = '') => {
+      setLoading(true);
+      const response = await TimeTrackingService.getTimeSheet(
+        searchKeyword,
+        location,
+        department,
+        role,
+      );
+      setLoading(false);
+      console.log('TimeSheet Response:', response.data);
+      if (response.status) {
+        setTimeSheet(response.data);
+      }
+    },
+    [location, department, role],
+  );
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -62,7 +65,12 @@ const useTimeTracking = () => {
   }, [fetchTimeSheet]);
 
   const approveTime = (id: number) => {
-    console.log('Time approved for entry id:', id);
+    TimeTrackingService.updateTimeEntryStatus(id, true);
+    fetchTimeSheet();
+  };
+
+  const unapproveTime = (id: number) => {
+    TimeTrackingService.updateTimeEntryStatus(id, false);
     fetchTimeSheet();
   };
 
@@ -72,7 +80,6 @@ const useTimeTracking = () => {
   };
 
   const unapproveAll = () => {
-    console.log('All time entries unapproved');
     fetchTimeSheet();
   };
 
@@ -85,7 +92,6 @@ const useTimeTracking = () => {
   };
 
   const applyFilters = () => {
-    console.log('Filters applied:', { location, department, role });
     fetchTimeSheet();
     setShowModal(false);
   };
@@ -98,13 +104,13 @@ const useTimeTracking = () => {
     fetchTimeSheet();
   };
 
-  const searchKeyword = (text: string) => {
-    setKeyword(text);
-    fetchTimeSheet();
+  const searchKeyword = () => {
+    fetchTimeSheet(keyword);
   };
 
   return {
     approveTime,
+    unapproveTime,
     approveAll,
     unapproveAll,
     getTimeClockDetails,
@@ -127,6 +133,7 @@ const useTimeTracking = () => {
     keyword,
     searchKeyword,
     loading,
+    setKeyword,
   };
 };
 
