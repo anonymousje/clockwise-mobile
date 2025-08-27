@@ -8,30 +8,28 @@ const useTimeTracking = () => {
   const navigation = useNavigation<NavigationProp>();
 
   const [refreshing, setRefreshing] = useState(false);
+  const [keyword, setKeyword] = useState('');
   const [timeSheet, setTimeSheet] = useState<TimeSheetEntry[] | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [filterValues, setFilterValues] = useState({
-    keyword: '',
-    location_id: undefined,
-    department_id: undefined,
-    job_role_id: undefined,
-  });
+  const [location, setLocation] = useState();
+  const [department, setDepartment] = useState();
+  const [role, setRole] = useState();
   const [departmentList, setDepartmentList] = useState<filterItemsType[]>([]);
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
 
   const fetchTimeSheet = useCallback(async () => {
     const response = await TimeTrackingService.getTimeSheet(
-      filterValues.keyword,
-      filterValues.location_id,
-      filterValues.department_id,
-      filterValues.job_role_id,
+      keyword,
+      location,
+      department,
+      role,
     );
     console.log('TimeSheet Response:', response.data);
     if (response.status) {
       setTimeSheet(response.data);
     }
-  }, [filterValues]);
+  }, [location, department, role, keyword]);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -57,8 +55,7 @@ const useTimeTracking = () => {
 
   useEffect(() => {
     fetchTimeSheet();
-    const response = fetchMetaData();
-    console.log('MetaData Response:', response);
+    fetchMetaData();
   }, [fetchTimeSheet]);
 
   const approveTime = (id: number) => {
@@ -78,34 +75,24 @@ const useTimeTracking = () => {
 
   const toggleModal = () => {
     setShowModal((prev) => !prev);
-    console.log('Filter modal toggled, current state:', !showModal);
   };
 
   const getTimeClockDetails = (id: number) => {
     navigation.navigate(SCREENS.TimeClockDetails, { entryId: id });
   };
 
-  const handlePickerChange = (value: string, field: string) => {
-    setFilterValues((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
   const applyFilters = () => {
+    console.log('Filters applied:', { location, department, role });
     fetchTimeSheet();
     setShowModal(false);
   };
 
   const clearFilters = () => {
-    setFilterValues({
-      keyword: '',
-      location_id: undefined,
-      department_id: undefined,
-      job_role_id: undefined,
-    });
+    setLocation(undefined);
+    setDepartment(undefined);
+    setRole(undefined);
+    setKeyword('');
     fetchTimeSheet();
-    setShowModal(false);
   };
 
   return {
@@ -118,11 +105,16 @@ const useTimeTracking = () => {
     refreshing,
     showModal,
     toggleModal,
-    handlePickerChange,
     departmentList,
     locationList,
     jobRolelist,
     applyFilters,
+    location,
+    setLocation,
+    department,
+    role,
+    setDepartment,
+    setRole,
     clearFilters,
   };
 };

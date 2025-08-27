@@ -28,19 +28,108 @@ const TimeTracking = () => {
     getTimeClockDetails,
     showModal,
     toggleModal,
-    handlePickerChange,
     departmentList,
     locationList,
     jobRolelist,
     applyFilters,
+    location,
+    setLocation,
+    department,
+    role,
+    setDepartment,
+    setRole,
     clearFilters,
   } = useTimeTracking();
 
-  // const filterModal = () => {
-  //   return (
+  const filterModal = () => {
+    return (
+      <View style={styles.container}>
+        <View style={styles.modalHeader}>
+          <View style={styles.titleContainer}>
+            <TouchableOpacity
+              onPress={toggleModal}
+              style={styles.backButton}
+            >
+              <Ionicons
+                name={COMMON_CONSTANTS.ICONS.ARROW}
+                size={COMMON_CONSTANTS.SIZE.SIZE_24}
+                color={COLORS.CLOCKWISE_PRIMARY}
+              />
+            </TouchableOpacity>
+            <Text style={styles.headerText}>
+              {STRINGS.TITLES.CUSTOM_FILTER}
+            </Text>
+          </View>
+          <TouchableOpacity onPress={clearFilters}>
+            <Text style={styles.clearFilterText}>CLEAR ALL</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.modalContent}>
+          <View>
+            <View style={{}}>
+              <Picker
+                selectedValue={location}
+                onValueChange={(itemValue) => setLocation(itemValue)}
+              >
+                <Picker.Item
+                  label={STRINGS.PICKER_LABELS.LOCATION}
+                  value={COMMON_CONSTANTS.DEFAULT}
+                />
 
-  //   );
-  // };
+                {locationList.map((item) => (
+                  <Picker.Item
+                    key={item.id}
+                    label={item.name}
+                    value={item.id}
+                  />
+                ))}
+              </Picker>
+
+              <Picker
+                selectedValue={department}
+                onValueChange={(itemValue) => setDepartment(itemValue)}
+              >
+                <Picker.Item
+                  label={STRINGS.PICKER_LABELS.DEPARTMENT}
+                  value={COMMON_CONSTANTS.DEFAULT}
+                />
+
+                {departmentList.map((item) => (
+                  <Picker.Item
+                    key={item.id}
+                    label={item.name}
+                    value={item.id}
+                  />
+                ))}
+              </Picker>
+
+              <Picker
+                selectedValue={role}
+                onValueChange={(itemValue) => setRole(itemValue)}
+              >
+                <Picker.Item
+                  label={STRINGS.PICKER_LABELS.JOB_ROLE}
+                  value={COMMON_CONSTANTS.DEFAULT}
+                />
+
+                {jobRolelist.map((item) => (
+                  <Picker.Item
+                    key={item.id}
+                    label={item.name}
+                    value={item.id}
+                  />
+                ))}
+              </Picker>
+            </View>
+          </View>
+          <Button
+            label='APPLY'
+            onPress={applyFilters}
+          />
+        </View>
+      </View>
+    );
+  };
   if (timeSheet === null) {
     return (
       <View style={styles.container}>
@@ -188,113 +277,7 @@ const TimeTracking = () => {
           visible={showModal}
           onRequestClose={toggleModal}
         >
-          <View style={styles.container}>
-            <View style={styles.modalHeader}>
-              <View style={styles.titleContainer}>
-                <TouchableOpacity
-                  onPress={toggleModal}
-                  style={styles.backButton}
-                >
-                  <Ionicons
-                    name={COMMON_CONSTANTS.ICONS.ARROW}
-                    size={COMMON_CONSTANTS.SIZE.SIZE_24}
-                    color={COLORS.CLOCKWISE_PRIMARY}
-                  />
-                </TouchableOpacity>
-                <Text style={styles.headerText}>
-                  {STRINGS.TITLES.CUSTOM_FILTER}
-                </Text>
-              </View>
-              <TouchableOpacity onPress={clearFilters}>
-                <Text style={styles.clearFilterText}>CLEAR ALL</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.modalContent}>
-              <View>
-                <View style={styles.picker}>
-                  <Picker
-                    selectedValue={COMMON_CONSTANTS.DEFAULT}
-                    onValueChange={(itemValue) =>
-                      handlePickerChange(
-                        itemValue,
-                        COMMON_CONSTANTS.FILTER_CONTROLLER_VALUES.DEPARTMENT_ID,
-                      )
-                    }
-                    style={styles.pickerItem}
-                  >
-                    <Picker.Item
-                      label={STRINGS.PICKER_LABELS.DEPARTMENT}
-                      value={COMMON_CONSTANTS.DEFAULT}
-                    />
-
-                    {departmentList.map((department) => (
-                      <Picker.Item
-                        key={department.id}
-                        label={department.name}
-                        value={department.id}
-                      />
-                    ))}
-                  </Picker>
-                </View>
-
-                <View style={styles.picker}>
-                  <Picker
-                    selectedValue={COMMON_CONSTANTS.DEFAULT}
-                    onValueChange={(itemValue) =>
-                      handlePickerChange(
-                        itemValue,
-                        COMMON_CONSTANTS.FILTER_CONTROLLER_VALUES.LOCATION_ID,
-                      )
-                    }
-                    style={styles.pickerItem}
-                  >
-                    <Picker.Item
-                      label={STRINGS.PICKER_LABELS.LOCATION}
-                      value={COMMON_CONSTANTS.DEFAULT}
-                    />
-
-                    {locationList.map((location) => (
-                      <Picker.Item
-                        key={location.id}
-                        label={location.name}
-                        value={location.id}
-                      />
-                    ))}
-                  </Picker>
-                </View>
-
-                <View style={styles.picker}>
-                  <Picker
-                    selectedValue={COMMON_CONSTANTS.DEFAULT}
-                    onValueChange={(itemValue) =>
-                      handlePickerChange(
-                        itemValue,
-                        COMMON_CONSTANTS.FILTER_CONTROLLER_VALUES.JOB_ROLE_ID,
-                      )
-                    }
-                    style={styles.pickerItem}
-                  >
-                    <Picker.Item
-                      label={STRINGS.PICKER_LABELS.JOB_ROLE}
-                      value={COMMON_CONSTANTS.DEFAULT}
-                    />
-
-                    {jobRolelist.map((jobRole) => (
-                      <Picker.Item
-                        key={jobRole.id}
-                        label={jobRole.name}
-                        value={jobRole.id}
-                      />
-                    ))}
-                  </Picker>
-                </View>
-              </View>
-              <Button
-                label='APPLY'
-                onPress={applyFilters}
-              />
-            </View>
-          </View>
+          {filterModal()}
         </Modal>
       </>
     );
