@@ -7,14 +7,18 @@ class TimeTrackingService {
     location_id?: number,
     department_id?: number,
     job_role_id?: number,
+    start_date?: string | null,
+    end_date?: string | null,
   ) => {
     return apiClient
-      .get('/get-timesheet', {
+      .get(ApiRoutes.getTimeSheet, {
         params: {
           keyword,
           location_id,
           department_id,
           job_role_id,
+          start_date,
+          end_date,
         },
       })
       .then((res) => {

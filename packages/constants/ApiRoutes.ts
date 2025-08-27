@@ -25,6 +25,7 @@ const ApiRoutes = {
   breakStatus: '/timeentry/get-shift-breaks-status',
   whoIsOn: '/timeentry/whos-on',
   updateTimeEntryStatus: '/timesheet-status',
+  getTimeSheet: '/get-timesheet',
 };
 
 export default ApiRoutes;

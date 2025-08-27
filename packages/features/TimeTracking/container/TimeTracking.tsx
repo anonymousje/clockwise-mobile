@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Modal,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { RefreshControl } from 'react-native-gesture-handler';
@@ -17,6 +18,7 @@ import useTimeTracking from '../hooks/useTimeTracking';
 import { formatHMS } from '../../../utils/helper';
 import STRINGS from '../../../utils/strings';
 import Button from '../../components/Button/container/Button';
+import RangeDatePicker from '../../components/DatePicker/DatePicker';
 
 const TimeTracking = () => {
   const {
@@ -45,6 +47,9 @@ const TimeTracking = () => {
     setKeyword,
     searchKeyword,
     loading,
+    startDate,
+    endDate,
+    handleDateRangeChange,
   } = useTimeTracking();
 
   const filterModal = () => {
@@ -75,7 +80,11 @@ const TimeTracking = () => {
         </View>
 
         <View style={styles.modalContent}>
-          <View style={styles.filtersContainer}>
+          <ScrollView
+            style={styles.filtersContainer}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.filtersContentContainer}
+          >
             <Text style={styles.sectionTitle}>
               {STRINGS.HEADERS.FILTER_OPTIONS}
             </Text>
@@ -172,7 +181,13 @@ const TimeTracking = () => {
                 </Picker>
               </View>
             </View>
-          </View>
+
+            <RangeDatePicker
+              onDateRangeChange={handleDateRangeChange}
+              startDate={startDate}
+              endDate={endDate}
+            />
+          </ScrollView>
 
           <View style={styles.modalButtonContainer}>
             <Button

@@ -16,6 +16,8 @@ const useTimeTracking = () => {
   const [location, setLocation] = useState();
   const [department, setDepartment] = useState();
   const [role, setRole] = useState();
+  const [startDate, setStartDate] = useState<string | null>(null);
+  const [endDate, setEndDate] = useState<string | null>(null);
   const [departmentList, setDepartmentList] = useState<filterItemsType[]>([]);
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
@@ -28,13 +30,15 @@ const useTimeTracking = () => {
         location,
         department,
         role,
+        startDate,
+        endDate,
       );
       setLoading(false);
       if (response.status) {
         setTimeSheet(response.data);
       }
     },
-    [location, department, role],
+    [location, department, role, startDate, endDate],
   );
 
   const onRefresh = () => {
@@ -109,7 +113,14 @@ const useTimeTracking = () => {
     setDepartment(undefined);
     setRole(undefined);
     setKeyword('');
+    setStartDate(null);
+    setEndDate(null);
     fetchTimeSheet();
+  };
+
+  const handleDateRangeChange = (start: string | null, end: string | null) => {
+    setStartDate(start);
+    setEndDate(end);
   };
 
   const searchKeyword = () => {
@@ -142,6 +153,9 @@ const useTimeTracking = () => {
     searchKeyword,
     loading,
     setKeyword,
+    startDate,
+    endDate,
+    handleDateRangeChange,
   };
 };
 

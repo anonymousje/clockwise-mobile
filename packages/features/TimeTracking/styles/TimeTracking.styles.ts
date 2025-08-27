@@ -274,8 +274,12 @@ const styles = StyleSheet.create({
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_5,
   },
   filtersContainer: {
+    flex: 1,
     paddingHorizontal: COMMON_CONSTANTS.SIZE.SIZE_10,
+  },
+  filtersContentContainer: {
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   sectionTitle: {
     fontSize: FONT_SIZE.SIZE_18,
