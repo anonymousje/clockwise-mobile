@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
     gap: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   backButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
+    justifyContent: COMMON_CONSTANTS.FLEX.CENTER,
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_3,
   },
   loadingContainer: {
@@ -200,54 +200,54 @@ const styles = StyleSheet.create({
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARK_MODE
         : COLORS.BACKGROUND_LIGHT_MODE,
-    width: '100%',
+    width: COMMON_CONSTANTS.PERCENTAGES.HUNDRED,
     marginTop: COMMON_CONSTANTS.SIZE.SIZE_30,
-    paddingBottom: 20,
+    paddingBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   searchInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: COMMON_CONSTANTS.FLEX.ROW,
+    alignItems: COMMON_CONSTANTS.FLEX.CENTER,
   },
   searchIcon: {
     color:
       mode === MODE.DARK
         ? COLORS.CLOCKWISE_PRIMARY
         : COLORS.CLOCKWISE_PRIMARY_DARK,
-    paddingLeft: 10,
-    paddingVertical: 10,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
   searchContainer: {
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARKER_MODE
         : COLORS.BACKGROUND_LIGHTER_MODE,
-    borderRadius: 20,
-    marginTop: 10,
-    marginHorizontal: 20,
+    borderRadius: COMMON_CONSTANTS.SIZE.SIZE_20,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
+    marginHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
   searchInput: {
-    flex: 1,
+    flex: COMMON_CONSTANTS.ONE,
     fontSize: FONT_SIZE.SIZE_18,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
-    paddingVertical: 14,
-    paddingLeft: 10,
-    paddingRight: 15,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_14,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_10,
+    paddingRight: COMMON_CONSTANTS.SIZE.SIZE_15,
   },
   filterInput: {
     backgroundColor:
       mode === MODE.DARK
         ? COLORS.BACKGROUND_DARKER_MODE
         : COLORS.BACKGROUND_LIGHTER_MODE,
-    paddingLeft: 15,
-    paddingVertical: 5,
-    marginTop: 20,
+    paddingLeft: COMMON_CONSTANTS.SIZE.SIZE_15,
+    paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_5,
+    marginTop: COMMON_CONSTANTS.SIZE.SIZE_20,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
   },
   modalContent: {
-    justifyContent: 'space-between',
-    flex: 1,
-    marginBottom: 20,
+    justifyContent: COMMON_CONSTANTS.FLEX.SPACE_BETWEEN,
+    flex: COMMON_CONSTANTS.ONE,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_20,
   },
 });
 

@@ -88,6 +88,11 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     DEPARTMENT_ID: 'department_id',
     JOB_ROLE_ID: 'job_role_id',
   },
+  MODAL_ANIMATION: {
+    SLIDE: 'slide',
+    FADE: 'fade',
+    NONE: 'none',
+  },
   AUTO: 'auto',
   FLEX: {
     ROW: 'row',

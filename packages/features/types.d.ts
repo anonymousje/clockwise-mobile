@@ -197,6 +197,11 @@ export interface COMMON_CONSTANTS_TYPE {
     DEPARTMENT_ID: const;
     JOB_ROLE_ID: const;
   };
+  MODAL_ANIMATION: {
+    SLIDE: const;
+    FADE: const;
+    NONE: const;
+  };
   AUTO: const;
   SHORT: const;
   PENDING: const;

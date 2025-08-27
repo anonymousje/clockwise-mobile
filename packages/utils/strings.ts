@@ -53,6 +53,7 @@ const STRINGS = {
     ACTIVE_STAFF: 'Active Staff',
     INACTIVE_STAFF: 'Inactive Staff',
   },
+  CLEAR_ALL: 'CLEAR ALL',
   BREAK_START: 'Break Start',
   BREAK_END: 'Break End',
   ROLES: {
@@ -105,6 +106,7 @@ const STRINGS = {
     CLOCK_OUT: 'CLOCK OUT',
     RESUME_SHIFT: 'RESUME SHIFT',
     SEE_MORE: 'SEE MORE',
+    APPLY: 'APPLY',
   },
   NO_USERS_ONLINE: 'No users are currently online',
   HEADERS: {

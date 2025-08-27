@@ -65,7 +65,7 @@ const TimeTracking = () => {
             </Text>
           </View>
           <TouchableOpacity onPress={clearFilters}>
-            <Text style={styles.clearFilterText}>CLEAR ALL</Text>
+            <Text style={styles.clearFilterText}>{STRINGS.CLEAR_ALL}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.modalContent}>
@@ -130,7 +130,7 @@ const TimeTracking = () => {
             </View>
           </View>
           <Button
-            label='APPLY'
+            label={STRINGS.BUTTON_TEXT.APPLY}
             onPress={applyFilters}
           />
         </View>
@@ -309,7 +309,7 @@ const TimeTracking = () => {
           </View>
         </View>
         <Modal
-          animationType='slide'
+          animationType={COMMON_CONSTANTS.MODAL_ANIMATION.SLIDE}
           transparent={false}
           visible={showModal}
           onRequestClose={toggleModal}
