@@ -15,6 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import useTimeTracking from '../hooks/useTimeTracking';
 import { formatHMS } from '../../../utils/helper';
 import STRINGS from '../../../utils/strings';
+import Button from '../../components/Button/container/Button';
 
 const TimeTracking = () => {
   const {
@@ -31,6 +32,8 @@ const TimeTracking = () => {
     departmentList,
     locationList,
     jobRolelist,
+    applyFilters,
+    clearFilters,
   } = useTimeTracking();
 
   // const filterModal = () => {
@@ -202,116 +205,94 @@ const TimeTracking = () => {
                   {STRINGS.TITLES.CUSTOM_FILTER}
                 </Text>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={clearFilters}>
                 <Text style={styles.clearFilterText}>CLEAR ALL</Text>
               </TouchableOpacity>
             </View>
-            <View style={{}}>
-              <View style={styles.picker}>
-                <Picker
-                  selectedValue={COMMON_CONSTANTS.DEFAULT}
-                  onValueChange={(itemValue) =>
-                    handlePickerChange(
-                      itemValue,
-                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.DEPARTMENT,
-                    )
-                  }
-                  style={styles.pickerItem}
-                >
-                  <Picker.Item
-                    label={STRINGS.PICKER_LABELS.DEPARTMENT}
-                    value={COMMON_CONSTANTS.DEFAULT}
-                  />
-
-                  {departmentList.map((department) => (
+            <View style={styles.modalContent}>
+              <View>
+                <View style={styles.picker}>
+                  <Picker
+                    selectedValue={COMMON_CONSTANTS.DEFAULT}
+                    onValueChange={(itemValue) =>
+                      handlePickerChange(
+                        itemValue,
+                        COMMON_CONSTANTS.FILTER_CONTROLLER_VALUES.DEPARTMENT_ID,
+                      )
+                    }
+                    style={styles.pickerItem}
+                  >
                     <Picker.Item
-                      key={department.id}
-                      label={department.name}
-                      value={department.name}
+                      label={STRINGS.PICKER_LABELS.DEPARTMENT}
+                      value={COMMON_CONSTANTS.DEFAULT}
                     />
-                  ))}
-                </Picker>
-              </View>
 
-              <View style={styles.picker}>
-                <Picker
-                  selectedValue={COMMON_CONSTANTS.DEFAULT}
-                  onValueChange={(itemValue) =>
-                    handlePickerChange(
-                      itemValue,
-                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.LOCATION,
-                    )
-                  }
-                  style={styles.pickerItem}
-                >
-                  <Picker.Item
-                    label={STRINGS.PICKER_LABELS.LOCATION}
-                    value={COMMON_CONSTANTS.DEFAULT}
-                  />
+                    {departmentList.map((department) => (
+                      <Picker.Item
+                        key={department.id}
+                        label={department.name}
+                        value={department.id}
+                      />
+                    ))}
+                  </Picker>
+                </View>
 
-                  {locationList.map((location) => (
+                <View style={styles.picker}>
+                  <Picker
+                    selectedValue={COMMON_CONSTANTS.DEFAULT}
+                    onValueChange={(itemValue) =>
+                      handlePickerChange(
+                        itemValue,
+                        COMMON_CONSTANTS.FILTER_CONTROLLER_VALUES.LOCATION_ID,
+                      )
+                    }
+                    style={styles.pickerItem}
+                  >
                     <Picker.Item
-                      key={location.id}
-                      label={location.name}
-                      value={location.name}
+                      label={STRINGS.PICKER_LABELS.LOCATION}
+                      value={COMMON_CONSTANTS.DEFAULT}
                     />
-                  ))}
-                </Picker>
-              </View>
 
-              <View style={styles.picker}>
-                <Picker
-                  selectedValue={COMMON_CONSTANTS.DEFAULT}
-                  onValueChange={(itemValue) =>
-                    handlePickerChange(
-                      itemValue,
-                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.JOB_ROLE,
-                    )
-                  }
-                  style={styles.pickerItem}
-                >
-                  <Picker.Item
-                    label={STRINGS.PICKER_LABELS.JOB_ROLE}
-                    value={COMMON_CONSTANTS.DEFAULT}
-                  />
+                    {locationList.map((location) => (
+                      <Picker.Item
+                        key={location.id}
+                        label={location.name}
+                        value={location.id}
+                      />
+                    ))}
+                  </Picker>
+                </View>
 
-                  {jobRolelist.map((jobRole) => (
+                <View style={styles.picker}>
+                  <Picker
+                    selectedValue={COMMON_CONSTANTS.DEFAULT}
+                    onValueChange={(itemValue) =>
+                      handlePickerChange(
+                        itemValue,
+                        COMMON_CONSTANTS.FILTER_CONTROLLER_VALUES.JOB_ROLE_ID,
+                      )
+                    }
+                    style={styles.pickerItem}
+                  >
                     <Picker.Item
-                      key={jobRole.id}
-                      label={jobRole.name}
-                      value={jobRole.name}
+                      label={STRINGS.PICKER_LABELS.JOB_ROLE}
+                      value={COMMON_CONSTANTS.DEFAULT}
                     />
-                  ))}
-                </Picker>
+
+                    {jobRolelist.map((jobRole) => (
+                      <Picker.Item
+                        key={jobRole.id}
+                        label={jobRole.name}
+                        value={jobRole.id}
+                      />
+                    ))}
+                  </Picker>
+                </View>
               </View>
-
-              <View style={styles.picker}>
-                <Picker
-                  selectedValue={COMMON_CONSTANTS.DEFAULT}
-                  onValueChange={(itemValue) =>
-                    handlePickerChange(
-                      itemValue,
-                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.JOB_ROLE,
-                    )
-                  }
-                  style={styles.pickerItem}
-                >
-                  <Picker.Item
-                    label={STRINGS.PICKER_LABELS.PERMISSION_LEVEL}
-                    value={COMMON_CONSTANTS.DEFAULT}
-                  />
-
-                  <Picker.Item
-                    label={STRINGS.ROLES.ADMIN}
-                    value={COMMON_CONSTANTS.PICKER_VALUES.MANAGER}
-                  />
-
-                  <Picker.Item
-                    label={STRINGS.ROLES.USER}
-                    value={COMMON_CONSTANTS.PICKER_VALUES.USER}
-                  />
-                </Picker>
-              </View>
+              <Button
+                label='APPLY'
+                onPress={applyFilters}
+              />
             </View>
           </View>
         </Modal>

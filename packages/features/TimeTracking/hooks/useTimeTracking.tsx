@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import TimeTrackingService from '../services/TimeTrackingService';
 import { filterItemsType, NavigationProp, TimeSheetEntry } from '../../types';
 import { useNavigation } from '@react-navigation/native';
@@ -10,26 +10,28 @@ const useTimeTracking = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [timeSheet, setTimeSheet] = useState<TimeSheetEntry[] | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [filterValues, setFilterValues] = useState({
+    keyword: '',
+    location_id: undefined,
+    department_id: undefined,
+    job_role_id: undefined,
+  });
   const [departmentList, setDepartmentList] = useState<filterItemsType[]>([]);
   const [locationList, setLocationList] = useState<filterItemsType[]>([]);
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
-  const fetchTimeSheet = async (
-    keyword?: string,
-    location_id?: number,
-    department_id?: number,
-    job_role_id?: number,
-  ) => {
+
+  const fetchTimeSheet = useCallback(async () => {
     const response = await TimeTrackingService.getTimeSheet(
-      keyword,
-      location_id,
-      department_id,
-      job_role_id,
+      filterValues.keyword,
+      filterValues.location_id,
+      filterValues.department_id,
+      filterValues.job_role_id,
     );
     console.log('TimeSheet Response:', response.data);
     if (response.status) {
       setTimeSheet(response.data);
     }
-  };
+  }, [filterValues]);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -57,7 +59,7 @@ const useTimeTracking = () => {
     fetchTimeSheet();
     const response = fetchMetaData();
     console.log('MetaData Response:', response);
-  }, []);
+  }, [fetchTimeSheet]);
 
   const approveTime = (id: number) => {
     console.log('Time approved for entry id:', id);
@@ -84,7 +86,26 @@ const useTimeTracking = () => {
   };
 
   const handlePickerChange = (value: string, field: string) => {
-    console.log(`Picker changed: ${field} = ${value}`);
+    setFilterValues((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const applyFilters = () => {
+    fetchTimeSheet();
+    setShowModal(false);
+  };
+
+  const clearFilters = () => {
+    setFilterValues({
+      keyword: '',
+      location_id: undefined,
+      department_id: undefined,
+      job_role_id: undefined,
+    });
+    fetchTimeSheet();
+    setShowModal(false);
   };
 
   return {
@@ -101,6 +122,8 @@ const useTimeTracking = () => {
     departmentList,
     locationList,
     jobRolelist,
+    applyFilters,
+    clearFilters,
   };
 };
 

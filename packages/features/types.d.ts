@@ -191,6 +191,12 @@ export interface COMMON_CONSTANTS_TYPE {
     ABSOLUTE: const;
     RELATIVE: const;
   };
+  FILTER_CONTROLLER_VALUES: {
+    KEYWORD: const;
+    LOCATION_ID: const;
+    DEPARTMENT_ID: const;
+    JOB_ROLE_ID: const;
+  };
   AUTO: const;
   SHORT: const;
   PENDING: const;

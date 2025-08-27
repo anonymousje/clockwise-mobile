@@ -82,6 +82,12 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     LOCATION: 'location',
     JOB_ROLE: 'jobrole',
   },
+  FILTER_CONTROLLER_VALUES: {
+    KEYWORD: 'keyword',
+    LOCATION_ID: 'location_id',
+    DEPARTMENT_ID: 'department_id',
+    JOB_ROLE_ID: 'job_role_id',
+  },
   AUTO: 'auto',
   FLEX: {
     ROW: 'row',

@@ -184,6 +184,33 @@ const styles = StyleSheet.create({
     color: COLORS.CLOCKWISE_PRIMARY,
     paddingTop: COMMON_CONSTANTS.SIZE.SIZE_3,
   },
+  pickersContainer: {
+    marginTop: 20,
+  },
+
+  pickerItem: {
+    width: '100%',
+  },
+
+  picker: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor:
+      mode === MODE.DARK
+        ? COLORS.BACKGROUND_DARKER_MODE
+        : COLORS.BACKGROUND_LIGHTER_MODE,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    borderRadius: 20,
+    width: '100%',
+    marginVertical: 30,
+    paddingLeft: 5,
+  },
+  modalContent: {
+    justifyContent: 'space-between',
+    flex: 1,
+    marginBottom: 20,
+  },
 });
 
 export default styles;
