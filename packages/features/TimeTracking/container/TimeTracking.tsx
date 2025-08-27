@@ -182,7 +182,7 @@ const TimeTracking = () => {
           <View style={styles.searchContainer}>
             <View style={styles.searchInputContainer}>
               <TextInput
-                placeholder={STRINGS.PLACEHOLDER.PLACEHOLDER_TEXT}
+                placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.SEARCH_STAFF}
                 value={keyword}
                 onChangeText={setKeyword}
                 style={styles.searchInput}

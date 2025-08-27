@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: COMMON_CONSTANTS.ONE,
-    fontSize: FONT_SIZE.SIZE_18,
+    fontSize: FONT_SIZE.SIZE_20,
     color: mode === MODE.DARK ? COLORS.TEXT_DARK_MODE : COLORS.TEXT_LIGHT_MODE,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     paddingVertical: COMMON_CONSTANTS.SIZE.SIZE_14,

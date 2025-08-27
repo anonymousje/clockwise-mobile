@@ -75,11 +75,20 @@ const useTimeTracking = () => {
   };
 
   const approveAll = () => {
-    console.log('All time entries approved');
+    timeSheet?.forEach((entry) => {
+      if (!entry.status) {
+        TimeTrackingService.updateTimeEntryStatus(entry.id, true);
+      }
+    });
     fetchTimeSheet();
   };
 
   const unapproveAll = () => {
+    timeSheet?.forEach((entry) => {
+      if (entry.status) {
+        TimeTrackingService.updateTimeEntryStatus(entry.id, false);
+      }
+    });
     fetchTimeSheet();
   };
 
