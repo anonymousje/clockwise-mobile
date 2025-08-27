@@ -219,8 +219,7 @@ const styles = StyleSheet.create({
         ? COLORS.BACKGROUND_DARKER_MODE
         : COLORS.BACKGROUND_LIGHTER_MODE,
     borderRadius: COMMON_CONSTANTS.SIZE.SIZE_20,
-    marginTop: COMMON_CONSTANTS.SIZE.SIZE_10,
-    marginHorizontal: COMMON_CONSTANTS.SIZE.SIZE_20,
+    marginVertical: COMMON_CONSTANTS.SIZE.SIZE_10,
   },
   searchInput: {
     flex: COMMON_CONSTANTS.ONE,

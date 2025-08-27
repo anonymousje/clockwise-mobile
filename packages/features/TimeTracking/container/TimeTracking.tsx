@@ -179,23 +179,6 @@ const TimeTracking = () => {
               />
             </TouchableOpacity>
           </View>
-          <View style={styles.searchContainer}>
-            <View style={styles.searchInputContainer}>
-              <TextInput
-                placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.SEARCH_STAFF}
-                value={keyword}
-                onChangeText={setKeyword}
-                style={styles.searchInput}
-              />
-              <TouchableOpacity onPress={searchKeyword}>
-                <Ionicons
-                  name={COMMON_CONSTANTS.ICONS.SEARCH}
-                  size={30}
-                  style={styles.searchIcon}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
 
           <FlatList
             refreshControl={
@@ -207,6 +190,25 @@ const TimeTracking = () => {
             style={styles.content}
             data={Array.isArray(timeSheet) ? timeSheet : []}
             keyExtractor={(item) => item.id.toString()}
+            ListHeaderComponent={
+              <View style={styles.searchContainer}>
+                <View style={styles.searchInputContainer}>
+                  <TextInput
+                    placeholder={STRINGS.INPUT_PLACEHOLDER_TEXT.SEARCH_STAFF}
+                    value={keyword}
+                    onChangeText={setKeyword}
+                    style={styles.searchInput}
+                  />
+                  <TouchableOpacity onPress={searchKeyword}>
+                    <Ionicons
+                      name={COMMON_CONSTANTS.ICONS.SEARCH}
+                      size={30}
+                      style={styles.searchIcon}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            }
             renderItem={({ item: entry }) => (
               <TouchableOpacity
                 style={styles.timeEntryCard}

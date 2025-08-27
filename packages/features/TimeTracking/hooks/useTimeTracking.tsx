@@ -3,6 +3,7 @@ import TimeTrackingService from '../services/TimeTrackingService';
 import { filterItemsType, NavigationProp, TimeSheetEntry } from '../../types';
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../../constants/screens';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const useTimeTracking = () => {
   const navigation = useNavigation<NavigationProp>();
@@ -20,7 +21,7 @@ const useTimeTracking = () => {
   const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
 
   const fetchTimeSheet = useCallback(
-    async (searchKeyword: string = '') => {
+    async (searchKeyword: string = COMMON_CONSTANTS.DEFAULT) => {
       setLoading(true);
       const response = await TimeTrackingService.getTimeSheet(
         searchKeyword,
@@ -29,7 +30,6 @@ const useTimeTracking = () => {
         role,
       );
       setLoading(false);
-      console.log('TimeSheet Response:', response.data);
       if (response.status) {
         setTimeSheet(response.data);
       }
@@ -39,7 +39,6 @@ const useTimeTracking = () => {
 
   const onRefresh = () => {
     setRefreshing(true);
-
     setTimeout(async () => {
       setRefreshing(false);
       fetchTimeSheet();
