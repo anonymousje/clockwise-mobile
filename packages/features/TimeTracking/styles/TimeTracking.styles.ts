@@ -167,8 +167,14 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_4,
   },
-  statusText: {
+  statusPendingText: {
     color: COLORS.YELLOW,
+    fontSize: FONT_SIZE.SIZE_15,
+    fontFamily: FONTS.CLOCKWISE_REGULAR,
+    marginBottom: COMMON_CONSTANTS.SIZE.SIZE_4,
+  },
+  statusApprovedText: {
+    color: COLORS.GREEN,
     fontSize: FONT_SIZE.SIZE_15,
     fontFamily: FONTS.CLOCKWISE_REGULAR,
     marginBottom: COMMON_CONSTANTS.SIZE.SIZE_4,

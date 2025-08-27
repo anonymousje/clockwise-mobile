@@ -291,11 +291,24 @@ const TimeTracking = () => {
                         : ''}
                     </Text>
                     <Text style={styles.roleText}>{entry.position}</Text>
-                    <Text style={styles.statusText}>
-                      {entry.total_shift
-                        ? `${STRINGS.PENDING} • ${formatHMS(entry.total_shift)}`
-                        : `${STRINGS.PENDING}`}
-                    </Text>
+                    {!entry.status && (
+                      <Text style={styles.statusPendingText}>
+                        {entry.total_shift
+                          ? `${STRINGS.PENDING} • ${formatHMS(
+                              entry.total_shift,
+                            )}`
+                          : `${STRINGS.PENDING}`}
+                      </Text>
+                    )}
+                    {entry.status && (
+                      <Text style={styles.statusApprovedText}>
+                        {entry.total_shift
+                          ? `${STRINGS.APPROVED} • ${formatHMS(
+                              entry.total_shift,
+                            )}`
+                          : `${STRINGS.APPROVED}`}
+                      </Text>
+                    )}
                     <View style={styles.breakTimeContainer}>
                       <Ionicons
                         name={COMMON_CONSTANTS.ICONS.CAFE}

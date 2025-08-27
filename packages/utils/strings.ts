@@ -9,6 +9,7 @@ const STRINGS = {
     TIME_CLOCK_DETAILS: 'Time Clock Details',
     TIME_TRACKING: 'Time Tracking',
   },
+  APPROVED: 'Approved',
   PENDING: 'Pending',
   USER_NOT_FOUND: 'User not found',
   DASH: '-',
