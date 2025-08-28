@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setTokens } from '../../../store/actions/auth';
 import { SCREENS } from '../../../constants/screens';
 import { NavigationProp } from '../../types';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const useSplashScreen = () => {
   const navigation = useNavigation<NavigationProp>();
@@ -13,7 +14,7 @@ const useSplashScreen = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const user = await AsyncStorage.getItem('user');
+        const user = await AsyncStorage.getItem(COMMON_CONSTANTS.USER);
         if (user) {
           const parsedUser = JSON.parse(user);
           dispatch(
