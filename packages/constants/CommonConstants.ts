@@ -12,6 +12,11 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
     ACCEPT: '*/*',
     JWT: 'jwt=',
   },
+  CALENDER_MODE: {
+    SINGLE: 'single',
+    RANGE: 'range',
+    MULTI: 'multi',
+  },
   USER: 'user',
   PERCENTAGES: {
     HUNDRED: '100%',
@@ -114,6 +119,10 @@ const COMMON_CONSTANTS: COMMON_CONSTANTS_TYPE = {
   POSITION: {
     ABSOLUTE: 'absolute',
     RELATIVE: 'relative',
+  },
+  DATE_FORMATS: {
+    YYYY_MM_DD: 'YYYY-MM-DD',
+    MMM_DD_YY: 'MMM DD, YY',
   },
   SIZE: {
     SIZE_1: 1,

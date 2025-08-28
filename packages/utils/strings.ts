@@ -99,7 +99,9 @@ const STRINGS = {
     SEARCH_STAFF: 'Search Staff',
     NOTE: 'Add a note',
     DASH: '-',
+    SELECT_DATE_RANGE: 'Select Date Range',
   },
+  DATE_RANGE: 'Date Range',
   BUTTON_TEXT: {
     GO_TO_LOGIN: 'Go to Login',
     RESET_PASSWORD: 'RESET PASSWORD',

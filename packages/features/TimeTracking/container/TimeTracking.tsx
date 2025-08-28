@@ -18,7 +18,7 @@ import useTimeTracking from '../hooks/useTimeTracking';
 import { formatHMS } from '../../../utils/helper';
 import STRINGS from '../../../utils/strings';
 import Button from '../../components/Button/container/Button';
-import RangeDatePicker from '../../components/DatePicker/DatePicker';
+import RangeDatePicker from '../../components/DatePicker/container/DatePicker';
 
 const TimeTracking = () => {
   const {

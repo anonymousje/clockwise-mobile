@@ -46,6 +46,21 @@ export type TimeClockDetailsRouteProp = RouteProp<
   typeof SCREENS.TimeClockDetails
 >;
 
+export type DateInputProps = {
+  value: string | null;
+  placeholder: string;
+  onPress: () => void;
+};
+
+export type RangeDatePickerProps = {
+  onDateRangeChange?: (
+    startDate: string | null,
+    endDate: string | null,
+  ) => void;
+  startDate?: string | null;
+  endDate?: string | null;
+};
+
 export type StaffFormData = {
   first_name: string;
   last_name: string;
@@ -102,6 +117,11 @@ export interface COMMON_CONSTANTS_TYPE {
     APPLICATION_JSON: string;
     ACCEPT: string;
     JWT: string;
+  };
+  CALENDER_MODE: {
+    SINGLE: const;
+    RANGE: const;
+    MULTI: const;
   };
   USER: string;
   PERCENTAGES: {
@@ -193,6 +213,10 @@ export interface COMMON_CONSTANTS_TYPE {
   POSITION: {
     ABSOLUTE: const;
     RELATIVE: const;
+  };
+  DATE_FORMATS: {
+    YYYY_MM_DD: const;
+    MMM_DD_YY: const;
   };
   FILTER_CONTROLLER_VALUES: {
     KEYWORD: const;
