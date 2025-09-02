@@ -12,7 +12,7 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
-  [SCREENS.TimeClockDetails]: { entryId: number };
+  [SCREENS.TimeClockDetails]: { entry: TimeSheetEntry | null };
   [SCREENS.StaffDetail]: { data: staffType | null };
 };
 

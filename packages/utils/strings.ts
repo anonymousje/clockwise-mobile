@@ -58,6 +58,7 @@ const STRINGS = {
     JOB_ROLE_FILTER: 'Job Role',
   },
   CLEAR_ALL: 'CLEAR ALL',
+  BREAK: 'Break',
   BREAK_START: 'Break Start',
   BREAK_END: 'Break End',
   ROLES: {

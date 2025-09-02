@@ -1,88 +1,78 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import {
-  breakArrayType,
-  ClockStatusResponse,
-  TimeClockDetailsRouteProp,
-} from '../../types';
-import TimeClockDetailsService from '../services/TimeClockDetailsService';
+import { TimeClockDetailsRouteProp } from '../../types';
 import { NavigationProp } from '../../types';
-import {
-  formatTime,
-  formatTimeFromISOString,
-  formatDateFromISOString,
-} from '../../../utils/helper';
-import { useDispatch } from 'react-redux';
-import { setRefreshFlag } from '../../../store/actions/flags';
-import { SCREENS } from '../../../constants/screens';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import { formatTimeDuration } from '../../../utils/helper';
 
 const useTimeClockDetails = () => {
   const [clockIn, setClockIn] = useState(true);
   const [clockInTime, setClockInTime] = useState('');
   const [clockInDate, setClockInDate] = useState('');
-  const [note, setNote] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
+  const [clockOutTime, setClockOutTime] = useState('');
+  const [clockOutDate, setClockOutDate] = useState('');
+  const [breakTime, setBreakTime] = useState('');
   const [clockTime, setClockTime] = useState('');
-  const [breakTime] = useState<breakArrayType[]>([]);
   const navigation = useNavigation<NavigationProp>();
-  const dispatch = useDispatch();
 
   const route = useRoute<TimeClockDetailsRouteProp>();
 
-  const getClockStatus = useCallback(async (): Promise<ClockStatusResponse> => {
-    const clockInResponse = await TimeClockDetailsService.getClockStatus(
-      route.params.entryId,
-    );
+  useEffect(() => {
+    if (!route.params.entry) {
+      navigation.goBack();
+      return;
+    }
+    setClockTime(formatTimeDuration(route.params.entry.total_shift));
+    setClockIn(route.params.entry.isClockedIn);
 
-    if (clockInResponse.status) {
-      setClockTime(
-        formatTime(
-          clockInResponse.response.hoursWorked || '',
-          Date.now().toString(),
+    setClockInTime(
+      new Date(route.params.entry.clock_in).toLocaleTimeString([], {
+        hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+        minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      }),
+    );
+    setClockInDate(
+      new Date(route.params.entry.clock_in).toLocaleDateString(
+        COMMON_CONSTANTS.DATE_TIME.EN_US,
+        {
+          year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
+          month: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+          day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+        },
+      ),
+    );
+    if (route.params.entry.clock_out) {
+      setClockOutTime(
+        new Date(route.params.entry.clock_out).toLocaleTimeString([], {
+          hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+          minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+        }),
+      );
+      setClockOutDate(
+        new Date(route.params.entry.clock_out).toLocaleDateString(
+          COMMON_CONSTANTS.DATE_TIME.EN_US,
+          {
+            year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
+            month: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+            day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+          },
         ),
       );
-      setClockInTime(
-        formatTimeFromISOString(clockInResponse.response.clockInTime || ''),
-      );
-      setClockInDate(
-        formatDateFromISOString(clockInResponse.response.clockInTime || ''),
-      );
-      setClockIn(clockInResponse.response.isClockedIn || false);
+      setBreakTime(formatTimeDuration(route.params.entry.break_duration));
+    } else {
+      setClockOutTime('...');
+      setClockOutDate('...');
     }
+  }, [route.params.entry, navigation]);
 
-    return clockInResponse;
-  }, [route.params.entryId]);
-
-  useEffect(() => {
-    getClockStatus();
-  }, [getClockStatus]);
-
-  const handleClockOut = async () => {
-    const response = await TimeClockDetailsService.handleClockOut(note);
-    if (response.status) {
-      dispatch(setRefreshFlag(true));
-      navigation.replace(SCREENS.MainTabs);
-    }
-    return response;
-  };
-  const handleNoteChange = (text: string) => {
-    setNote(text);
-  };
-
-  const setModal = () => {
-    setModalVisible(!modalVisible);
-  };
   return {
     clockIn,
     clockInTime,
     clockTime,
-    breakTime,
     clockInDate,
-    getClockStatus,
-    handleClockOut,
-    setModal,
-    handleNoteChange,
-    modalVisible,
+    clockOutTime,
+    clockOutDate,
+    breakTime,
   };
 };
 

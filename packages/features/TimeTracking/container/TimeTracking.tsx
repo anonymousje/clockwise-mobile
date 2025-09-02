@@ -272,7 +272,7 @@ const TimeTracking = () => {
             renderItem={({ item: entry }) => (
               <TouchableOpacity
                 style={styles.timeEntryCard}
-                onPress={() => getTimeClockDetails(entry.id)}
+                onPress={() => getTimeClockDetails(entry)}
               >
                 <View style={styles.dateSection}>
                   <Text style={styles.dayText}>

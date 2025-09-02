@@ -19,6 +19,25 @@ export const stringFormat = (str?: string, ...args: string[]) => {
     : '';
 };
 
+export const formatTimeDuration = (duration: string): string => {
+  if (!duration) return '';
+  const [hours, minutes] = duration.split(':').map(Number);
+  let result = '';
+  if (hours > 0) {
+    result += `${hours}h`;
+  }
+  if (minutes > 0) {
+    result += (result ? ' ' : '') + `${minutes}m`;
+  }
+  if (minutes === 0 && hours === 0) {
+    result = STRINGS.LESS_THAN_ONE_MINUTE;
+  }
+  if (!result) {
+    result = STRINGS.LESS_THAN_ONE_MINUTE;
+  }
+  return result;
+};
+
 export const formatTime = (start: string, end: string): string => {
   if (!start || !end) return '';
   const startDate = new Date(start.replace(' ', 'T'));

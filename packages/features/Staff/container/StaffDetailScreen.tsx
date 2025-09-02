@@ -371,8 +371,8 @@ const StaffDetail = () => {
                   />
 
                   <Picker.Item
-                    label={STRINGS.ROLES.USER}
-                    value={COMMON_CONSTANTS.PICKER_VALUES.USER}
+                    label={'Employee'}
+                    value={'Employee'}
                   />
                 </Picker>
               </View>

@@ -99,8 +99,8 @@ const useTimeTracking = () => {
     setShowModal((prev) => !prev);
   };
 
-  const getTimeClockDetails = (id: number) => {
-    navigation.navigate(SCREENS.TimeClockDetails, { entryId: id });
+  const getTimeClockDetails = (entry: TimeSheetEntry) => {
+    navigation.navigate(SCREENS.TimeClockDetails, { entry });
   };
 
   const applyFilters = () => {
