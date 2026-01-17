@@ -1,0 +1,162 @@
+import { useCallback, useEffect, useState } from 'react';
+import TimeTrackingService from '../services/TimeTrackingService';
+import { filterItemsType, NavigationProp, TimeSheetEntry } from '../../types';
+import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '../../../constants/screens';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+
+const useTimeTracking = () => {
+  const navigation = useNavigation<NavigationProp>();
+
+  const [refreshing, setRefreshing] = useState(false);
+  const [keyword, setKeyword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [timeSheet, setTimeSheet] = useState<TimeSheetEntry[] | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [location, setLocation] = useState();
+  const [department, setDepartment] = useState();
+  const [role, setRole] = useState();
+  const [startDate, setStartDate] = useState<string | null>(null);
+  const [endDate, setEndDate] = useState<string | null>(null);
+  const [departmentList, setDepartmentList] = useState<filterItemsType[]>([]);
+  const [locationList, setLocationList] = useState<filterItemsType[]>([]);
+  const [jobRolelist, setJobRoleList] = useState<filterItemsType[]>([]);
+
+  const fetchTimeSheet = useCallback(
+    async (searchKeyword: string = COMMON_CONSTANTS.DEFAULT) => {
+      setLoading(true);
+      const response = await TimeTrackingService.getTimeSheet(
+        searchKeyword,
+        location,
+        department,
+        role,
+        startDate,
+        endDate,
+      );
+      setLoading(false);
+      if (response.status) {
+        setTimeSheet(response.data);
+      }
+    },
+    [location, department, role, startDate, endDate],
+  );
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(async () => {
+      setRefreshing(false);
+      fetchTimeSheet();
+      fetchMetaData();
+    }, 1000);
+    setRefreshing(false);
+  };
+
+  const fetchMetaData = async () => {
+    const response = await TimeTrackingService.getMeta();
+    if (response.status) {
+      setDepartmentList(response.response.departments);
+      setLocationList(response.response.locations);
+      setJobRoleList(response.response.jobroles);
+    } else {
+      console.error(response.exceptionMessage);
+    }
+  };
+
+  useEffect(() => {
+    fetchTimeSheet();
+    fetchMetaData();
+  }, [fetchTimeSheet]);
+
+  const approveTime = (id: number) => {
+    TimeTrackingService.updateTimeEntryStatus(id, true);
+    fetchTimeSheet();
+  };
+
+  const unapproveTime = (id: number) => {
+    TimeTrackingService.updateTimeEntryStatus(id, false);
+    fetchTimeSheet();
+  };
+
+  const approveAll = () => {
+    timeSheet?.forEach((entry) => {
+      if (!entry.status) {
+        TimeTrackingService.updateTimeEntryStatus(entry.id, true);
+      }
+    });
+    fetchTimeSheet();
+  };
+
+  const unapproveAll = () => {
+    timeSheet?.forEach((entry) => {
+      if (entry.status) {
+        TimeTrackingService.updateTimeEntryStatus(entry.id, false);
+      }
+    });
+    fetchTimeSheet();
+  };
+
+  const toggleModal = () => {
+    setShowModal((prev) => !prev);
+  };
+
+  const getTimeClockDetails = (entry: TimeSheetEntry) => {
+    navigation.navigate(SCREENS.TimeClockDetails, { entry });
+  };
+
+  const applyFilters = () => {
+    fetchTimeSheet();
+    setShowModal(false);
+  };
+
+  const clearFilters = () => {
+    setLocation(undefined);
+    setDepartment(undefined);
+    setRole(undefined);
+    setKeyword('');
+    setStartDate(null);
+    setEndDate(null);
+    fetchTimeSheet();
+  };
+
+  const handleDateRangeChange = (start: string | null, end: string | null) => {
+    setStartDate(start);
+    setEndDate(end);
+  };
+
+  const searchKeyword = () => {
+    fetchTimeSheet(keyword);
+  };
+
+  return {
+    approveTime,
+    unapproveTime,
+    approveAll,
+    unapproveAll,
+    getTimeClockDetails,
+    timeSheet,
+    onRefresh,
+    refreshing,
+    showModal,
+    toggleModal,
+    departmentList,
+    locationList,
+    jobRolelist,
+    applyFilters,
+    location,
+    setLocation,
+    department,
+    role,
+    setDepartment,
+    setRole,
+    clearFilters,
+    keyword,
+    searchKeyword,
+    loading,
+    setKeyword,
+    startDate,
+    endDate,
+    handleDateRangeChange,
+  };
+};
+
+export default useTimeTracking;

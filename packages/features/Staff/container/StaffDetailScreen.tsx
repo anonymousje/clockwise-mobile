@@ -53,7 +53,7 @@ const StaffDetail = () => {
         <View style={styles.headerContainer}>
           <View style={styles.avatarContainer}>
             <Text style={styles.avatarText}>
-              {getInitials(`${staffData?.firstName} ${staffData?.lastName}`)}
+              {getInitials(`${staffData?.first_name} ${staffData?.last_name}`)}
             </Text>
           </View>
         </View>
@@ -64,7 +64,7 @@ const StaffDetail = () => {
               <Text style={styles.textHeader}>
                 {STRINGS.EMPLOYEE_FORM.FIRST_NAME}
               </Text>
-              <Text style={styles.text}>{staffData?.firstName}</Text>
+              <Text style={styles.text}>{staffData?.first_name}</Text>
             </View>
 
             <View style={styles.textContainer}>
@@ -72,9 +72,9 @@ const StaffDetail = () => {
                 {STRINGS.EMPLOYEE_FORM.LAST_NAME}
               </Text>
               <Text style={styles.text}>
-                {staffData?.lastName === undefined
+                {staffData?.last_name === undefined
                   ? ` ${STRINGS.INPUT_PLACEHOLDER_TEXT.DASH}`
-                  : staffData?.lastName}
+                  : staffData?.last_name}
               </Text>
             </View>
 
@@ -90,10 +90,10 @@ const StaffDetail = () => {
                 {STRINGS.EMPLOYEE_FORM.LAST_LOGIN}
               </Text>
               <Text style={styles.text}>
-                {staffData?.lastLoginDate === undefined
+                {staffData?.last_login === undefined
                   ? ` ${STRINGS.INPUT_PLACEHOLDER_TEXT.DASH}`
                   : formatDateTime(
-                      staffData?.lastLoginDate || COMMON_CONSTANTS.DEFAULT,
+                      staffData?.last_login || COMMON_CONSTANTS.DEFAULT,
                     )}
               </Text>
             </View>
@@ -116,9 +116,9 @@ const StaffDetail = () => {
               </Text>
 
               <Text style={styles.text}>
-                {staffData?.userStatus === undefined
+                {staffData?.status === undefined
                   ? ` ${STRINGS.INPUT_PLACEHOLDER_TEXT.DASH}`
-                  : String(staffData?.userStatus) === '1'
+                  : String(staffData?.status) === '1'
                   ? STRINGS.ACTIVE
                   : STRINGS.INACTIVE}
               </Text>
@@ -130,7 +130,7 @@ const StaffDetail = () => {
               </Text>
 
               <Text style={styles.text}>
-                {checkUndefined(staffData?.locationName)}
+                {checkUndefined(staffData?.location_name)}
               </Text>
             </View>
 
@@ -140,18 +140,16 @@ const StaffDetail = () => {
               </Text>
 
               <Text style={styles.text}>
-                {checkUndefined(staffData?.jobRoleName)}
+                {checkUndefined(staffData?.jobrole_name)}
               </Text>
             </View>
 
             <Button
               label={
-                staffData?.userStatus === 1
-                  ? STRINGS.DEACTIVATE
-                  : STRINGS.ACTIVATE
+                staffData?.status === 1 ? STRINGS.DEACTIVATE : STRINGS.ACTIVATE
               }
               onPress={changeStatus}
-              color={staffData?.userStatus === 1 ? COLORS.RED : COLORS.GREEN}
+              color={staffData?.status === 1 ? COLORS.RED : COLORS.GREEN}
             />
           </View>
         )}
@@ -160,7 +158,7 @@ const StaffDetail = () => {
           <View style={styles.editDetails}>
             <InputField
               label={STRINGS.EMPLOYEE_FORM.FIRST_NAME}
-              value={staffData?.firstName || COMMON_CONSTANTS.DEFAULT}
+              value={staffData?.first_name || COMMON_CONSTANTS.DEFAULT}
               onChangeText={(text) => {
                 handleTextChange(
                   text,
@@ -175,7 +173,7 @@ const StaffDetail = () => {
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.LAST_NAME}
-              value={staffData?.lastName || COMMON_CONSTANTS.DEFAULT}
+              value={staffData?.last_name || COMMON_CONSTANTS.DEFAULT}
               onChangeText={(text) =>
                 handleTextChange(
                   text,
@@ -205,7 +203,7 @@ const StaffDetail = () => {
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.CELL_PHONE}
-              value={staffData?.phoneNumber || COMMON_CONSTANTS.DEFAULT}
+              value={staffData?.cellphone || COMMON_CONSTANTS.DEFAULT}
               onChangeText={(text) =>
                 handleTextChange(
                   text,
@@ -253,7 +251,7 @@ const StaffDetail = () => {
 
             <InputField
               label={STRINGS.EMPLOYEE_FORM.USERCODE}
-              value={staffData?.userCode || COMMON_CONSTANTS.DEFAULT}
+              value={String(staffData?.id || COMMON_CONSTANTS.DEFAULT)}
               onChangeText={(text) =>
                 handleTextChange(
                   text,
@@ -270,7 +268,7 @@ const StaffDetail = () => {
               <View style={styles.picker}>
                 <Picker
                   selectedValue={
-                    staffData?.departmentName || COMMON_CONSTANTS.DEFAULT
+                    staffData?.department_name || COMMON_CONSTANTS.DEFAULT
                   }
                   onValueChange={(itemValue) =>
                     handlePickerChange(
@@ -287,7 +285,7 @@ const StaffDetail = () => {
 
                   {departmentList.map((department) => (
                     <Picker.Item
-                      key={department.recordId}
+                      key={department.id}
                       label={department.name}
                       value={department.name}
                     />
@@ -298,7 +296,7 @@ const StaffDetail = () => {
               <View style={styles.picker}>
                 <Picker
                   selectedValue={
-                    staffData?.locationName || COMMON_CONSTANTS.DEFAULT
+                    staffData?.location_name || COMMON_CONSTANTS.DEFAULT
                   }
                   onValueChange={(itemValue) =>
                     handlePickerChange(
@@ -315,7 +313,7 @@ const StaffDetail = () => {
 
                   {locationList.map((location) => (
                     <Picker.Item
-                      key={location.recordId}
+                      key={location.id}
                       label={location.name}
                       value={location.name}
                     />
@@ -326,7 +324,7 @@ const StaffDetail = () => {
               <View style={styles.picker}>
                 <Picker
                   selectedValue={
-                    staffData?.jobRoleName || COMMON_CONSTANTS.DEFAULT
+                    staffData?.jobrole_name || COMMON_CONSTANTS.DEFAULT
                   }
                   onValueChange={(itemValue) =>
                     handlePickerChange(
@@ -343,7 +341,7 @@ const StaffDetail = () => {
 
                   {jobRolelist.map((jobRole) => (
                     <Picker.Item
-                      key={jobRole.recordId}
+                      key={jobRole.id}
                       label={jobRole.name}
                       value={jobRole.name}
                     />
@@ -357,7 +355,7 @@ const StaffDetail = () => {
                   onValueChange={(itemValue) =>
                     handleTextChange(
                       itemValue,
-                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.ROLE,
+                      COMMON_CONSTANTS.FORM_CONTROLLER_VALUES.JOB_ROLE,
                     )
                   }
                   style={styles.pickerItem}
@@ -369,12 +367,12 @@ const StaffDetail = () => {
 
                   <Picker.Item
                     label={STRINGS.ROLES.ADMIN}
-                    value={COMMON_CONSTANTS.PICKER_VALUES.ADMIN}
+                    value={COMMON_CONSTANTS.PICKER_VALUES.MANAGER}
                   />
 
                   <Picker.Item
-                    label={STRINGS.ROLES.USER}
-                    value={COMMON_CONSTANTS.PICKER_VALUES.USER}
+                    label={'Employee'}
+                    value={'Employee'}
                   />
                 </Picker>
               </View>

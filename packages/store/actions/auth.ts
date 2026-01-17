@@ -12,12 +12,15 @@ export const setUser = (userData: User) => {
 
 export const setTokens = (
   accessToken: string,
-  refreshToken: string,
   role?: string,
+  email?: string,
+  status?: string,
+  name?: string,
+  userId?: string,
 ) => {
   return {
     type: COMMON_CONSTANTS.REDUX_TYPES.SET_TOKENS,
-    payload: { accessToken, refreshToken, role },
+    payload: { accessToken, role, email, status, name, userId },
   };
 };
 
@@ -27,19 +30,27 @@ export const logInUser = async (email: string, password: string) => {
       email,
       password,
     });
-
-    const { accessToken, refreshToken, role } = response.data.data;
+    const {
+      user_id,
+      name,
+      email: userEmail,
+      role,
+      token,
+      status,
+    } = response.data;
 
     return {
       type: COMMON_CONSTANTS.REDUX_TYPES.LOGIN_USER,
       payload: {
-        email,
-        accessToken,
-        refreshToken,
+        userId: user_id,
+        name,
+        email: userEmail,
         role,
+        accessToken: token,
+        status,
       },
     };
-  } catch (error) {
+  } catch (error: any) {
     return {
       type: COMMON_CONSTANTS.REDUX_TYPES.LOGIN_FAIL,
       payload: COMMON_CONSTANTS.DEFAULT,
@@ -48,6 +59,7 @@ export const logInUser = async (email: string, password: string) => {
 };
 
 export const logOutUser = () => {
+  apiClient.post(ApiRoutes.logout);
   return {
     type: COMMON_CONSTANTS.REDUX_TYPES.LOGOUT,
     payload: COMMON_CONSTANTS.DEFAULT,

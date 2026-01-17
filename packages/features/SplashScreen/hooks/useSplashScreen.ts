@@ -5,31 +5,37 @@ import { useDispatch } from 'react-redux';
 import { setTokens } from '../../../store/actions/auth';
 import { SCREENS } from '../../../constants/screens';
 import { NavigationProp } from '../../types';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const useSplashScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('SplashScreen mounted');
     const checkAuth = async () => {
       try {
-        const user = await AsyncStorage.getItem('user');
+        const user = await AsyncStorage.getItem(COMMON_CONSTANTS.USER);
         if (user) {
           const parsedUser = JSON.parse(user);
           dispatch(
             setTokens(
               parsedUser.accessToken,
-              parsedUser.refreshToken,
               parsedUser.role,
+              parsedUser.email,
+              parsedUser.status,
+              parsedUser.name,
+              parsedUser.userId,
             ),
           );
-          navigation.replace(SCREENS.MainTabs);
+          if (parsedUser.accessToken) {
+            navigation.replace(SCREENS.MainTabs);
+          } else {
+            navigation.replace(SCREENS.Login);
+          }
         } else {
           navigation.replace(SCREENS.Login);
         }
       } catch (error) {
-        console.log('Error checking auth:', error);
         navigation.replace(SCREENS.Login);
       }
     };

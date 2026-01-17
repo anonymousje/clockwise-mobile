@@ -12,15 +12,17 @@ export type RoutesTypes = {
   [SCREENS.Staff]: undefined;
   [SCREENS.AddEmployee]: undefined;
   [SCREENS.MainTabs]: undefined;
-  [SCREENS.TimeClockDetails]: undefined;
-  [SCREENS.StaffDetail]: { recordId: string };
+  [SCREENS.TimeClockDetails]: { entry: TimeSheetEntry | null };
+  [SCREENS.StaffDetail]: { data: staffType | null };
 };
 
 export type User = {
+  userId?: number;
+  name?: string;
   email: string;
   accessToken: string;
-  refreshToken: string;
   role: string;
+  status?: number;
 };
 
 export type breakArrayType = {
@@ -39,9 +41,29 @@ export type NewPasswordRouteProp = RouteProp<
   typeof SCREENS.NewPassword
 >;
 
+export type TimeClockDetailsRouteProp = RouteProp<
+  RoutesTypes,
+  typeof SCREENS.TimeClockDetails
+>;
+
+export type DateInputProps = {
+  value: string | null;
+  placeholder: string;
+  onPress: () => void;
+};
+
+export type RangeDatePickerProps = {
+  onDateRangeChange?: (
+    startDate: string | null,
+    endDate: string | null,
+  ) => void;
+  startDate?: string | null;
+  endDate?: string | null;
+};
+
 export type StaffFormData = {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   password: string;
   cellPhone?: string;
   homePhone?: string;
@@ -87,17 +109,31 @@ export interface FORM_CONTROLLER_VALUES {
 export interface COMMON_CONSTANTS_TYPE {
   DEFAULT: string;
   PICKER_VALUES: {
-    ADMIN: string;
+    MANAGER: string;
     USER: string;
   };
   API_HEADERS: {
     CONTENT_TYPE: string;
     APPLICATION_JSON: string;
     ACCEPT: string;
-    BEARER: string;
+    JWT: string;
+  };
+  CALENDER_MODE: {
+    SINGLE: const;
+    RANGE: const;
+    MULTI: const;
   };
   USER: string;
-  ADMIN: string;
+  PERCENTAGES: {
+    HUNDRED: const;
+    FIFTY: const;
+    TWENTY_FIVE: const;
+    TWENTY: const;
+    ZERO: const;
+    EIGHTY: const;
+  };
+  END: string;
+  MANAGER: string;
   REDUX_TYPES: {
     SET_USER: string;
     SET_TOKENS: string;
@@ -111,6 +147,11 @@ export interface COMMON_CONSTANTS_TYPE {
   END: string;
   ZERO: number;
   ONE: number;
+  ICON_SIZE: {
+    SMALL: const;
+    MEDIUM: const;
+    LARGE: const;
+  };
   ICONS: {
     HOME: const;
     PEOPLE: const;
@@ -128,6 +169,10 @@ export interface COMMON_CONSTANTS_TYPE {
     CLOSE: const;
     ELLIPSE: const;
     CAFE: const;
+    TIME: const;
+    LOCATION: const;
+    DEPARTMENT: const;
+    JOB_ROLE: const;
   };
   SPACE: string;
   DATE_TIME: {
@@ -149,7 +194,7 @@ export interface COMMON_CONSTANTS_TYPE {
     DEPARTMENT: const;
     LOCATION: const;
     JOB_ROLE: const;
-    ROLE: const;
+    JOB_ROLE: const;
   };
   FLEX: {
     ROW: const;
@@ -169,6 +214,24 @@ export interface COMMON_CONSTANTS_TYPE {
     ABSOLUTE: const;
     RELATIVE: const;
   };
+  DATE_FORMATS: {
+    YYYY_MM_DD: const;
+    MMM_DD_YY: const;
+  };
+  FILTER_CONTROLLER_VALUES: {
+    KEYWORD: const;
+    LOCATION_ID: const;
+    DEPARTMENT_ID: const;
+    JOB_ROLE_ID: const;
+  };
+  MODAL_ANIMATION: {
+    SLIDE: const;
+    FADE: const;
+    NONE: const;
+  };
+  AUTO: const;
+  SHORT: const;
+  PENDING: const;
   SIZE: {
     SIZE_1: number;
     SIZE_2: number;
@@ -232,6 +295,29 @@ export type WhoIsOnResponseType = {
   exceptionMessage?: string | undefined;
 };
 
+export type TimeSheetEntry = {
+  id: number;
+  user_id: number;
+  user_name: string;
+  full_name: string;
+  role: string;
+  position: string;
+  location: string;
+  department: string;
+  status: boolean;
+  deleted: boolean;
+  clock_in: string;
+  clock_out: string | null;
+  total_shift: string | null;
+  break_duration: string;
+};
+
+export type TimeSheetResponseType = {
+  success: boolean;
+  data: TimeSheetEntry[];
+  exceptionMessage?: string | undefined;
+};
+
 export interface ButtonProps extends TouchableOpacityProps {
   onPress: () => void;
   label: string;
@@ -239,9 +325,9 @@ export interface ButtonProps extends TouchableOpacityProps {
 }
 
 export type staffSearchQueryType = {
-  location?: string;
-  department?: string;
-  role?: string;
+  location_id?: number;
+  department_id?: number;
+  job_role_id?: number;
 };
 
 export type ClockStatusResponse = {
@@ -287,29 +373,31 @@ export type ResponseType = {
 
 export type staffType = {
   iconColor?: string;
-  recordId: string;
-  firstName: string;
-  lastName: string;
+  id: number;
+  first_name: string;
+  last_name: string;
   email: string;
   role?: string;
-  phoneNumber?: string | null;
-  lastLoginDate?: string | null;
-  userStatus?: number;
+  cellphone?: string | null;
+  homephone?: string | null;
+  last_login?: string | null;
+  status?: number;
   username?: string;
   nickname?: string | null;
   address?: string | null;
-  departmentName?: string | null;
-  locationName?: string | null;
-  jobRoleName?: string | null;
-  userCode?: string | null;
-  departmentRecordId?: string | null;
-  locationRecordId?: string | null;
-  jobRoleRecordId?: string | null;
-  isDeleted?: boolean;
+  department_name?: string | null;
+  location_name?: string | null;
+  jobrole_name?: string | null;
+  created_at?: string | null;
+  department?: number | null;
+  location?: number | null;
+  jobrole?: number | null;
+  role_id?: number;
+  delete_user?: boolean;
 };
 
 export type filterItemsType = {
-  recordId: string;
+  id: number;
   name: string;
 };
 

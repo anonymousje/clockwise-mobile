@@ -9,4 +9,5 @@ export enum SCREENS {
   MainTabs = 'MainTabs',
   StaffDetail = 'StaffDetailScreen',
   TimeClockDetails = 'TimeClockDetailsScreen',
+  TimeTracking = 'TimeTracking',
 }

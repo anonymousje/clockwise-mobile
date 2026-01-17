@@ -1,82 +1,78 @@
-import { useEffect, useCallback, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { breakArrayType, ClockStatusResponse } from '../../types';
-import TimeClockDetailsService from '../services/TimeClockDetailsService';
+import { useEffect, useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { TimeClockDetailsRouteProp } from '../../types';
 import { NavigationProp } from '../../types';
-import {
-  formatBreakGaps,
-  formatTime,
-  formatTimeFromISOString,
-  formatDateFromISOString,
-} from '../../../utils/helper';
-import { useDispatch } from 'react-redux';
-import { setRefreshFlag } from '../../../store/actions/flags';
-import { SCREENS } from '../../../constants/screens';
+import COMMON_CONSTANTS from '../../../constants/CommonConstants';
+import { formatTimeDuration } from '../../../utils/helper';
 
 const useTimeClockDetails = () => {
   const [clockIn, setClockIn] = useState(true);
   const [clockInTime, setClockInTime] = useState('');
   const [clockInDate, setClockInDate] = useState('');
-  const [note, setNote] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
+  const [clockOutTime, setClockOutTime] = useState('');
+  const [clockOutDate, setClockOutDate] = useState('');
+  const [breakTime, setBreakTime] = useState('');
   const [clockTime, setClockTime] = useState('');
-  const [breakTime, setBreakTime] = useState<breakArrayType[]>([]);
   const navigation = useNavigation<NavigationProp>();
-  const dispatch = useDispatch();
 
-  const getClockStatus = useCallback(async (): Promise<ClockStatusResponse> => {
-    const clockInResponse = await TimeClockDetailsService.getClockStatus();
-    const breakResponse = await TimeClockDetailsService.getBreakStatus();
-
-    if (clockInResponse.status) {
-      setClockTime(formatTime(clockInResponse.response.hoursWorked || ''));
-      setClockInTime(
-        formatTimeFromISOString(clockInResponse.response.clockInTime || ''),
-      );
-      setClockInDate(
-        formatDateFromISOString(clockInResponse.response.clockInTime || ''),
-      );
-      setClockIn(clockInResponse.response.isClockedIn || false);
-    }
-
-    if (breakResponse.status) {
-      const shiftBreaks = breakResponse.response?.shiftBreaks ?? [];
-      setBreakTime(formatBreakGaps(shiftBreaks));
-    }
-
-    return clockInResponse;
-  }, []);
+  const route = useRoute<TimeClockDetailsRouteProp>();
 
   useEffect(() => {
-    getClockStatus();
-  }, [getClockStatus]);
-
-  const handleClockOut = async () => {
-    const response = await TimeClockDetailsService.handleClockOut(note);
-    if (response.status) {
-      dispatch(setRefreshFlag(true));
-      navigation.replace(SCREENS.MainTabs);
+    if (!route.params.entry) {
+      navigation.goBack();
+      return;
     }
-    return response;
-  };
-  const handleNoteChange = (text: string) => {
-    setNote(text);
-  };
+    setClockTime(formatTimeDuration(route.params.entry.total_shift));
+    setClockIn(route.params.entry.isClockedIn);
 
-  const setModal = () => {
-    setModalVisible(!modalVisible);
-  };
+    setClockInTime(
+      new Date(route.params.entry.clock_in).toLocaleTimeString([], {
+        hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+        minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+      }),
+    );
+    setClockInDate(
+      new Date(route.params.entry.clock_in).toLocaleDateString(
+        COMMON_CONSTANTS.DATE_TIME.EN_US,
+        {
+          year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
+          month: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+          day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+        },
+      ),
+    );
+    if (route.params.entry.clock_out) {
+      setClockOutTime(
+        new Date(route.params.entry.clock_out).toLocaleTimeString([], {
+          hour: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+          minute: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+        }),
+      );
+      setClockOutDate(
+        new Date(route.params.entry.clock_out).toLocaleDateString(
+          COMMON_CONSTANTS.DATE_TIME.EN_US,
+          {
+            year: COMMON_CONSTANTS.DATE_TIME.NUMERIC,
+            month: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+            day: COMMON_CONSTANTS.DATE_TIME.TWO_DIGIT,
+          },
+        ),
+      );
+      setBreakTime(formatTimeDuration(route.params.entry.break_duration));
+    } else {
+      setClockOutTime('...');
+      setClockOutDate('...');
+    }
+  }, [route.params.entry, navigation]);
+
   return {
     clockIn,
     clockInTime,
     clockTime,
-    breakTime,
     clockInDate,
-    getClockStatus,
-    handleClockOut,
-    setModal,
-    handleNoteChange,
-    modalVisible,
+    clockOutTime,
+    clockOutDate,
+    breakTime,
   };
 };
 

@@ -11,7 +11,7 @@ import COMMON_CONSTANTS from '../../../constants/CommonConstants';
 
 const useStaffDetail = () => {
   const route = useRoute<StaffDetailNavigationProp>();
-  const { recordId } = route.params;
+  const { data } = route.params;
   const dispatch = useDispatch();
 
   const [editMode, setEditMode] = useState(false);
@@ -23,28 +23,30 @@ const useStaffDetail = () => {
   const [validationErrors, setValidationErrors] = useState<errorType>({});
 
   const staffSchema = z.object({
-    firstName: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
-    lastName: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
+    first_name: z.string().min(1, STRINGS.ZOD_ERRORS.FIRST_NAME_REQUIRED),
+    last_name: z.string().min(1, STRINGS.ZOD_ERRORS.LAST_NAME_REQUIRED),
     email: z.string().email(STRINGS.ZOD_ERRORS.EMAIL_INVALID),
   });
 
   useEffect(() => {
-    if (!recordId) {
+    if (!data) {
       return;
     }
 
     const fetchData = async () => {
-      setStaffData(await StaffDetailService.getUser(recordId));
-
-      setDepartmentList(await StaffDetailService.getDepartment());
-
-      setLocationList(await StaffDetailService.getLocation());
-
-      setJobRoleList(await StaffDetailService.getJobRole());
+      setStaffData(data);
+      const response = await StaffDetailService.getMeta();
+      if (response.status) {
+        setDepartmentList(response.response.departments);
+        setLocationList(response.response.locations);
+        setJobRoleList(response.response.jobroles);
+      } else {
+        console.error(response.exceptionMessage);
+      }
     };
 
     fetchData();
-  }, [recordId]);
+  }, [data]);
 
   const editStaffData = async () => {
     if (editMode) {
@@ -65,31 +67,31 @@ const useStaffDetail = () => {
 
       setValidationErrors({});
       try {
-        await StaffDetailService.updateUser(staffData?.recordId, {
-          firstName: staffData?.firstName,
-          lastName: staffData?.lastName,
+        await StaffDetailService.updateUser(staffData?.id, {
+          first_name: staffData?.first_name,
+          last_name: staffData?.last_name,
+          nickname: staffData?.nickname,
+          status: staffData?.status,
           email: staffData?.email,
-          phoneNumber: staffData?.phoneNumber,
+          cellphone: staffData?.cellphone,
+          password: '',
+          homephone: '',
           username: staffData?.username,
           address: staffData?.address,
-          nickname: staffData?.nickname,
-          userCode: staffData?.userCode,
-          userStatus: staffData?.userStatus,
-          role: staffData?.role,
-          departmentRecordId: staffData?.departmentRecordId,
-          locationRecordId: staffData?.locationRecordId,
-          jobRoleRecordId: staffData?.jobRoleRecordId,
-          departmentName: staffData?.departmentName,
-          locationName: staffData?.locationName,
-          jobRoleName: staffData?.jobRoleName,
+          role_id: staffData?.role_id,
+          department: staffData?.department,
+          location: staffData?.location,
+          jobrole: staffData?.jobrole,
+          created_by: 2,
         });
 
         dispatch(fetchUpdatedStaffList(true));
-        const updatedUser: staffType | null = await StaffDetailService.getUser(
-          staffData?.recordId,
-        );
+        const response = await StaffDetailService.getUser(staffData?.id);
 
-        setStaffData(updatedUser);
+        if (response.status) {
+          const updatedUser: staffType | null = response.response;
+          setStaffData(updatedUser);
+        }
       } catch (e: any) {
         const errors: errorType = {};
 
@@ -135,20 +137,28 @@ const useStaffDetail = () => {
   };
 
   const changeStatus = async () => {
-    if (staffData?.userStatus === 3) {
-      await StaffDetailService.restoreUser(staffData?.recordId);
+    if (staffData?.status === 0) {
+      await StaffDetailService.updateUser(staffData?.id, {
+        ...staffData,
+        password: '',
+        status: 1,
+      });
       dispatch(fetchUpdatedStaffList(true));
     } else {
-      await StaffDetailService.deleteUser(staffData?.recordId);
+      await StaffDetailService.updateUser(staffData?.id, {
+        ...staffData,
+        password: '',
+        status: 0,
+      });
       dispatch(fetchUpdatedStaffList(true));
     }
 
     try {
-      const updatedUser: staffType | null = await StaffDetailService.getUser(
-        staffData?.recordId,
-      );
-
-      setStaffData(updatedUser);
+      const response = await StaffDetailService.getUser(staffData?.id);
+      if (response.status) {
+        const updatedUser: staffType | null = response.response;
+        setStaffData(updatedUser);
+      }
     } catch (error) {}
   };
 
@@ -174,10 +184,10 @@ const useStaffDetail = () => {
       };
       setStaffData({
         ...staffData,
-        [`${fieldName}Name`]: itemValue,
-        [`${fieldName}RecordId`]: listMap[fieldName]?.find(
+        [`${fieldName}_name`]: itemValue,
+        [`${fieldName}`]: listMap[fieldName]?.find(
           (item) => item.name === itemValue,
-        )?.recordId,
+        )?.id,
       });
     }
   };

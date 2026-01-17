@@ -21,7 +21,7 @@ const useForgotPasswordScreen = () => {
     navigation.navigate(SCREENS.Login);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setLoading(true);
 
     if (!validatedEmail(email)) {
@@ -30,17 +30,14 @@ const useForgotPasswordScreen = () => {
       return;
     }
 
-    ForgotPasswordService.requestPasswordReset(email)
-      .then(() => {
-        setIsValidEmail(true);
-        setSuccess(true);
-      })
-      .catch(() => {
-        setIsValidEmail(false);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const response = await ForgotPasswordService.requestPasswordReset(email);
+    if (response.status) {
+      setIsValidEmail(true);
+      setSuccess(true);
+    } else {
+      setIsValidEmail(false);
+    }
+    setLoading(false);
   };
 
   return {

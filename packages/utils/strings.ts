@@ -7,7 +7,11 @@ const STRINGS = {
     FORGOT_PASSWORD: 'Forgot Password',
     NEW_PASSWORD: 'New Password',
     TIME_CLOCK_DETAILS: 'Time Clock Details',
+    TIME_TRACKING: 'Time Tracking',
   },
+  APPROVED: 'Approved',
+  PENDING: 'Pending',
+  USER_NOT_FOUND: 'User not found',
   DASH: '-',
   CLOCK_IN: 'Clock In',
   CLOCK_OUT: 'Clock Out',
@@ -35,6 +39,8 @@ const STRINGS = {
   },
   TITLES: {
     DASHBOARD: 'Dashboard',
+    TIME_TRACKING: 'Time Tracking',
+    CUSTOM_FILTER: 'Custom Filter',
   },
   RESET_PASSWORD_EMAIL:
     'If {0} is registered, you will receive a password reset link.',
@@ -47,7 +53,12 @@ const STRINGS = {
     ALL_STAFF: 'All Staff',
     ACTIVE_STAFF: 'Active Staff',
     INACTIVE_STAFF: 'Inactive Staff',
+    LOCATION_FILTER: 'Location',
+    DEPARTMENT_FILTER: 'Department',
+    JOB_ROLE_FILTER: 'Job Role',
   },
+  CLEAR_ALL: 'CLEAR ALL',
+  BREAK: 'Break',
   BREAK_START: 'Break Start',
   BREAK_END: 'Break End',
   ROLES: {
@@ -89,7 +100,9 @@ const STRINGS = {
     SEARCH_STAFF: 'Search Staff',
     NOTE: 'Add a note',
     DASH: '-',
+    SELECT_DATE_RANGE: 'Select Date Range',
   },
+  DATE_RANGE: 'Date Range',
   BUTTON_TEXT: {
     GO_TO_LOGIN: 'Go to Login',
     RESET_PASSWORD: 'RESET PASSWORD',
@@ -100,6 +113,7 @@ const STRINGS = {
     CLOCK_OUT: 'CLOCK OUT',
     RESUME_SHIFT: 'RESUME SHIFT',
     SEE_MORE: 'SEE MORE',
+    APPLY: 'APPLY',
   },
   NO_USERS_ONLINE: 'No users are currently online',
   HEADERS: {
@@ -114,6 +128,11 @@ const STRINGS = {
     WHO_IS_ON_NOW: 'Who Is On Now',
     YOU_WORKED_FOR: 'You worked for',
   },
+  LOADING_WAIT: 'Loading, please wait...',
+  APPROVE: 'APPROVE',
+  UNAPPROVE: 'UNAPPROVE',
+  APPROVE_ALL: 'APPROVE ALL',
+  UNAPPROVE_ALL: 'UNAPPROVE ALL',
   VALIDATIONS: {
     TITLE: 'Password must contain:',
     UPPERCASE: 'At least one uppercase letter',
